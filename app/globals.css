@@ -1,8 +1,134 @@
 @import "tailwindcss";
 
+@tailwind utilities;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 39 94% 63%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 30 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 39 94% 63%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  body {
+    @reference bg-background text-foreground overflow-x-hidden font-poppins;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @reference font-semibold font-poppins;
+  }
+}
+
+@layer components {
+  .section-container {
+    @reference container mx-auto px-4 md:px-8 max-w-full py-6 md:py-12;
+  }
+
+  .heading-lg {
+    @reference text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  .heading-md {
+    @reference text-2xl md:text-3xl font-bold;
+  }
+
+  .button-primary {
+    @reference bg-lumey-yellow hover:bg-lumey-orange text-black font-medium py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl;
+  }
+
+  .button-secondary {
+    @reference bg-white text-lumey-dark border border-lumey-yellow hover:border-lumey-orange hover:bg-gray-50 font-medium py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center gap-2;
+  }
+
+  .feature-card {
+    @reference bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-300 hover:border-lumey-yellow;
+  }
+
+  .product-card {
+    @reference bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-lumey-yellow flex flex-col;
+  }
+
+  /* Marquee for mobile header */
+  .marquee {
+    @reference relative w-full whitespace-nowrap overflow-hidden;
+  }
+
+  .marquee-content {
+    @reference inline-block text-xs whitespace-nowrap animate-marquee;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .section-container {
+      @reference py-10;
+    }
+
+    .heading-lg {
+      @reference text-2xl;
+    }
+
+    .heading-md {
+      @reference text-xl;
+    }
+
+    .button-primary,
+    .button-secondary {
+      @reference py-2 px-4 text-sm;
+    }
+  }
+}
+
+/* Keyframes for marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
 }
 
 @theme inline {
