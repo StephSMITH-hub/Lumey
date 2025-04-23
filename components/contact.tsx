@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -114,7 +114,7 @@ export const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div className="lg:flex  gap-8">
           {/* <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -172,7 +172,7 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-3 bg-white p-8 rounded-xl shadow-lg"
+            className="lg:col-span-3 bg-white p-8 rounded-xl shadow-lg lg:w-[50%]"
           >
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold">Send Us a Message</h3>
@@ -278,12 +278,12 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex flex-col"
+            className="flex flex-col lg:w-[50%] mt-5 lg:mt-0"
           >
-            <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 mb-8">
+            <div className="bg-white rounded-xl shadow-lg p-8 border w-full border-gray-100 mb-8">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
 
-              <div className="space-y-4">
+              <div className="space-y-4 w-full">
                 {contactInfo.map((item, index) => (
                   <a
                     key={index}
@@ -338,4 +338,3 @@ export const Contact = () => {
     </section>
   );
 };
-

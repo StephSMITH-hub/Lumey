@@ -1,8 +1,5 @@
-"use client"
-
 import React from "react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Check, ExternalLink, MessageSquare, Phone } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Define product features for the table
@@ -26,18 +23,18 @@ const tableData = [
   {
     feature: "Gadgets It Can Power",
     "powerbox-550": "Phones, laptops, bulbs, TV, fans, MP3",
-    "powerbox-1200": "Laptops, TVs, printers, fans",
+    "powerbox-1200": "Phones, bulbs, fans, MP3, Laptops, TVs, printers, fans",
     "powerbox-2100": "Fridges, TVs, printers, PoS, fans, and more…",
     "powerbox-3300": "AC, fridges, CCTV, routers, TVs, computers, more…",
     "powerbox-6500": "ACs, freezers, pumps, routers, large appliances",
   },
   {
     feature: "Charging Options",
-    "powerbox-550": "Solar, Grid, Generator",
-    "powerbox-1200": "Solar, Grid, Generator",
-    "powerbox-2100": "Solar, Grid, Generator",
-    "powerbox-3300": "Solar, Grid, Generator",
-    "powerbox-6500": "Solar, Grid, Generator",
+    "powerbox-550": "Solar, Grid(NEPA), Generator",
+    "powerbox-1200": "Solar, Grid(NEPA), Generator",
+    "powerbox-2100": "Solar, Grid(NEPA), Generator",
+    "powerbox-3300": "Solar, Grid(NEPA), Generator",
+    "powerbox-6500": "Solar, Grid(NEPA), Generator",
   },
   {
     feature: "Backup Duration",
@@ -47,22 +44,14 @@ const tableData = [
     "powerbox-3300": "10–18 hours",
     "powerbox-6500": "Up to 24 hours",
   },
-  {
-    feature: "Solar Panels",
-    "powerbox-550": "1 x 300W panel",
-    "powerbox-1200": "2 x 300W panels",
-    "powerbox-2100": "3 x 300W panels",
-    "powerbox-3300": "4 x 300W panels",
-    "powerbox-6500": "6 x 300W panels",
-  },
-  {
-    feature: "Panel Ratings",
-    "powerbox-550": "300W, 36V Mono",
-    "powerbox-1200": "300W, 36V Mono",
-    "powerbox-2100": "300W, 36V Mono",
-    "powerbox-3300": "300W, 36V Mono",
-    "powerbox-6500": "300W, 36V Mono",
-  },
+  // {
+  //   feature: "Solar Panels",
+  //   "powerbox-550": "1 x 12V, 200W panel",
+  //   "powerbox-1200": "2 x 12V, 200W panels",
+  //   "powerbox-2100": "3 x 12V, 200W panels",
+  //   "powerbox-3300": "2 x 555W panels",
+  //   "powerbox-6500": "4 x 555W panels",
+  // },
   {
     feature: "Warranty",
     "powerbox-550": "12 Months",
@@ -81,11 +70,11 @@ const tableData = [
   },
   {
     feature: "Price (With Panel)",
-    "powerbox-550": "₦270,000",
-    "powerbox-1200": "₦420,000",
-    "powerbox-2100": "₦650,000",
-    "powerbox-3300": "₦1,120,000",
-    "powerbox-6500": "₦2,100,000",
+    "powerbox-550": "₦270,000 (1 x 12V, 200W)",
+    "powerbox-1200": "₦420,000 (2 x 12V, 200W)",
+    "powerbox-2100": "₦650,000 (3 x 12V, 200W)",
+    "powerbox-3300": "₦1,120,000 (2 x 555W)",
+    "powerbox-6500": "₦2,100,000 (4 x 555W)",
   },
   {
     feature: "",
@@ -209,7 +198,10 @@ export const ProductsTable = () => {
                                 : ""
                             )}
                           >
-                            {row[model]}
+                            {
+                              ///@ts-ignore
+                              row[model]
+                            }
                           </span>
                         )}
                       </td>
@@ -270,4 +262,3 @@ export const ProductsTable = () => {
     </div>
   );
 };
-

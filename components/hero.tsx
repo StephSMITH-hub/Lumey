@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import { ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const heroSlides = [
   {
@@ -182,10 +182,10 @@ export const Hero = () => {
                 )}
 
                 <div className="flex flex-col sm:flex-row gap-4 w-fit mx-auto lg:mx-0">
-                  {/* <Link href="/products" className="button-primary">
+                  <Link href="/products" className="button-primary">
                     Explore Our Products
                     <ChevronRight size={18} />
-                  </Link> */}
+                  </Link>
                 </div>
               </motion.div>
             ) : (
@@ -275,4 +275,3 @@ export const Hero = () => {
     </section>
   );
 };
-

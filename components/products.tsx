@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import {
@@ -11,11 +11,8 @@ import {
   Phone,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
-import ProductsTable from "./products_table";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 const products = [
   {
@@ -111,7 +108,7 @@ const customSolution = {
   soldCount: 75,
 };
 
-const formatPrice = (price) => {
+const formatPrice = (price: any) => {
   return new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
@@ -159,7 +156,7 @@ export const Products = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product, index) => (
             <Link
-              to={
+              href={
                 product.id === "custom-solution"
                   ? "#contact"
                   : `/products/${product.id}`
@@ -215,12 +212,12 @@ export const Products = () => {
                         {formatPrice(product.originalPrice)}
                       </span>
                     </div>
-                    <div className="text-sm text-gray-500 mb-2">
+                    {/* <div className="text-sm text-gray-500 mb-2">
                       <span>{product.panelInfo}</span>
                     </div>
                     <div className="text-sm text-gray-600 italic mb-4">
                       {formatPrice(product.withPanelPrice)} with solar panels
-                    </div>
+                    </div> */}
                   </>
                 ) : (
                   <div className="mb-4">
@@ -234,19 +231,12 @@ export const Products = () => {
                 )}
 
                 <div className="mt-auto pt-4">
-                  <Link
-                    to={
-                      product.id === "custom-solution"
-                        ? "#contact"
-                        : `/products/${product.id}`
-                    }
-                    className="flex items-center text-lumey-orange hover:text-lumey-yellow transition-colors font-medium"
-                  >
+                  <div className="flex items-center text-lumey-orange hover:text-lumey-yellow transition-colors font-medium">
                     {product.id === "custom-solution"
                       ? "Get Custom Quote"
                       : "Learn more"}
                     <ChevronRight size={16} className="ml-1" />
-                  </Link>
+                  </div>
                 </div>
               </MotionDiv>
             </Link>
@@ -342,7 +332,7 @@ export const Products = () => {
         </div> */}
 
         <div className="mt-12 text-center flex flex-col md:flex-row items-center justify-center gap-4">
-          <Link to="/products" className="button-primary">
+          <Link href="/products" className="button-primary">
             View All Products
             <ChevronRight size={18} />
           </Link>
@@ -357,4 +347,3 @@ export const Products = () => {
     </section>
   );
 };
-

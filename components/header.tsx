@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import { Menu, Sun, Zap, X, MessageCircle, BookOpen } from "lucide-react";
@@ -30,24 +30,36 @@ export const Header = () => {
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   const isHomePage = pathname === "/";
-  
+
   const scrollToSection = (sectionId: any) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const navLinks = [
     { name: "Home", href: isHomePage ? "#home" : "/" },
-    { name: "About Us", href: isHomePage ? "#about" : "/#about", onClick: () => isHomePage && scrollToSection('about') },
+    {
+      name: "About Us",
+      href: isHomePage ? "#about" : "/#about",
+      onClick: () => isHomePage && scrollToSection("about"),
+    },
     { name: "Products", href: isHomePage ? "#products" : "/products" },
     // Commenting out load estimator as requested
     // { name: "Load Estimator", href: "/load-estimator" },
     { name: "Blog", href: "/blog" },
     { name: "Verify Products", href: "/verify-product" },
-    { name: "FAQs", href: isHomePage ? "#faqs" : "/#faqs", onClick: () => isHomePage && scrollToSection('faqs') },
-    { name: "Contact Us", href: isHomePage ? "#contact" : "/#contact", onClick: () => isHomePage && scrollToSection('contact') },
+    {
+      name: "FAQs",
+      href: isHomePage ? "#faqs" : "/#faqs",
+      onClick: () => isHomePage && scrollToSection("faqs"),
+    },
+    {
+      name: "Contact Us",
+      href: isHomePage ? "#contact" : "/#contact",
+      onClick: () => isHomePage && scrollToSection("contact"),
+    },
   ];
 
   return (
@@ -57,7 +69,7 @@ export const Header = () => {
         scroll ? "py-2" : "py-4"
       )}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="  mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="flex items-center gap-2">
             <img
@@ -78,7 +90,7 @@ export const Header = () => {
                 onClick={link.onClick}
                 className={cn(
                   "text-gray-700 hover:text-lumey-orange transition-colors duration-300",
-                  location.pathname === link.href
+                  pathname === link.href
                     ? "text-lumey-orange font-semibold"
                     : ""
                 )}
@@ -138,9 +150,10 @@ export const Header = () => {
         <div className="marquee">
           <div className="marquee-content">
             <span className="whitespace-nowrap px-2">
-              Welcome to Lumey Energy • Home to Nigeria's No.1 Indigenous Solar Solutions Provider • 
-              Solar Generators | Power Stations | Energy Storage Banks • Best in Price and Quality • 
-              Reach us today - 08139743177
+              Welcome to Lumey Energy • Home to Nigeria's No.1 Indigenous Solar
+              Solutions Provider • Solar Generators | Power Stations | Energy
+              Storage Banks • Best in Price and Quality • Reach us today -
+              08139743177
             </span>
           </div>
         </div>
@@ -148,4 +161,3 @@ export const Header = () => {
     </header>
   );
 };
-
