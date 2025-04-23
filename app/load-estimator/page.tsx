@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import {
   Calculator,
   Plus,
@@ -18,7 +18,6 @@ import {
   Cpu,
   Edit,
 } from "lucide-react";
-import { commonAppliances, productCapacities } from "@/data/applianceData";
 import {
   Tooltip,
   TooltipContent,
@@ -43,8 +42,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+
 import {
   Dialog,
   DialogContent,
@@ -54,6 +52,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { commonAppliances, productCapacities } from "@/data/applianceData";
 
 interface Appliance {
   id: string;
@@ -306,8 +305,6 @@ const LoadEstimator = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-
       <main className="flex-grow lg:pt-32 pt-[76px] pb-16">
         <section className="section-container">
           <div className="max-w-5xl mx-auto">
@@ -792,7 +789,7 @@ const LoadEstimator = () => {
                                   Request Quote
                                 </a>
                               ) : (
-                                <Link to="/products">
+                                <Link href="/products">
                                   <ShoppingCart className="mr-2 h-4 w-4" />
                                   Order Now
                                 </Link>
@@ -867,7 +864,7 @@ const LoadEstimator = () => {
                       <MessageCircle className="h-5 w-5" />
                       Chat with a Lumey Power Consultant
                     </a>
-                    <Link to="/products" className="button-primary">
+                    <Link href="/products" className="button-primary">
                       <ShoppingCart className="h-5 w-5" />
                       Browse All Products
                     </Link>
@@ -878,8 +875,6 @@ const LoadEstimator = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 };

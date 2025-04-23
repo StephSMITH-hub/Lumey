@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { 
-  Save, 
-  Image, 
-  ArrowLeft, 
+import { useParams, useNavigate } from "next/link";
+import {
+  Save,
+  Image,
+  ArrowLeft,
   Trash2,
   BatteryFull,
   Box,
   Tag,
-  DollarSign
+  DollarSign,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,7 +33,7 @@ const AdminProductEditor = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
-  
+
   // Sample product data for editing
   const products = [
     {
@@ -44,8 +44,9 @@ const AdminProductEditor = () => {
       priceWithPanel: "₦270,000",
       category: "Portable Power",
       image: "/images/products/550.jpg",
-      description: "Ideal for students and light home users. Powers phones, laptops, bulbs, TV, fans, MP3 players.",
-      status: "In Stock"
+      description:
+        "Ideal for students and light home users. Powers phones, laptops, bulbs, TV, fans, MP3 players.",
+      status: "In Stock",
     },
     {
       id: "powerbox-1200",
@@ -55,8 +56,9 @@ const AdminProductEditor = () => {
       priceWithPanel: "₦420,000",
       category: "Portable Power",
       image: "/images/products/1200.jpg",
-      description: "Perfect for remote workers and small families. Powers laptops, TVs, printers, fans.",
-      status: "In Stock"
+      description:
+        "Perfect for remote workers and small families. Powers laptops, TVs, printers, fans.",
+      status: "In Stock",
     },
     {
       id: "powerbox-2100",
@@ -66,8 +68,9 @@ const AdminProductEditor = () => {
       priceWithPanel: "₦650,000",
       category: "Home Power",
       image: "/images/products/2100.jpg",
-      description: "Designed for homes & small businesses. Powers fridges, TVs, printers, PoS, fans, and more.",
-      status: "In Stock"
+      description:
+        "Designed for homes & small businesses. Powers fridges, TVs, printers, PoS, fans, and more.",
+      status: "In Stock",
     },
     {
       id: "powerbox-3300",
@@ -77,8 +80,9 @@ const AdminProductEditor = () => {
       priceWithPanel: "₦1,120,000",
       category: "Home Power",
       image: "/images/products/3300.jpg",
-      description: "Ideal for offices and large homes. Powers AC, fridges, CCTV, routers, TVs, computers, and more.",
-      status: "Low Stock"
+      description:
+        "Ideal for offices and large homes. Powers AC, fridges, CCTV, routers, TVs, computers, and more.",
+      status: "Low Stock",
     },
     {
       id: "powerbox-6500",
@@ -88,11 +92,12 @@ const AdminProductEditor = () => {
       priceWithPanel: "₦2,100,000",
       category: "Commercial Power",
       image: "/images/products/6500.jpg",
-      description: "Perfect for full homes, worksites, and industry. Powers ACs, freezers, pumps, routers, large appliances.",
-      status: "In Stock"
-    }
+      description:
+        "Perfect for full homes, worksites, and industry. Powers ACs, freezers, pumps, routers, large appliances.",
+      status: "In Stock",
+    },
   ];
-  
+
   // Set default form state
   const defaultFormData: ProductFormData = {
     id: "",
@@ -103,18 +108,20 @@ const AdminProductEditor = () => {
     category: "Portable Power",
     image: "/images/products/550.jpg",
     description: "",
-    status: "In Stock"
+    status: "In Stock",
   };
-  
+
   const [formData, setFormData] = useState<ProductFormData>(defaultFormData);
-  
+
   // Load product data if editing an existing product
   useEffect(() => {
     if (productId) {
       document.title = "Edit Product | Lumey Admin";
-      
-      const productToEdit = products.find(product => product.id === productId);
-      
+
+      const productToEdit = products.find(
+        (product) => product.id === productId
+      );
+
       if (productToEdit) {
         setFormData(productToEdit);
       } else {
@@ -129,13 +136,18 @@ const AdminProductEditor = () => {
       document.title = "New Product | Lumey Admin";
     }
   }, [productId, navigate, toast]);
-  
+
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate form data
-    if (!formData.name || !formData.capacity || !formData.priceNoPanel || !formData.description) {
+    if (
+      !formData.name ||
+      !formData.capacity ||
+      !formData.priceNoPanel ||
+      !formData.description
+    ) {
       toast({
         variant: "destructive",
         title: "Missing information",
@@ -143,10 +155,10 @@ const AdminProductEditor = () => {
       });
       return;
     }
-    
+
     // In a real app, this would save to a database
     // For now, just show success message
-    
+
     if (productId) {
       toast({
         title: "Product updated",
@@ -158,44 +170,48 @@ const AdminProductEditor = () => {
         description: "Your new product has been successfully created.",
       });
     }
-    
+
     // Navigate back to product list
     navigate("/admin/products");
   };
-  
+
   // Handle input change
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
+
   // Generate ID from name
   const generateId = () => {
     if (formData.name) {
       // Extract Powerbox model number from the name if it follows the pattern "Lumey Powerbox XXXX"
       const match = formData.name.match(/Lumey\s+Powerbox\s+(\d+)/i);
       let id = "";
-      
+
       if (match && match[1]) {
         id = `powerbox-${match[1]}`;
       } else {
         // Otherwise create from name
         id = formData.name
           .toLowerCase()
-          .replace(/[^\w\s]/gi, '')
-          .replace(/\s+/g, '-');
+          .replace(/[^\w\s]/gi, "")
+          .replace(/\s+/g, "-");
       }
-      
-      setFormData(prev => ({ ...prev, id }));
+
+      setFormData((prev) => ({ ...prev, id }));
     }
   };
-  
+
   return (
     <>
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             onClick={() => navigate("/admin/products")}
             className="mr-2"
           >
@@ -206,7 +222,7 @@ const AdminProductEditor = () => {
             {productId ? "Edit Product" : "Create New Product"}
           </h1>
         </div>
-        <Button 
+        <Button
           onClick={handleSubmit}
           className="bg-lumey-orange hover:bg-lumey-yellow"
         >
@@ -214,7 +230,7 @@ const AdminProductEditor = () => {
           {productId ? "Update Product" : "Save Product"}
         </Button>
       </div>
-      
+
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
         <form onSubmit={handleSubmit} className="space-y-6 lg:col-span-2">
           <div className="bg-white p-6 rounded-md shadow">
@@ -223,9 +239,9 @@ const AdminProductEditor = () => {
               <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Product Name</Label>
-                  <Input 
-                    id="name" 
-                    name="name" 
+                  <Input
+                    id="name"
+                    name="name"
                     placeholder="e.g. Lumey Powerbox 550"
                     value={formData.name}
                     onChange={handleChange}
@@ -233,28 +249,29 @@ const AdminProductEditor = () => {
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="id">Product ID/Slug</Label>
-                  <Input 
-                    id="id" 
-                    name="id" 
+                  <Input
+                    id="id"
+                    name="id"
                     placeholder="e.g. powerbox-550"
                     value={formData.id}
                     onChange={handleChange}
                     required
                   />
                   <p className="text-xs text-gray-500">
-                    This will be used in the URL. Use lowercase letters, numbers, and hyphens only.
+                    This will be used in the URL. Use lowercase letters,
+                    numbers, and hyphens only.
                   </p>
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="description">Product Description</Label>
-                <Textarea 
-                  id="description" 
-                  name="description" 
+                <Textarea
+                  id="description"
+                  name="description"
                   placeholder="Describe the product..."
                   value={formData.description}
                   onChange={handleChange}
@@ -262,13 +279,13 @@ const AdminProductEditor = () => {
                   rows={3}
                 />
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="capacity">Capacity</Label>
-                  <Input 
-                    id="capacity" 
-                    name="capacity" 
+                  <Input
+                    id="capacity"
+                    name="capacity"
                     placeholder="e.g. 400W/550Wh"
                     value={formData.capacity}
                     onChange={handleChange}
@@ -278,7 +295,7 @@ const AdminProductEditor = () => {
                     Format as Power/Battery Size, e.g. 400W/550Wh
                   </p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="category">Category</Label>
                   <select
@@ -295,32 +312,32 @@ const AdminProductEditor = () => {
                   </select>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="priceNoPanel">Price (No Panel)</Label>
-                  <Input 
-                    id="priceNoPanel" 
-                    name="priceNoPanel" 
+                  <Input
+                    id="priceNoPanel"
+                    name="priceNoPanel"
                     placeholder="e.g. ₦220,000"
                     value={formData.priceNoPanel}
                     onChange={handleChange}
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="priceWithPanel">Price (With Panel)</Label>
-                  <Input 
-                    id="priceWithPanel" 
-                    name="priceWithPanel" 
+                  <Input
+                    id="priceWithPanel"
+                    name="priceWithPanel"
                     placeholder="e.g. ₦270,000"
                     value={formData.priceWithPanel}
                     onChange={handleChange}
                   />
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="status">Stock Status</Label>
@@ -340,38 +357,43 @@ const AdminProductEditor = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white p-6 rounded-md shadow">
             <h2 className="text-lg font-medium mb-4">Product Image</h2>
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="image">Image URL</Label>
                 <div className="flex gap-2">
-                  <Input 
-                    id="image" 
-                    name="image" 
+                  <Input
+                    id="image"
+                    name="image"
                     placeholder="/images/products/your-image.jpg"
                     value={formData.image}
                     onChange={handleChange}
                     className="flex-1"
                   />
-                  <Button variant="outline" type="button" className="flex-shrink-0">
+                  <Button
+                    variant="outline"
+                    type="button"
+                    className="flex-shrink-0"
+                  >
                     <Image className="h-4 w-4 mr-2" />
                     Browse
                   </Button>
                 </div>
                 <p className="text-xs text-gray-500">
-                  Enter the path to the image file. Image must be already uploaded to the server.
+                  Enter the path to the image file. Image must be already
+                  uploaded to the server.
                 </p>
               </div>
-              
+
               <div className="border rounded-md p-4">
                 <div className="text-sm font-medium mb-2">Current Image</div>
                 <div className="aspect-video bg-gray-100 rounded-md overflow-hidden">
                   {formData.image ? (
-                    <img 
-                      src={formData.image} 
-                      alt={formData.name} 
+                    <img
+                      src={formData.image}
+                      alt={formData.name}
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -383,18 +405,25 @@ const AdminProductEditor = () => {
               </div>
             </div>
           </div>
-          
+
           {productId && (
             <div className="bg-red-50 p-6 rounded-md border border-red-100">
-              <h2 className="text-lg font-medium mb-4 text-red-700">Danger Zone</h2>
+              <h2 className="text-lg font-medium mb-4 text-red-700">
+                Danger Zone
+              </h2>
               <p className="text-sm text-red-600 mb-4">
-                Once you delete a product, there is no going back. Please be certain.
+                Once you delete a product, there is no going back. Please be
+                certain.
               </p>
-              <Button 
-                variant="destructive" 
+              <Button
+                variant="destructive"
                 type="button"
                 onClick={() => {
-                  if (window.confirm("Are you sure you want to delete this product? This action cannot be undone.")) {
+                  if (
+                    window.confirm(
+                      "Are you sure you want to delete this product? This action cannot be undone."
+                    )
+                  ) {
                     toast({
                       title: "Product deleted",
                       description: "The product has been successfully deleted.",
@@ -410,15 +439,15 @@ const AdminProductEditor = () => {
             </div>
           )}
         </form>
-        
+
         <div className="space-y-6">
           <Card>
             <CardContent className="p-0">
               <div className="aspect-video overflow-hidden">
                 {formData.image && (
-                  <img 
-                    src={formData.image} 
-                    alt={formData.name} 
+                  <img
+                    src={formData.image}
+                    alt={formData.name}
                     className="w-full h-full object-cover"
                   />
                 )}
@@ -427,46 +456,56 @@ const AdminProductEditor = () => {
                 <h2 className="text-xl font-semibold mb-3">
                   {formData.name || "Product Name"}
                 </h2>
-                
+
                 <div className="flex items-center gap-2 mb-4">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    formData.status === "In Stock" 
-                      ? "bg-green-100 text-green-700" 
-                      : formData.status === "Low Stock"
-                      ? "bg-yellow-100 text-yellow-700"
-                      : "bg-red-100 text-red-700"
-                  }`}>
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      formData.status === "In Stock"
+                        ? "bg-green-100 text-green-700"
+                        : formData.status === "Low Stock"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
                     {formData.status}
                   </span>
-                  
+
                   <span className="bg-lumey-yellow/20 text-lumey-orange px-2 py-1 rounded-full text-xs font-medium">
                     {formData.category}
                   </span>
                 </div>
-                
+
                 <div className="space-y-3 mb-4">
                   <div className="flex items-center gap-2 text-sm">
                     <BatteryFull className="h-4 w-4 text-lumey-orange" />
-                    <span className="font-medium">Capacity:</span> {formData.capacity || "N/A"}
+                    <span className="font-medium">Capacity:</span>{" "}
+                    {formData.capacity || "N/A"}
                   </div>
-                  
+
                   <div className="flex items-center gap-2 text-sm">
                     <DollarSign className="h-4 w-4 text-lumey-orange" />
-                    <span className="font-medium">Price (No Panel):</span> {formData.priceNoPanel || "N/A"}
+                    <span className="font-medium">Price (No Panel):</span>{" "}
+                    {formData.priceNoPanel || "N/A"}
                   </div>
-                  
+
                   <div className="flex items-center gap-2 text-sm">
                     <DollarSign className="h-4 w-4 text-lumey-orange" />
-                    <span className="font-medium">Price (With Panel):</span> {formData.priceWithPanel || "N/A"}
+                    <span className="font-medium">
+                      Price (With Panel):
+                    </span>{" "}
+                    {formData.priceWithPanel || "N/A"}
                   </div>
                 </div>
-                
+
                 <p className="text-gray-600 text-sm mb-4">
-                  {formData.description || "Product description will appear here."}
+                  {formData.description ||
+                    "Product description will appear here."}
                 </p>
-                
+
                 <div className="flex gap-2">
-                  <Button variant="outline" className="flex-1">Preview</Button>
+                  <Button variant="outline" className="flex-1">
+                    Preview
+                  </Button>
                   <Button className="flex-1 bg-lumey-orange hover:bg-lumey-yellow">
                     <Box className="h-4 w-4 mr-2" />
                     Order Now
@@ -475,17 +514,17 @@ const AdminProductEditor = () => {
               </div>
             </CardContent>
           </Card>
-          
+
           <div className="bg-white p-6 rounded-md shadow">
             <h2 className="text-lg font-medium mb-4">Product Information</h2>
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <div className="text-gray-500">ID:</div>
                 <div className="font-medium">{formData.id || "-"}</div>
-                
+
                 <div className="text-gray-500">Category:</div>
                 <div className="font-medium">{formData.category}</div>
-                
+
                 <div className="text-gray-500">Status:</div>
                 <div className="font-medium">{formData.status}</div>
               </div>

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "../components/Header";
@@ -15,7 +14,7 @@ import PastProjects from "../components/PastProjects";
 import FloatingCTA from "../components/FloatingCTA";
 import FeaturedBlogs from "../components/FeaturedBlogs";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "next/link";
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -23,15 +22,15 @@ const Index = () => {
   const contactRef = useRef(null);
   const aboutRef = useRef(null);
   const faqsRef = useRef(null);
-  
+
   useEffect(() => {
     // Scroll to the top when the page loads
     window.scrollTo(0, 0);
-    
+
     // Check for hash in URL to scroll to specific section
     if (location.hash) {
       setTimeout(() => {
-        const id = location.hash.replace('#', '');
+        const id = location.hash.replace("#", "");
         const element = document.getElementById(id);
         if (element) {
           element.scrollIntoView({ behavior: "smooth" });
@@ -41,13 +40,15 @@ const Index = () => {
   }, [location]);
 
   // Define the container component based on mobile status
-  const ContainerComponent = isMobile ? 'div' : motion.div;
-  const containerProps = isMobile ? {} : {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-    transition: { duration: 0.5 }
-  };
+  const ContainerComponent = isMobile ? "div" : motion.div;
+  const containerProps = isMobile
+    ? {}
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: 0.5 },
+      };
 
   return (
     <div className="w-full overflow-x-hidden">

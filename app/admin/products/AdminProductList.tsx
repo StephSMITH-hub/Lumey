@@ -1,25 +1,24 @@
-
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { 
-  Edit, 
-  Trash2, 
-  Plus, 
-  Package, 
+import { useNavigate } from "next/link";
+import {
+  Edit,
+  Trash2,
+  Plus,
+  Package,
   Search,
   ArrowUpDown,
   BatteryFull,
-  Loader2
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
@@ -30,31 +29,28 @@ const AdminProductList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
-  
-  const { 
-    products, 
-    isLoading, 
-    error, 
-    fetchAllProducts, 
-    removeProduct 
-  } = useProducts();
-  
+
+  const { products, isLoading, error, fetchAllProducts, removeProduct } =
+    useProducts();
+
   // Set document title
   useEffect(() => {
     document.title = "Manage Products | Lumey Admin";
   }, []);
 
   // Filter products based on search query
-  const filteredProducts = products.filter(product => 
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    product.specs.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (product.category && product.category.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.specs.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (product.category &&
+        product.category.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const handleDelete = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       const success = await removeProduct(id);
-      
+
       if (success) {
         toast({
           title: "Product deleted",
@@ -68,7 +64,7 @@ const AdminProductList = () => {
     <>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold">Manage Products</h1>
-        <Button 
+        <Button
           onClick={() => navigate("/admin/products/new")}
           className="bg-lumey-orange hover:bg-lumey-yellow"
         >
@@ -76,26 +72,26 @@ const AdminProductList = () => {
           New Product
         </Button>
       </div>
-      
+
       {error && (
         <Alert variant="destructive" className="mb-6">
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
-      
+
       <div className="bg-white rounded-md shadow mb-6">
         <div className="p-4 border-b">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input 
-              placeholder="Search products by name, capacity or category..." 
+            <Input
+              placeholder="Search products by name, capacity or category..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
             />
           </div>
         </div>
-        
+
         <ScrollArea className="h-[calc(100vh-300px)]">
           <div className="overflow-x-auto">
             <Table>
@@ -140,9 +136,9 @@ const AdminProductList = () => {
                       <TableCell className="font-medium">
                         <div className="flex items-center gap-3">
                           <div className="h-10 w-10 rounded overflow-hidden bg-gray-100 flex-shrink-0">
-                            <img 
-                              src={product.image} 
-                              alt={product.name} 
+                            <img
+                              src={product.image}
+                              alt={product.name}
                               className="h-full w-full object-cover"
                             />
                           </div>
@@ -161,35 +157,41 @@ const AdminProductList = () => {
                         </span>
                       </TableCell>
                       <TableCell>
-                        {product.currentPrice ? new Intl.NumberFormat("en-NG", {
-                          style: "currency",
-                          currency: "NGN",
-                          minimumFractionDigits: 0,
-                        }).format(product.currentPrice) : "-"}
+                        {product.currentPrice
+                          ? new Intl.NumberFormat("en-NG", {
+                              style: "currency",
+                              currency: "NGN",
+                              minimumFractionDigits: 0,
+                            }).format(product.currentPrice)
+                          : "-"}
                       </TableCell>
                       <TableCell>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          product.status === "In Stock" 
-                            ? "bg-green-100 text-green-700" 
-                            : product.status === "Low Stock"
-                            ? "bg-yellow-100 text-yellow-700"
-                            : "bg-red-100 text-red-700"
-                        }`}>
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            product.status === "In Stock"
+                              ? "bg-green-100 text-green-700"
+                              : product.status === "Low Stock"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : "bg-red-100 text-red-700"
+                          }`}
+                        >
                           {product.status || "In Stock"}
                         </span>
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button 
-                            variant="ghost" 
+                          <Button
+                            variant="ghost"
                             size="icon"
-                            onClick={() => navigate(`/admin/products/edit/${product.id}`)}
+                            onClick={() =>
+                              navigate(`/admin/products/edit/${product.id}`)
+                            }
                             title="Edit product"
                           >
                             <Edit className="h-4 w-4 text-blue-500" />
                           </Button>
-                          <Button 
-                            variant="ghost" 
+                          <Button
+                            variant="ghost"
                             size="icon"
                             onClick={() => handleDelete(product.id)}
                             title="Delete product"
@@ -202,7 +204,10 @@ const AdminProductList = () => {
                   ))
                 ) : (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-6 text-gray-500">
+                    <TableCell
+                      colSpan={6}
+                      className="text-center py-6 text-gray-500"
+                    >
                       No products found matching your search criteria.
                     </TableCell>
                   </TableRow>

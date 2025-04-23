@@ -1,17 +1,16 @@
-
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "next/link";
 import MDEditor from "@uiw/react-md-editor";
-import { 
-  Save, 
-  Image, 
-  ArrowLeft, 
-  Eye, 
+import {
+  Save,
+  Image,
+  ArrowLeft,
+  Eye,
   EyeOff,
   Tag,
   Calendar,
   Clock,
-  User
+  User,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,29 +37,34 @@ const AdminBlogEditor = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [showPreview, setShowPreview] = useState(false);
-  
+
   // Set default form state
   const defaultFormData: BlogFormData = {
     id: "",
     title: "",
     excerpt: "",
     author: "",
-    date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+    date: new Date().toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }),
     readTime: "5 min read",
     image: "/images/farm.jpg",
     category: "",
-    content: "# Start writing your blog post here\n\nThis is an example paragraph."
+    content:
+      "# Start writing your blog post here\n\nThis is an example paragraph.",
   };
-  
+
   const [formData, setFormData] = useState<BlogFormData>(defaultFormData);
-  
+
   // Load blog data if editing an existing blog
   useEffect(() => {
     if (blogId) {
       document.title = "Edit Blog Post | Lumey Admin";
-      
-      const blogToEdit = featuredPosts.find(post => post.id === blogId);
-      
+
+      const blogToEdit = featuredPosts.find((post) => post.id === blogId);
+
       if (blogToEdit) {
         setFormData(blogToEdit);
       } else {
@@ -75,13 +79,19 @@ const AdminBlogEditor = () => {
       document.title = "New Blog Post | Lumey Admin";
     }
   }, [blogId, navigate, toast]);
-  
+
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate form data
-    if (!formData.title || !formData.excerpt || !formData.content || !formData.category || !formData.author) {
+    if (
+      !formData.title ||
+      !formData.excerpt ||
+      !formData.content ||
+      !formData.category ||
+      !formData.author
+    ) {
       toast({
         variant: "destructive",
         title: "Missing information",
@@ -89,10 +99,10 @@ const AdminBlogEditor = () => {
       });
       return;
     }
-    
+
     // In a real app, this would save to a database
     // For now, just show success message
-    
+
     if (blogId) {
       toast({
         title: "Blog updated",
@@ -104,35 +114,37 @@ const AdminBlogEditor = () => {
         description: "Your new blog post has been successfully created.",
       });
     }
-    
+
     // Navigate back to blog list
     navigate("/admin/blogs");
   };
-  
+
   // Handle input change
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-  
+
   // Generate ID from title
   const generateId = () => {
     if (formData.title) {
       const id = formData.title
         .toLowerCase()
-        .replace(/[^\w\s]/gi, '')
-        .replace(/\s+/g, '-');
-      
-      setFormData(prev => ({ ...prev, id }));
+        .replace(/[^\w\s]/gi, "")
+        .replace(/\s+/g, "-");
+
+      setFormData((prev) => ({ ...prev, id }));
     }
   };
-  
+
   return (
     <>
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             onClick={() => navigate("/admin/blogs")}
             className="mr-2"
           >
@@ -144,8 +156,8 @@ const AdminBlogEditor = () => {
           </h1>
         </div>
         <div className="flex gap-2">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={() => setShowPreview(!showPreview)}
           >
             {showPreview ? (
@@ -160,7 +172,7 @@ const AdminBlogEditor = () => {
               </>
             )}
           </Button>
-          <Button 
+          <Button
             onClick={handleSubmit}
             className="bg-lumey-orange hover:bg-lumey-yellow"
           >
@@ -169,16 +181,20 @@ const AdminBlogEditor = () => {
           </Button>
         </div>
       </div>
-      
-      <div className={`grid gap-6 ${showPreview ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
+
+      <div
+        className={`grid gap-6 ${
+          showPreview ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
+        }`}
+      >
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid gap-4">
             <div className="grid grid-cols-1 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="title">Post Title</Label>
-                <Input 
-                  id="title" 
-                  name="title" 
+                <Input
+                  id="title"
+                  name="title"
                   placeholder="Enter blog post title"
                   value={formData.title}
                   onChange={handleChange}
@@ -186,28 +202,29 @@ const AdminBlogEditor = () => {
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="id">Post ID/Slug</Label>
-                <Input 
-                  id="id" 
-                  name="id" 
+                <Input
+                  id="id"
+                  name="id"
                   placeholder="post-url-slug"
                   value={formData.id}
                   onChange={handleChange}
                   required
                 />
                 <p className="text-xs text-gray-500">
-                  This will be used in the URL. Use lowercase letters, numbers, and hyphens only.
+                  This will be used in the URL. Use lowercase letters, numbers,
+                  and hyphens only.
                 </p>
               </div>
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="excerpt">Excerpt</Label>
-              <Textarea 
-                id="excerpt" 
-                name="excerpt" 
+              <Textarea
+                id="excerpt"
+                name="excerpt"
                 placeholder="Brief summary of the blog post"
                 value={formData.excerpt}
                 onChange={handleChange}
@@ -215,25 +232,25 @@ const AdminBlogEditor = () => {
                 rows={3}
               />
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="author">Author</Label>
-                <Input 
-                  id="author" 
-                  name="author" 
+                <Input
+                  id="author"
+                  name="author"
                   placeholder="Author name"
                   value={formData.author}
                   onChange={handleChange}
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="category">Category</Label>
-                <Input 
-                  id="category" 
-                  name="category" 
+                <Input
+                  id="category"
+                  name="category"
                   placeholder="e.g. Industry Insights, Guides"
                   value={formData.category}
                   onChange={handleChange}
@@ -241,69 +258,77 @@ const AdminBlogEditor = () => {
                 />
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="date">Publish Date</Label>
-                <Input 
-                  id="date" 
-                  name="date" 
+                <Input
+                  id="date"
+                  name="date"
                   placeholder="e.g. April 15, 2025"
                   value={formData.date}
                   onChange={handleChange}
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="readTime">Read Time</Label>
-                <Input 
-                  id="readTime" 
-                  name="readTime" 
+                <Input
+                  id="readTime"
+                  name="readTime"
                   placeholder="e.g. 5 min read"
                   value={formData.readTime}
                   onChange={handleChange}
                 />
               </div>
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="image">Featured Image URL</Label>
               <div className="flex gap-2">
-                <Input 
-                  id="image" 
-                  name="image" 
+                <Input
+                  id="image"
+                  name="image"
                   placeholder="/images/your-image.jpg"
                   value={formData.image}
                   onChange={handleChange}
                   className="flex-1"
                 />
-                <Button variant="outline" type="button" className="flex-shrink-0">
+                <Button
+                  variant="outline"
+                  type="button"
+                  className="flex-shrink-0"
+                >
                   <Image className="h-4 w-4 mr-2" />
                   Browse
                 </Button>
               </div>
               <p className="text-xs text-gray-500">
-                Enter the path to the image file. Image must be already uploaded to the server.
+                Enter the path to the image file. Image must be already uploaded
+                to the server.
               </p>
             </div>
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="content">Content (Markdown)</Label>
             <div className="border rounded-md">
               <MDEditor
                 value={formData.content}
-                onChange={(value) => setFormData(prev => ({ ...prev, content: value || "" }))}
+                onChange={(value) =>
+                  setFormData((prev) => ({ ...prev, content: value || "" }))
+                }
                 height={500}
                 preview="edit"
               />
             </div>
             <p className="text-xs text-gray-500">
-              Use Markdown to format your content. You can add headers, lists, links, and more.
+              Use Markdown to format your content. You can add headers, lists,
+              links, and more.
             </p>
           </div>
         </form>
-        
+
         {showPreview && (
           <div className="space-y-6">
             <div className="sticky top-4">
@@ -311,22 +336,26 @@ const AdminBlogEditor = () => {
               <Card>
                 <div className="aspect-video overflow-hidden relative">
                   {formData.image && (
-                    <img 
-                      src={formData.image} 
-                      alt={formData.title} 
+                    <img
+                      src={formData.image}
+                      alt={formData.title}
                       className="w-full h-full object-cover"
                     />
                   )}
                   <div className="absolute top-4 right-4 bg-lumey-yellow/90 px-3 py-1 rounded-full">
                     <div className="flex items-center gap-1">
                       <Tag className="h-3 w-3" />
-                      <span className="text-xs font-medium">{formData.category || "Category"}</span>
+                      <span className="text-xs font-medium">
+                        {formData.category || "Category"}
+                      </span>
                     </div>
                   </div>
                 </div>
                 <CardContent className="p-6">
-                  <h1 className="text-2xl font-bold mb-3">{formData.title || "Blog Post Title"}</h1>
-                  
+                  <h1 className="text-2xl font-bold mb-3">
+                    {formData.title || "Blog Post Title"}
+                  </h1>
+
                   <div className="flex flex-wrap items-center text-sm text-gray-500 mb-4 gap-4">
                     <div className="flex items-center gap-1">
                       <User size={14} />
@@ -341,11 +370,11 @@ const AdminBlogEditor = () => {
                       <span>{formData.readTime}</span>
                     </div>
                   </div>
-                  
+
                   <p className="text-gray-700 mb-6">
                     {formData.excerpt || "Blog post excerpt will appear here."}
                   </p>
-                  
+
                   <div className="prose max-w-none">
                     <MDEditor.Markdown source={formData.content} />
                   </div>

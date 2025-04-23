@@ -1,6 +1,64 @@
-@import "tailwindcss";
-
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@theme {
+  --font-poppins: "Poppins", "sans-serif";
+  --lumey-yellow: "#FEDC22";
+  --lumey-light_yellow: "#FEE664";
+  --lumey-orange: "#FF7E00";
+  --lumey-blue: "#0078D4";
+  --lumey-lightblue: "#B8E2FF";
+  --lumey-green: "#34D399";
+  --lumey-dark: "#1E293B";
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
 
 :root {
   --background: #ffffff;
@@ -43,7 +101,7 @@
 
 @layer base {
   body {
-    @reference bg-background text-foreground overflow-x-hidden font-poppins;
+    @apply bg-background text-foreground overflow-x-hidden font-poppins;
     font-feature-settings: "rlig" 1, "calt" 1;
     scroll-behavior: smooth;
   }
@@ -54,65 +112,65 @@
   h4,
   h5,
   h6 {
-    @reference font-semibold font-poppins;
+    @apply font-semibold font-poppins;
   }
 }
 
 @layer components {
   .section-container {
-    @reference container mx-auto px-4 md:px-8 max-w-full py-6 md:py-12;
+    @apply container mx-auto px-4 md:px-8 max-w-full py-6 md:py-12;
   }
 
   .heading-lg {
-    @reference text-3xl md:text-4xl lg:text-5xl font-bold;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
   }
 
   .heading-md {
-    @reference text-2xl md:text-3xl font-bold;
+    @apply text-2xl md:text-3xl font-bold;
   }
 
   .button-primary {
-    @reference bg-lumey-yellow hover:bg-lumey-orange text-black font-medium py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl;
+    @apply bg-lumey-yellow hover:bg-lumey-orange text-black font-medium py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl;
   }
 
   .button-secondary {
-    @reference bg-white text-lumey-dark border border-lumey-yellow hover:border-lumey-orange hover:bg-gray-50 font-medium py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center gap-2;
+    @apply bg-white text-lumey-dark border border-lumey-yellow hover:border-lumey-orange hover:bg-gray-50 font-medium py-3 px-6 rounded-lg transition-all duration-300 inline-flex items-center gap-2;
   }
 
   .feature-card {
-    @reference bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-300 hover:border-lumey-yellow;
+    @apply bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-300 hover:border-lumey-yellow;
   }
 
   .product-card {
-    @reference bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-lumey-yellow flex flex-col;
+    @apply bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-lumey-yellow flex flex-col;
   }
 
   /* Marquee for mobile header */
   .marquee {
-    @reference relative w-full whitespace-nowrap overflow-hidden;
+    @apply relative w-full whitespace-nowrap overflow-hidden;
   }
 
   .marquee-content {
-    @reference inline-block text-xs whitespace-nowrap animate-marquee;
+    @apply inline-block text-xs whitespace-nowrap animate-marquee;
   }
 
   /* Mobile optimizations */
   @media (max-width: 640px) {
     .section-container {
-      @reference py-10;
+      @apply py-10;
     }
 
     .heading-lg {
-      @reference text-2xl;
+      @apply text-2xl;
     }
 
     .heading-md {
-      @reference text-xl;
+      @apply text-xl;
     }
 
     .button-primary,
     .button-secondary {
-      @reference py-2 px-4 text-sm;
+      @apply py-2 px-4 text-sm;
     }
   }
 }

@@ -1,5 +1,5 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
@@ -17,6 +17,8 @@ import { formatPrice } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { FloatingCTA, Footer, Header, ProductsTable } from "@/components";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 // Product data - in a real app, this would come from an API
 const products = [
@@ -29,8 +31,8 @@ const products = [
     price: 220000,
     soldCount: 0,
     withPanelPrice: 270000,
-    rating: 0,
-    reviewCount: 0,
+    rating: 5,
+    reviewCount: 65,
     mainImage: "/images/products/550.jpg",
     panelInfo: "1 x 12V, 200W panel",
     images: [],
@@ -74,8 +76,8 @@ const products = [
     price: 320000,
     soldCount: 0,
     withPanelPrice: 420000,
-    rating: 0,
-    reviewCount: 0,
+    rating: 4,
+    reviewCount: 103,
     mainImage: "/images/products/1200.jpg",
     panelInfo: "2 x 12V, 200W panels",
     images: [],
@@ -119,8 +121,8 @@ const products = [
     price: 500000,
     soldCount: 0,
     withPanelPrice: 650000,
-    rating: 0,
-    reviewCount: 0,
+    rating: 4,
+    reviewCount: 160,
     mainImage: "/images/products/2100.jpg",
     panelInfo: "3 x 12V, 200W panels",
     images: [],
@@ -164,8 +166,8 @@ const products = [
     price: 820000,
     soldCount: 0,
     withPanelPrice: 1120000,
-    rating: 0,
-    reviewCount: 0,
+    rating: 5,
+    reviewCount: 81,
     mainImage: "/images/products/3300.jpg",
     panelInfo: "2 x 555W panels",
     images: [],
@@ -209,8 +211,8 @@ const products = [
     price: 1500000,
     soldCount: 0,
     withPanelPrice: 2100000,
-    rating: 0,
-    reviewCount: 0,
+    rating: 4,
+    reviewCount: 96,
     mainImage: "/images/products/6500.jpg",
     panelInfo: "4 x 555W panels",
     images: [],
@@ -327,17 +329,15 @@ const ProductPage = () => {
           transition: { duration: 0.5 },
         })}
       >
-        <Header />
-
         <main className="pt-[120px]">
           <div className="bg-gray-50 py-4">
-            <div className="container mx-auto px-4 md:mt-[70px] mt-[10px]">
+            <div className="container mx-auto px-4 md:mt-[20px] mt-[10px]">
               <div className="flex items-center text-sm text-gray-600">
-                <Link to="/" className="hover:text-lumey-orange">
+                <Link href="/" className="hover:text-lumey-orange">
                   Home
                 </Link>
                 <ChevronRight size={12} className="mx-2" />
-                <Link to="/products" className="hover:text-lumey-orange">
+                <Link href="/products" className="hover:text-lumey-orange">
                   Products
                 </Link>
                 {isProductDetail && (
@@ -687,7 +687,7 @@ const ProductPage = () => {
                     .map((product) => (
                       <Link
                         key={product.id}
-                        to={`/products/${product.id}`}
+                        href={`/products/${product.id}`}
                         className="product-card group"
                       >
                         <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 mb-4">
@@ -863,7 +863,7 @@ const ProductPage = () => {
                     className="product-card group"
                   >
                     <div className="aspect-square rounded-lg overflow-hidden bg-gray-100 mb-4">
-                      <Link to={`/products/${product.id}`}>
+                      <Link href={`/products/${product.id}`}>
                         <img
                           src={product.mainImage}
                           alt={product.name}
@@ -872,7 +872,7 @@ const ProductPage = () => {
                       </Link>
                     </div>
                     <div>
-                      <Link to={`/products/${product.id}`} className="block">
+                      <Link href={`/products/${product.id}`} className="block">
                         <h2 className="font-bold text-xl mb-1">
                           {product.name}
                         </h2>
@@ -920,7 +920,7 @@ const ProductPage = () => {
 
                       <div className="flex flex-col sm:flex-row gap-2 mt-auto">
                         <Link
-                          to={`/products/${product.id}`}
+                          href={`/products/${product.id}`}
                           className="button-secondary py-2 text-center text-sm"
                         >
                           View Details
@@ -1052,9 +1052,6 @@ const ProductPage = () => {
             </div>
           )}
         </main>
-
-        <Footer />
-        <FloatingCTA />
       </MotionDiv>
     </AnimatePresence>
   );

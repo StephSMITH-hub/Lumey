@@ -1,17 +1,16 @@
-
 import { useState } from "react";
-import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Package, 
-  LogOut, 
-  Menu, 
-  X, 
-  Plus, 
+import { Outlet, NavLink, useNavigate, useLocation } from "next/link";
+import {
+  LayoutDashboard,
+  FileText,
+  Package,
+  LogOut,
+  Menu,
+  X,
+  Plus,
   ChevronRight,
   Settings,
-  Users
+  Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -49,7 +48,7 @@ const AdminLayout = () => {
   // Get current page title based on route
   const getCurrentPageTitle = () => {
     const path = location.pathname;
-    
+
     if (path === "/admin") return "Dashboard";
     if (path.includes("/admin/blogs")) {
       if (path.includes("/new")) return "Create New Blog";
@@ -61,7 +60,7 @@ const AdminLayout = () => {
       if (path.includes("/edit")) return "Edit Product";
       return "Manage Products";
     }
-    
+
     return "Admin";
   };
 
@@ -78,15 +77,15 @@ const AdminLayout = () => {
               <h1 className="text-xl font-bold text-lumey-dark">Lumey Admin</h1>
             </div>
           </SidebarHeader>
-          
+
           <SidebarContent>
             <SidebarGroup>
               <SidebarGroupLabel>Navigation</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton 
-                      asChild 
+                    <SidebarMenuButton
+                      asChild
                       isActive={location.pathname === "/admin"}
                       tooltip="Dashboard"
                     >
@@ -99,14 +98,14 @@ const AdminLayout = () => {
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
-            
+
             <SidebarGroup>
               <SidebarGroupLabel>Content</SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton 
-                      asChild 
+                    <SidebarMenuButton
+                      asChild
                       isActive={location.pathname.includes("/admin/blogs")}
                       tooltip="Blogs"
                     >
@@ -115,8 +114,8 @@ const AdminLayout = () => {
                         <span>Blogs</span>
                       </NavLink>
                     </SidebarMenuButton>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="icon"
                       className="h-8 w-8 group-hover:opacity-100 group-focus:opacity-100 md:opacity-0"
                       onClick={() => navigate("/admin/blogs/new")}
@@ -125,10 +124,10 @@ const AdminLayout = () => {
                       <Plus size={16} />
                     </Button>
                   </SidebarMenuItem>
-                  
+
                   <SidebarMenuItem>
-                    <SidebarMenuButton 
-                      asChild 
+                    <SidebarMenuButton
+                      asChild
                       isActive={location.pathname.includes("/admin/products")}
                       tooltip="Products"
                     >
@@ -137,8 +136,8 @@ const AdminLayout = () => {
                         <span>Products</span>
                       </NavLink>
                     </SidebarMenuButton>
-                    <Button 
-                      variant="ghost" 
+                    <Button
+                      variant="ghost"
                       size="icon"
                       className="h-8 w-8 group-hover:opacity-100 group-focus:opacity-100 md:opacity-0"
                       onClick={() => navigate("/admin/products/new")}
@@ -150,7 +149,7 @@ const AdminLayout = () => {
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
-            
+
             {/* Additional menu groups can be added here */}
             <SidebarGroup>
               <SidebarGroupLabel>System</SidebarGroupLabel>
@@ -172,10 +171,10 @@ const AdminLayout = () => {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-          
+
           <SidebarFooter className="border-t border-gray-200 p-4">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="w-full justify-start gap-2 text-destructive hover:bg-destructive/10"
               onClick={handleLogout}
             >
@@ -192,12 +191,14 @@ const AdminLayout = () => {
             <div className="flex items-center gap-3">
               <SidebarTrigger />
               <div className="flex items-center gap-2">
-                <h2 className="text-xl font-semibold">{getCurrentPageTitle()}</h2>
+                <h2 className="text-xl font-semibold">
+                  {getCurrentPageTitle()}
+                </h2>
               </div>
             </div>
             <Button
-              variant="ghost" 
-              size="sm" 
+              variant="ghost"
+              size="sm"
               onClick={handleLogout}
               className="flex items-center gap-2"
             >

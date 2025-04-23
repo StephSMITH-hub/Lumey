@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { ChevronDown, MessageSquare } from "lucide-react";
@@ -10,7 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export const faqs = [
+const faqs = [
   {
     question: "How long does a Lumey Powerbox last?",
     answer:
@@ -43,7 +43,7 @@ export const faqs = [
   },
 ];
 
-const FAQ = () => {
+export const FAQ = () => {
   return (
     <section id="faqs" className=" bg-gray-50">
       <div className="section-container">
@@ -87,7 +87,10 @@ const FAQ = () => {
         </div>
 
         <div className="text-center mt-12">
-          <a href="#contact" className="button-primary flex items-center justify-center mx-auto gap-2 w-fit">
+          <a
+            href="#contact"
+            className="button-primary flex items-center justify-center mx-auto gap-2 w-fit"
+          >
             <MessageSquare size={18} />
             Contact Us for More Questions
           </a>
@@ -96,4 +99,3 @@ const FAQ = () => {
     </section>
   );
 };
-

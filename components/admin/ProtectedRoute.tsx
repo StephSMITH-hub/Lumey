@@ -1,6 +1,5 @@
-
 import { ReactNode, useEffect } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { Loader2 } from "lucide-react";
 

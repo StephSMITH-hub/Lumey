@@ -1,8 +1,8 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import FloatingCTA from "@/components/FloatingCTA";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Search,
@@ -14,7 +14,8 @@ import {
   Tag,
   AlertCircle,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import { FloatingCTA, Footer, Header } from "@/components";
 
 // Mock blog data
 const blogPosts = [
@@ -270,7 +271,7 @@ const Blog = () => {
                             </div>
                             {post.hasContent ? (
                               <Link
-                                to={`/blog/${post.id}`}
+                                href={`/blog/${post.id}`}
                                 className="text-lumey-orange hover:text-lumey-yellow inline-flex items-center text-sm font-medium"
                               >
                                 Read More{" "}
@@ -405,7 +406,7 @@ const Blog = () => {
                                 </div>
                                 {post.hasContent ? (
                                   <Link
-                                    to={`/blog/${post.id}`}
+                                    href={`/blog/${post.id}`}
                                     className="text-lumey-orange hover:text-lumey-yellow inline-flex items-center text-sm font-medium"
                                   >
                                     Read More{" "}

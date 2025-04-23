@@ -1,13 +1,7 @@
-
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "next/link";
 import { useAuth } from "@/context/AuthContext";
-import { 
-  Lock, 
-  Mail,
-  Loader2,
-  AlertCircle
-} from "lucide-react";
+import { Lock, Mail, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,14 +17,14 @@ const AdminLogin = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setShowError(false);
-    
+
     if (!email || !password) {
       setShowError(true);
       return;
     }
-    
+
     const success = await login(email, password);
-    
+
     if (success) {
       navigate("/admin");
     }
@@ -45,21 +39,21 @@ const AdminLogin = () => {
               <Lock className="h-6 w-6 text-lumey-dark" />
             </div>
             <h1 className="text-2xl font-bold text-white">Admin Login</h1>
-            <p className="text-gray-300 mt-2">Enter your credentials to access the admin area</p>
+            <p className="text-gray-300 mt-2">
+              Enter your credentials to access the admin area
+            </p>
           </div>
-          
+
           <form onSubmit={handleSubmit} className="p-6 space-y-6">
             {(error || showError) && (
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  {showError
-                    ? "Please enter both email and password."
-                    : error}
+                  {showError ? "Please enter both email and password." : error}
                 </AlertDescription>
               </Alert>
             )}
-            
+
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <div className="relative">
@@ -75,7 +69,7 @@ const AdminLogin = () => {
                 />
               </div>
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <div className="relative">
@@ -91,9 +85,9 @@ const AdminLogin = () => {
                 />
               </div>
             </div>
-            
-            <Button 
-              type="submit" 
+
+            <Button
+              type="submit"
               className="w-full bg-lumey-orange hover:bg-lumey-yellow"
               disabled={isLoading}
             >
@@ -107,9 +101,11 @@ const AdminLogin = () => {
               )}
             </Button>
           </form>
-          
+
           <div className="px-6 py-4 bg-gray-50 border-t text-center text-sm text-gray-600">
-            <p>Use <b>admin@lumey.com</b> and password <b>admin123</b> to log in</p>
+            <p>
+              Use <b>admin@lumey.com</b> and password <b>admin123</b> to log in
+            </p>
             <p className="mt-2">For demonstration purposes only</p>
           </div>
         </div>

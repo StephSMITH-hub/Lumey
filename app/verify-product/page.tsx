@@ -1,8 +1,6 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import FloatingCTA from "@/components/FloatingCTA";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   CheckCircle,
@@ -51,17 +49,22 @@ const verificationDatabase = {
 
 const VerifyProduct = () => {
   const [serialNumber, setSerialNumber] = useState("");
-  const [verificationResult, setVerificationResult] = useState(null);
+  const [verificationResult, setVerificationResult] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const isMobile = useIsMobile();
 
   // Define the motion props based on mobile status
-  const getMotionProps = (initial) => {
+  const getMotionProps = (initial: {
+    initial: { opacity: number };
+    animate: { opacity: number };
+    exit: { opacity: number };
+    transition: { duration: number };
+  }) => {
     return isMobile ? {} : initial;
   };
 
-  const handleVerify = (e) => {
+  const handleVerify = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     if (!serialNumber.trim()) {
@@ -74,6 +77,7 @@ const VerifyProduct = () => {
 
     // Simulate API call
     setTimeout(() => {
+      ///@ts-ignore
       const result = verificationDatabase[serialNumber] || {
         status: "not_found",
       };
@@ -278,7 +282,6 @@ const VerifyProduct = () => {
             transition: { duration: 0.5 },
           })}
         >
-          <Header />
           <main className="pt-28 md:pt-32 lg:pt-36">
             {/* Hero Section */}
             <section className="bg-gradient-to-br from-lumey-blue/20 to-lumey-lightblue/20 py-12 md:py-20">
@@ -523,8 +526,6 @@ const VerifyProduct = () => {
               </div>
             </section>
           </main>
-          <Footer />
-          <FloatingCTA />
         </MotionDiv>
       </AnimatePresence>
     </div>
