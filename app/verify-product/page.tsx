@@ -14,6 +14,7 @@ import {
   Package,
   User,
 } from "lucide-react";
+import Link from "next/link";
 
 // Mock verification data - this would come from an API in a real app
 const verificationDatabase = {
@@ -77,7 +78,7 @@ const VerifyProduct = () => {
 
     // Simulate API call
     setTimeout(() => {
-      ///@ts-ignore
+      ///@ts-expect-error an error is expected
       const result = verificationDatabase[serialNumber] || {
         status: "not_found",
       };
@@ -167,9 +168,12 @@ const VerifyProduct = () => {
 
             <div className="mt-6 p-3 bg-green-50 rounded-md text-sm text-gray-600">
               If you need assistance with this product, please{" "}
-              <a href="/#contact" className="text-lumey-orange hover:underline">
+              <Link
+                href="/#contact"
+                className="text-lumey-orange hover:underline"
+              >
                 contact our support team
-              </a>
+              </Link>
               .
             </div>
           </MotionDiv>

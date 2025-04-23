@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Home, Users, Building, ShoppingBag } from "lucide-react";
@@ -44,7 +44,7 @@ export const WhoWeServe = () => {
         >
           <h2 className="heading-md mb-4">Who We Serve</h2>
           <p className="text-lg text-gray-700">
-            Whether you're a homeowner, student, business owner, or remote
+            Whether you`re a homeowner, student, business owner, or remote
             worker, Lumey Energy has the perfect power solution for you.
           </p>
         </motion.div>
@@ -98,4 +98,3 @@ export const WhoWeServe = () => {
     </section>
   );
 };
-

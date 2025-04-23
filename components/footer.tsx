@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Sun, ArrowUp, Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 const contactInfo = [
   {
@@ -139,12 +140,12 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a
+                <Link
                   href="/products"
                   className="text-gray-400 hover:text-lumey-yellow transition-colors"
                 >
                   Our Products
-                </a>
+                </Link>
               </li>
               <li>
                 <a
@@ -306,4 +307,3 @@ export const Footer = () => {
     </footer>
   );
 };
-

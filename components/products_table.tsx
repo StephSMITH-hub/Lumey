@@ -199,7 +199,7 @@ export const ProductsTable = () => {
                             )}
                           >
                             {
-                              ///@ts-ignore
+                              ///@ts-expect-error expect error from here
                               row[model]
                             }
                           </span>
