@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -12,7 +12,11 @@ interface MobileMenuProps {
   links: { name: string; href: string; onClick?: () => void }[];
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links }) => {
+export const MobileMenu: React.FC<MobileMenuProps> = ({
+  isOpen,
+  onClose,
+  links,
+}) => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
@@ -35,7 +39,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links }
                 onClick: () => {
                   if (link.onClick) link.onClick();
                   onClose();
-                }
+                },
               };
 
               return isHashLink ? (
@@ -50,7 +54,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links }
               ) : (
                 <Link
                   key={link.name}
-                  to={link.href}
+                  href={link.href}
                   className={cn(
                     "text-gray-700 hover:text-lumey-yellow py-2 border-b border-gray-100 last:border-0",
                     location.pathname === link.href
@@ -65,7 +69,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links }
             })}
             <div className="flex flex-col space-y-3 pt-4">
               <Link
-                to="/products"
+                href="/products"
                 className="button-primary w-fit text-center"
                 onClick={onClose}
               >
@@ -78,4 +82,3 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, links }
     </AnimatePresence>
   );
 };
-

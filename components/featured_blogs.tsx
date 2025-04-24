@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Clock, ArrowRight, User, AlertCircle } from "lucide-react";
@@ -73,7 +73,20 @@ export const FeaturedBlogs = () => {
         transition: { duration: 0.5 },
       };
 
-  const renderBlogCard = (post, index) => {
+  const renderBlogCard = (
+    post: {
+      id: any;
+      title: any;
+      excerpt: any;
+      author: any;
+      date?: string;
+      readTime: any;
+      image: any;
+      category: any;
+      hasContent: any;
+    },
+    index: number
+  ) => {
     const cardContent = (
       <div className="h-48 overflow-hidden relative">
         <img
@@ -183,7 +196,10 @@ export const FeaturedBlogs = () => {
         </div>
 
         <div className="mt-10 text-center">
-          <Link href="/blog" className="button-primary inline-flex items-center">
+          <Link
+            href="/blog"
+            className="button-primary inline-flex items-center"
+          >
             Visit Our Blog
             <ArrowRight size={18} className="ml-2" />
           </Link>
@@ -192,5 +208,3 @@ export const FeaturedBlogs = () => {
     </section>
   );
 };
-
-
