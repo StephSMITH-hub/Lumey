@@ -1,5 +1,5 @@
+"use client";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "next/link";
 import MDEditor from "@uiw/react-md-editor";
 import {
   Save,
@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { featuredPosts } from "@/data/blogData";
+import { useParams, useRouter } from "next/navigation";
 
 interface BlogFormData {
   id: string;
@@ -34,7 +35,7 @@ interface BlogFormData {
 
 const AdminBlogEditor = () => {
   const { blogId } = useParams();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const { toast } = useToast();
   const [showPreview, setShowPreview] = useState(false);
 
@@ -73,7 +74,7 @@ const AdminBlogEditor = () => {
           title: "Blog not found",
           description: "The blog post you're trying to edit doesn't exist.",
         });
-        navigate("/admin/blogs");
+        navigate.push("/admin/blogs");
       }
     } else {
       document.title = "New Blog Post | Lumey Admin";
@@ -116,7 +117,7 @@ const AdminBlogEditor = () => {
     }
 
     // Navigate back to blog list
-    navigate("/admin/blogs");
+    navigate.push("/admin/blogs");
   };
 
   // Handle input change
@@ -145,7 +146,7 @@ const AdminBlogEditor = () => {
         <div className="flex items-center">
           <Button
             variant="ghost"
-            onClick={() => navigate("/admin/blogs")}
+            onClick={() => navigate.push("/admin/blogs")}
             className="mr-2"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -315,7 +316,7 @@ const AdminBlogEditor = () => {
             <div className="border rounded-md">
               <MDEditor
                 value={formData.content}
-                onChange={(value) =>
+                onChange={(value: any) =>
                   setFormData((prev) => ({ ...prev, content: value || "" }))
                 }
                 height={500}

@@ -1,18 +1,20 @@
+"use client";
 import { useState } from "react";
-import { useNavigate } from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { Lock, Mail, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useNavigation } from "react-day-picker";
+import { useRouter } from "next/navigation";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const { login, isLoading, error } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,7 +28,7 @@ const AdminLogin = () => {
     const success = await login(email, password);
 
     if (success) {
-      navigate("/admin");
+      navigate.push("/admin");
     }
   };
 

@@ -1,5 +1,5 @@
+"use cleint";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "next/link";
 import {
   Save,
   Image,
@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useParams, useRouter } from "next/navigation";
 
 interface ProductFormData {
   id: string;
@@ -31,7 +32,7 @@ interface ProductFormData {
 
 const AdminProductEditor = () => {
   const { productId } = useParams();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const { toast } = useToast();
 
   // Sample product data for editing
@@ -130,7 +131,7 @@ const AdminProductEditor = () => {
           title: "Product not found",
           description: "The product you're trying to edit doesn't exist.",
         });
-        navigate("/admin/products");
+        navigate.push("/admin/products");
       }
     } else {
       document.title = "New Product | Lumey Admin";
@@ -172,7 +173,7 @@ const AdminProductEditor = () => {
     }
 
     // Navigate back to product list
-    navigate("/admin/products");
+    navigate.push("/admin/products");
   };
 
   // Handle input change
@@ -212,7 +213,7 @@ const AdminProductEditor = () => {
         <div className="flex items-center">
           <Button
             variant="ghost"
-            onClick={() => navigate("/admin/products")}
+            onClick={() => navigate.push("/admin/products")}
             className="mr-2"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -428,7 +429,7 @@ const AdminProductEditor = () => {
                       title: "Product deleted",
                       description: "The product has been successfully deleted.",
                     });
-                    navigate("/admin/products");
+                    navigate.push("/admin/products");
                   }
                 }}
                 className="flex items-center"

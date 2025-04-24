@@ -1,20 +1,14 @@
-import { useState } from "react";
-import { Outlet, NavLink, useNavigate, useLocation } from "next/link";
+"use client";
 import {
   LayoutDashboard,
   FileText,
   Package,
   LogOut,
-  Menu,
-  X,
   Plus,
-  ChevronRight,
   Settings,
   Users,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import {
   Sidebar,
@@ -30,10 +24,12 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 const AdminLayout = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const navigate = useRouter();
   const { toast } = useToast();
 
   const handleLogout = () => {
@@ -42,7 +38,7 @@ const AdminLayout = () => {
       title: "Logged out successfully",
       description: "You have been logged out of the admin panel.",
     });
-    navigate("/");
+    navigate.push("/");
   };
 
   // Get current page title based on route
@@ -89,10 +85,10 @@ const AdminLayout = () => {
                       isActive={location.pathname === "/admin"}
                       tooltip="Dashboard"
                     >
-                      <NavLink to="/admin" end>
+                      <Link href="/admin">
                         <LayoutDashboard className="h-5 w-5" />
                         <span>Dashboard</span>
-                      </NavLink>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -109,16 +105,16 @@ const AdminLayout = () => {
                       isActive={location.pathname.includes("/admin/blogs")}
                       tooltip="Blogs"
                     >
-                      <NavLink to="/admin/blogs">
+                      <Link href="/admin/blogs">
                         <FileText className="h-5 w-5" />
                         <span>Blogs</span>
-                      </NavLink>
+                      </Link>
                     </SidebarMenuButton>
                     <Button
                       variant="ghost"
                       size="icon"
                       className="h-8 w-8 group-hover:opacity-100 group-focus:opacity-100 md:opacity-0"
-                      onClick={() => navigate("/admin/blogs/new")}
+                      onClick={() => navigate.push("/admin/blogs/new")}
                       title="New Blog Post"
                     >
                       <Plus size={16} />
@@ -131,16 +127,16 @@ const AdminLayout = () => {
                       isActive={location.pathname.includes("/admin/products")}
                       tooltip="Products"
                     >
-                      <NavLink to="/admin/products">
+                      <Link href="/admin/products">
                         <Package className="h-5 w-5" />
                         <span>Products</span>
-                      </NavLink>
+                      </Link>
                     </SidebarMenuButton>
                     <Button
                       variant="ghost"
                       size="icon"
                       className="h-8 w-8 group-hover:opacity-100 group-focus:opacity-100 md:opacity-0"
-                      onClick={() => navigate("/admin/products/new")}
+                      onClick={() => navigate.push("/admin/products/new")}
                       title="New Product"
                     >
                       <Plus size={16} />
@@ -208,9 +204,9 @@ const AdminLayout = () => {
           </header>
 
           {/* Main Content Area */}
-          <main className="flex-1 p-6 overflow-auto">
+          {/* <main className="flex-1 p-6 overflow-auto">
             <Outlet />
-          </main>
+          </main> */}
         </div>
       </div>
     </SidebarProvider>

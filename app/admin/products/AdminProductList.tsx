@@ -1,5 +1,5 @@
+"use client";
 import { useState, useEffect } from "react";
-import { useNavigate } from "next/link";
 import {
   Edit,
   Trash2,
@@ -24,10 +24,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 import { useProducts, Product } from "@/hooks/useProducts";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useRouter } from "next/navigation";
 
 const AdminProductList = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const { toast } = useToast();
 
   const { products, isLoading, error, fetchAllProducts, removeProduct } =
@@ -65,7 +66,7 @@ const AdminProductList = () => {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold">Manage Products</h1>
         <Button
-          onClick={() => navigate("/admin/products/new")}
+          onClick={() => navigate.push("/admin/products/new")}
           className="bg-lumey-orange hover:bg-lumey-yellow"
         >
           <Plus className="h-4 w-4 mr-2" />
@@ -184,7 +185,9 @@ const AdminProductList = () => {
                             variant="ghost"
                             size="icon"
                             onClick={() =>
-                              navigate(`/admin/products/edit/${product.id}`)
+                              navigate.push(
+                                `/admin/products/edit/${product.id}`
+                              )
                             }
                             title="Edit product"
                           >

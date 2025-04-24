@@ -1,10 +1,11 @@
+"use client";
 import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Package, Users, TrendingUp } from "lucide-react";
-import { useNavigate } from "next/link";
+import { useRouter } from "next/navigation";
 
 const AdminDashboard = () => {
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   // Set document title
   useEffect(() => {
@@ -18,7 +19,7 @@ const AdminDashboard = () => {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card
           className="hover:shadow-md transition-shadow cursor-pointer"
-          onClick={() => navigate("/admin/blogs")}
+          onClick={() => navigate.push("/admin/blogs")}
         >
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">
@@ -34,7 +35,7 @@ const AdminDashboard = () => {
 
         <Card
           className="hover:shadow-md transition-shadow cursor-pointer"
-          onClick={() => navigate("/admin/products")}
+          onClick={() => navigate.push("/admin/products")}
         >
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Products</CardTitle>
@@ -134,7 +135,7 @@ const AdminDashboard = () => {
           <CardContent>
             <div className="grid grid-cols-2 gap-4">
               <button
-                onClick={() => navigate("/admin/blogs/new")}
+                onClick={() => navigate.push("/admin/blogs/new")}
                 className="flex flex-col items-center justify-center bg-gray-50 hover:bg-lumey-yellow/10 p-4 rounded-lg transition-colors"
               >
                 <FileText className="h-8 w-8 text-lumey-orange mb-2" />
@@ -142,7 +143,7 @@ const AdminDashboard = () => {
               </button>
 
               <button
-                onClick={() => navigate("/admin/products/new")}
+                onClick={() => navigate.push("/admin/products/new")}
                 className="flex flex-col items-center justify-center bg-gray-50 hover:bg-lumey-yellow/10 p-4 rounded-lg transition-colors"
               >
                 <Package className="h-8 w-8 text-lumey-orange mb-2" />
@@ -150,7 +151,7 @@ const AdminDashboard = () => {
               </button>
 
               <button
-                onClick={() => navigate("/admin/blogs")}
+                onClick={() => navigate.push("/admin/blogs")}
                 className="flex flex-col items-center justify-center bg-gray-50 hover:bg-lumey-yellow/10 p-4 rounded-lg transition-colors"
               >
                 <TrendingUp className="h-8 w-8 text-lumey-orange mb-2" />
@@ -158,7 +159,7 @@ const AdminDashboard = () => {
               </button>
 
               <button
-                onClick={() => navigate("/")}
+                onClick={() => navigate.push("/")}
                 className="flex flex-col items-center justify-center bg-gray-50 hover:bg-lumey-yellow/10 p-4 rounded-lg transition-colors"
               >
                 <Users className="h-8 w-8 text-lumey-orange mb-2" />

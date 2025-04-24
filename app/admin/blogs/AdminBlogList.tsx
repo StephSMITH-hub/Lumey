@@ -1,5 +1,5 @@
+"use client";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "next/link";
 import {
   Edit,
   Trash2,
@@ -24,11 +24,12 @@ import { useToast } from "@/hooks/use-toast";
 
 // Import sample blog data from FeaturedBlogs
 import { featuredPosts } from "@/data/blogData";
+import { useRouter } from "next/navigation";
 
 const AdminBlogList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [blogPosts, setBlogPosts] = useState(featuredPosts);
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const { toast } = useToast();
 
   // Set document title
@@ -59,7 +60,7 @@ const AdminBlogList = () => {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold">Manage Blog Posts</h1>
         <Button
-          onClick={() => navigate("/admin/blogs/new")}
+          onClick={() => navigate.push("/admin/blogs/new")}
           className="bg-lumey-orange hover:bg-lumey-yellow"
         >
           <Plus className="h-4 w-4 mr-2" />
@@ -144,7 +145,7 @@ const AdminBlogList = () => {
                           variant="ghost"
                           size="icon"
                           onClick={() =>
-                            navigate(`/admin/blogs/edit/${blog.id}`)
+                            navigate.push(`/admin/blogs/edit/${blog.id}`)
                           }
                           title="Edit post"
                         >
