@@ -1,7 +1,9 @@
+"use client";
 import { ReactNode, useEffect } from "react";
-import { Navigate, useLocation } from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { Loader2 } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -9,7 +11,8 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { isAuthenticated, isLoading, checkAuth } = useAuth();
-  const location = useLocation();
+  const pathname = usePathname();
+  const navigate = useRouter();
 
   useEffect(() => {
     const verifyAuth = async () => {
@@ -32,7 +35,8 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   if (!isAuthenticated) {
     // Redirect to login page and preserve the intended destination
-    return <Navigate to="/admin/login" state={{ from: location }} replace />;
+    navigate.replace("/admin/login");
+    return;
   }
 
   return <>{children}</>;
