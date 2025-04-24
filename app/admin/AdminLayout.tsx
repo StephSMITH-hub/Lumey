@@ -27,7 +27,7 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 
-const AdminLayout = () => {
+const AdminLayout = ({ children }: any) => {
   const pathname = usePathname();
   const navigate = useRouter();
   const { toast } = useToast();
@@ -43,7 +43,7 @@ const AdminLayout = () => {
 
   // Get current page title based on route
   const getCurrentPageTitle = () => {
-    const path = location.pathname;
+    const path = pathname;
 
     if (path === "/admin") return "Dashboard";
     if (path.includes("/admin/blogs")) {
@@ -64,7 +64,7 @@ const AdminLayout = () => {
     <SidebarProvider defaultOpen={true}>
       <div className="min-h-screen flex w-full bg-gray-50 text-gray-900">
         {/* Modern sidebar implementation using shadcn/ui Sidebar */}
-        <Sidebar className="border-r border-gray-200">
+        <Sidebar className="border-r border-gray-200 mt-[50px]">
           <SidebarHeader className="border-b border-gray-200 p-4">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-lumey-yellow">
@@ -82,7 +82,7 @@ const AdminLayout = () => {
                   <SidebarMenuItem>
                     <SidebarMenuButton
                       asChild
-                      isActive={location.pathname === "/admin"}
+                      isActive={pathname === "/admin"}
                       tooltip="Dashboard"
                     >
                       <Link href="/admin">
@@ -102,7 +102,7 @@ const AdminLayout = () => {
                   <SidebarMenuItem>
                     <SidebarMenuButton
                       asChild
-                      isActive={location.pathname.includes("/admin/blogs")}
+                      isActive={pathname.includes("/admin/blogs")}
                       tooltip="Blogs"
                     >
                       <Link href="/admin/blogs">
@@ -124,7 +124,7 @@ const AdminLayout = () => {
                   <SidebarMenuItem>
                     <SidebarMenuButton
                       asChild
-                      isActive={location.pathname.includes("/admin/products")}
+                      isActive={pathname.includes("/admin/products")}
                       tooltip="Products"
                     >
                       <Link href="/admin/products">
@@ -204,9 +204,7 @@ const AdminLayout = () => {
           </header>
 
           {/* Main Content Area */}
-          {/* <main className="flex-1 p-6 overflow-auto">
-            <Outlet />
-          </main> */}
+          <main className="flex-1 p-6 overflow-auto">{children}</main>
         </div>
       </div>
     </SidebarProvider>
