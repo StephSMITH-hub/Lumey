@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import mongoose from 'mongoose';
 import BlogPost from '@/model/blog_post';
+import BlogAuthor from '@/model/blog_author';
+import BlogCategory from '@/model/blog_category';
 import dbConnect from '@/lib/dbConnect';
 
 /**
@@ -47,6 +49,7 @@ import dbConnect from '@/lib/dbConnect';
  *       500:
  *         description: Internal server error
  */
+
 async function connectDB() {
     if (mongoose.connection.readyState === 1) return;
     await dbConnect();
@@ -56,20 +59,32 @@ export async function GET(req: Request, { params }: { params: { uuid: string } }
     await connectDB();
 
     try {
-        const blogPost = await BlogPost.findOne({ uuid: params.uuid })
-            .populate('author_id', 'uuid name')
-            .populate('category_id', 'uuid name');
+        const { uuid } = await params;
+
+        const blogPost = await BlogPost.findOne({ uuid });
 
         if (!blogPost) {
             return NextResponse.json({ message: 'Blog post not found' }, { status: 404 });
         }
 
-        return NextResponse.json(blogPost, { status: 200 });
+        const author = await BlogAuthor.findOne({ uuid: blogPost.author_id });
+        const category = await BlogCategory.findOne({ uuid: blogPost.category_id });
+
+        if (!author || !category) {
+            return NextResponse.json({ message: 'Author or category not found' }, { status: 404 });
+        }
+
+        return NextResponse.json({
+            ...blogPost.toObject(),
+            author,
+            category,
+        }, { status: 200 });
     } catch (err) {
         console.error('Error fetching blog post by UUID:', err);
         return NextResponse.json({ message: 'Failed to fetch blog post' }, { status: 500 });
     }
 }
+
 
 /**
  * @swagger
@@ -128,9 +143,21 @@ export async function GET(req: Request, { params }: { params: { uuid: string } }
  *       500:
  *         description: Internal server error
  */
+
 export async function PUT(req: Request, { params }: { params: { uuid: string } }) {
     await connectDB();
-    const { slug, title, excerpt, content, category_id, status, is_featured, read_time, published_at } = await req.json();
+
+    const {
+        slug,
+        title,
+        excerpt,
+        content,
+        category_id,
+        status,
+        is_featured,
+        read_time,
+        published_at,
+    } = await req.json();
 
     try {
         const blogPost = await BlogPost.findOne({ uuid: params.uuid });
@@ -179,6 +206,7 @@ export async function PUT(req: Request, { params }: { params: { uuid: string } }
  *       500:
  *         description: Internal server error
  */
+
 export async function DELETE(req: Request, { params }: { params: { uuid: string } }) {
     await connectDB();
 

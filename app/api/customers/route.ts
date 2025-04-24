@@ -4,10 +4,15 @@ import customer from '@/model/customer'
 
 /**
  * @swagger
+ * tags:
+ *   - Customers
+ * 
  * /api/customers:
  *   post:
  *     summary: Create a new customer
  *     description: This endpoint allows you to create a new customer.
+ *     tags:
+ *       - Customers
  *     requestBody:
  *       required: true
  *       content:
@@ -82,10 +87,15 @@ export async function POST(req: Request) {
 
 /**
  * @swagger
+ * tags:
+ *   - Customers
+ * 
  * /api/customers:
  *   get:
  *     summary: Retrieve all customers
  *     description: This endpoint retrieves a list of all customers.
+ *     tags:
+ *       - Customers
  *     responses:
  *       200:
  *         description: A list of customers

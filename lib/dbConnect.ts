@@ -6,7 +6,11 @@ if (!MONGODB_URI) {
     throw new Error('Please define the MONGODB_URI environment variable')
 }
 
-let cached = (global as any).mongoose || { conn: null, promise: null }
+declare global {
+    var mongoose: { conn: mongoose.Connection | null, promise: Promise<mongoose.Mongoose> | null }
+}
+
+const cached = global.mongoose || { conn: null, promise: null }
 
 async function dbConnect() {
     if (cached.conn) return cached.conn
@@ -17,7 +21,7 @@ async function dbConnect() {
         })
     }
 
-    cached.conn = await cached.promise
+    cached.conn = (await cached.promise).connection
     return cached.conn
 }
 
