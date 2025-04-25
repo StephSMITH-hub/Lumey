@@ -29,13 +29,14 @@ const BlogPostTagSchema = new Schema<IBlogPostTag>(
     {
         timestamps: {
             createdAt: 'created_at',
+            updatedAt: false,
         },
     }
 );
 
-
 BlogPostTagSchema.index({ blog_post_id: 1 });
 BlogPostTagSchema.index({ blog_tag_id: 1 });
+BlogPostTagSchema.index({ blog_post_id: 1, blog_tag_id: 1 }, { unique: true });
 
 export default mongoose.models.BlogPostTag ||
     mongoose.model<IBlogPostTag>('BlogPostTag', BlogPostTagSchema);

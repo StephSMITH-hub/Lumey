@@ -4,10 +4,15 @@ import customer from '@/model/customer'
 
 /**
  * @swagger
+ * tags:
+ *   - Customers
+ * 
  * /api/customers/{uuid}:
  *   get:
  *     summary: Retrieve a customer by UUID
  *     description: This endpoint retrieves a customer based on their UUID.
+ *     tags:
+ *       - Customers
  *     parameters:
  *       - in: path
  *         name: uuid
@@ -59,10 +64,15 @@ export async function GET(_: Request, { params }: { params: { uuid: string } }) 
 
 /**
  * @swagger
+ * tags:
+ *   - Customers
+ * 
  * /api/customers/{uuid}:
  *   put:
  *     summary: Update a customer by UUID
  *     description: This endpoint allows updating a customer's details based on their UUID.
+ *     tags:
+ *       - Customers
  *     parameters:
  *       - in: path
  *         name: uuid
@@ -144,10 +154,15 @@ export async function PUT(req: Request, { params }: { params: { uuid: string } }
 
 /**
  * @swagger
+ * tags:
+ *   - Customers
+ * 
  * /api/customers/{uuid}:
  *   delete:
  *     summary: Delete a customer by UUID
  *     description: This endpoint allows deleting a customer based on their UUID.
+ *     tags:
+ *       - Customers
  *     parameters:
  *       - in: path
  *         name: uuid
