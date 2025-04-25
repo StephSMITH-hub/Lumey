@@ -23,12 +23,12 @@ import {
 import { useToast } from "@/hooks/use-toast";
 
 // Import sample blog data from FeaturedBlogs
-import { featuredPosts } from "@/data/blogData";
+import { blogdata } from "@/data/blogData";
 import { useRouter } from "next/navigation";
 
 const AdminBlogList = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [blogPosts, setBlogPosts] = useState(featuredPosts);
+  const [blogPosts, setBlogPosts] = useState(blogdata);
   const navigate = useRouter();
   const { toast } = useToast();
 
