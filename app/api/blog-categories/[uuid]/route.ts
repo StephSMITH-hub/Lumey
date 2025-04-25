@@ -4,8 +4,8 @@ import BlogCategory from "@/model/blog_category";
 import dbConnect from "@/lib/dbConnect";
 
 async function connectDB() {
-    if (mongoose.connection.readyState === 1) return;
-    await dbConnect();
+  if (mongoose.connection.readyState === 1) return;
+  await dbConnect();
 }
 
 /**
@@ -31,21 +31,29 @@ async function connectDB() {
  *         description: Failed to fetch category
  */
 
-export async function GET(_: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function GET(req: Request) {
+  await connectDB();
 
-    try {
-        const category = await BlogCategory.findOne({ uuid: params.uuid });
+  try {
+    const category = await BlogCategory.findOne({
+      uuid: req.url.split("/api/blog-categories")[1],
+    });
 
-        if (!category) {
-            return NextResponse.json({ message: "Category not found" }, { status: 404 });
-        }
-
-        return NextResponse.json(category);
-    } catch (err) {
-        console.error("Error fetching category by UUID:", err);
-        return NextResponse.json({ message: "Failed to fetch category" }, { status: 500 });
+    if (!category) {
+      return NextResponse.json(
+        { message: "Category not found" },
+        { status: 404 }
+      );
     }
+
+    return NextResponse.json(category);
+  } catch (err) {
+    console.error("Error fetching category by UUID:", err);
+    return NextResponse.json(
+      { message: "Failed to fetch category" },
+      { status: 500 }
+    );
+  }
 }
 
 /**
@@ -82,33 +90,39 @@ export async function GET(_: Request, { params }: { params: { uuid: string } }) 
  *         description: Failed to update category
  */
 
-export async function PUT(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function PUT(req: Request) {
+  await connectDB();
 
-    const uuid = params.uuid;
+  const uuid = req.url.split("api/blog-authors")[1];
 
-    if (!uuid) {
-        return NextResponse.json({ message: "UUID is required" }, { status: 400 });
+  if (!uuid) {
+    return NextResponse.json({ message: "UUID is required" }, { status: 400 });
+  }
+
+  const { name, slug } = await req.json();
+
+  try {
+    const updatedCategory = await BlogCategory.findOneAndUpdate(
+      { uuid },
+      { name, slug },
+      { new: true }
+    );
+
+    if (!updatedCategory) {
+      return NextResponse.json(
+        { message: "Category not found" },
+        { status: 404 }
+      );
     }
 
-    const { name, slug } = await req.json();
-
-    try {
-        const updatedCategory = await BlogCategory.findOneAndUpdate(
-            { uuid },
-            { name, slug },
-            { new: true }
-        );
-
-        if (!updatedCategory) {
-            return NextResponse.json({ message: "Category not found" }, { status: 404 });
-        }
-
-        return NextResponse.json(updatedCategory);
-    } catch (err) {
-        console.error("Error updating category:", err);
-        return NextResponse.json({ message: "Failed to update category" }, { status: 500 });
-    }
+    return NextResponse.json(updatedCategory);
+  } catch (err) {
+    console.error("Error updating category:", err);
+    return NextResponse.json(
+      { message: "Failed to update category" },
+      { status: 500 }
+    );
+  }
 }
 
 /**
@@ -134,25 +148,31 @@ export async function PUT(req: Request, { params }: { params: { uuid: string } }
  *         description: Failed to delete category
  */
 
-export async function DELETE(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function DELETE(req: Request) {
+  await connectDB();
 
-    const uuid = params.uuid;
+  const uuid = req.url.split("api/blog-authors")[1];
 
-    if (!uuid) {
-        return NextResponse.json({ message: "UUID is required" }, { status: 400 });
+  if (!uuid) {
+    return NextResponse.json({ message: "UUID is required" }, { status: 400 });
+  }
+
+  try {
+    const deletedCategory = await BlogCategory.findOneAndDelete({ uuid });
+
+    if (!deletedCategory) {
+      return NextResponse.json(
+        { message: "Category not found" },
+        { status: 404 }
+      );
     }
 
-    try {
-        const deletedCategory = await BlogCategory.findOneAndDelete({ uuid });
-
-        if (!deletedCategory) {
-            return NextResponse.json({ message: "Category not found" }, { status: 404 });
-        }
-
-        return NextResponse.json({ message: "Category deleted successfully" });
-    } catch (err) {
-        console.error("Error deleting category:", err);
-        return NextResponse.json({ message: "Failed to delete category" }, { status: 500 });
-    }
+    return NextResponse.json({ message: "Category deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting category:", err);
+    return NextResponse.json(
+      { message: "Failed to delete category" },
+      { status: 500 }
+    );
+  }
 }

@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/dbConnect';
-import BlogPostTag from '@/model/blog_post_tags';
-import BlogPost from '@/model/blog_post';
-import BlogTags from '@/model/blog_tags';
+import { NextResponse } from "next/server";
+import dbConnect from "@/lib/dbConnect";
+import BlogPostTag from "@/model/blog_post_tags";
+import BlogPost from "@/model/blog_post";
+import BlogTags from "@/model/blog_tags";
 
 // Swagger decorators
 /**
@@ -66,75 +66,117 @@ import BlogTags from '@/model/blog_tags';
  */
 
 interface Params {
-    params: { uuid: string };
+  params: { uuid: string };
 }
 
-export async function GET(_: Request, { params }: Params) {
-    await dbConnect();
+export async function GET(req: Request) {
+  await dbConnect();
 
-    try {
-        const tagLink = await BlogPostTag.findOne({ uuid: params.uuid });
-        if (!tagLink) {
-            return NextResponse.json({ message: 'Tag link not found' }, { status: 404 });
-        }
-
-        return NextResponse.json(tagLink, { status: 200 });
-    } catch (error) {
-        console.error(`GET /blog-post-tags/${params.uuid} error:`, error);
-        return NextResponse.json({ message: 'Failed to fetch tag link' }, { status: 500 });
+  try {
+    const tagLink = await BlogPostTag.findOne({
+      uuid: req.url.split("api/blog-post-tags")[1],
+    });
+    if (!tagLink) {
+      return NextResponse.json(
+        { message: "Tag link not found" },
+        { status: 404 }
+      );
     }
+
+    return NextResponse.json(tagLink, { status: 200 });
+  } catch (error) {
+    console.error(
+      `GET /blog-post-tags/${req.url.split("api/blog-post-tags")[1]} error:`,
+      error
+    );
+    return NextResponse.json(
+      { message: "Failed to fetch tag link" },
+      { status: 500 }
+    );
+  }
 }
 
-export async function PATCH(req: Request, { params }: Params) {
-    await dbConnect();
+export async function PATCH(req: Request) {
+  await dbConnect();
 
-    try {
-        const body = await req.json();
-        const { blog_post_id, blog_tag_id } = body;
+  try {
+    const body = await req.json();
+    const { blog_post_id, blog_tag_id } = body;
 
-        const tagLink = await BlogPostTag.findOne({ uuid: params.uuid });
-        if (!tagLink) {
-            return NextResponse.json({ message: 'Tag link not found' }, { status: 404 });
-        }
-
-        if (blog_post_id) {
-            const postExists = await BlogPost.findOne({ uuid: blog_post_id });
-            if (!postExists) {
-                return NextResponse.json({ message: 'Invalid blog_post_id' }, { status: 400 });
-            }
-            tagLink.blog_post_id = blog_post_id;
-        }
-
-        if (blog_tag_id) {
-            const tagExists = await BlogTags.findOne({ uuid: blog_tag_id });
-            if (!tagExists) {
-                return NextResponse.json({ message: 'Invalid blog_tag_id' }, { status: 400 });
-            }
-            tagLink.blog_tag_id = blog_tag_id;
-        }
-
-        await tagLink.save();
-
-        return NextResponse.json(tagLink, { status: 200 });
-    } catch (error) {
-        console.error(`PATCH /blog-post-tags/${params.uuid} error:`, error);
-        return NextResponse.json({ message: 'Failed to update tag link' }, { status: 500 });
+    const tagLink = await BlogPostTag.findOne({
+      uuid: req.url.split("api/blog-post-tags")[1],
+    });
+    if (!tagLink) {
+      return NextResponse.json(
+        { message: "Tag link not found" },
+        { status: 404 }
+      );
     }
+
+    if (blog_post_id) {
+      const postExists = await BlogPost.findOne({ uuid: blog_post_id });
+      if (!postExists) {
+        return NextResponse.json(
+          { message: "Invalid blog_post_id" },
+          { status: 400 }
+        );
+      }
+      tagLink.blog_post_id = blog_post_id;
+    }
+
+    if (blog_tag_id) {
+      const tagExists = await BlogTags.findOne({ uuid: blog_tag_id });
+      if (!tagExists) {
+        return NextResponse.json(
+          { message: "Invalid blog_tag_id" },
+          { status: 400 }
+        );
+      }
+      tagLink.blog_tag_id = blog_tag_id;
+    }
+
+    await tagLink.save();
+
+    return NextResponse.json(tagLink, { status: 200 });
+  } catch (error) {
+    console.error(
+      `PATCH /blog-post-tags/${req.url.split("api/blog-post-tags")[1]} error:`,
+      error
+    );
+    return NextResponse.json(
+      { message: "Failed to update tag link" },
+      { status: 500 }
+    );
+  }
 }
 
-export async function DELETE(_: Request, { params }: Params) {
-    await dbConnect();
+export async function DELETE(req: Request) {
+  await dbConnect();
 
-    try {
-        const deleted = await BlogPostTag.findOneAndDelete({ uuid: params.uuid });
+  try {
+    const deleted = await BlogPostTag.findOneAndDelete({
+      uuid: req.url.split("api/blog-post-tags")[1],
+    });
 
-        if (!deleted) {
-            return NextResponse.json({ message: 'Tag link not found' }, { status: 404 });
-        }
-
-        return NextResponse.json({ message: 'Tag link deleted successfully' }, { status: 200 });
-    } catch (error) {
-        console.error(`DELETE /blog-post-tags/${params.uuid} error:`, error);
-        return NextResponse.json({ message: 'Failed to delete tag link' }, { status: 500 });
+    if (!deleted) {
+      return NextResponse.json(
+        { message: "Tag link not found" },
+        { status: 404 }
+      );
     }
+
+    return NextResponse.json(
+      { message: "Tag link deleted successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(
+      `DELETE /blog-post-tags/${req.url.split("api/blog-post-tags")[1]} error:`,
+      error
+    );
+    return NextResponse.json(
+      { message: "Failed to delete tag link" },
+      { status: 500 }
+    );
+  }
 }

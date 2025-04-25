@@ -93,13 +93,10 @@ export async function GET(req: Request) {
  *         description: Failed to update author
  */
 
-export async function PUT(
-  req: Request,
-  { params }: { params: { uuid: string } }
-) {
+export async function PUT(req: Request) {
   await connectDB();
 
-  const { uuid } = await params;
+  const uuid = req.url.split("api/blog-authors")[1];
 
   if (!uuid) {
     return NextResponse.json({ message: "UUID is required" }, { status: 400 });
@@ -154,13 +151,10 @@ export async function PUT(
  *         description: Failed to delete author
  */
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: { uuid: string } }
-) {
+export async function DELETE(req: Request) {
   await connectDB();
 
-  const { uuid } = await params;
+  const uuid = req.url.split("api/blog-authors")[1];
 
   if (!uuid) {
     return NextResponse.json({ message: "UUID is required" }, { status: 400 });

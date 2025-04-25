@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
-import mongoose from 'mongoose';
-import BlogTag from '@/model/blog_tags';
-import dbConnect from '@/lib/dbConnect';
+import { NextResponse } from "next/server";
+import mongoose from "mongoose";
+import BlogTag from "@/model/blog_tags";
+import dbConnect from "@/lib/dbConnect";
 
 async function connectDB() {
-    if (mongoose.connection.readyState === 1) return;
-    await dbConnect();
+  if (mongoose.connection.readyState === 1) return;
+  await dbConnect();
 }
 
 /**
@@ -29,21 +29,29 @@ async function connectDB() {
  *         description: Failed to fetch blog tag
  */
 
-export async function GET(_: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function GET(req: Request) {
+  await connectDB();
 
-    try {
-        const blogTag = await BlogTag.findOne({ uuid: params.uuid });
+  try {
+    const blogTag = await BlogTag.findOne({
+      uuid: req.url.split("api/blog-tags")[1],
+    });
 
-        if (!blogTag) {
-            return NextResponse.json({ message: 'Blog Tag not found' }, { status: 404 });
-        }
-
-        return NextResponse.json(blogTag);
-    } catch (err) {
-        console.error('Error fetching blog tag by UUID:', err);
-        return NextResponse.json({ message: 'Failed to fetch blog tag' }, { status: 500 });
+    if (!blogTag) {
+      return NextResponse.json(
+        { message: "Blog Tag not found" },
+        { status: 404 }
+      );
     }
+
+    return NextResponse.json(blogTag);
+  } catch (err) {
+    console.error("Error fetching blog tag by UUID:", err);
+    return NextResponse.json(
+      { message: "Failed to fetch blog tag" },
+      { status: 500 }
+    );
+  }
 }
 
 /**
@@ -80,31 +88,40 @@ export async function GET(_: Request, { params }: { params: { uuid: string } }) 
  *         description: Failed to update blog tag
  */
 
-export async function PUT(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function PUT(req: Request) {
+  await connectDB();
 
-    const { name, slug } = await req.json();
+  const { name, slug } = await req.json();
 
-    if (!name || !slug) {
-        return NextResponse.json({ message: 'Name and slug are required' }, { status: 400 });
+  if (!name || !slug) {
+    return NextResponse.json(
+      { message: "Name and slug are required" },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const updatedBlogTag = await BlogTag.findOneAndUpdate(
+      { uuid: req.url.split("api/blog-tags")[1] },
+      { name, slug, updated_at: new Date() },
+      { new: true }
+    );
+
+    if (!updatedBlogTag) {
+      return NextResponse.json(
+        { message: "Blog Tag not found" },
+        { status: 404 }
+      );
     }
 
-    try {
-        const updatedBlogTag = await BlogTag.findOneAndUpdate(
-            { uuid: params.uuid },
-            { name, slug, updated_at: new Date() },
-            { new: true }
-        );
-
-        if (!updatedBlogTag) {
-            return NextResponse.json({ message: 'Blog Tag not found' }, { status: 404 });
-        }
-
-        return NextResponse.json(updatedBlogTag);
-    } catch (err) {
-        console.error('Error updating blog tag:', err);
-        return NextResponse.json({ message: 'Failed to update blog tag' }, { status: 500 });
-    }
+    return NextResponse.json(updatedBlogTag);
+  } catch (err) {
+    console.error("Error updating blog tag:", err);
+    return NextResponse.json(
+      { message: "Failed to update blog tag" },
+      { status: 500 }
+    );
+  }
 }
 
 /**
@@ -128,19 +145,27 @@ export async function PUT(req: Request, { params }: { params: { uuid: string } }
  *         description: Failed to delete blog tag
  */
 
-export async function DELETE(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function DELETE(req: Request) {
+  await connectDB();
 
-    try {
-        const deletedBlogTag = await BlogTag.findOneAndDelete({ uuid: params.uuid });
+  try {
+    const deletedBlogTag = await BlogTag.findOneAndDelete({
+      uuid: req.url.split("api/blog-tags")[1],
+    });
 
-        if (!deletedBlogTag) {
-            return NextResponse.json({ message: 'Blog Tag not found' }, { status: 404 });
-        }
-
-        return NextResponse.json({ message: 'Blog Tag deleted successfully' });
-    } catch (err) {
-        console.error('Error deleting blog tag:', err);
-        return NextResponse.json({ message: 'Failed to delete blog tag' }, { status: 500 });
+    if (!deletedBlogTag) {
+      return NextResponse.json(
+        { message: "Blog Tag not found" },
+        { status: 404 }
+      );
     }
+
+    return NextResponse.json({ message: "Blog Tag deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting blog tag:", err);
+    return NextResponse.json(
+      { message: "Failed to delete blog tag" },
+      { status: 500 }
+    );
+  }
 }

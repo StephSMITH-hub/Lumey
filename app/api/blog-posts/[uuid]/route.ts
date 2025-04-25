@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
-import mongoose from 'mongoose';
-import BlogPost from '@/model/blog_post';
-import BlogAuthor from '@/model/blog_author';
-import BlogCategory from '@/model/blog_category';
-import dbConnect from '@/lib/dbConnect';
+import { NextResponse } from "next/server";
+import mongoose from "mongoose";
+import BlogPost from "@/model/blog_post";
+import BlogAuthor from "@/model/blog_author";
+import BlogCategory from "@/model/blog_category";
+import dbConnect from "@/lib/dbConnect";
 
 /**
  * @swagger
@@ -51,40 +51,51 @@ import dbConnect from '@/lib/dbConnect';
  */
 
 async function connectDB() {
-    if (mongoose.connection.readyState === 1) return;
-    await dbConnect();
+  if (mongoose.connection.readyState === 1) return;
+  await dbConnect();
 }
 
-export async function GET(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function GET(req: Request) {
+  await connectDB();
 
-    try {
-        const { uuid } = await params;
+  try {
+    const uuid = req.url.split("api/blog-posts")[1];
 
-        const blogPost = await BlogPost.findOne({ uuid });
+    const blogPost = await BlogPost.findOne({ uuid });
 
-        if (!blogPost) {
-            return NextResponse.json({ message: 'Blog post not found' }, { status: 404 });
-        }
-
-        const author = await BlogAuthor.findOne({ uuid: blogPost.author_id });
-        const category = await BlogCategory.findOne({ uuid: blogPost.category_id });
-
-        if (!author || !category) {
-            return NextResponse.json({ message: 'Author or category not found' }, { status: 404 });
-        }
-
-        return NextResponse.json({
-            ...blogPost.toObject(),
-            author,
-            category,
-        }, { status: 200 });
-    } catch (err) {
-        console.error('Error fetching blog post by UUID:', err);
-        return NextResponse.json({ message: 'Failed to fetch blog post' }, { status: 500 });
+    if (!blogPost) {
+      return NextResponse.json(
+        { message: "Blog post not found" },
+        { status: 404 }
+      );
     }
-}
 
+    const author = await BlogAuthor.findOne({ uuid: blogPost.author_id });
+    const category = await BlogCategory.findOne({ uuid: blogPost.category_id });
+
+    if (!author || !category) {
+      return NextResponse.json(
+        { message: "Author or category not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        ...blogPost.toObject(),
+        author,
+        category,
+      },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error("Error fetching blog post by UUID:", err);
+    return NextResponse.json(
+      { message: "Failed to fetch blog post" },
+      { status: 500 }
+    );
+  }
+}
 
 /**
  * @swagger
@@ -144,45 +155,53 @@ export async function GET(req: Request, { params }: { params: { uuid: string } }
  *         description: Internal server error
  */
 
-export async function PUT(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function PUT(req: Request) {
+  await connectDB();
 
-    const {
-        slug,
-        title,
-        excerpt,
-        content,
-        category_id,
-        status,
-        is_featured,
-        read_time,
-        published_at,
-    } = await req.json();
+  const {
+    slug,
+    title,
+    excerpt,
+    content,
+    category_id,
+    status,
+    is_featured,
+    read_time,
+    published_at,
+  } = await req.json();
 
-    try {
-        const blogPost = await BlogPost.findOne({ uuid: params.uuid });
-        if (!blogPost) {
-            return NextResponse.json({ message: 'Blog post not found' }, { status: 404 });
-        }
-
-        // Update fields
-        blogPost.slug = slug || blogPost.slug;
-        blogPost.title = title || blogPost.title;
-        blogPost.excerpt = excerpt || blogPost.excerpt;
-        blogPost.content = content || blogPost.content;
-        blogPost.category_id = category_id || blogPost.category_id;
-        blogPost.status = status || blogPost.status;
-        blogPost.is_featured = is_featured || blogPost.is_featured;
-        blogPost.read_time = read_time || blogPost.read_time;
-        blogPost.published_at = published_at || blogPost.published_at;
-
-        await blogPost.save();
-
-        return NextResponse.json(blogPost, { status: 200 });
-    } catch (err) {
-        console.error('Error updating blog post:', err);
-        return NextResponse.json({ message: 'Failed to update blog post' }, { status: 500 });
+  try {
+    const blogPost = await BlogPost.findOne({
+      uuid: req.url.split("api/blog-posts")[1],
+    });
+    if (!blogPost) {
+      return NextResponse.json(
+        { message: "Blog post not found" },
+        { status: 404 }
+      );
     }
+
+    // Update fields
+    blogPost.slug = slug || blogPost.slug;
+    blogPost.title = title || blogPost.title;
+    blogPost.excerpt = excerpt || blogPost.excerpt;
+    blogPost.content = content || blogPost.content;
+    blogPost.category_id = category_id || blogPost.category_id;
+    blogPost.status = status || blogPost.status;
+    blogPost.is_featured = is_featured || blogPost.is_featured;
+    blogPost.read_time = read_time || blogPost.read_time;
+    blogPost.published_at = published_at || blogPost.published_at;
+
+    await blogPost.save();
+
+    return NextResponse.json(blogPost, { status: 200 });
+  } catch (err) {
+    console.error("Error updating blog post:", err);
+    return NextResponse.json(
+      { message: "Failed to update blog post" },
+      { status: 500 }
+    );
+  }
 }
 
 /**
@@ -207,18 +226,29 @@ export async function PUT(req: Request, { params }: { params: { uuid: string } }
  *         description: Internal server error
  */
 
-export async function DELETE(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function DELETE(req: Request) {
+  await connectDB();
 
-    try {
-        const blogPost = await BlogPost.findOneAndDelete({ uuid: params.uuid });
-        if (!blogPost) {
-            return NextResponse.json({ message: 'Blog post not found' }, { status: 404 });
-        }
-
-        return NextResponse.json({ message: 'Blog post deleted successfully' }, { status: 200 });
-    } catch (err) {
-        console.error('Error deleting blog post:', err);
-        return NextResponse.json({ message: 'Failed to delete blog post' }, { status: 500 });
+  try {
+    const blogPost = await BlogPost.findOneAndDelete({
+      uuid: req.url.split("api/blog-posts")[1],
+    });
+    if (!blogPost) {
+      return NextResponse.json(
+        { message: "Blog post not found" },
+        { status: 404 }
+      );
     }
+
+    return NextResponse.json(
+      { message: "Blog post deleted successfully" },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error("Error deleting blog post:", err);
+    return NextResponse.json(
+      { message: "Failed to delete blog post" },
+      { status: 500 }
+    );
+  }
 }
