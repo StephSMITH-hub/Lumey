@@ -15,91 +15,13 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { useParams } from "next/navigation";
+import { blogdata } from "@/data/blogData";
+import MDEditor from "@uiw/react-md-editor";
 
 // Mock blog data - this would typically come from an API
-const blogPosts = [
-  {
-    id: "solar-energy-nigeria",
-    title:
-      "The Future of Solar Energy in Nigeria: Opportunities and Challenges",
-    excerpt:
-      "Nigeria's abundant sunshine provides a massive opportunity for solar energy adoption. Learn about the current landscape, challenges, and promising developments in Nigeria's solar sector.",
-    author: "Abiola Johnson",
-    date: "March 28, 2025",
-    readTime: "8 min read",
-    image: "/images/farm.jpg",
-    category: "Industry Insights",
-    featured: true,
-    content: `
-      <p>Nigeria, often called the "Giant of Africa," receives an average of 6.5 hours of sunshine daily, making it an ideal location for solar energy adoption. Despite this natural advantage, the country still grapples with significant power challenges that affect both residential and commercial sectors.</p>
-      
-      <h2>The Current Landscape</h2>
-      <p>As of 2025, Nigeria's power generation capacity stands at approximately 12,500 megawatts, but distribution rarely exceeds 5,000 megawatts due to infrastructure limitations. This significant gap has created a market where over 40% of the population lacks access to reliable electricity, and those connected to the grid face frequent outages.</p>
-      
-      <p>The reliance on diesel and petrol generators has become the norm for businesses and middle to upper-class homes, bringing with it high operational costs and environmental concerns. This is where solar energy presents a compelling alternative.</p>
-      
-      <h2>Growth of Solar Adoption</h2>
-      <p>In recent years, we've witnessed a gradual shift toward solar solutions across various sectors:</p>
-      
-      <ul>
-        <li><strong>Residential Adoption:</strong> More households are investing in small to medium-sized solar systems as prices have decreased by almost 40% since 2020.</li>
-        <li><strong>Commercial Integration:</strong> Businesses, particularly in the telecommunications, banking, and retail sectors, have begun integrating solar into their energy mix to reduce operational costs.</li>
-        <li><strong>Rural Electrification:</strong> Government initiatives and private investments have focused on providing solar solutions to rural communities, bypassing the need for traditional grid infrastructure.</li>
-      </ul>
-      
-      <h2>Key Challenges</h2>
-      <p>Despite the positive trajectory, several challenges still hinder widespread adoption:</p>
-      
-      <h3>1. Initial Investment Costs</h3>
-      <p>While prices have decreased, the upfront cost of quality solar systems remains prohibitive for many Nigerians, especially when compared to the initial cost of conventional generators.</p>
-      
-      <h3>2. Technical Expertise Gap</h3>
-      <p>There's a shortage of qualified technicians for installation and maintenance, leading to poor system performance and reduced confidence in the technology.</p>
-      
-      <h3>3. Quality Control Issues</h3>
-      <p>The market is flooded with substandard products, particularly batteries and inverters, which negatively impact the performance and lifespan of solar installations.</p>
-      
-      <h3>4. Policy and Regulatory Framework</h3>
-      <p>While progress has been made, Nigeria still lacks a comprehensive policy framework that actively encourages solar adoption through incentives like tax breaks or subsidies.</p>
-      
-      <h2>Opportunities on the Horizon</h2>
-      <p>Despite these challenges, several promising developments suggest a bright future for solar energy in Nigeria:</p>
-      
-      <h3>Pay-As-You-Go Models</h3>
-      <p>Innovative financing schemes that allow users to pay for solar systems in installments have begun to address the initial cost barrier, making solar more accessible to a broader demographic.</p>
-      
-      <h3>Local Manufacturing</h3>
-      <p>The emergence of local assembly plants for solar components is gradually reducing import costs and creating jobs while building technical expertise within the country.</p>
-      
-      <h3>Government Commitment</h3>
-      <p>Recent government initiatives, including the Solar Power Naija program, aim to provide solar access to 25 million Nigerians and create up to 250,000 jobs in the energy sector.</p>
-      
-      <h3>International Investment</h3>
-      <p>Foreign direct investment in Nigeria's renewable energy sector has seen a significant uptick, with several international companies establishing partnerships with local firms.</p>
-      
-      <h2>The Road Ahead</h2>
-      <p>For Nigeria to fully capitalize on its solar potential, a multi-faceted approach is necessary:</p>
-      
-      <ol>
-        <li>Strengthened regulatory frameworks that protect consumers while encouraging investment</li>
-        <li>Expanded access to financing for both consumers and businesses interested in solar adoption</li>
-        <li>Investment in technical training programs to build local expertise</li>
-        <li>Public awareness campaigns to educate Nigerians about the long-term benefits of solar energy</li>
-      </ol>
-      
-      <p>At Lumey Energy, we're committed to being part of this transformation, providing high-quality solar solutions that address the unique energy challenges faced by Nigerians. Our range of solar generators and power stations are designed with the Nigerian context in mind, offering reliable performance even in challenging conditions.</p>
-      
-      <h2>Conclusion</h2>
-      <p>The future of solar energy in Nigeria stands at a critical juncture. With the right policies, investments, and market approaches, solar has the potential to revolutionize Nigeria's energy landscape, providing clean, reliable power to millions while creating economic opportunities and reducing environmental impact.</p>
-      
-      <p>The question isn't whether solar will play a significant role in Nigeria's energy future, but rather how quickly and effectively we can overcome the existing barriers to widespread adoption.</p>
-    `,
-  },
-  // Add more blog posts with content as needed
-];
 
 // Create related posts from the existing blog posts
-const relatedPosts = blogPosts
+const relatedPosts = blogdata
   .filter((post) => post.id !== "solar-energy-nigeria")
   .slice(0, 3);
 
@@ -116,7 +38,6 @@ const BlogDetail = () => {
         readTime: string;
         image: string;
         category: string;
-        featured: boolean;
         content: string;
       }
     | undefined
@@ -124,14 +45,8 @@ const BlogDetail = () => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    console.log(postId);
-    // In a real app, you would fetch the blog post from an API
-    // For now, we'll use our mock data
-    const foundPost = blogPosts.find((p) => p.id === postId);
+    const foundPost = blogdata.find((p) => p.id === postId);
     setPost(foundPost);
-
-    // Scroll to the top when the page loads
-    window.scrollTo(0, 0);
   }, [postId]);
 
   // Define the container component based on mobile status
@@ -225,10 +140,9 @@ const BlogDetail = () => {
                       />
                     </div>
 
-                    <div
-                      className="blog-content prose prose-lg max-w-none mb-8"
-                      dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
+                    <div className="blog-content prose prose-lg max-w-none mb-8">
+                      <MDEditor.Markdown source={post.content} />
+                    </div>
 
                     <div className="border-t border-b border-gray-200 py-6 my-8">
                       <div className="flex flex-wrap items-center justify-between">
@@ -292,7 +206,6 @@ const BlogDetail = () => {
                   {/* Sidebar */}
                   <div className="lg:w-1/3">
                     <div className="sticky top-32">
-                      {/* Table of Contents */}
                       <div className="bg-white p-6 rounded-lg shadow-md mb-8">
                         <h3 className="text-lg font-bold mb-4">
                           Table of Contents
@@ -383,7 +296,6 @@ const BlogDetail = () => {
                         </ul>
                       </div>
 
-                      {/* Related Articles */}
                       <div className="bg-white p-6 rounded-lg shadow-md mb-8">
                         <h3 className="text-lg font-bold mb-4">
                           Related Articles
@@ -416,7 +328,6 @@ const BlogDetail = () => {
                         </div>
                       </div>
 
-                      {/* Newsletter Subscription */}
                       <div className="bg-gradient-to-br from-lumey-yellow/20 to-lumey-orange/20 p-6 rounded-lg shadow-md">
                         <h3 className="text-lg font-bold mb-3">
                           Subscribe to Our Newsletter

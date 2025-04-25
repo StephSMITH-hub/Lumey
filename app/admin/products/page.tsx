@@ -25,7 +25,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useProducts, Product } from "@/hooks/useProducts";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useRouter } from "next/navigation";
-import AdminLayout from "../AdminLayout";
+import AdminLayout from "../../../components/admin/AdminLayout";
 
 const AdminProductList = () => {
   const [searchQuery, setSearchQuery] = useState("");

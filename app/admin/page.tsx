@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Package, Users, TrendingUp } from "lucide-react";
 import { useRouter } from "next/navigation";
-import AdminLayout from "./AdminLayout";
+import AdminLayout from "../../components/admin/AdminLayout";
 
 const AdminDashboard = () => {
   const navigate = useRouter();

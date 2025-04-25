@@ -1,17 +1,17 @@
-export * from './about'
-export * from './contact'
-export * from './custom_solutions'
-export * from './faq'
-export * from './featured_blogs'
-export * from './floating_cta'
-export * from './footer'
-export * from './header'
-export * from './hero'
-export * from './how_it_works'
-export * from './mobile_menu'
-export * from './past_projects'
-export * from './products'
-export * from './products_table'
-export * from './sticky_call_to_action'
-export * from './testimonials'
-export * from './who_we_serve'
+export { About } from "./about";
+export { Contact } from "./contact";
+export { CustomSolutions } from "./custom_solutions";
+export { FAQ } from "./faq";
+export { FeaturedBlogs } from "./featured_blogs";
+export { FloatingCTA } from "./floating_cta";
+export { Footer } from "./footer";
+export { Header } from "./header";
+export { Hero } from "./hero";
+export { HowItWorks } from "./how_it_works";
+export { MobileMenu } from "./mobile_menu";
+export { PastProjects } from "./past_projects";
+export { Products } from "./products";
+export { ProductsTable } from "./products_table";
+export { StickyCallToAction } from "./sticky_call_to_action";
+export { Testimonials } from "./testimonials";
+export { WhoWeServe } from "./who_we_serve";

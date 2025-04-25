@@ -9,7 +9,7 @@ const heroSlides = [
   {
     title: "Welcome to Lumey Energy",
     description: "Home to Nigeria's No. 1 Indigenous Solar Solutions Provider",
-    image: "/images/hero/hero2.jpg",
+    image: "/images/hero/banner.png",
     tag: "Welcome",
     isWelcomeSlide: true,
   },

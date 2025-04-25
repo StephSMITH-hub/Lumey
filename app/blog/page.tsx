@@ -16,115 +16,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { FloatingCTA, Footer, Header } from "@/components";
-
-// Mock blog data
-const blogPosts = [
-  {
-    id: "solar-energy-nigeria",
-    title:
-      "The Future of Solar Energy in Nigeria: Opportunities and Challenges",
-    excerpt:
-      "Nigeria's abundant sunshine provides a massive opportunity for solar energy adoption. Learn about the current landscape, challenges, and promising developments in Nigeria's solar sector.",
-    author: "Abiola Johnson",
-    date: "March 28, 2025",
-    readTime: "8 min read",
-    image: "/images/farm.jpg",
-    category: "Industry Insights",
-    hasContent: true,
-    featured: true,
-  },
-  {
-    id: "powerbox-review",
-    title: "Lumey Powerbox 2100 Review: One Month Later",
-    excerpt:
-      "After using the Lumey Powerbox 2100 for a full month at my small business, here's my comprehensive review of its performance, reliability, and overall value.",
-    author: "Emmanuel Okafor",
-    date: "April 2, 2025",
-    readTime: "6 min read",
-    image: "/images/products/2100.jpg",
-    category: "Product Reviews",
-    hasContent: false,
-    featured: true,
-  },
-  {
-    id: "solar-vs-generator",
-    title: "Solar Power vs. Generators: Which is Right for Your Home?",
-    excerpt:
-      "With Nigeria's power challenges, many homeowners are looking for alternatives. We compare the pros and cons of solar power systems and conventional generators.",
-    author: "Chioma Eze",
-    date: "March 15, 2025",
-    readTime: "5 min read",
-    image: "/images/hero/hero2.jpg",
-    category: "Guides",
-    hasContent: false,
-    featured: true,
-  },
-  {
-    id: "business-continuity",
-    title: "Ensuring Business Continuity with Reliable Power Solutions",
-    excerpt:
-      "Power outages cost Nigerian businesses billions annually. Discover how the right backup power solution can protect your business operations and boost productivity.",
-    author: "Michael Adeyemi",
-    date: "April 5, 2025",
-    readTime: "7 min read",
-    image: "/images/testimonials/business.png",
-    category: "Business",
-    hasContent: false,
-    featured: true,
-  },
-  {
-    id: "solar-myths",
-    title: "5 Common Myths About Solar Energy in Nigeria Debunked",
-    excerpt:
-      "Many misconceptions prevent Nigerians from adopting solar energy. We examine and debunk the five most common myths about solar power systems.",
-    author: "Fatima Bello",
-    date: "March 10, 2025",
-    readTime: "4 min read",
-    image: "/images/hero/hero1.jpg",
-    category: "Education",
-    hasContent: false,
-    featured: false,
-  },
-  {
-    id: "maintenance-tips",
-    title: "Essential Maintenance Tips for Your Solar Generator",
-    excerpt:
-      "Maximize the lifespan and efficiency of your solar generator with these simple but effective maintenance practices every owner should know.",
-    author: "Uche Okonkwo",
-    date: "February 25, 2025",
-    readTime: "6 min read",
-    image: "/images/products/3300.jpg",
-    category: "Maintenance",
-    hasContent: false,
-    featured: false,
-  },
-  {
-    id: "solar-home",
-    title: "How We Powered Our Entire Home with Lumey Solar Solutions",
-    excerpt:
-      "Follow one family's journey to energy independence as they share their experience transitioning their Lagos home to run entirely on Lumey solar power.",
-    author: "The Adebayo Family",
-    date: "March 22, 2025",
-    readTime: "9 min read",
-    image: "/images/hero/hero3.jpg",
-    category: "Case Studies",
-    hasContent: false,
-    featured: false,
-  },
-  {
-    id: "future-tech",
-    title: "Future Technologies in Energy Storage: What's Coming Next",
-    excerpt:
-      "Energy storage technology is evolving rapidly. Explore upcoming innovations that could revolutionize how we store and use renewable energy.",
-    author: "Dr. Amina Ibrahim",
-    date: "April 8, 2025",
-    readTime: "10 min read",
-    image: "/images/consultant.jpg",
-    category: "Technology",
-    hasContent: false,
-    featured: false,
-  },
-];
+import useBlogData from "@/hooks/useBlogs";
+import { blogdata } from "@/data/blogData";
 
 const categories = [
   "All Categories",
@@ -143,8 +36,11 @@ const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const isMobile = useIsMobile();
 
+  const { posts, isLoading, error, searchPosts, filterByCategory } =
+    useBlogData();
+
   // Filter blog posts based on search and category
-  const filteredPosts = blogPosts.filter((post) => {
+  const filteredPosts = blogdata.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
@@ -162,7 +58,7 @@ const Blog = () => {
   }, []);
 
   // Get featured posts
-  const featuredPosts = blogPosts.filter((post) => post.featured);
+  const featuredPosts = blogdata.slice(0, 4);
 
   // Define the container component based on mobile status
   const ContainerComponent = isMobile ? "div" : motion.div;
@@ -227,7 +123,7 @@ const Blog = () => {
                           transition={{ duration: 0.5 }}
                           className="rounded-lg overflow-hidden shadow-lg group h-full"
                         >
-                          <div className="  h-60 overflow-hidden relative">
+                          <div className="h-60 overflow-hidden relative">
                             <img
                               src={post.image}
                               alt={post.title}

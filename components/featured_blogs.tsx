@@ -5,59 +5,7 @@ import { Clock, ArrowRight, User, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-// Sample blog post data - in a real app, this would come from an API
-const featuredPosts = [
-  {
-    id: "solar-energy-nigeria",
-    title:
-      "The Future of Solar Energy in Nigeria: Opportunities and Challenges",
-    excerpt:
-      "Nigeria's abundant sunshine provides a massive opportunity for solar energy adoption. Learn about the current landscape, challenges, and promising developments in Nigeria's solar sector.",
-    author: "Abiola Johnson",
-    date: "March 28, 2025",
-    readTime: "8 min read",
-    image: "/images/farm.jpg",
-    category: "Industry Insights",
-    hasContent: true,
-  },
-  {
-    id: "powerbox-review",
-    title: "Lumey Powerbox 2100 Review: One Month Later",
-    excerpt:
-      "After using the Lumey Powerbox 2100 for a full month at my small business, here's my comprehensive review of its performance, reliability, and overall value.",
-    author: "Emmanuel Okafor",
-    date: "April 2, 2025",
-    readTime: "6 min read",
-    image: "/images/products/2100.jpg",
-    category: "Product Reviews",
-    hasContent: false,
-  },
-  {
-    id: "solar-vs-generator",
-    title: "Solar Power vs. Generators: Which is Right for Your Home?",
-    excerpt:
-      "With Nigeria's power challenges, many homeowners are looking for alternatives. We compare the pros and cons of solar power systems and conventional generators.",
-    author: "Chioma Eze",
-    date: "March 15, 2025",
-    readTime: "5 min read",
-    image: "/images/hero/hero2.jpg",
-    category: "Guides",
-    hasContent: false,
-  },
-  {
-    id: "business-continuity",
-    title: "Ensuring Business Continuity with Reliable Power Solutions",
-    excerpt:
-      "Power outages cost Nigerian businesses billions annually. Discover how the right backup power solution can protect your business operations and boost productivity.",
-    author: "Michael Adeyemi",
-    date: "April 5, 2025",
-    readTime: "7 min read",
-    image: "/images/testimonials/business.png",
-    category: "Business",
-    hasContent: false,
-  },
-];
+import { blogdata } from "@/data/blogData";
 
 export const FeaturedBlogs = () => {
   const isMobile = useIsMobile();
@@ -192,7 +140,9 @@ export const FeaturedBlogs = () => {
         </MotionDiv>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredPosts.map((post, index) => renderBlogCard(post, index))}
+          {blogdata.map((post, index) =>
+            renderBlogCard({ ...post, hasContent: true }, index)
+          )}
         </div>
 
         <div className="mt-10 text-center">

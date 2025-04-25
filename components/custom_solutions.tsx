@@ -1,15 +1,6 @@
-
-
+"use client";
 import React from "react";
-import {
-  Zap,
-  Shield,
-  CloudLightning,
-  CheckCircle2,
-  Factory,
-  Building,
-  Home,
-} from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const CustomSolutions = () => {
@@ -134,4 +125,3 @@ export const CustomSolutions = () => {
     </section>
   );
 };
-

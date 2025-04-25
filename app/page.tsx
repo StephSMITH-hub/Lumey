@@ -2,10 +2,9 @@
 import {
   About,
   Contact,
+  CustomSolutions,
   FAQ,
   FeaturedBlogs,
-  FloatingCTA,
-  Footer,
   Header,
   Hero,
   HowItWorks,
@@ -29,6 +28,7 @@ export default function Home() {
         <About />
       </div>
       <Products />
+      <CustomSolutions />
       <HowItWorks />
       <WhoWeServe />
       <Testimonials />
