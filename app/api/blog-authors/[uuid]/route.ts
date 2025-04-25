@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
-import mongoose from 'mongoose';
-import BlogAuthor from '@/model/blog_author';
-import dbConnect from '@/lib/dbConnect'
+import { NextResponse } from "next/server";
+import mongoose from "mongoose";
+import BlogAuthor from "@/model/blog_author";
+import dbConnect from "@/lib/dbConnect";
 
 async function connectDB() {
-    if (mongoose.connection.readyState === 1) return;
-    await dbConnect();
+  if (mongoose.connection.readyState === 1) return;
+  await dbConnect();
 }
 
 /**
@@ -31,23 +31,29 @@ async function connectDB() {
  *         description: Failed to fetch author
  */
 
-export async function GET(_: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function GET(req: Request) {
+  await connectDB();
 
-    const { uuid } = await params;
+  const uuid = req.url.split("api/blog-authors")[1];
 
-    try {
-        const author = await BlogAuthor.findOne({ uuid });
+  try {
+    const author = await BlogAuthor.findOne({ uuid });
 
-        if (!author) {
-            return NextResponse.json({ message: 'Author not found' }, { status: 404 });
-        }
-
-        return NextResponse.json(author);
-    } catch (err) {
-        console.error('Error fetching author by UUID:', err);
-        return NextResponse.json({ message: 'Failed to fetch author' }, { status: 500 });
+    if (!author) {
+      return NextResponse.json(
+        { message: "Author not found" },
+        { status: 404 }
+      );
     }
+
+    return NextResponse.json(author);
+  } catch (err) {
+    console.error("Error fetching author by UUID:", err);
+    return NextResponse.json(
+      { message: "Failed to fetch author" },
+      { status: 500 }
+    );
+  }
 }
 /**
  * @swagger
@@ -87,33 +93,42 @@ export async function GET(_: Request, { params }: { params: { uuid: string } }) 
  *         description: Failed to update author
  */
 
-export async function PUT(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function PUT(
+  req: Request,
+  { params }: { params: { uuid: string } }
+) {
+  await connectDB();
 
-    const { uuid } = await params;
+  const { uuid } = await params;
 
-    if (!uuid) {
-        return NextResponse.json({ message: 'UUID is required' }, { status: 400 });
+  if (!uuid) {
+    return NextResponse.json({ message: "UUID is required" }, { status: 400 });
+  }
+
+  const { name, email, bio, avatar_url } = await req.json();
+
+  try {
+    const updatedAuthor = await BlogAuthor.findOneAndUpdate(
+      { uuid },
+      { name, email, bio, avatar_url },
+      { new: true }
+    );
+
+    if (!updatedAuthor) {
+      return NextResponse.json(
+        { message: "Author not found" },
+        { status: 404 }
+      );
     }
 
-    const { name, email, bio, avatar_url } = await req.json();
-
-    try {
-        const updatedAuthor = await BlogAuthor.findOneAndUpdate(
-            { uuid },
-            { name, email, bio, avatar_url },
-            { new: true }
-        );
-
-        if (!updatedAuthor) {
-            return NextResponse.json({ message: 'Author not found' }, { status: 404 });
-        }
-
-        return NextResponse.json(updatedAuthor);
-    } catch (err) {
-        console.error('Error updating author:', err);
-        return NextResponse.json({ message: 'Failed to update author' }, { status: 500 });
-    }
+    return NextResponse.json(updatedAuthor);
+  } catch (err) {
+    console.error("Error updating author:", err);
+    return NextResponse.json(
+      { message: "Failed to update author" },
+      { status: 500 }
+    );
+  }
 }
 
 /**
@@ -139,25 +154,34 @@ export async function PUT(req: Request, { params }: { params: { uuid: string } }
  *         description: Failed to delete author
  */
 
-export async function DELETE(req: Request, { params }: { params: { uuid: string } }) {
-    await connectDB();
+export async function DELETE(
+  req: Request,
+  { params }: { params: { uuid: string } }
+) {
+  await connectDB();
 
-    const { uuid } = await params;
+  const { uuid } = await params;
 
-    if (!uuid) {
-        return NextResponse.json({ message: 'UUID is required' }, { status: 400 });
+  if (!uuid) {
+    return NextResponse.json({ message: "UUID is required" }, { status: 400 });
+  }
+
+  try {
+    const deletedAuthor = await BlogAuthor.findOneAndDelete({ uuid });
+
+    if (!deletedAuthor) {
+      return NextResponse.json(
+        { message: "Author not found" },
+        { status: 404 }
+      );
     }
 
-    try {
-        const deletedAuthor = await BlogAuthor.findOneAndDelete({ uuid });
-
-        if (!deletedAuthor) {
-            return NextResponse.json({ message: 'Author not found' }, { status: 404 });
-        }
-
-        return NextResponse.json({ message: 'Author deleted successfully' });
-    } catch (err) {
-        console.error('Error deleting author:', err);
-        return NextResponse.json({ message: 'Failed to delete author' }, { status: 500 });
-    }
+    return NextResponse.json({ message: "Author deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting author:", err);
+    return NextResponse.json(
+      { message: "Failed to delete author" },
+      { status: 500 }
+    );
+  }
 }
