@@ -18,7 +18,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { featuredPosts } from "@/data/blogData";
+import { blogdata } from "@/data/blogData";
 import { useParams, useRouter } from "next/navigation";
 import AdminLayout from "../../../../components/admin/AdminLayout";
 import { useAuth } from "@/context/AuthContext";
@@ -68,7 +68,7 @@ const AdminBlogEditor = () => {
     if (blogId) {
       document.title = "Edit Blog Post | Lumey Admin";
 
-      const blogToEdit = featuredPosts.find((post) => post.id === blogId);
+      const blogToEdit = blogdata.find((post) => post.id === blogId);
 
       if (blogToEdit) {
         setFormData(blogToEdit);
