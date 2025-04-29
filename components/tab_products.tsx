@@ -268,19 +268,19 @@ export const TabProducts = () => {
             <TabsList className="bg-gray-100 w-full p-1 flex md:flex-row flex-col">
               <TabsTrigger
                 value="homes"
-                className="md:px-6 py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="px-6 px- py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Homes & Businesses
               </TabsTrigger>
               <TabsTrigger
                 value="commercial"
-                className="md:px-6 py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="px-6 px- py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Commercial
               </TabsTrigger>
               <TabsTrigger
                 value="custom"
-                className="md:px-6 py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="px-6 px- py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Custom Solutions
               </TabsTrigger>
@@ -302,8 +302,8 @@ export const TabProducts = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="commercial" className="mt-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <TabsContent value="commercial" className="mt-0 flex flex-col">
+            <div className="">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -318,9 +318,11 @@ export const TabProducts = () => {
                   hotels, and other business properties.
                 </p>
               </motion.div>
-              {commercialProducts.map((product, index) =>
-                renderProduct(product, index)
-              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {commercialProducts.map((product, index) =>
+                  renderProduct(product, index)
+                )}
+              </div>
             </div>
 
             <div className="mt-6 text-center">
