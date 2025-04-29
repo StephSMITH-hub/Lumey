@@ -83,7 +83,7 @@ const products = [
   {
     id: "custom-solution",
     name: "Custom Energy Solution",
-    specs: "3.5kVA - 20kVA+",
+    specs: "5kVA - 20kVA+",
     description: "Tailored energy solutions built for your specific needs.",
     image: "/images/farm.jpg",
     originalPrice: null,
@@ -98,7 +98,7 @@ const products = [
 const customSolution = {
   id: "custom-solution",
   name: "Custom Energy Solution",
-  specs: "3.5kVA - 20kVA+",
+  specs: "5kVA - 20kVA+",
   description: "Tailored energy solutions built for your specific needs.",
   image: "/images/farm.jpg",
   originalPrice: null,

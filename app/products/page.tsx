@@ -754,7 +754,7 @@ const ProductPage = () => {
                                 Custom Energy Solution
                               </h4>
                               <p className="text-white/90 font-medium">
-                                3.5kVA - 20kVA+
+                                5kVA - 20kVA+
                               </p>
                             </div>
                           </div>
@@ -767,7 +767,7 @@ const ProductPage = () => {
                           <p className="mb-6">
                             We design and build custom power solutions to meet
                             specific energy requirements for homes, businesses,
-                            farms, and industrial applications. From 3.5kVA to
+                            farms, and industrial applications. From 5kVA to
                             over 20kVA, our custom solutions are engineered for
                             reliability and performance.
                           </p>
@@ -971,7 +971,7 @@ const ProductPage = () => {
                                 Custom Energy Solution
                               </h4>
                               <p className="text-white/90 font-medium">
-                                3.5kVA - 20kVA+
+                                5kVA - 20kVA+
                               </p>
                             </div>
                           </div>
@@ -984,7 +984,7 @@ const ProductPage = () => {
                           <p className="mb-6">
                             We design and build custom power solutions to meet
                             specific energy requirements for homes, businesses,
-                            farms, and industrial applications. From 3.5kVA to
+                            farms, and industrial applications. From 5kVA to
                             over 20kVA, our custom solutions are engineered for
                             reliability and performance.
                           </p>

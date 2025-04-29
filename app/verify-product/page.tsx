@@ -385,7 +385,7 @@ const VerifyProduct = () => {
                       </button>
                     </form>
 
-                    <div className="mt-8 border-t border-gray-200 pt-6">
+                    {/* <div className="mt-8 border-t border-gray-200 pt-6">
                       <h3 className="text-sm font-medium text-gray-700 mb-3">
                         For demo purposes, try these serial numbers:
                       </h3>
@@ -415,7 +415,7 @@ const VerifyProduct = () => {
                           - Not found
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                   </MotionDiv>
                 ) : (
                   <div className="max-w-md mx-auto">

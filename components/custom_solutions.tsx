@@ -25,8 +25,8 @@ export const CustomSolutions = () => {
             </p>
             <p className="text-lg text-gray-700">
               At Lumey Energy, we specialize in designing custom-built solar
-              generators tailored to your exact requirements. From 3.5kVA to
-              over 20kVA, we engineer robust power stations for homes, offices,
+              generators tailored to your exact requirements. From 5kVA to over
+              20kVA, we engineer robust power stations for homes, offices,
               businesses, and industrial setups.
             </p>
 
