@@ -132,7 +132,7 @@ export const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
-                className="text-left"
+                className=""
               >
                 <motion.span
                   initial={{ opacity: 0 }}
@@ -151,7 +151,7 @@ export const Hero = () => {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.5 }}
-                      className="text-left"
+                      className="text-left md:text-center"
                     >
                       {heroSlides[currentSlide].title
                         .split(" ")
@@ -176,10 +176,12 @@ export const Hero = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="text-md md:text-xl text-white/90 mb-8"
+                    className="text-md md:text-xl text-white/90 mb-8 "
                   >
                     <span>{heroSlides[currentSlide].description}</span> <br />
-                    <span>{heroSlides[currentSlide].description2}</span>
+                    <span className="text-lumey-orange">
+                      {heroSlides[currentSlide].description2}
+                    </span>
                   </motion.p>
                 )}
 

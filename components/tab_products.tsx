@@ -6,7 +6,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CustomSolutions from "./custom_solutions";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 const homeProducts = [
   {
@@ -264,30 +263,30 @@ export const TabProducts = () => {
           onValueChange={handleTabChange}
           className="w-full"
         >
-          <div className="flex md:flex-col flex-row justify-center mb-8">
-            <TabsList className="bg-gray-100 w-full p-1 flex md:flex-row flex-col">
+          <div className="flex md:flex-col flex-row justify-center mb-10 ">
+            <TabsList className="w-full flex md:flex-row flex-col space-x-2 text-left md:text-center my-4">
               <TabsTrigger
                 value="homes"
-                className="px-6 px- py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Homes & Businesses
               </TabsTrigger>
               <TabsTrigger
                 value="commercial"
-                className="px-6 px- py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Commercial
               </TabsTrigger>
               <TabsTrigger
                 value="custom"
-                className="px-6 px- py-2 w-full data-[state=active]:bg-lumey-yellow data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Custom Solutions
               </TabsTrigger>
             </TabsList>
           </div>
 
-          <TabsContent value="homes" className="mt-0">
+          <TabsContent value="homes" className="mt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {homeProducts.map((product, index) =>
                 renderProduct(product, index)
