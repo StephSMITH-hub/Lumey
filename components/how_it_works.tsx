@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { Battery, BatteryCharging, Lightbulb } from "lucide-react";
@@ -57,7 +57,7 @@ export const HowItWorks = () => {
                 {step.icon}
               </div>
               <h3 className="text-xl font-bold mb-3">
-                <span className="text-lumey-orange mr-2">{index + 1}️⃣</span>
+                {/* <span className="text-lumey-orange mr-2">{index}️⃣</span> */}
                 {step.title}
               </h3>
               <p className="text-gray-600">{step.description}</p>
@@ -80,4 +80,3 @@ export const HowItWorks = () => {
     </section>
   );
 };
-

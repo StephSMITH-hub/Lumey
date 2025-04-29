@@ -11,6 +11,7 @@ export { HowItWorks } from "./how_it_works";
 export { MobileMenu } from "./mobile_menu";
 export { PastProjects } from "./past_projects";
 export { Products } from "./products";
+export { TabProducts } from "./tab_products";
 export { ProductsTable } from "./products_table";
 export { StickyCallToAction } from "./sticky_call_to_action";
 export { Testimonials } from "./testimonials";

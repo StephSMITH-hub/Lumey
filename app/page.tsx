@@ -10,6 +10,7 @@ import {
   HowItWorks,
   PastProjects,
   Products,
+  TabProducts,
   Testimonials,
   WhoWeServe,
 } from "@/components";
@@ -27,8 +28,8 @@ export default function Home() {
       <div ref={aboutRef} id="about">
         <About />
       </div>
-      <Products />
-      <CustomSolutions />
+      <TabProducts />
+      {/* <CustomSolutions /> */}
       <HowItWorks />
       <WhoWeServe />
       <Testimonials />

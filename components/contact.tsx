@@ -32,6 +32,11 @@ const contactInfo = [
     link: "tel:+2348139743177",
   },
   {
+    icon: <Phone className="h-5 w-5" />,
+    text: "+2342013306061",
+    link: "tel:+2342013306061",
+  },
+  {
     icon: <Mail className="h-5 w-5" />,
     text: "lumeyenergy@gmail.com",
     link: "mailto:lumeyenergy@gmail.com",

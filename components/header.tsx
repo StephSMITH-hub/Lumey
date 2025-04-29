@@ -124,7 +124,7 @@ export const Header = () => {
       />
 
       {/* Header Tag Line - Desktop */}
-      <div className="hidden lg:block bg-gradient-to-r from-lumey-light_yellow to-lumey-yellow py-1 mt-2 w-full">
+      {/* <div className="hidden lg:block bg-gradient-to-r from-lumey-light_yellow to-lumey-yellow py-1 mt-2 w-full">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between text-xs text-center md:text-sm">
           <p className="flex items-center gap-1">
             <Sun size={14} className="inline" />
@@ -143,17 +143,17 @@ export const Header = () => {
             </a>
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Mobile Marquee - Added as requested */}
-      <div className="lg:hidden bg-gradient-to-r from-lumey-light_yellow to-lumey-yellow py-1 mt-1 w-full overflow-hidden">
+      <div className="bg-gradient-to-r from-lumey-light_yellow to-lumey-yellow py-1 mt-1 w-full overflow-hidden">
         <div className="marquee">
           <div className="marquee-content">
             <span className="whitespace-nowrap px-2">
               Welcome to Lumey Energy • Home to Nigeria's No.1 Indigenous Solar
               Solutions Provider • Solar Generators | Power Stations | Energy
               Storage Banks • Best in Price and Quality • Reach us today -
-              08139743177
+              08139743177 | 02013306061
             </span>
           </div>
         </div>

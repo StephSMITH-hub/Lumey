@@ -5,12 +5,16 @@ import { Sun, ArrowUp, Phone, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 
 const contactInfo = [
+  // {
+  //   icon: <MapPin className="h-5 w-5" />,
+  //   text: "Akure, Nigeria",
+  //   link: "#",
+  // },
   {
-    icon: <MapPin className="h-5 w-5" />,
-    text: "Akure, Nigeria",
-    link: "https://goo.gl/maps/Lagos",
+    icon: <Phone className="h-5 w-5" />,
+    text: "+2342013306061",
+    link: "tel:+2342013306061",
   },
-
   {
     icon: <Phone className="h-5 w-5" />,
     text: "+2348139743177",

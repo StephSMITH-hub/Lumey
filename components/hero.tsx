@@ -8,7 +8,8 @@ import Link from "next/link";
 const heroSlides = [
   {
     title: "Welcome to Lumey Energy",
-    description: "Home to Nigeria's No. 1 Indigenous Solar Solutions Provider",
+    description: `Home to Nigeria\`s No 1 Indigenous Solar solutions Provider.`,
+    description2: `Solar Generators | Power stations | Energy storage banks`,
     image: "/images/hero/banner.png",
     tag: "Welcome",
     isWelcomeSlide: true,
@@ -82,7 +83,7 @@ export const Hero = () => {
       className="pt-28 md:pt-32 lg:pt-36 lg:min-h-screen h-fit flex items-center relative"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-black/60 z-10" />
+        <div className="absolute inset-0 bg-black/85 z-10" />
 
         <motion.div
           key={`current-${currentSlide}`}
@@ -110,7 +111,7 @@ export const Hero = () => {
             <img
               src={heroSlides[nextSlide].image}
               alt={`Hero background ${nextSlide + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
             />
           </motion.div>
         )}
@@ -175,9 +176,10 @@ export const Hero = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="text-lg md:text-xl text-white/90 mb-8"
+                    className="text-md md:text-xl text-white/90 mb-8"
                   >
-                    {heroSlides[currentSlide].description}
+                    <span>{heroSlides[currentSlide].description}</span> <br />
+                    <span>{heroSlides[currentSlide].description2}</span>
                   </motion.p>
                 )}
 
@@ -232,7 +234,7 @@ export const Hero = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="text-lg md:text-xl text-white/90 mb-8"
+                    className="text-md md:text-xl text-white/90 mb-8"
                   >
                     {heroSlides[currentSlide].description}
                   </motion.p>

@@ -63,6 +63,58 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  color-scheme: light;
+}
+
+/* Force light mode styles even in dark mode */
+.dark {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 39 94% 63%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 30 100% 50%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 39 94% 63%;
+}
+
+/* Override any possible dark mode styling */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: white;
+    color: #1e293b;
+  }
+
+  /* Ensure text is visible in all contexts */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label {
+    color: inherit;
+  }
 }
 
 @layer base {
@@ -186,7 +238,40 @@
 }
 
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 60s linear infinite;
+}
+
+/* Marquee Animation Styles */
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 50s linear infinite;
+  padding-left: 100%;
+}
+
+.marquee-content span {
+  display: inline-block;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .marquee-content {
+    animation-play-state: paused;
+  }
 }
 
 @theme inline {
@@ -207,4 +292,6 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  color: #1e293b;
 }
