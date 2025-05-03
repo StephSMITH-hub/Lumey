@@ -267,19 +267,19 @@ export const TabProducts = () => {
             <TabsList className="w-full flex md:flex-row flex-col md:space-x-2 text-left md:text-center my-4">
               <TabsTrigger
                 value="homes"
-                className="py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="md:py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Homes & Businesses
               </TabsTrigger>
               <TabsTrigger
                 value="commercial"
-                className="py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="md:py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Commercial
               </TabsTrigger>
               <TabsTrigger
                 value="custom"
-                className="py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
+                className="md:py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
               >
                 Custom Solutions
               </TabsTrigger>
