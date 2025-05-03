@@ -264,7 +264,7 @@ export const TabProducts = () => {
           className="w-full"
         >
           <div className="flex md:flex-col flex-row justify-center mb-10 ">
-            <TabsList className="w-full flex md:flex-row flex-col space-x-2 text-left md:text-center my-4">
+            <TabsList className="w-full flex md:flex-row flex-col md:space-x-2 text-left md:text-center my-4">
               <TabsTrigger
                 value="homes"
                 className="py-2 w-full data-[state=active]:bg-lumey-yellow bg-gray-200 data-[state=active]:text-lumey-dark data-[state=active]:shadow-md"
