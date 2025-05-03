@@ -942,7 +942,12 @@ const ProductPage = () => {
               </div>
 
               <div className="mt-16 mb-4">
-                <h2 className="text-2xl font-bold mb-6">Compare All Models</h2>
+                <h2 className="text-2xl font-bold mb-6">
+                  Compare All Models{" "}
+                  <span className="md:hidden text-lg">
+                    (Scroll right to see more...)
+                  </span>
+                </h2>
                 <ProductsTable />
               </div>
               <div className="mt-16 mb-12 relative">
@@ -957,7 +962,7 @@ const ProductPage = () => {
                       <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
                         <div className="lg:col-span-2 h-[300px] lg:h-auto relative overflow-hidden">
                           <img
-                            src="/images/farm.jpg"
+                            src="/images/custom-built.jpg"
                             alt="Custom Energy Solution"
                             className="w-full h-full object-cover"
                           />
