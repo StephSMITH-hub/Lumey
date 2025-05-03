@@ -124,7 +124,7 @@ export const CustomSolutions = () => {
             className="relative rounded-2xl overflow-hidden shadow-xl h-[400px] lg:h-[580px] order-1 lg:order-2"
           >
             <img
-              src="/images/farm.jpg"
+              src="/images/custom-built.jpg"
               alt="Engineers assembling a high-capacity solar generator"
               className="w-full h-full object-cover"
             />

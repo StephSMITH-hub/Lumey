@@ -10,7 +10,7 @@ const heroSlides = [
     title: "Welcome to Lumey Energy",
     description: `Home to Nigeria\`s No 1 Indigenous Solar solutions Provider.`,
     description2: `Solar Generators | Power stations | Energy storage banks`,
-    image: "/images/hero/banner.png",
+    image: "/images/hero/ban.png",
     tag: "Welcome",
     isWelcomeSlide: true,
   },
@@ -18,21 +18,21 @@ const heroSlides = [
     title: "Affordable, Reliable, Long-lasting.",
     description:
       "Say goodbye to fuel, noise, and unreliable power. With Lumey Powerboxes, you get pure, sustainable energy whenever and wherever you need it.",
-    image: "/images/hero/hero1.jpg",
+    image: "/images/hero/hero01.jpg",
     tag: "Reliable Power",
   },
   {
     title: "Clean Energy, Any Time, Anywhere.",
     description:
       "Portable solar solutions that power your life whether at home, work, or on the go. Experience the freedom of clean energy.",
-    image: "/images/hero/hero2.jpg",
+    image: "/images/hero/hero02.jpg",
     tag: "Sustainable Power",
   },
   {
     title: "Invest Once. Save Forever.",
     description:
       "Eliminate monthly fuel costs and enjoy years of reliable power. Lumey Powerboxes pay for themselves in months.",
-    image: "/images/hero/hero3.jpg",
+    image: "/images/hero/hero04.jpg",
     tag: "Cost Effective",
   },
 ];
@@ -83,7 +83,7 @@ export const Hero = () => {
       className="pt-28 md:pt-32 lg:pt-36 lg:min-h-screen h-fit flex items-center relative"
     >
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-black/85 z-10" />
+        <div className="absolute inset-0 bg-black/65 z-10" />
 
         <motion.div
           key={`current-${currentSlide}`}
@@ -138,7 +138,7 @@ export const Hero = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
-                  className="inline-block bg-lumey-yellow/70 text-lumey-dark px-4 py-1 rounded-full mb-4 font-medium text-sm"
+                  className="inline-block bg-black/90 text-lumey-orange px-4 py-1 rounded-full mb-4 font-medium text-sm"
                 >
                   {heroSlides[currentSlide].tag}
                 </motion.span>
@@ -198,7 +198,7 @@ export const Hero = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
-                  className="inline-block bg-lumey-yellow/70 text-lumey-dark px-4 py-1 rounded-full mb-4 font-medium text-sm"
+                  className="inline-block bg-black/90 text-lumey-orange px-4 py-1 rounded-full mb-4 font-medium text-sm"
                 >
                   {heroSlides[currentSlide].tag}
                 </motion.span>
