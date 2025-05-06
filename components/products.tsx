@@ -13,100 +13,7 @@ import {
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
-
-const products = [
-  {
-    id: "powerbox-550",
-    name: "Lumey Powerbox 550",
-    specs: "400W | 550Wh",
-    description: "Ideal for small home and office use.",
-    image: "/images/products/550.jpg",
-    originalPrice: 250000,
-    currentPrice: 220000,
-    withPanelPrice: 270000,
-    completePackagePrice: 335000,
-    soldCount: 150,
-    panelInfo: "1 x 300W panel (36V Mono)",
-  },
-  {
-    id: "powerbox-1200",
-    name: "Lumey Powerbox 1200",
-    specs: "800W | 1200Wh",
-    description: "Perfect for extended power backup.",
-    image: "/images/products/1200.jpg",
-    originalPrice: 350000,
-    currentPrice: 320000,
-    withPanelPrice: 420000,
-    completePackagePrice: 525000,
-    soldCount: 213,
-    panelInfo: "2 x 300W panels (36V Mono)",
-  },
-  {
-    id: "powerbox-2100",
-    name: "Lumey Powerbox 2100",
-    specs: "1500W | 2100Wh",
-    description: "Reliable for home appliances and business tools.",
-    image: "/images/products/2100.jpg",
-    originalPrice: 535000,
-    currentPrice: 500000,
-    withPanelPrice: 650000,
-    completePackagePrice: 775000,
-    soldCount: 189,
-    panelInfo: "3 x 300W panels (36V Mono)",
-  },
-  {
-    id: "powerbox-3300",
-    name: "Lumey Powerbox 3300",
-    specs: "1500W | 3300Wh",
-    description: "Advanced energy for business and industrial use.",
-    image: "/images/products/3300.jpg",
-    originalPrice: 860000,
-    currentPrice: 820000,
-    withPanelPrice: 1120000,
-    completePackagePrice: 1265000,
-    soldCount: 142,
-    panelInfo: "4 x 300W panels (36V Mono)",
-  },
-  {
-    id: "powerbox-6500",
-    name: "Lumey Powerbox 6500",
-    specs: "3500W | 6500Wh",
-    description: "Heavy-duty power for larger energy needs.",
-    image: "/images/products/6500.jpg",
-    originalPrice: 1550000,
-    currentPrice: 1500000,
-    withPanelPrice: 2100000,
-    completePackagePrice: 2290000,
-    soldCount: 97,
-    panelInfo: "6 x 300W panels (36V Mono)",
-  },
-  {
-    id: "custom-solution",
-    name: "Custom Energy Solution",
-    specs: "5kVA - 20kVA+",
-    description: "Tailored energy solutions built for your specific needs.",
-    image: "/images/farm.jpg",
-    originalPrice: null,
-    currentPrice: null,
-    withPanelPrice: null,
-    completePackagePrice: null,
-    soldCount: 75,
-    panelInfo: null,
-  },
-];
-
-const customSolution = {
-  id: "custom-solution",
-  name: "Custom Energy Solution",
-  specs: "5kVA - 20kVA+",
-  description: "Tailored energy solutions built for your specific needs.",
-  image: "/images/farm.jpg",
-  originalPrice: null,
-  currentPrice: null,
-  withPanelPrice: null,
-  completePackagePrice: null,
-  soldCount: 75,
-};
+import { products } from "@/data/productData";
 
 const formatPrice = (price: any) => {
   return new Intl.NumberFormat("en-NG", {
@@ -200,7 +107,7 @@ export const Products = () => {
                 </div>
 
                 <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                <p className="text-gray-600 mb-3">{product.description}</p>
+                <p className="text-gray-600 mb-3">{product.description_home}</p>
 
                 {product.id !== "custom-solution" ? (
                   <>

@@ -12,8 +12,7 @@ import {
   Instagram,
   MapPin,
 } from "lucide-react";
-
-import { useRef } from "react";
+import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 const contactInfo = [
   {
@@ -45,16 +44,22 @@ const contactInfo = [
 
 const socialMedia = [
   {
-    icon: <Instagram className="h-5 w-5" />,
+    icon: <FaInstagram className="h-5 w-5" />,
     platform: "Instagram",
-    handle: "@Lumey_Energy",
-    link: "https://instagram.com/Lumey_Energy",
+    handle: "@Lumeyenergy",
+    link: " https://www.instagram.com/lumeyenergy/",
   },
   {
-    icon: <Facebook className="h-5 w-5" />,
+    icon: <FaFacebook className="h-5 w-5" />,
     platform: "Facebook",
-    handle: "@Lumey_Energy",
-    link: "https://facebook.com/Lumey_Energy",
+    handle: "@Lumeyenergy",
+    link: "https://www.facebook.com/profile.php?id=61575857666532",
+  },
+  {
+    icon: <FaXTwitter className="h-5 w-5" />,
+    platform: "X (Twitter)",
+    handle: "@Lumeyenergy",
+    link: "https://x.com/LumeyEnergy",
   },
 ];
 
