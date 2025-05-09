@@ -9,7 +9,7 @@ export const blogdata = [
     author: "Lumey Editor",
     date: "March 28, 2025",
     readTime: "8 min read",
-    image: "/images/blog/blog1.jpeg",
+    image: "/images/blog/gen-vs-box.png",
     category: "Industry Insights",
     hasContent: true,
     content: `
@@ -65,7 +65,7 @@ The future of solar energy in Nigeria looks promising despite existing challenge
     author: "Lumey Editor",
     date: "March 20, 2025",
     readTime: "6 min read",
-    image: "/images/blog/blog2.jpeg",
+    image: "/images/blog/how-solars-work.png",
     category: "Beginner Guides",
     hasContent: true,
     content: `
@@ -120,7 +120,7 @@ The future of solar energy in Nigeria looks promising despite existing challenge
     author: "Lumey Editor",
     date: "March 24, 2025",
     readTime: "5 min read",
-    image: "/images/blog/blog3.jpg",
+    image: "/images/blog/switching-solars.png",
     category: "Beginner Guides",
     hasContent: true,
     content: `
