@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,7 +34,7 @@ export const FloatingCTA = () => {
   }, [lastScrollY]);
 
   return (
-    <div className="fixed left-4 bottom-4 z-50">
+    <div className="fixed right-4 bottom-4 z-50">
       <AnimatePresence>
         {isVisible && (
           <motion.div
@@ -102,4 +102,3 @@ export const FloatingCTA = () => {
     </div>
   );
 };
-

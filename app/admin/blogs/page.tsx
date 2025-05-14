@@ -149,7 +149,7 @@ const AdminBlogList = () => {
                             variant="ghost"
                             size="icon"
                             onClick={() =>
-                              navigate.push(`/admin/blogs/edit/${blog.id}`)
+                              navigate.push(`/admin/blogs/${blog.id}`)
                             }
                             title="Edit post"
                           >

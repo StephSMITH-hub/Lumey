@@ -2,8 +2,7 @@
 import { ReactNode, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Loader2 } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -11,7 +10,6 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { isAuthenticated, isLoading, checkAuth } = useAuth();
-  const pathname = usePathname();
   const navigate = useRouter();
 
   useEffect(() => {
@@ -20,7 +18,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     };
 
     verifyAuth();
-  }, [checkAuth]);
+  }, []);
 
   if (isLoading) {
     return (

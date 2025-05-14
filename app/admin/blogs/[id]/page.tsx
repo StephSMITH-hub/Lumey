@@ -20,8 +20,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { blogdata } from "@/data/blogData";
 import { useParams, useRouter } from "next/navigation";
-import AdminLayout from "../../../../components/admin/AdminLayout";
 import { useAuth } from "@/context/AuthContext";
+import AdminLayout from "@/components/admin/AdminLayout";
 
 interface BlogFormData {
   id: string;
@@ -36,12 +36,12 @@ interface BlogFormData {
 }
 
 const AdminBlogEditor = () => {
-  const { blogId } = useParams();
+  const { id } = useParams();
   const navigate = useRouter();
   const { toast } = useToast();
   const [showPreview, setShowPreview] = useState(false);
 
-  const { addPost } = useAuth();
+  const { addPost, updatePost } = useAuth();
 
   // Set default form state
   const defaultFormData: BlogFormData = {
@@ -62,13 +62,16 @@ const AdminBlogEditor = () => {
   };
 
   const [formData, setFormData] = useState<BlogFormData>(defaultFormData);
+  const [isEdit, setIsEdit] = useState(false);
 
   // Load blog data if editing an existing blog
   useEffect(() => {
-    if (blogId) {
+    if (id && id.toString().toLowerCase() != "new") {
       document.title = "Edit Blog Post | Lumey Admin";
 
-      const blogToEdit = blogdata.find((post) => post.id === blogId);
+      const blogToEdit = blogdata.find(
+        (post) => post.id.toLowerCase() === id.toString().toLowerCase()
+      );
 
       if (blogToEdit) {
         setFormData(blogToEdit);
@@ -78,12 +81,20 @@ const AdminBlogEditor = () => {
           title: "Blog not found",
           description: "The blog post you're trying to edit doesn't exist.",
         });
-        navigate.push("/admin/blogs");
+        // navigate.push("/admin/blogs");
       }
-    } else {
+    } else if (id?.toString().toLowerCase() == "new") {
       document.title = "New Blog Post | Lumey Admin";
+    } else {
+      navigate.push("/admin/blogs");
     }
-  }, [blogId, navigate, toast]);
+
+    if (id?.toString().toLowerCase() != "new") {
+      setIsEdit(true);
+    } else {
+      setIsEdit(false);
+    }
+  }, [id, navigate, toast]);
 
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
@@ -106,10 +117,16 @@ const AdminBlogEditor = () => {
     }
     console.log(formData);
 
+    // if (isEdit) {
+    //   updatePost(formData);
+    // } else {
+    //   addPost(formData);
+    // }
+    addPost(formData);
     // In a real app, this would save to a database
     // For now, just show success message
 
-    if (blogId) {
+    if (id) {
       toast({
         title: "Blog updated",
         description: "Your blog post has been successfully updated.",
@@ -122,7 +139,7 @@ const AdminBlogEditor = () => {
     }
 
     // Navigate back to blog list
-    navigate.push("/admin/blogs");
+    // navigate.push("/admin/blogs");
   };
 
   // Handle input change
@@ -148,7 +165,7 @@ const AdminBlogEditor = () => {
   return (
     <>
       <AdminLayout>
-        <div className="flex items-center justify-between mb-6 pt-10">
+        <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">
             <Button
               variant="ghost"
@@ -159,7 +176,7 @@ const AdminBlogEditor = () => {
               Back
             </Button>
             <h1 className="text-2xl font-semibold">
-              {blogId ? "Edit Blog Post" : "Create New Blog Post"}
+              {isEdit ? "Edit Blog Post" : "Create New Blog Post"}
             </h1>
           </div>
           <div className="flex gap-2">
@@ -184,159 +201,13 @@ const AdminBlogEditor = () => {
               className="bg-lumey-orange hover:bg-lumey-yellow"
             >
               <Save className="h-4 w-4 mr-2" />
-              {blogId ? "Update Post" : "Publish Post"}
+              {isEdit ? "Update Post" : "Publish Post"}
             </Button>
           </div>
         </div>
 
-        <div
-          className={`grid gap-6 ${
-            showPreview ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"
-          }`}
-        >
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid gap-4">
-              <div className="grid grid-cols-1 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="title">Post Title</Label>
-                  <Input
-                    id="title"
-                    name="title"
-                    placeholder="Enter blog post title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    onBlur={generateId}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="id">Post ID/Slug</Label>
-                  <Input
-                    id="id"
-                    name="id"
-                    placeholder="post-url-slug"
-                    value={formData.id}
-                    onChange={handleChange}
-                    required
-                  />
-                  <p className="text-xs text-gray-500">
-                    This will be used in the URL. Use lowercase letters,
-                    numbers, and hyphens only.
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="excerpt">Excerpt</Label>
-                <Textarea
-                  id="excerpt"
-                  name="excerpt"
-                  placeholder="Brief summary of the blog post"
-                  value={formData.excerpt}
-                  onChange={handleChange}
-                  required
-                  rows={3}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="author">Author</Label>
-                  <Input
-                    id="author"
-                    name="author"
-                    placeholder="Author name"
-                    value={formData.author}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="category">Category</Label>
-                  <Input
-                    id="category"
-                    name="category"
-                    placeholder="e.g. Industry Insights, Guides"
-                    value={formData.category}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="date">Publish Date</Label>
-                  <Input
-                    id="date"
-                    name="date"
-                    placeholder="e.g. April 15, 2025"
-                    value={formData.date}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="readTime">Read Time</Label>
-                  <Input
-                    id="readTime"
-                    name="readTime"
-                    placeholder="e.g. 5 min read"
-                    value={formData.readTime}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="image">Featured Image URL</Label>
-                <div className="flex gap-2">
-                  <Input
-                    id="image"
-                    name="image"
-                    placeholder="/images/your-image.jpg"
-                    value={formData.image}
-                    onChange={handleChange}
-                    className="flex-1"
-                  />
-                  <Button
-                    variant="outline"
-                    type="button"
-                    className="flex-shrink-0"
-                  >
-                    <Image className="h-4 w-4 mr-2" />
-                    Browse
-                  </Button>
-                </div>
-                <p className="text-xs text-gray-500">
-                  Enter the path to the image file. Image must be already
-                  uploaded to the server.
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="content">Content (Markdown)</Label>
-              <div className="border rounded-md">
-                <MDEditor
-                  value={formData.content}
-                  onChange={(value: any) =>
-                    setFormData((prev) => ({ ...prev, content: value || "" }))
-                  }
-                  height={500}
-                  preview="edit"
-                />
-              </div>
-              <p className="text-xs text-gray-500">
-                Use Markdown to format your content. You can add headers, lists,
-                links, and more.
-              </p>
-            </div>
-          </form>
-
-          {showPreview && (
+        <div className={`grid gap-6`}>
+          {showPreview ? (
             <div className="space-y-6">
               <div className="sticky top-4">
                 <h2 className="text-xl font-semibold mb-4">Post Preview</h2>
@@ -390,6 +261,148 @@ const AdminBlogEditor = () => {
                 </Card>
               </div>
             </div>
+          ) : (
+            <form className="space-y-6">
+              <div className="grid gap-4">
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="title">Post Title</Label>
+                    <Input
+                      id="title"
+                      name="title"
+                      placeholder="Enter blog post title"
+                      value={formData.title}
+                      onChange={handleChange}
+                      onBlur={generateId}
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="id">Post ID/Slug</Label>
+                    <Input
+                      id="id"
+                      name="id"
+                      placeholder="post-url-slug"
+                      value={formData.id}
+                      onChange={handleChange}
+                      required
+                    />
+                    <p className="text-xs text-gray-500">
+                      This will be used in the URL. Use lowercase letters,
+                      numbers, and hyphens only.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="excerpt">Excerpt</Label>
+                  <Textarea
+                    id="excerpt"
+                    name="excerpt"
+                    placeholder="Brief summary of the blog post"
+                    value={formData.excerpt}
+                    onChange={handleChange}
+                    required
+                    rows={3}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="author">Author</Label>
+                    <Input
+                      id="author"
+                      name="author"
+                      placeholder="Author name"
+                      value={formData.author}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="category">Category</Label>
+                    <Input
+                      id="category"
+                      name="category"
+                      placeholder="e.g. Industry Insights, Guides"
+                      value={formData.category}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="date">Publish Date</Label>
+                    <Input
+                      id="date"
+                      name="date"
+                      placeholder="e.g. April 15, 2025"
+                      value={formData.date}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="readTime">Read Time</Label>
+                    <Input
+                      id="readTime"
+                      name="readTime"
+                      placeholder="e.g. 5 min read"
+                      value={formData.readTime}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="image">Featured Image URL</Label>
+                  <div className="flex gap-2">
+                    <Input
+                      id="image"
+                      name="image"
+                      placeholder="/images/your-image.jpg"
+                      value={formData.image}
+                      onChange={handleChange}
+                      className="flex-1"
+                    />
+                    <Button
+                      variant="outline"
+                      type="button"
+                      className="flex-shrink-0"
+                    >
+                      <Image className="h-4 w-4 mr-2" />
+                      Browse
+                    </Button>
+                  </div>
+                  <p className="text-xs text-gray-500">
+                    Enter the path to the image file. Image must be already
+                    uploaded to the server.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="content">Content (Markdown)</Label>
+                <div className="border rounded-md">
+                  <MDEditor
+                    value={formData.content}
+                    onChange={(value: any) =>
+                      setFormData((prev) => ({ ...prev, content: value || "" }))
+                    }
+                    height={500}
+                    preview="edit"
+                  />
+                </div>
+                <p className="text-xs text-gray-500">
+                  Use Markdown to format your content. You can add headers,
+                  lists, links, and more.
+                </p>
+              </div>
+            </form>
           )}
         </div>
       </AdminLayout>

@@ -7,6 +7,7 @@ import {
   Plus,
   Settings,
   Users,
+  ArrowLeft,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -27,19 +28,15 @@ import {
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import ProtectedRoute from "@/components/admin/ProtectedRoute";
+import { useAuth } from "@/context/AuthContext";
 
 const AdminLayout = ({ children }: any) => {
   const pathname = usePathname();
   const navigate = useRouter();
-  const { toast } = useToast();
+  const { logout } = useAuth();
 
-  const handleLogout = () => {
-    // In a real app, this would handle authentication logout
-    toast({
-      title: "Logged out successfully",
-      description: "You have been logged out of the admin panel.",
-    });
-    navigate.push("/");
+  const handleLogout = async () => {
+    logout();
   };
 
   // Get current page title based on route
@@ -68,10 +65,18 @@ const AdminLayout = ({ children }: any) => {
           <div className=" flex w-full bg-gray-50 text-gray-900">
             {/* Modern sidebar implementation using shadcn/ui Sidebar */}
             <Sidebar className="border-r border-gray-200 ">
-              <SidebarHeader className="border-b border-gray-200 p-4 pt-[120px]">
+              <SidebarHeader className="border-b border-gray-200 p-4">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-md bg-lumey-yellow">
-                    <span className="font-bold text-lumey-dark">L</span>
+                    <div className="flex items-center">
+                      <Link href="/admin" className="flex items-center gap-2">
+                        <img
+                          src="/Lumey_Favicon/4x/Lumey_Favicon_32x32@4x.png"
+                          alt="Lumey logo"
+                          className="rounded-full w-[50px] object-cover"
+                        />
+                      </Link>
+                    </div>
                   </div>
                   <h1 className="text-xl font-bold text-lumey-dark">
                     Lumey Admin
@@ -190,7 +195,9 @@ const AdminLayout = ({ children }: any) => {
               {/* Admin Header */}
               <header className="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-6 sticky top-0 z-10">
                 <div className="flex items-center gap-3">
-                  <SidebarTrigger />
+                  <SidebarTrigger>
+                    <ArrowLeft />
+                  </SidebarTrigger>
                   <div className="flex items-center gap-2">
                     <h2 className="text-xl font-semibold">
                       {getCurrentPageTitle()}

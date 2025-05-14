@@ -65,10 +65,16 @@ export const Footer = () => {
       <div className="container mx-auto mt-5 px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <Sun className="h-8 w-8 text-lumey-yellow" />
-              <span className="font-bold text-xl">Lumey Energy</span>
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center gap-2">
+                <img
+                  src="/Lumey_Favicon/4x/Lumey_Favicon_32x32@4x.png"
+                  alt="Lumey logo"
+                  className="rounded-full w-[50px] object-cover"
+                />
+              </Link>
             </div>
+
             <p className="text-gray-400 mb-6">
               Nigeria's No.1 Producer & Partner in Solar Energy Innovation.
               Providing clean, reliable power solutions for homes and

@@ -20,8 +20,10 @@ interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
+  logout: () => void;
   login: (email: string, password: string) => Promise<boolean>;
   addPost: (post: BlogPost) => Promise<BlogPost | null>;
+  fetchPost: () => Promise<BlogPost[]>;
   updatePost: (post: BlogPost) => Promise<BlogPost | null>;
   deletePost: (id: string) => Promise<boolean>;
   checkAuth: () => Promise<boolean>;
@@ -42,13 +44,13 @@ export interface BlogPost {
 }
 
 // API URL - replace with your actual API endpoint
-const API_URL = "/api/blog";
+const API_URL = "/api/";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Mock admin credentials
 const ADMIN_EMAIL = "admin@lumey.com";
-const ADMIN_PASSWORD = "admin123";
+const ADMIN_PASSWORD = "LE@=admin00";
 
 // Mock admin user
 const ADMIN_USER: User = {
@@ -59,8 +61,23 @@ const ADMIN_USER: User = {
 };
 
 // Create a new blog post
+const fetchAllBlogs = async (): Promise<BlogPost[]> => {
+  const response = await fetch(API_URL + "blog-posts", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to create blog post: ${response.status}`);
+  }
+
+  return response.json();
+};
+
 const createBlogPost = async (post: BlogPost): Promise<BlogPost> => {
-  const response = await fetch(API_URL, {
+  const response = await fetch(API_URL + "blog-posts", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -77,7 +94,7 @@ const createBlogPost = async (post: BlogPost): Promise<BlogPost> => {
 
 // Update an existing blog post
 const updateBlogPost = async (post: BlogPost): Promise<BlogPost> => {
-  const response = await fetch(`${API_URL}/${post.id}`, {
+  const response = await fetch(`${API_URL}blog-posts/${post.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -94,7 +111,7 @@ const updateBlogPost = async (post: BlogPost): Promise<BlogPost> => {
 
 // Delete a blog post
 const deleteBlogPost = async (id: string): Promise<boolean> => {
-  const response = await fetch(`${API_URL}/${id}`, {
+  const response = await fetch(`${API_URL}blog-posts/${id}`, {
     method: "DELETE",
   });
 
@@ -235,6 +252,37 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const fetchPost = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const allPost = await fetchAllBlogs();
+
+      // toast({
+      //   title: "Success",
+      //   description: "Blog post created successfully!",
+      // });
+
+      return allPost;
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "An unknown error occurred";
+      console.error("Error creating blog post:", err);
+      setError(errorMessage);
+
+      // toast({
+      //   variant: "destructive",
+      //   title: "Error",
+      //   description: "Failed to create blog post. Please try again later.",
+      // });
+
+      return [];
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Update an existing blog post
   const updatePost = async (post: BlogPost) => {
     setIsLoading(true);
@@ -305,6 +353,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     isLoading,
     error,
     addPost,
+    fetchPost,
     deletePost,
     updatePost,
     login,
