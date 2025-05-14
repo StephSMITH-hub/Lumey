@@ -9,7 +9,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const { isAuthenticated, isLoading, checkAuth } = useAuth();
+  const { isAuthenticated, isLoadingLogin, checkAuth } = useAuth();
   const navigate = useRouter();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     verifyAuth();
   }, []);
 
-  if (isLoading) {
+  if (isLoadingLogin) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">

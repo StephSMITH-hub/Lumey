@@ -41,7 +41,7 @@ const AdminBlogEditor = () => {
   const { toast } = useToast();
   const [showPreview, setShowPreview] = useState(false);
 
-  const { addPost, updatePost } = useAuth();
+  const { addPost, updatePost, isLoading } = useAuth();
 
   // Set default form state
   const defaultFormData: BlogFormData = {

@@ -19,6 +19,7 @@ interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  isLoadingLogin: boolean;
   error: string | null;
   logout: () => void;
   login: (email: string, password: string) => Promise<boolean>;
@@ -125,6 +126,7 @@ const deleteBlogPost = async (id: string): Promise<boolean> => {
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoadingLogin, setIsLoadingLogin] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
@@ -140,7 +142,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Login function
   const login = async (email: string, password: string): Promise<boolean> => {
-    setIsLoading(true);
+    setIsLoadingLogin(true);
     setError(null);
 
     try {
@@ -180,7 +182,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       return false;
     } finally {
-      setIsLoading(false);
+      setIsLoadingLogin(false);
     }
   };
 
@@ -198,7 +200,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Check if user is authenticated
   const checkAuth = async (): Promise<boolean> => {
-    setIsLoading(true);
+    setIsLoadingLogin(true);
 
     try {
       // In a real app, this would verify the token with the server
@@ -216,7 +218,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setError("Authentication check failed.");
       return false;
     } finally {
-      setIsLoading(false);
+      setIsLoadingLogin(false);
     }
   };
 
@@ -351,6 +353,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     user,
     isAuthenticated: !!user,
     isLoading,
+    isLoadingLogin,
     error,
     addPost,
     fetchPost,
