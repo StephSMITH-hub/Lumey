@@ -140,7 +140,7 @@ const tableData = [
     "powerbox-2100": "12 Months",
     "powerbox-3300": "12 Months",
     "powerbox-6500": "12 Months",
-    "powerbox-10000": "24 Months",
+    "powerbox-10000": "12 Months",
   },
   {
     feature: "Price (No Panel)",
@@ -230,6 +230,7 @@ export const ProductsTable = () => {
                     "powerbox-2100",
                     "powerbox-3300",
                     "powerbox-6500",
+                    "powerbox-10000",
                   ].map((model, colIndex) => {
                     // Determine background color for each column
                     let bgColorClass = "";
