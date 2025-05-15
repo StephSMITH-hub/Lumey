@@ -244,7 +244,7 @@ export const ProductsTable = () => {
                       bgColorClass = "bg-gray-100";
                     } else if (colIndex === 4) {
                       // 6500 column - white
-                      bgColorClass = "bg-white";
+                      bgColorClass = "bg-lumey-yellow/10";
                     }
 
                     return (
