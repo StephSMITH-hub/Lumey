@@ -50,8 +50,8 @@ const API_URL = "/api/";
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Mock admin credentials
-const ADMIN_EMAIL = "admin@lumey.com";
-const ADMIN_PASSWORD = "LE@=admin00";
+const ADMIN_EMAIL = "lumeyAdmin@lumeyE.com";
+const ADMIN_PASSWORD = "LE@=aDmin.1";
 
 // Mock admin user
 const ADMIN_USER: User = {

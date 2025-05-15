@@ -62,7 +62,7 @@ const AdminLogin = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@lumey.com"
+                  placeholder="Enter Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"
