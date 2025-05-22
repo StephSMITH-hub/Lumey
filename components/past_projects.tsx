@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { motion } from "framer-motion";
@@ -29,8 +29,8 @@ const projects = [
   },
   {
     id: 4,
-    name: "School Solar Installation",
-    location: "Lagos, Lagos",
+    name: "Parks and Garden Solar Setup",
+    location: "Akure, Akure",
     date: new Date("2023-12-05"),
     image: "/images/pastprojects/past 4.png",
   },
@@ -115,4 +115,3 @@ export const PastProjects = () => {
     </section>
   );
 };
-

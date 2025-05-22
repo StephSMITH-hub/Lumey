@@ -178,12 +178,21 @@ export const TabProducts = () => {
       <div className="section-container">
         <MotionDiv
           {...motionProps}
-          className="text-center max-w-3xl mx-auto mb-12"
+          className="text-center max-w-3xl mx-auto mb-6"
         >
           <h2 className="heading-md mb-4 font-poppins">Our Products</h2>
           <p className="text-lg text-gray-700">
             From compact home solutions to powerful business-grade energy
             stations, Lumey Powerboxes keep you powered—no matter the situation.
+            Specially crafted power stations, that come with inbuilt inverters
+            and batteries and compatible with Solar panels to provides energy
+            back up to power your homes and businesses
+          </p>
+
+          <p>
+            No need of separate inverter, no need of an external battery , No
+            charge controller . 1 powerbox houses everything; Just plug and use.
+            No stress . Save cost . Enjoy the best power experience.
           </p>
         </MotionDiv>
 
@@ -193,7 +202,7 @@ export const TabProducts = () => {
           onValueChange={handleTabChange}
           className="w-full"
         >
-          <div className="flex md:flex-col flex-row justify-center mb-10 ">
+          <div className="flex md:flex-col flex-row justify-center mb-4 ">
             <TabsList className="w-full flex space-x-2 text-left md:text-center my-4">
               <TabsTrigger
                 value="homes"
@@ -221,8 +230,22 @@ export const TabProducts = () => {
               {products.map((product, index) => renderProduct(product, index))}
             </div>
 
-            <div className="mt-12 text-center">
-              <Link href="/products" className="button-primary">
+            <div className="mt-6 text-center">
+              <span className="text-lg text-gray-700">
+                <p>
+                  Need assistance? Do you need to be guided through the best
+                  products?{" "}
+                  <a
+                    href="https://wa.me/2348139743177"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-lumey-orange hover:text-lumey-orange/55 transition-colors font-medium"
+                  >
+                    Talk to us
+                  </a>
+                </p>
+              </span>
+              <Link href="/products" className="button-primary mt-3">
                 View All Products
                 <ChevronRight size={18} />
               </Link>

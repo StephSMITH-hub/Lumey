@@ -239,6 +239,19 @@ export const Products = () => {
         </div> */}
 
         <div className="mt-12 text-center flex flex-col md:flex-row items-center justify-center gap-4">
+          <span className="text-lg text-gray-700">
+            <p>
+              Need assistance? Do you need to be guide through the best
+              products?{" "}
+              <a
+                href="https://wa.me/2348139743177"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Talk to us
+              </a>
+            </p>
+          </span>
           <Link href="/products" className="button-primary">
             View All Products
             <ChevronRight size={18} />

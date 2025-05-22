@@ -49,6 +49,7 @@ export const Header = () => {
     // Commenting out load estimator as requested
     // { name: "Load Estimator", href: "/load-estimator" },
     { name: "Blog", href: "/blog" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Verify Products", href: "/verify-product" },
     {
       name: "FAQs",
@@ -99,7 +100,6 @@ export const Header = () => {
               </Link>
             ))}
           </nav>
-
           <div className="hidden lg:flex items-center space-x-4">
             <Link href="/products" className="button-primary">
               Shop Now

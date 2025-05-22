@@ -197,6 +197,9 @@ export const ProductsTable = () => {
                 <th className="font-bold p-3 text-center bg-lumey-yellow/80 text-black">
                   Lumey Powerbox 6500
                 </th>
+                <th className="font-bold p-3 text-center bg-lumey-yellow/50 text-black">
+                  Lumey Powerbox 10000
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -244,7 +247,9 @@ export const ProductsTable = () => {
                       bgColorClass = "bg-gray-100";
                     } else if (colIndex === 4) {
                       // 6500 column - white
-                      bgColorClass = "bg-lumey-yellow/10";
+                      bgColorClass = "bg-lumey-yellow/30";
+                    } else if (colIndex === 5) {
+                      bgColorClass = "bg-gray-100";
                     }
 
                     return (
