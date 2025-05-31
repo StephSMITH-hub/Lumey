@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -6,127 +5,180 @@ import { useToast } from "@/hooks/use-toast";
 export interface Product {
   id: string;
   name: string;
-  specs: string;
-  description: string;
-  image: string;
+  capacity: string;
+  power: string;
   originalPrice: number;
+  price: number;
+  specs: string;
+  description_home: string;
+  image: string;
   currentPrice: number;
   withPanelPrice: number;
   completePackagePrice: number;
   soldCount: number;
+  rating: number;
+  reviewCount: number;
+  mainImage: string;
   panelInfo: string;
+  images: string[];
+  description: string;
+  features: string[];
+  specifications: {
+    capacity: string;
+    inverter: string;
+    battery: string;
+    acOutput: string;
+    usbPorts: string;
+    chargingOptions: string;
+    chargingTime: string;
+    weight: string;
+    dimensions: string;
+    noiseLevel: string;
+  };
+  useCase: string;
+  priceInfo: {
+    withoutPanel: number;
+    withPanel: number;
+    withPanelAndInstallation: number;
+  };
   category?: string;
   status?: string;
 }
 
-// Fake API functions (to be replaced with real API calls)
-const fetchProducts = (): Promise<Product[]> => {
-  return new Promise((resolve) => {
-    // Simulating API delay
-    setTimeout(() => {
-      resolve([
-        {
-          id: "powerbox-550",
-          name: "Lumey Powerbox 550",
-          specs: "400W | 550Wh",
-          description: "Ideal for small home and office use.",
-          image: "/images/products/550.jpg",
-          originalPrice: 250000,
-          currentPrice: 220000,
-          withPanelPrice: 270000,
-          completePackagePrice: 335000,
-          soldCount: 150,
-          panelInfo: "1 x 300W panel (36V Mono)",
-          category: "Portable Power",
-          status: "In Stock"
-        },
-        {
-          id: "powerbox-1200",
-          name: "Lumey Powerbox 1200",
-          specs: "800W | 1200Wh",
-          description: "Perfect for extended power backup.",
-          image: "/images/products/1200.jpg",
-          originalPrice: 350000,
-          currentPrice: 320000,
-          withPanelPrice: 420000,
-          completePackagePrice: 525000,
-          soldCount: 213,
-          panelInfo: "2 x 300W panels (36V Mono)",
-          category: "Portable Power",
-          status: "In Stock"
-        },
-        {
-          id: "powerbox-2100",
-          name: "Lumey Powerbox 2100",
-          specs: "1500W | 2100Wh",
-          description: "Reliable for home appliances and business tools.",
-          image: "/images/products/2100.jpg",
-          originalPrice: 535000,
-          currentPrice: 500000,
-          withPanelPrice: 650000,
-          completePackagePrice: 775000,
-          soldCount: 189,
-          panelInfo: "3 x 300W panels (36V Mono)",
-          category: "Home Power",
-          status: "In Stock"
-        },
-        {
-          id: "powerbox-3300",
-          name: "Lumey Powerbox 3300",
-          specs: "1500W | 3300Wh",
-          description: "Advanced energy for business and industrial use.",
-          image: "/images/products/3300.jpg",
-          originalPrice: 860000,
-          currentPrice: 820000,
-          withPanelPrice: 1120000,
-          completePackagePrice: 1265000,
-          soldCount: 142,
-          panelInfo: "4 x 300W panels (36V Mono)",
-          category: "Home Power",
-          status: "Low Stock"
-        },
-        {
-          id: "powerbox-6500",
-          name: "Lumey Powerbox 6500",
-          specs: "3500W | 6500Wh",
-          description: "Heavy-duty power for larger energy needs.",
-          image: "/images/products/6500.jpg",
-          originalPrice: 1550000,
-          currentPrice: 1500000,
-          withPanelPrice: 2100000,
-          completePackagePrice: 2290000,
-          soldCount: 97,
-          panelInfo: "6 x 300W panels (36V Mono)",
-          category: "Commercial Power",
-          status: "In Stock"
-        },
-      ]);
-    }, 800);
-  });
+// API functions
+const fetchProducts = async (): Promise<Product[]> => {
+  const response = await fetch('/api/products');
+  const data = await response.json();
+  
+  if (!data.success) {
+    throw new Error(data.message || 'Failed to fetch products');
+  }
+
+  return data.products.map((product: any) => ({
+    id: product.model_id,
+    name: product.name,
+    capacity: product.capacity,
+    power: product.power,
+    originalPrice: product.base_price * 1.1, // 10% markup for original price
+    price: product.base_price,
+    specs: `${product.power}/${product.capacity}`,
+    description_home: product.description,
+    image: product.image_url,
+    currentPrice: product.base_price,
+    withPanelPrice: product.with_panel_price,
+    completePackagePrice: product.with_panel_price * 1.2, // 20% markup for complete package
+    soldCount: 0, // This would come from a separate sales tracking system
+    rating: product.rating,
+    reviewCount: product.review_count,
+    mainImage: product.main_image,
+    panelInfo: "Standard Solar Panel", // This would be configurable in the admin
+    images: product.images,
+    description: product.description,
+    features: product.features,
+    specifications: {
+      capacity: product.specifications.capacity,
+      inverter: product.specifications.inverter,
+      battery: product.specifications.battery,
+      acOutput: product.specifications.ac_output,
+      usbPorts: product.specifications.usb_ports,
+      chargingOptions: product.specifications.charging_options,
+      chargingTime: product.specifications.charging_time,
+      weight: product.specifications.weight,
+      dimensions: product.specifications.dimensions,
+      noiseLevel: product.specifications.noise_level
+    },
+    useCase: product.use_case,
+    priceInfo: {
+      withoutPanel: product.price_info.without_panel,
+      withPanel: product.price_info.with_panel,
+      withPanelAndInstallation: product.price_info.with_panel_and_installation
+    },
+    category: product.specifications?.category,
+    status: product.specifications?.status
+  }));
 };
 
-const createProduct = (product: Product): Promise<Product> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ ...product, id: product.id || `powerbox-${Date.now()}` });
-    }, 800);
-  });
+const createProduct = async (product: Product): Promise<{ success: boolean; message?: string; data?: Product }> => {
+  try {
+    const response = await fetch('/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(product),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || 'Failed to create product',
+      };
+    }
+
+    return {
+      success: true,
+      data: data.product,
+    };
+  } catch (error) {
+    console.error('Error creating product:', error);
+    return {
+      success: false,
+      message: 'An unexpected error occurred',
+    };
+  }
 };
 
-const updateProduct = (product: Product): Promise<Product> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(product);
-    }, 800);
-  });
+const updateProduct = async (product: Product): Promise<{ success: boolean; message?: string; data?: Product }> => {
+  try {
+    const response = await fetch(`/api/products/${product.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(product),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || 'Failed to update product',
+      };
+    }
+
+    return {
+      success: true,
+      data: data.product,
+    };
+  } catch (error) {
+    console.error('Error updating product:', error);
+    return {
+      success: false,
+      message: 'An unexpected error occurred',
+    };
+  }
 };
 
-const deleteProduct = (id: string): Promise<boolean> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 800);
-  });
+const deleteProduct = async (id: string): Promise<boolean> => {
+  try {
+    const response = await fetch(`/api/products/${id}`, {
+      method: 'DELETE',
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to delete product');
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    return false;
+  }
 };
 
 export const useProducts = () => {
@@ -161,12 +213,44 @@ export const useProducts = () => {
     setError(null);
     try {
       const newProduct = await createProduct(product);
-      setProducts((prev) => [...prev, newProduct]);
-      toast({
-        title: "Success",
-        description: "Product created successfully!",
-      });
-      return newProduct;
+      if (newProduct.success && newProduct.data) {
+        const typedProduct: Product = {
+          ...newProduct.data,
+          id: newProduct.data.id,
+          name: newProduct.data.name,
+          capacity: newProduct.data.capacity,
+          power: newProduct.data.power,
+          originalPrice: newProduct.data.originalPrice,
+          price: newProduct.data.price,
+          specs: newProduct.data.specs,
+          description_home: newProduct.data.description_home,
+          image: newProduct.data.image,
+          currentPrice: newProduct.data.currentPrice,
+          withPanelPrice: newProduct.data.withPanelPrice,
+          completePackagePrice: newProduct.data.completePackagePrice,
+          soldCount: newProduct.data.soldCount,
+          rating: newProduct.data.rating,
+          reviewCount: newProduct.data.reviewCount,
+          mainImage: newProduct.data.mainImage,
+          panelInfo: newProduct.data.panelInfo,
+          images: newProduct.data.images,
+          description: newProduct.data.description,
+          features: newProduct.data.features,
+          specifications: newProduct.data.specifications,
+          useCase: newProduct.data.useCase,
+          priceInfo: newProduct.data.priceInfo,
+          category: newProduct.data.category,
+          status: newProduct.data.status
+        };
+        setProducts((prev) => [...prev, typedProduct]);
+        toast({
+          title: "Success",
+          description: "Product created successfully!",
+        });
+        return typedProduct;
+      } else {
+        throw new Error(newProduct.message || 'Failed to create product');
+      }
     } catch (err) {
       console.error("Error creating product:", err);
       setError("Failed to create product. Please try again later.");
@@ -187,14 +271,46 @@ export const useProducts = () => {
     setError(null);
     try {
       const updatedProduct = await updateProduct(product);
-      setProducts((prev) =>
-        prev.map((p) => (p.id === product.id ? updatedProduct : p))
-      );
-      toast({
-        title: "Success",
-        description: "Product updated successfully!",
-      });
-      return updatedProduct;
+      if (updatedProduct.success && updatedProduct.data) {
+        const typedProduct: Product = {
+          ...updatedProduct.data,
+          id: updatedProduct.data.id,
+          name: updatedProduct.data.name,
+          capacity: updatedProduct.data.capacity,
+          power: updatedProduct.data.power,
+          originalPrice: updatedProduct.data.originalPrice,
+          price: updatedProduct.data.price,
+          specs: updatedProduct.data.specs,
+          description_home: updatedProduct.data.description_home,
+          image: updatedProduct.data.image,
+          currentPrice: updatedProduct.data.currentPrice,
+          withPanelPrice: updatedProduct.data.withPanelPrice,
+          completePackagePrice: updatedProduct.data.completePackagePrice,
+          soldCount: updatedProduct.data.soldCount,
+          rating: updatedProduct.data.rating,
+          reviewCount: updatedProduct.data.reviewCount,
+          mainImage: updatedProduct.data.mainImage,
+          panelInfo: updatedProduct.data.panelInfo,
+          images: updatedProduct.data.images,
+          description: updatedProduct.data.description,
+          features: updatedProduct.data.features,
+          specifications: updatedProduct.data.specifications,
+          useCase: updatedProduct.data.useCase,
+          priceInfo: updatedProduct.data.priceInfo,
+          category: updatedProduct.data.category,
+          status: updatedProduct.data.status
+        };
+        setProducts((prev) =>
+          prev.map((p) => (p.id === product.id ? typedProduct : p))
+        );
+        toast({
+          title: "Success",
+          description: "Product updated successfully!",
+        });
+        return typedProduct;
+      } else {
+        throw new Error(updatedProduct.message || 'Failed to update product');
+      }
     } catch (err) {
       console.error("Error updating product:", err);
       setError("Failed to update product. Please try again later.");
@@ -214,13 +330,17 @@ export const useProducts = () => {
     setIsLoading(true);
     setError(null);
     try {
-      await deleteProduct(id);
-      setProducts((prev) => prev.filter((p) => p.id !== id));
-      toast({
-        title: "Success",
-        description: "Product deleted successfully!",
-      });
-      return true;
+      const success = await deleteProduct(id);
+      if (success) {
+        setProducts((prev) => prev.filter((p) => p.id !== id));
+        toast({
+          title: "Success",
+          description: "Product deleted successfully!",
+        });
+        return true;
+      } else {
+        throw new Error('Failed to delete product');
+      }
     } catch (err) {
       console.error("Error deleting product:", err);
       setError("Failed to delete product. Please try again later.");

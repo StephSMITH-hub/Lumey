@@ -5,181 +5,186 @@ import { useToast } from "@/hooks/use-toast";
 export interface BlogPost {
   id: string;
   title: string;
-  content: string;
   excerpt: string;
   author: string;
   date: string;
   readTime: string;
   image: string;
   category: string;
-  tags?: string[];
+  content: string;
 }
 
-// API URL - replace with your actual API endpoint
-const API_URL = "/api/blog";
-
-// Fetch all blog posts
-const fetchBlogPosts = async (): Promise<BlogPost[]> => {
-  const response = await fetch(API_URL);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch blog posts: ${response.status}`);
-  }
-  return response.json();
-};
-
-// Fetch a single blog post by ID
-const fetchBlogPostById = async (id: string): Promise<BlogPost> => {
-  const response = await fetch(`${API_URL}/${id}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch blog post: ${response.status}`);
-  }
-  return response.json();
-};
-
-// Create a new blog post
-const createBlogPost = async (post: BlogPost): Promise<BlogPost> => {
-  const response = await fetch(API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(post),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to create blog post: ${response.status}`);
+// API functions
+const fetchBlogs = async (): Promise<BlogPost[]> => {
+  const response = await fetch('/api/blogs');
+  const data = await response.json();
+  
+  if (!data.success) {
+    throw new Error(data.message || 'Failed to fetch blogs');
   }
 
-  return response.json();
+  return data.blogs.map((blog: any) => ({
+    id: blog._id,
+    title: blog.title,
+    excerpt: blog.excerpt,
+    author: blog.author,
+    date: new Date(blog.createdAt).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }),
+    readTime: blog.readTime,
+    image: blog.image,
+    category: blog.category,
+    content: blog.content
+  }));
 };
 
-// Update an existing blog post
-const updateBlogPost = async (post: BlogPost): Promise<BlogPost> => {
-  const response = await fetch(`${API_URL}/${post.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(post),
-  });
+const createBlog = async (blog: BlogPost): Promise<{ success: boolean; message?: string; data?: BlogPost }> => {
+  try {
+    const response = await fetch('/api/blogs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(blog),
+    });
 
-  if (!response.ok) {
-    throw new Error(`Failed to update blog post: ${response.status}`);
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || 'Failed to create blog post',
+      };
+    }
+
+    return {
+      success: true,
+      data: data.blog,
+    };
+  } catch (error) {
+    console.error('Error creating blog post:', error);
+    return {
+      success: false,
+      message: 'An unexpected error occurred',
+    };
   }
-
-  return response.json();
 };
 
-// Delete a blog post
-const deleteBlogPost = async (id: string): Promise<boolean> => {
-  const response = await fetch(`${API_URL}/${id}`, {
-    method: "DELETE",
-  });
+const updateBlog = async (blog: BlogPost): Promise<{ success: boolean; message?: string; data?: BlogPost }> => {
+  try {
+    const response = await fetch(`/api/blogs/${blog.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(blog),
+    });
 
-  if (!response.ok) {
-    throw new Error(`Failed to delete blog post: ${response.status}`);
+    const data = await response.json();
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || 'Failed to update blog post',
+      };
+    }
+
+    return {
+      success: true,
+      data: data.blog,
+    };
+  } catch (error) {
+    console.error('Error updating blog post:', error);
+    return {
+      success: false,
+      message: 'An unexpected error occurred',
+    };
   }
-
-  return true;
 };
 
-export const useBlogData = () => {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [featuredPosts, setFeaturedPosts] = useState<BlogPost[]>([]);
+const deleteBlog = async (id: string): Promise<boolean> => {
+  try {
+    const response = await fetch(`/api/blogs/${id}`, {
+      method: 'DELETE',
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to delete blog post');
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error deleting blog post:', error);
+    return false;
+  }
+};
+
+export const useBlogs = () => {
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
-  // Fetch all blog posts
-  const fetchAllPosts = async () => {
+  // Fetch all blogs
+  const fetchAllBlogs = async () => {
     setIsLoading(true);
     setError(null);
-
     try {
-      const data = await fetchBlogPosts();
-      setPosts(data);
-
-      // You can define featured posts based on specific criteria
-      // For example, the first 3 posts or posts with a 'featured' property
-      setFeaturedPosts(data.slice(0, 4));
-
-      return data;
+      const data = await fetchBlogs();
+      setBlogs(data);
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An unknown error occurred";
-      console.error("Error fetching blog posts:", err);
-      setError(errorMessage);
-
+      console.error("Error fetching blogs:", err);
+      setError("Failed to fetch blogs. Please try again later.");
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Failed to fetch blog posts. Please try again later.",
+        description: "Failed to fetch blogs. Please try again later.",
       });
-
-      return [];
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Get a single blog post by ID
-  const getPostById = async (id: string): Promise<BlogPost | null> => {
-    // First check if we already have it in state
-    const existingPost = posts.find((post) => post.id === id);
-    if (existingPost) return existingPost;
-
-    // Otherwise fetch from API
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const post = await fetchBlogPostById(id);
-      return post;
-    } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An unknown error occurred";
-      console.error(`Error fetching blog post with ID ${id}:`, err);
-      setError(errorMessage);
-
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: `Failed to fetch blog post. Please try again later.`,
-      });
-
-      return null;
     } finally {
       setIsLoading(false);
     }
   };
 
   // Add a new blog post
-  const addPost = async (post: BlogPost) => {
+  const addBlog = async (blog: BlogPost) => {
     setIsLoading(true);
     setError(null);
-
     try {
-      const newPost = await createBlogPost(post);
-      setPosts((prev) => [...prev, newPost]);
-
-      toast({
-        title: "Success",
-        description: "Blog post created successfully!",
-      });
-
-      return newPost;
+      const newBlog = await createBlog(blog);
+      if (newBlog.success && newBlog.data) {
+        const typedBlog: BlogPost = {
+          ...newBlog.data,
+          id: newBlog.data.id,
+          title: newBlog.data.title,
+          excerpt: newBlog.data.excerpt,
+          author: newBlog.data.author,
+          date: newBlog.data.date,
+          readTime: newBlog.data.readTime,
+          image: newBlog.data.image,
+          category: newBlog.data.category,
+          content: newBlog.data.content
+        };
+        setBlogs((prev) => [...prev, typedBlog]);
+        toast({
+          title: "Success",
+          description: "Blog post created successfully!",
+        });
+        return typedBlog;
+      } else {
+        throw new Error(newBlog.message || 'Failed to create blog post');
+      }
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An unknown error occurred";
       console.error("Error creating blog post:", err);
-      setError(errorMessage);
-
+      setError("Failed to create blog post. Please try again later.");
       toast({
         variant: "destructive",
         title: "Error",
         description: "Failed to create blog post. Please try again later.",
       });
-
       return null;
     } finally {
       setIsLoading(false);
@@ -187,37 +192,43 @@ export const useBlogData = () => {
   };
 
   // Update an existing blog post
-  const updatePost = async (post: BlogPost) => {
+  const updateExistingBlog = async (blog: BlogPost) => {
     setIsLoading(true);
     setError(null);
-
     try {
-      const updatedPost = await updateBlogPost(post);
-      setPosts((prev) => prev.map((p) => (p.id === post.id ? updatedPost : p)));
-
-      // Update featuredPosts if needed
-      setFeaturedPosts((prev) =>
-        prev.map((p) => (p.id === post.id ? updatedPost : p))
-      );
-
-      toast({
-        title: "Success",
-        description: "Blog post updated successfully!",
-      });
-
-      return updatedPost;
+      const updatedBlog = await updateBlog(blog);
+      if (updatedBlog.success && updatedBlog.data) {
+        const typedBlog: BlogPost = {
+          ...updatedBlog.data,
+          id: updatedBlog.data.id,
+          title: updatedBlog.data.title,
+          excerpt: updatedBlog.data.excerpt,
+          author: updatedBlog.data.author,
+          date: updatedBlog.data.date,
+          readTime: updatedBlog.data.readTime,
+          image: updatedBlog.data.image,
+          category: updatedBlog.data.category,
+          content: updatedBlog.data.content
+        };
+        setBlogs((prev) =>
+          prev.map((b) => (b.id === blog.id ? typedBlog : b))
+        );
+        toast({
+          title: "Success",
+          description: "Blog post updated successfully!",
+        });
+        return typedBlog;
+      } else {
+        throw new Error(updatedBlog.message || 'Failed to update blog post');
+      }
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An unknown error occurred";
       console.error("Error updating blog post:", err);
-      setError(errorMessage);
-
+      setError("Failed to update blog post. Please try again later.");
       toast({
         variant: "destructive",
         title: "Error",
         description: "Failed to update blog post. Please try again later.",
       });
-
       return null;
     } finally {
       setIsLoading(false);
@@ -225,89 +236,55 @@ export const useBlogData = () => {
   };
 
   // Delete a blog post
-  const deletePost = async (id: string) => {
+  const removeBlog = async (id: string) => {
     setIsLoading(true);
     setError(null);
-
     try {
-      await deleteBlogPost(id);
-      setPosts((prev) => prev.filter((p) => p.id !== id));
-      setFeaturedPosts((prev) => prev.filter((p) => p.id !== id));
-
-      toast({
-        title: "Success",
-        description: "Blog post deleted successfully!",
-      });
-
-      return true;
+      const success = await deleteBlog(id);
+      if (success) {
+        setBlogs((prev) => prev.filter((b) => b.id !== id));
+        toast({
+          title: "Success",
+          description: "Blog post deleted successfully!",
+        });
+        return true;
+      } else {
+        throw new Error('Failed to delete blog post');
+      }
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An unknown error occurred";
       console.error("Error deleting blog post:", err);
-      setError(errorMessage);
-
+      setError("Failed to delete blog post. Please try again later.");
       toast({
         variant: "destructive",
         title: "Error",
         description: "Failed to delete blog post. Please try again later.",
       });
-
       return false;
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Search posts by title or content
-  const searchPosts = (query: string): BlogPost[] => {
-    const searchTerm = query.toLowerCase();
-    return posts.filter(
-      (post) =>
-        post.title.toLowerCase().includes(searchTerm) ||
-        post.content.toLowerCase().includes(searchTerm) ||
-        post.excerpt.toLowerCase().includes(searchTerm)
-    );
+  // Get a single blog post by ID
+  const getBlogById = (id: string): BlogPost | undefined => {
+    return blogs.find((blog) => blog.id === id);
   };
 
-  // Filter posts by category
-  const filterByCategory = (category: string): BlogPost[] => {
-    return posts.filter((post) => post.category === category);
-  };
-
-  // Get recent posts
-  const getRecentPosts = (count: number = 5): BlogPost[] => {
-    return [...posts]
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, count);
-  };
-
-  // Get categories from posts
-  const getCategories = (): string[] => {
-    const categories = new Set<string>();
-    posts.forEach((post) => categories.add(post.category));
-    return Array.from(categories);
-  };
-
-  // Load blog posts on component mount
+  // Load blogs on component mount
   useEffect(() => {
-    fetchAllPosts();
+    fetchAllBlogs();
   }, []);
 
   return {
-    posts,
-    featuredPosts,
+    blogs,
     isLoading,
     error,
-    fetchAllPosts,
-    getPostById,
-    addPost,
-    updatePost,
-    deletePost,
-    searchPosts,
-    filterByCategory,
-    getRecentPosts,
-    getCategories,
+    fetchAllBlogs,
+    addBlog,
+    updateExistingBlog,
+    removeBlog,
+    getBlogById,
   };
 };
 
-export default useBlogData;
+export default useBlogs;

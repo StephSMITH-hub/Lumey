@@ -49,7 +49,7 @@ export const Header = () => {
     // Commenting out load estimator as requested
     // { name: "Load Estimator", href: "/load-estimator" },
     { name: "Blog", href: "/blog" },
-    { name: "Gallery", href: "/gallery" },
+    // { name: "Gallery", href: "/gallery" },
     { name: "Verify Products", href: "/verify-product" },
     {
       name: "FAQs",

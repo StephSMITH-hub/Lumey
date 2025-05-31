@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-
+import { NextSeo } from "next-seo";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Clock,
@@ -63,6 +63,11 @@ const BlogDetail = () => {
   if (!post) {
     return (
       <div className="w-full overflow-x-hidden">
+        <NextSeo
+          title="Blog Post Not Found | Lumey Energy"
+          description="The blog post you're looking for doesn't exist or has been removed."
+          noindex={true}
+        />
         <main className="pt-32 pb-16">
           <div className="container mx-auto px-4">
             <div className="bg-white p-10 rounded-lg shadow-md text-center">
@@ -84,6 +89,56 @@ const BlogDetail = () => {
 
   return (
     <div className="w-full overflow-x-hidden">
+      <NextSeo
+        title={`${post.title} | Lumey Energy Blog`}
+        description={post.excerpt}
+        openGraph={{
+          title: post.title,
+          description: post.excerpt,
+          type: 'article',
+          article: {
+            publishedTime: post.date,
+            authors: [post.author],
+            tags: [post.category],
+          },
+          images: [
+            {
+              url: post.image,
+              alt: post.title,
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@lumeyenergy',
+          site: '@lumeyenergy',
+          cardType: 'summary_large_image',
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.title,
+            description: post.excerpt,
+            image: post.image,
+            datePublished: post.date,
+            author: {
+              '@type': 'Person',
+              name: post.author,
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'Lumey Energy',
+              logo: {
+                '@type': 'ImageObject',
+                url: '/Lumey_Favicon/4x/Lumey_Favicon_32x32@4x.png',
+              },
+            },
+          }),
+        }}
+      />
       <AnimatePresence mode="wait">
         <ContainerComponent {...containerProps}>
           <main className="pt-28 md:pt-32 lg:pt-36">

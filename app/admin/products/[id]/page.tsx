@@ -1,4 +1,4 @@
-"use cleint";
+"use client";
 import { useEffect, useState } from "react";
 import {
   Save,
@@ -17,99 +17,68 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useParams, useRouter } from "next/navigation";
+import { useProducts } from "@/hooks/useProducts";
+import { Product } from "@/hooks/useProducts";
 
 interface ProductFormData {
   id: string;
   name: string;
   capacity: string;
-  priceNoPanel: string;
-  priceWithPanel: string;
+  power: string;
+  price: number;
+  withPanelPrice: number;
   category: string;
   image: string;
   description: string;
   status: string;
+  features: string[];
+  specifications: {
+    capacity: string;
+    inverter: string;
+    battery: string;
+    acOutput: string;
+    usbPorts: string;
+    chargingOptions: string;
+    chargingTime: string;
+    weight: string;
+    dimensions: string;
+    noiseLevel: string;
+  };
+  useCase: string;
 }
 
 const AdminProductEditor = () => {
   const { productId } = useParams();
   const navigate = useRouter();
   const { toast } = useToast();
-
-  // Sample product data for editing
-  const products = [
-    {
-      id: "powerbox-550",
-      name: "Lumey Powerbox 550",
-      capacity: "400W/550Wh",
-      priceNoPanel: "₦220,000",
-      priceWithPanel: "₦270,000",
-      category: "Portable Power",
-      image: "/images/products/550.jpg",
-      description:
-        "Ideal for students and light home users. Powers phones, laptops, bulbs, TV, fans, MP3 players.",
-      status: "In Stock",
-    },
-    {
-      id: "powerbox-1200",
-      name: "Lumey Powerbox 1200",
-      capacity: "800W/1200Wh",
-      priceNoPanel: "₦320,000",
-      priceWithPanel: "₦420,000",
-      category: "Portable Power",
-      image: "/images/products/1200.jpg",
-      description:
-        "Perfect for remote workers and small families. Powers laptops, TVs, printers, fans.",
-      status: "In Stock",
-    },
-    {
-      id: "powerbox-2100",
-      name: "Lumey Powerbox 2100",
-      capacity: "1500W/2100Wh",
-      priceNoPanel: "₦500,000",
-      priceWithPanel: "₦650,000",
-      category: "Home Power",
-      image: "/images/products/2100.jpg",
-      description:
-        "Designed for homes & small businesses. Powers fridges, TVs, printers, PoS, fans, and more.",
-      status: "In Stock",
-    },
-    {
-      id: "powerbox-3300",
-      name: "Lumey Powerbox 3300",
-      capacity: "1500W/3300Wh",
-      priceNoPanel: "₦820,000",
-      priceWithPanel: "₦1,120,000",
-      category: "Home Power",
-      image: "/images/products/3300.jpg",
-      description:
-        "Ideal for offices and large homes. Powers AC, fridges, CCTV, routers, TVs, computers, and more.",
-      status: "Low Stock",
-    },
-    {
-      id: "powerbox-6500",
-      name: "Lumey Powerbox 6500",
-      capacity: "3500W/6500Wh",
-      priceNoPanel: "₦1,500,000",
-      priceWithPanel: "₦2,100,000",
-      category: "Commercial Power",
-      image: "/images/products/6500.jpg",
-      description:
-        "Perfect for full homes, worksites, and industry. Powers ACs, freezers, pumps, routers, large appliances.",
-      status: "In Stock",
-    },
-  ];
+  const { getProductById, addProduct, updateExistingProduct } = useProducts();
 
   // Set default form state
   const defaultFormData: ProductFormData = {
     id: "",
     name: "",
     capacity: "",
-    priceNoPanel: "",
-    priceWithPanel: "",
+    power: "",
+    price: 0,
+    withPanelPrice: 0,
     category: "Portable Power",
     image: "/images/products/550.jpg",
     description: "",
     status: "In Stock",
+    features: [],
+    specifications: {
+      capacity: "",
+      inverter: "",
+      battery: "",
+      acOutput: "",
+      usbPorts: "",
+      chargingOptions: "",
+      chargingTime: "",
+      weight: "",
+      dimensions: "",
+      noiseLevel: "",
+    },
+    useCase: "",
   };
 
   const [formData, setFormData] = useState<ProductFormData>(defaultFormData);
@@ -119,12 +88,24 @@ const AdminProductEditor = () => {
     if (productId) {
       document.title = "Edit Product | Lumey Admin";
 
-      const productToEdit = products.find(
-        (product) => product.id === productId
-      );
+      const productToEdit = getProductById(productId as string);
 
       if (productToEdit) {
-        setFormData(productToEdit);
+        setFormData({
+          id: productToEdit.id,
+          name: productToEdit.name,
+          capacity: productToEdit.capacity,
+          power: productToEdit.power,
+          price: productToEdit.price,
+          withPanelPrice: productToEdit.withPanelPrice,
+          category: productToEdit.category || "Portable Power",
+          image: productToEdit.image,
+          description: productToEdit.description,
+          status: productToEdit.status || "In Stock",
+          features: productToEdit.features,
+          specifications: productToEdit.specifications,
+          useCase: productToEdit.useCase,
+        });
       } else {
         toast({
           variant: "destructive",
@@ -136,17 +117,38 @@ const AdminProductEditor = () => {
     } else {
       document.title = "New Product | Lumey Admin";
     }
-  }, [productId, navigate, toast]);
+  }, [productId, navigate, toast, getProductById]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const generateId = () => {
+    if (!formData.id && formData.name) {
+      const id = formData.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+      setFormData((prev) => ({ ...prev, id }));
+    }
+  };
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate form data
     if (
       !formData.name ||
       !formData.capacity ||
-      !formData.priceNoPanel ||
+      !formData.power ||
+      !formData.price ||
       !formData.description
     ) {
       toast({
@@ -157,53 +159,53 @@ const AdminProductEditor = () => {
       return;
     }
 
-    // In a real app, this would save to a database
-    // For now, just show success message
+    try {
+      const productData: Product = {
+        ...formData,
+        originalPrice: formData.price * 1.1,
+        currentPrice: formData.price,
+        completePackagePrice: formData.withPanelPrice * 1.2,
+        soldCount: 0,
+        rating: 0,
+        reviewCount: 0,
+        mainImage: formData.image,
+        panelInfo: "Standard Solar Panel",
+        images: [],
+        specs: `${formData.power} | ${formData.capacity}`,
+        description_home: formData.description,
+        priceInfo: {
+          withoutPanel: formData.price,
+          withPanel: formData.withPanelPrice,
+          withPanelAndInstallation: formData.withPanelPrice * 1.2,
+        },
+      };
 
-    if (productId) {
-      toast({
-        title: "Product updated",
-        description: "Your product has been successfully updated.",
-      });
-    } else {
-      toast({
-        title: "Product created",
-        description: "Your new product has been successfully created.",
-      });
-    }
-
-    // Navigate back to product list
-    navigate.push("/admin/products");
-  };
-
-  // Handle input change
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  // Generate ID from name
-  const generateId = () => {
-    if (formData.name) {
-      // Extract Powerbox model number from the name if it follows the pattern "Lumey Powerbox XXXX"
-      const match = formData.name.match(/Lumey\s+Powerbox\s+(\d+)/i);
-      let id = "";
-
-      if (match && match[1]) {
-        id = `powerbox-${match[1]}`;
+      if (productId) {
+        const response = await updateExistingProduct(productData);
+        if (response) {
+          toast({
+            title: "Product updated",
+            description: "Your product has been successfully updated.",
+          });
+          navigate.push("/admin/products");
+        }
       } else {
-        // Otherwise create from name
-        id = formData.name
-          .toLowerCase()
-          .replace(/[^\w\s]/gi, "")
-          .replace(/\s+/g, "-");
+        const response = await addProduct(productData);
+        if (response) {
+          toast({
+            title: "Product created",
+            description: "Your new product has been successfully created.",
+          });
+          navigate.push("/admin/products");
+        }
       }
-
-      setFormData((prev) => ({ ...prev, id }));
+    } catch (error) {
+      console.error('Error submitting product:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+      });
     }
   };
 
@@ -316,24 +318,24 @@ const AdminProductEditor = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="priceNoPanel">Price (No Panel)</Label>
+                  <Label htmlFor="price">Price</Label>
                   <Input
-                    id="priceNoPanel"
-                    name="priceNoPanel"
+                    id="price"
+                    name="price"
                     placeholder="e.g. ₦220,000"
-                    value={formData.priceNoPanel}
+                    value={formData.price}
                     onChange={handleChange}
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="priceWithPanel">Price (With Panel)</Label>
+                  <Label htmlFor="withPanelPrice">With Panel Price</Label>
                   <Input
-                    id="priceWithPanel"
-                    name="priceWithPanel"
+                    id="withPanelPrice"
+                    name="withPanelPrice"
                     placeholder="e.g. ₦270,000"
-                    value={formData.priceWithPanel}
+                    value={formData.withPanelPrice}
                     onChange={handleChange}
                   />
                 </div>
@@ -485,16 +487,16 @@ const AdminProductEditor = () => {
 
                   <div className="flex items-center gap-2 text-sm">
                     <DollarSign className="h-4 w-4 text-lumey-orange" />
-                    <span className="font-medium">Price (No Panel):</span>{" "}
-                    {formData.priceNoPanel || "N/A"}
+                    <span className="font-medium">Price:</span>{" "}
+                    {formData.price || "N/A"}
                   </div>
 
                   <div className="flex items-center gap-2 text-sm">
                     <DollarSign className="h-4 w-4 text-lumey-orange" />
                     <span className="font-medium">
-                      Price (With Panel):
+                      With Panel Price:
                     </span>{" "}
-                    {formData.priceWithPanel || "N/A"}
+                    {formData.withPanelPrice || "N/A"}
                   </div>
                 </div>
 

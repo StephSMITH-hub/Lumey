@@ -2,7 +2,7 @@
 import { ReactNode, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -10,7 +10,8 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { isAuthenticated, isLoadingLogin, checkAuth } = useAuth();
-  const navigate = useRouter();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const verifyAuth = async () => {
@@ -33,8 +34,8 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   if (!isAuthenticated) {
     // Redirect to login page and preserve the intended destination
-    navigate.replace("/admin/login");
-    return;
+    router.replace(`/admin/login?redirect=${encodeURIComponent(pathname)}`);
+    return null;
   }
 
   return <>{children}</>;

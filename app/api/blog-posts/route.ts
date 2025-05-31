@@ -7,6 +7,14 @@ import BlogPostTag from "@/model/blog_post_tags";
 import { v4 as uuidv4 } from "uuid";
 import BlogAuthor from "@/model/blog_author";
 import slugify from "slugify";
+import { v2 as cloudinary } from 'cloudinary';
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 /**
  * @swagger
@@ -45,6 +53,8 @@ import slugify from "slugify";
  *                 type: array
  *                 items:
  *                   type: string
+ *               image:
+ *                 type: string
  *     responses:
  *       201:
  *         description: Blog post created successfully
@@ -68,6 +78,7 @@ export async function POST(req: Request) {
     read_time,
     published_at,
     tags,
+    image,
   } = await req.json();
 
   console.log({
@@ -82,6 +93,7 @@ export async function POST(req: Request) {
     read_time,
     published_at,
     tags,
+    image,
   });
 
   if (!slug || !title || !excerpt || !content || !author_id || !category_name) {
@@ -111,6 +123,15 @@ export async function POST(req: Request) {
       await category.save();
     }
 
+    // Upload image to Cloudinary if provided
+    let imageUrl = image;
+    if (image) {
+      const result = await cloudinary.uploader.upload(image, {
+        folder: 'blog_images',
+      });
+      imageUrl = result.secure_url;
+    }
+
     const newPost = new BlogPost({
       uuid: uuidv4(),
       slug,
@@ -123,6 +144,7 @@ export async function POST(req: Request) {
       is_featured: is_featured || false,
       read_time,
       published_at,
+      image: imageUrl,
     });
 
     await newPost.save();

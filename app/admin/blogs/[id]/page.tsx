@@ -22,7 +22,7 @@ import { blogdata } from "@/data/blogData";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import AdminLayout from "@/components/admin/AdminLayout";
-
+ 
 interface BlogFormData {
   id: string;
   title: string;
@@ -33,6 +33,12 @@ interface BlogFormData {
   image: string;
   category: string;
   content: string;
+}
+
+interface ApiResponse {
+  success: boolean;
+  message?: string;
+  post?: BlogFormData;
 }
 
 const AdminBlogEditor = () => {
@@ -96,8 +102,34 @@ const AdminBlogEditor = () => {
     }
   }, [id, navigate, toast]);
 
+  const handleImageUpload = async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+
+      const data = await response.json();
+      setFormData((prev) => ({ ...prev, image: data.url }));
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      toast({
+        variant: "destructive",
+        title: "Upload failed",
+        description: "Failed to upload image. Please try again.",
+      });
+    }
+  };
+
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate form data
@@ -115,31 +147,47 @@ const AdminBlogEditor = () => {
       });
       return;
     }
-    console.log(formData);
 
-    // if (isEdit) {
-    //   updatePost(formData);
-    // } else {
-    //   addPost(formData);
-    // }
-    addPost(formData);
-    // In a real app, this would save to a database
-    // For now, just show success message
-
-    if (id) {
+    try {
+      if (isEdit) {
+        const response = await updatePost(formData) ;
+        if (response?.id) {
+          toast({
+            title: "Blog updated",
+            description: "Your blog post has been successfully updated.",
+          });
+          navigate.push("/admin/blogs");
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Update failed",
+            description: response?.excerpt || "Failed to update blog post. Please try again.",
+          });
+        }
+      } else {
+        const response = await addPost(formData);
+        if (response?.id) {
+          toast({
+            title: "Blog created",
+            description: "Your new blog post has been successfully created.",
+          });
+          navigate.push("/admin/blogs");
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Creation failed",
+            description: response?.excerpt || "Failed to create blog post. Please try again.",
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error submitting blog:', error);
       toast({
-        title: "Blog updated",
-        description: "Your blog post has been successfully updated.",
-      });
-    } else {
-      toast({
-        title: "Blog created",
-        description: "Your new blog post has been successfully created.",
+        variant: "destructive",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
       });
     }
-
-    // Navigate back to blog list
-    // navigate.push("/admin/blogs");
   };
 
   // Handle input change
@@ -262,7 +310,7 @@ const AdminBlogEditor = () => {
               </div>
             </div>
           ) : (
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid gap-4">
                 <div className="grid grid-cols-1 gap-4">
                   <div className="space-y-2">
@@ -359,28 +407,21 @@ const AdminBlogEditor = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="image">Featured Image URL</Label>
+                  <Label htmlFor="image">Featured Image</Label>
                   <div className="flex gap-2">
                     <Input
                       id="image"
                       name="image"
-                      placeholder="/images/your-image.jpg"
-                      value={formData.image}
-                      onChange={handleChange}
-                      className="flex-1"
+                      type="file"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) handleImageUpload(file);
+                      }}
+                      className="flex-1 cursor-pointer"
                     />
-                    <Button
-                      variant="outline"
-                      type="button"
-                      className="flex-shrink-0"
-                    >
-                      <Image className="h-4 w-4 mr-2" />
-                      Browse
-                    </Button>
                   </div>
                   <p className="text-xs text-gray-500">
-                    Enter the path to the image file. Image must be already
-                    uploaded to the server.
+                    Upload an image to be used as the featured image for the blog post.
                   </p>
                 </div>
               </div>

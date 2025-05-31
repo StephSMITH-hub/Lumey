@@ -13,7 +13,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const { login, isLoading, error } = useAuth();
-  const navigate = useRouter();
+  const { push } = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ const AdminLogin = () => {
     const success = await login(email, password);
 
     if (success) {
-      navigate.push("/admin");
+      push("/admin");
     }
   };
 
@@ -103,12 +103,12 @@ const AdminLogin = () => {
             </Button>
           </form>
 
-          <div className="px-6 py-4 bg-gray-50 border-t text-center text-sm text-gray-600">
+          {/* <div className="px-6 py-4 bg-gray-50 border-t text-center text-sm text-gray-600">
             <p>
               Use <b>admin@lumey.com</b> and password <b>admin123</b> to log in
             </p>
             <p className="mt-2">For demonstration purposes only</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

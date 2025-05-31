@@ -32,7 +32,7 @@ import { useAuth } from "@/context/AuthContext";
 
 const AdminLayout = ({ children }: any) => {
   const pathname = usePathname();
-  const navigate = useRouter();
+  const { push } = useRouter();
   const { logout } = useAuth();
 
   const handleLogout = async () => {
@@ -124,7 +124,7 @@ const AdminLayout = ({ children }: any) => {
                           variant="ghost"
                           size="icon"
                           className="h-8 w-8 group-hover:opacity-100 group-focus:opacity-100 md:opacity-0"
-                          onClick={() => navigate.push("/admin/blogs/new")}
+                          onClick={() => push("/admin/blogs/new")}
                           title="New Blog Post"
                         >
                           <Plus size={16} />
@@ -146,7 +146,7 @@ const AdminLayout = ({ children }: any) => {
                           variant="ghost"
                           size="icon"
                           className="h-8 w-8 group-hover:opacity-100 group-focus:opacity-100 md:opacity-0"
-                          onClick={() => navigate.push("/admin/products/new")}
+                          onClick={() => push("/admin/products/new")}
                           title="New Product"
                         >
                           <Plus size={16} />
