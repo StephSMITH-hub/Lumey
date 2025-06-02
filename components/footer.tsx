@@ -46,7 +46,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white pt-6 pb-6">
+    <footer className="bg-gray-900 text-white pt-6 pb-6 text-md">
       <div className="flex flex-col justify-center items-center w-screen ">
         <h4 className="font-semibold text-xl mb-3">
           Subscribe to our newsletter
@@ -76,9 +76,9 @@ export const Footer = () => {
             </div>
 
             <p className="text-gray-400 mb-6">
-              Nigeria's No.1 Producer & Partner in Solar Energy Innovation.
-              Providing clean, reliable power solutions for homes and
-              businesses.
+              Nigeria's No. 1 most affordable and reliable solar energy
+              solutions provider. We provide clean and reliable power solutions
+              for homes and businesses.
             </p>
             <div className="flex gap-4">
               <a
@@ -103,7 +103,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-6">Quick Links</h3>
+            <h3 className="font-bold mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
                 <a
@@ -148,8 +148,8 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-lg font-bold mb-6">Support</h3>
+          {/* <div>
+            <h3 className="font-bold mb-6">Support</h3>
             <ul className="space-y-3">
               <li>
                 <a
@@ -161,7 +161,7 @@ export const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  // href="#"
                   className="text-gray-400 hover:text-lumey-yellow transition-colors"
                 >
                   Privacy Policy
@@ -186,10 +186,10 @@ export const Footer = () => {
                 </button>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           <div>
-            <h3 className="text-lg font-bold mb-6">Contact Us</h3>
+            <h3 className="font-bold mb-6">Contact Us</h3>
 
             <div className="space-y-4">
               {contactInfo.map((item, index) => (

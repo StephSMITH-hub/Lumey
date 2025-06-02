@@ -30,7 +30,7 @@ const projects = [
   {
     id: 4,
     name: "Parks and Garden Solar Setup",
-    location: "Akure, Akure",
+    location: "Asaba, Asaba",
     date: new Date("2023-12-05"),
     image: "/images/pastprojects/past 4.png",
   },

@@ -14,6 +14,7 @@ import {
   Testimonials,
   WhoWeServe,
 } from "@/components";
+import HomeCarousel from "@/components/home-carousel";
 import { useRef } from "react";
 
 export default function Home() {
@@ -28,6 +29,7 @@ export default function Home() {
       <div ref={aboutRef} id="about">
         <About />
       </div>
+      <HomeCarousel />
       <TabProducts />
       {/* <CustomSolutions /> */}
       <HowItWorks />

@@ -77,14 +77,14 @@ export const Products = () => {
                       ...itemMotionProps,
                       transition: { delay: index * 0.1, duration: 0.5 },
                     })}
-                className="product-card h-full hover:shadow-2xl border-2 hover:border-lumey-yellow"
+                className="product-card rounded-t-none h-full hover:shadow-2xl border-2 hover:border-lumey-yellow"
               >
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-full object-cover rounded-none group-hover:scale-105 transition-transform duration-500"
+                />
                 <div className="relative h-80 mb-4 rounded-lg overflow-hidden group">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                     <div className="p-4 text-white w-full">
                       <div className="flex justify-between items-center w-full">
@@ -239,6 +239,11 @@ export const Products = () => {
         </div> */}
 
         <div className="mt-12 text-center flex flex-col md:flex-row items-center justify-center gap-4">
+          <Link href="/products" className="button-primary">
+            View All Products
+            <ChevronRight size={18} />
+          </Link>
+
           <span className="text-lg text-gray-700">
             <p>
               Need assistance? Do you need to be guide through the best
@@ -252,10 +257,6 @@ export const Products = () => {
               </a>
             </p>
           </span>
-          <Link href="/products" className="button-primary">
-            View All Products
-            <ChevronRight size={18} />
-          </Link>
 
           {/* Commenting out load estimator as requested */}
           {/* <Link to="/load-estimator" className="button-secondary flex items-center">

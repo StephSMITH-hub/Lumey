@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -6,12 +6,17 @@ import { motion } from "framer-motion";
 export const About = () => {
   const features = [
     {
+      title: "Affordable & Reliable",
+      description:
+        "Most affordable solar solution brand, with a minimum of 1yr warranty on all products",
+    },
+    {
       title: "Innovation-Driven",
       description:
         "We continuously enhance our technology for superior efficiency.",
     },
     {
-      title: "Affordable & Cost-Saving",
+      title: "Cost-Saving",
       description: "Save up to 85% on energy costs with our solar generators.",
     },
     {
@@ -19,10 +24,7 @@ export const About = () => {
       description:
         "A variety of energy sources, including NEPA, generators, solar, wind, and more.",
     },
-    {
-      title: "1-Year Warranty",
-      description: "Guaranteed reliability with a full year of coverage.",
-    },
+
     {
       title: "Zero Noise, Zero Fuel",
       description:
@@ -114,4 +116,3 @@ export const About = () => {
     </section>
   );
 };
-

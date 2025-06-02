@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +14,10 @@ const AdminLogin = () => {
   const [showError, setShowError] = useState(false);
   const { login, isLoading, error } = useAuth();
   const { push } = useRouter();
+
+
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect") || "/admin";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +31,7 @@ const AdminLogin = () => {
     const success = await login(email, password);
 
     if (success) {
-      push("/admin");
+      push(redirect);
     }
   };
 
