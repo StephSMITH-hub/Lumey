@@ -12,22 +12,26 @@ import {
 const carouselImages = [
   {
     id: 1,
-    image: "/images/hero/hero1.jpg",
+    image:
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1748875399/LEH_2982_ckwrgk.jpg",
     alt: "Revolutionary Solar Technology",
   },
   {
     id: 2,
-    image: "/images/hero/hero2.jpg",
+    image:
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1748875393/LEH_2779_y0osbw.jpg",
     alt: "Zero Fuel, Zero Noise",
   },
   {
     id: 3,
-    image: "/images/hero/hero3.jpg",
+    image:
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1748875392/LEH_2783_ca6umc.jpg",
     alt: "Award-Winning Quality",
   },
   {
     id: 4,
-    image: "/images/hero/hero4.jpg",
+    image:
+      "https://res.cloudinary.com/dwruvre6o/image/upload/v1748875390/LEH_2769_ohmsvw.jpg",
     alt: "Trusted by Thousands",
   },
 ];
