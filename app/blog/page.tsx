@@ -36,9 +36,6 @@ const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const isMobile = useIsMobile();
 
-  const { posts, isLoading, error, searchPosts, filterByCategory } =
-    useBlogData();
-
   // Filter blog posts based on search and category
   const filteredPosts = blogdata.filter((post) => {
     const matchesSearch =
@@ -132,7 +129,7 @@ const Blog = () => {
                             <div className="absolute top-0 right-0 bg-lumey-yellow px-3 py-1 m-4 rounded-full text-xs font-medium">
                               {post.category}
                             </div>
-                            {!post.hasContent && (
+                            {!post.content && (
                               <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                                 <div className="bg-white/90 px-3 py-2 rounded-md flex items-center gap-2">
                                   <AlertCircle
@@ -149,7 +146,7 @@ const Blog = () => {
                           <div className="p-6">
                             <h3
                               className={`text-lg font-bold mb-2 line-clamp-2 ${
-                                post.hasContent
+                                post.content
                                   ? "group-hover:text-lumey-orange transition-colors"
                                   : ""
                               }`}
@@ -165,7 +162,7 @@ const Blog = () => {
                               <Clock size={16} className="mr-1" />
                               <span>{post.readTime}</span>
                             </div>
-                            {post.hasContent ? (
+                            {post.content ? (
                               <Link
                                 href={`/blog/${post.id}`}
                                 className="text-lumey-orange hover:text-lumey-yellow inline-flex items-center text-sm font-medium"
@@ -261,7 +258,7 @@ const Blog = () => {
                                 alt={post.title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
-                              {!post.hasContent && (
+                              {!post.content && (
                                 <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                                   <div className="bg-white/90 px-3 py-2 rounded-md flex items-center gap-2">
                                     <AlertCircle
@@ -285,7 +282,7 @@ const Blog = () => {
                               </div>
                               <h3
                                 className={`text-lg font-bold mb-2 line-clamp-2 ${
-                                  post.hasContent
+                                  post.content
                                     ? "group-hover:text-lumey-orange transition-colors"
                                     : ""
                                 }`}
@@ -300,7 +297,7 @@ const Blog = () => {
                                   <User size={14} className="mr-1" />
                                   <span>{post.author}</span>
                                 </div>
-                                {post.hasContent ? (
+                                {post.content ? (
                                   <Link
                                     href={`/blog/${post.id}`}
                                     className="text-lumey-orange hover:text-lumey-yellow inline-flex items-center text-sm font-medium"
