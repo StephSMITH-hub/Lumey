@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Phone,
@@ -11,8 +11,15 @@ import {
   Globe,
   Instagram,
   MapPin,
+  Twitter,
 } from "lucide-react";
-import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaSquareXTwitter,
+  FaTwitter,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 const contactInfo = [
   {
@@ -44,19 +51,19 @@ const contactInfo = [
 
 const socialMedia = [
   {
-    icon: <FaInstagram className="h-5 w-5" />,
+    icon: <Instagram className="h-5 w-5" />,
     platform: "Instagram",
     handle: "@Lumeyenergy",
     link: " https://www.instagram.com/lumeyenergy/",
   },
   {
-    icon: <FaFacebook className="h-5 w-5" />,
+    icon: <Facebook className="h-5 w-5" />,
     platform: "Facebook",
     handle: "@Lumeyenergy",
     link: "https://www.facebook.com/profile.php?id=61575857666532",
   },
   {
-    icon: <FaXTwitter className="h-5 w-5" />,
+    icon: <Twitter className="h-5 w-5" />,
     platform: "X (Twitter)",
     handle: "@Lumeyenergy",
     link: "https://x.com/LumeyEnergy",
@@ -322,7 +329,7 @@ export const Contact = () => {
                       className="flex underline items-center gap-2 text-gray-700 hover:text-lumey-orange transition-colors"
                     >
                       <div className="w-10 h-10 rounded-full bg-lumey-yellow/10 flex items-center justify-center text-lumey-orange">
-                        {platform.icon}
+                        {platform.icon as ReactNode}
                       </div>
                       <span>{platform.handle}</span>
                     </a>

@@ -9,6 +9,7 @@ import {
   MapPin,
   Instagram,
   Facebook,
+  Twitter,
 } from "lucide-react";
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa6";
@@ -85,19 +86,19 @@ export const Footer = () => {
                 href="https://www.facebook.com/profile.php?id=61575857666532"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-lumey-yellow hover:text-black transition-colors"
               >
-                <FaFacebook />
+                <Facebook />
               </a>
               <a
                 href="https://www.instagram.com/lumeyenergy/"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-lumey-yellow hover:text-black transition-colors"
               >
-                <FaInstagram />
+                <Instagram />
               </a>
               <a
                 href="https://x.com/LumeyEnergy"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-lumey-yellow hover:text-black transition-colors"
               >
-                <FaXTwitter />
+                <Twitter />
               </a>
             </div>
           </div>
@@ -212,19 +213,19 @@ export const Footer = () => {
                 href="https://www.facebook.com/profile.php?id=61575857666532"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-lumey-yellow hover:text-black transition-colors"
               >
-                <FaFacebook />
+                <Facebook />
               </a>
               <a
                 href="https://www.instagram.com/lumeyenergy/"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-lumey-yellow hover:text-black transition-colors"
               >
-                <FaInstagram />
+                <Instagram />
               </a>
               <a
                 href="https://x.com/LumeyEnergy"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-lumey-yellow hover:text-black transition-colors"
               >
-                <FaXTwitter />
+                <Twitter />
               </a>
             </div>
           </div>
