@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AuthProvider } from "@/context/AuthContext";
 import App from "@/components/app";
-import { DefaultSeo } from 'next-seo';
-
- 
 
 export const metadata: Metadata = {
   title: "Lumey Energy",
@@ -16,9 +12,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    
-          <App>{children}</App>
-        
-  );
+  return <App>{children}</App>;
 }
