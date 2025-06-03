@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface IBlogPost extends Document {
   title: string;
@@ -7,12 +7,11 @@ export interface IBlogPost extends Document {
   content: string;
   author_id: mongoose.Types.ObjectId;
   category_id: mongoose.Types.ObjectId;
-  status: 'draft' | 'published' | 'archived';
+  status: "draft" | "published" | "archived";
   is_featured: boolean;
   read_time: number;
   published_at: Date;
   image: string;
-  tags?: mongoose.Types.ObjectId[];
   author?: {
     _id: mongoose.Types.ObjectId;
     name: string;
@@ -57,18 +56,18 @@ const BlogPostSchema = new Schema<IBlogPost>(
     },
     author_id: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
     },
     category_id: {
       type: Schema.Types.ObjectId,
-      ref: 'BlogCategory',
+      ref: "BlogCategory",
       required: true,
     },
     status: {
       type: String,
-      enum: ['draft', 'published', 'archived'],
-      default: 'draft',
+      enum: ["draft", "published", "archived"],
+      default: "draft",
     },
     is_featured: {
       type: Boolean,
@@ -87,14 +86,18 @@ const BlogPostSchema = new Schema<IBlogPost>(
       type: String,
       required: true,
     },
-    tags: [{
-      type: Schema.Types.ObjectId,
-      ref: 'BlogTag',
-    }],
-    related_posts: [{
-      type: Schema.Types.ObjectId,
-      ref: 'BlogPost',
-    }],
+    tags: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "BlogTag",
+      },
+    ],
+    related_posts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "BlogPost",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -108,6 +111,8 @@ BlogPostSchema.index({ published_at: -1 });
 BlogPostSchema.index({ is_featured: 1 });
 
 // Create the model if it doesn't exist
-const BlogPost = mongoose.models.BlogPost || mongoose.model<IBlogPost>('BlogPost', BlogPostSchema);
+const BlogPost =
+  mongoose.models.BlogPost ||
+  mongoose.model<IBlogPost>("BlogPost", BlogPostSchema);
 
 export default BlogPost;
