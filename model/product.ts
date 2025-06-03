@@ -13,6 +13,8 @@ export interface IProduct extends Document {
     capacity: string
     power: string
     image_url?: string
+    category: string
+    status: 'In Stock' | 'Low Stock' | 'Out of Stock'
     created_at: Date
     updated_at: Date
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Lock, Mail, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,13 +8,12 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useRouter, useSearchParams } from "next/navigation";
 
-const AdminLogin = () => {
+const AdminLoginInner = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const { login, isLoading, error } = useAuth();
   const { push } = useRouter();
-
 
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/admin";
@@ -119,4 +118,10 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default function AdminLoginPage() {
+  return (
+    <Suspense>
+      <AdminLoginInner />
+    </Suspense>
+  );
+}

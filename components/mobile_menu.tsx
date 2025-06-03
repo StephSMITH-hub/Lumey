@@ -57,7 +57,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
                   href={link.href}
                   className={cn(
                     "text-gray-700 hover:text-lumey-yellow py-2 border-b border-gray-100 last:border-0",
-                    location.pathname === link.href
+                    pathname === link.href
                       ? "text-lumey-orange font-semibold"
                       : ""
                   )}
