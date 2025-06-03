@@ -53,7 +53,11 @@ const AdminLoginInner = () => {
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  {showError ? "Please enter both email and password." : error}
+                  {showError
+                    ? "Please enter both email and password."
+                    : typeof error === "string"
+                    ? error
+                    : "An unexpected error occurred."}
                 </AlertDescription>
               </Alert>
             )}
@@ -120,7 +124,14 @@ const AdminLoginInner = () => {
 
 export default function AdminLoginPage() {
   return (
-    <Suspense>
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="w-full max-w-md text-center">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto text-lumey-orange" />
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    }>
       <AdminLoginInner />
     </Suspense>
   );
