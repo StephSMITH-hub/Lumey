@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
+import { connectToDatabase } from "@/lib/mongodb";
+import BlogPost from "@/model/blog_post";
 
 /**
  * @swagger
@@ -52,12 +53,10 @@ import { auth } from "@/lib/auth";
 
 export async function POST(req: Request) {
   try {
+    await connectToDatabase();
     const session = await auth();
     if (!session?.user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const body = await req.json();
@@ -85,7 +84,7 @@ export async function POST(req: Request) {
     }
 
     // Create the blog post
-    const post = await db.blogPost.create({
+    const post = await BlogPost.create({
       data: {
         title,
         slug,
@@ -98,9 +97,11 @@ export async function POST(req: Request) {
         read_time: read_time || 5,
         published_at: published_at || new Date(),
         image,
-        tags: tags ? {
-          connect: tags.map((tagId: string) => ({ uuid: tagId })),
-        } : undefined,
+        tags: tags
+          ? {
+              connect: tags.map((tagId: string) => ({ uuid: tagId })),
+            }
+          : undefined,
       },
       include: {
         author: true,
@@ -134,7 +135,7 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
-    const posts = await db.blogPost.findMany({
+    const posts = await BlogPost.find({
       include: {
         author: true,
         category: true,

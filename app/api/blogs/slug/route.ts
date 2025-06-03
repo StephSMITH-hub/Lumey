@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
-import connectDB from "@/lib/dbConnect";
 import BlogPost from "@/model/blog_post";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { connectToDatabase } from "@/lib/mongodb";
+import mongoose from "mongoose";
+
+async function connectDB() {
+  if (mongoose.connection.readyState === 1) return;
+  await connectToDatabase();
+}
 
 interface BlogPostParams {
   params: {
@@ -15,9 +21,9 @@ export async function GET(req: Request, { params }: BlogPostParams) {
   try {
     await connectDB();
     const post = await BlogPost.findOne({ slug: params.slug })
-      .populate('author')
-      .populate('category')
-      .populate('tags');
+      .populate("author")
+      .populate("category")
+      .populate("tags");
 
     if (!post) {
       return NextResponse.json(
@@ -41,10 +47,7 @@ export async function PUT(req: Request, { params }: BlogPostParams) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     await connectDB();
@@ -91,9 +94,9 @@ export async function PUT(req: Request, { params }: BlogPostParams) {
       },
       { new: true }
     )
-      .populate('author')
-      .populate('category')
-      .populate('tags');
+      .populate("author")
+      .populate("category")
+      .populate("tags");
 
     if (!post) {
       return NextResponse.json(
@@ -117,10 +120,7 @@ export async function DELETE(req: Request, { params }: BlogPostParams) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     await connectDB();
@@ -141,4 +141,4 @@ export async function DELETE(req: Request, { params }: BlogPostParams) {
       { status: 500 }
     );
   }
-} 
+}

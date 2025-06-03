@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/dbConnect";
 import BlogPostTag from "@/model/blog_post_tags";
 import BlogPost from "@/model/blog_post";
 import BlogTags from "@/model/blog_tags";
+import { connectToDatabase } from "@/lib/mongodb";
 
 // Swagger decorators
 /**
@@ -70,7 +70,7 @@ interface Params {
 }
 
 export async function GET(req: Request) {
-  await dbConnect();
+  await connectToDatabase();
 
   try {
     const tagLink = await BlogPostTag.findOne({
@@ -97,7 +97,7 @@ export async function GET(req: Request) {
 }
 
 export async function PATCH(req: Request) {
-  await dbConnect();
+  await connectToDatabase();
 
   try {
     const body = await req.json();
@@ -151,7 +151,7 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-  await dbConnect();
+  await connectToDatabase();
 
   try {
     const deleted = await BlogPostTag.findOneAndDelete({

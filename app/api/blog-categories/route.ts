@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 import BlogCategory from "@/model/blog_category";
-import dbConnect from "@/lib/dbConnect";
+import { connectToDatabase } from "@/lib/mongodb";
 
 async function connectDB() {
-    if (mongoose.connection.readyState === 1) return;
-    await dbConnect();
+  if (mongoose.connection.readyState === 1) return;
+  await connectToDatabase();
 }
 
 /**
@@ -35,23 +35,29 @@ async function connectDB() {
  */
 
 export async function POST(req: Request) {
-    await connectDB();
+  await connectDB();
 
-    const { name, slug } = await req.json();
+  const { name, slug } = await req.json();
 
-    if (!name || !slug) {
-        return NextResponse.json({ message: "Name and slug are required" }, { status: 400 });
-    }
+  if (!name || !slug) {
+    return NextResponse.json(
+      { message: "Name and slug are required" },
+      { status: 400 }
+    );
+  }
 
-    try {
-        const newCategory = new BlogCategory({ name, slug });
-        await newCategory.save();
+  try {
+    const newCategory = new BlogCategory({ name, slug });
+    await newCategory.save();
 
-        return NextResponse.json(newCategory, { status: 201 });
-    } catch (err) {
-        console.error("Error creating category:", err);
-        return NextResponse.json({ message: "Failed to create category" }, { status: 500 });
-    }
+    return NextResponse.json(newCategory, { status: 201 });
+  } catch (err) {
+    console.error("Error creating category:", err);
+    return NextResponse.json(
+      { message: "Failed to create category" },
+      { status: 500 }
+    );
+  }
 }
 
 /**
@@ -68,14 +74,16 @@ export async function POST(req: Request) {
  */
 
 export async function GET() {
-    await connectDB();
+  await connectDB();
 
-    try {
-        const categories = await BlogCategory.find();
-        return NextResponse.json(categories);
-    } catch (err) {
-        console.error("Error fetching categories:", err);
-        return NextResponse.json({ message: "Failed to fetch categories" }, { status: 500 });
-    }
+  try {
+    const categories = await BlogCategory.find();
+    return NextResponse.json(categories);
+  } catch (err) {
+    console.error("Error fetching categories:", err);
+    return NextResponse.json(
+      { message: "Failed to fetch categories" },
+      { status: 500 }
+    );
+  }
 }
-

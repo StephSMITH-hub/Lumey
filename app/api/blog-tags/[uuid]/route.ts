@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import BlogTag from "@/model/blog_tags";
-import dbConnect from "@/lib/dbConnect";
+import { connectToDatabase } from "@/lib/mongodb";
 
 async function connectDB() {
   if (mongoose.connection.readyState === 1) return;
-  await dbConnect();
+  await connectToDatabase();
 }
 
 /**

@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/dbConnect";
 import customer from "@/model/customer";
+import { connectToDatabase } from "@/lib/mongodb";
+import mongoose from "mongoose";
 
+async function connectDB() {
+  if (mongoose.connection.readyState === 1) return;
+  await connectToDatabase();
+}
 /**
  * @swagger
  * tags:
@@ -49,7 +54,7 @@ import customer from "@/model/customer";
  *         description: Internal server error
  */
 export async function GET(req: Request) {
-  await dbConnect();
+  await connectDB();
 
   try {
     const customerData = await customer.findOne({
@@ -142,7 +147,7 @@ export async function GET(req: Request) {
  *         description: Internal server error
  */
 export async function PUT(req: Request) {
-  await dbConnect();
+  await connectDB();
   const body = await req.json();
 
   try {
@@ -193,7 +198,7 @@ export async function PUT(req: Request) {
  *         description: Internal server error
  */
 export async function DELETE(req: Request) {
-  await dbConnect();
+  await connectDB();
 
   try {
     const deletedCustomer = await customer.findOneAndDelete({

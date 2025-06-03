@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/dbConnect';
-import BlogPostTag from '@/model/blog_post_tags';
-import BlogPost from '@/model/blog_post';
-import BlogTags from '@/model/blog_tags';
+import { NextResponse } from "next/server";
+import BlogPostTag from "@/model/blog_post_tags";
+import BlogPost from "@/model/blog_post";
+import BlogTags from "@/model/blog_tags";
+import { connectToDatabase } from "@/lib/mongodb";
 
 /**
  * @swagger
@@ -45,53 +45,53 @@ import BlogTags from '@/model/blog_tags';
  */
 
 export async function POST(req: Request) {
-    await dbConnect();
+  await connectToDatabase();
 
-    try {
-        const body = await req.json();
-        const { blog_post_id, blog_tag_id } = body;
+  try {
+    const body = await req.json();
+    const { blog_post_id, blog_tag_id } = body;
 
-        if (!blog_post_id || !blog_tag_id) {
-            return NextResponse.json(
-                { message: 'blog_post_id and blog_tag_id are required' },
-                { status: 400 }
-            );
-        }
-
-        const postExists = await BlogPost.findOne({ uuid: blog_post_id });
-        if (!postExists) {
-            return NextResponse.json(
-                { message: 'Invalid blog_post_id: blog post not found' },
-                { status: 404 }
-            );
-        }
-
-        const tagExists = await BlogTags.findOne({ uuid: blog_tag_id });
-        if (!tagExists) {
-            return NextResponse.json(
-                { message: 'Invalid blog_tag_id: tag not found' },
-                { status: 404 }
-            );
-        }
-
-        const existing = await BlogPostTag.findOne({ blog_post_id, blog_tag_id });
-        if (existing) {
-            return NextResponse.json(
-                { message: 'This tag is already assigned to the post' },
-                { status: 409 }
-            );
-        }
-
-        const newTagLink = await BlogPostTag.create({ blog_post_id, blog_tag_id });
-
-        return NextResponse.json(newTagLink, { status: 201 });
-    } catch (error) {
-        console.error('POST /blog-post-tags error:', error);
-        return NextResponse.json(
-            { message: 'Failed to create blog post tag link' },
-            { status: 500 }
-        );
+    if (!blog_post_id || !blog_tag_id) {
+      return NextResponse.json(
+        { message: "blog_post_id and blog_tag_id are required" },
+        { status: 400 }
+      );
     }
+
+    const postExists = await BlogPost.findOne({ uuid: blog_post_id });
+    if (!postExists) {
+      return NextResponse.json(
+        { message: "Invalid blog_post_id: blog post not found" },
+        { status: 404 }
+      );
+    }
+
+    const tagExists = await BlogTags.findOne({ uuid: blog_tag_id });
+    if (!tagExists) {
+      return NextResponse.json(
+        { message: "Invalid blog_tag_id: tag not found" },
+        { status: 404 }
+      );
+    }
+
+    const existing = await BlogPostTag.findOne({ blog_post_id, blog_tag_id });
+    if (existing) {
+      return NextResponse.json(
+        { message: "This tag is already assigned to the post" },
+        { status: 409 }
+      );
+    }
+
+    const newTagLink = await BlogPostTag.create({ blog_post_id, blog_tag_id });
+
+    return NextResponse.json(newTagLink, { status: 201 });
+  } catch (error) {
+    console.error("POST /blog-post-tags error:", error);
+    return NextResponse.json(
+      { message: "Failed to create blog post tag link" },
+      { status: 500 }
+    );
+  }
 }
 
 /**
@@ -114,13 +114,16 @@ export async function POST(req: Request) {
  *         description: Failed to fetch tags
  */
 export async function GET() {
-    await dbConnect();
+  await connectToDatabase();
 
-    try {
-        const tags = await BlogPostTag.find().sort({ created_at: -1 });
-        return NextResponse.json(tags, { status: 200 });
-    } catch (error) {
-        console.error('GET /blog-post-tags error:', error);
-        return NextResponse.json({ message: 'Failed to fetch blog post tags' }, { status: 500 });
-    }
+  try {
+    const tags = await BlogPostTag.find().sort({ created_at: -1 });
+    return NextResponse.json(tags, { status: 200 });
+  } catch (error) {
+    console.error("GET /blog-post-tags error:", error);
+    return NextResponse.json(
+      { message: "Failed to fetch blog post tags" },
+      { status: 500 }
+    );
+  }
 }

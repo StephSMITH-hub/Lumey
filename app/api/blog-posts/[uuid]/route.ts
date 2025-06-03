@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+// import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
+import BlogPost from "@/model/blog_post";
+import { connectToDatabase } from "@/lib/mongodb";
 
 /**
  * @swagger
@@ -56,7 +58,8 @@ interface BlogPostParams {
 // GET /api/blog-posts/[uuid]
 export async function GET(req: Request, { params }: BlogPostParams) {
   try {
-    const post = await db.blogPost.findUnique({
+    await connectToDatabase();
+    const post = await BlogPost.findOne({
       where: {
         uuid: params.uuid,
       },
@@ -145,12 +148,10 @@ export async function GET(req: Request, { params }: BlogPostParams) {
 // PUT /api/blog-posts/[uuid]
 export async function PUT(req: Request, { params }: BlogPostParams) {
   try {
+    await connectToDatabase();
     const session = await auth();
     if (!session?.user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const body = await req.json();
@@ -178,7 +179,7 @@ export async function PUT(req: Request, { params }: BlogPostParams) {
     }
 
     // Update the blog post
-    const post = await db.blogPost.update({
+    const post = await BlogPost.updateOne({
       where: {
         uuid: params.uuid,
       },
@@ -194,10 +195,12 @@ export async function PUT(req: Request, { params }: BlogPostParams) {
         read_time,
         published_at,
         image,
-        tags: tags ? {
-          set: [], // Clear existing tags
-          connect: tags.map((tagId: string) => ({ uuid: tagId })),
-        } : undefined,
+        tags: tags
+          ? {
+              set: [], // Clear existing tags
+              connect: tags.map((tagId: string) => ({ uuid: tagId })),
+            }
+          : undefined,
       },
       include: {
         author: true,
@@ -241,15 +244,13 @@ export async function PUT(req: Request, { params }: BlogPostParams) {
 // DELETE /api/blog-posts/[uuid]
 export async function DELETE(req: Request, { params }: BlogPostParams) {
   try {
+    await connectToDatabase();
     const session = await auth();
     if (!session?.user) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    await db.blogPost.delete({
+    await BlogPost.deleteOne({
       where: {
         uuid: params.uuid,
       },

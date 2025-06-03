@@ -2,8 +2,8 @@ import NextAuth from "next-auth";
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import connectDB from "@/lib/dbConnect";
 import User, { IUser } from "@/model/user";
+import { connectToDatabase } from "@/lib/mongodb";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -18,7 +18,7 @@ export const authOptions: AuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        await connectDB();
+        await connectToDatabase();
 
         const user = await User.findOne({ email: credentials.email });
 
