@@ -1,68 +1,85 @@
 import NextAuth from "next-auth";
-import { AuthOptions } from "next-auth";
+import { AuthOptions, Session, SessionStrategy } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
-import User, { IUser } from "@/model/user";
+import GoogleProvider from "next-auth/providers/google";
 import { connectToDatabase } from "@/lib/mongodb";
+import User from "@/model/user";
+import bcrypt from "bcryptjs";
 
-export const authOptions: AuthOptions = {
+interface Token {
+  id: string;
+  role: string;
+  [key: string]: any;
+}
+
+interface User {
+  id: string;
+  role: string;
+  [key: string]: any;
+}
+
+const authOptions: AuthOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
     CredentialsProvider({
-      name: "credentials",
+      name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Invalid credentials");
+          throw new Error("Please enter an email and password");
         }
 
         await connectToDatabase();
-
         const user = await User.findOne({ email: credentials.email });
 
-        if (!user || !user?.password) {
-          throw new Error("Invalid credentials");
+        if (!user) {
+          throw new Error("No user found with this email");
         }
 
-        const isCorrectPassword = await bcrypt.compare(
+        const isPasswordValid = await bcrypt.compare(
           credentials.password,
           user.password
         );
 
-        if (!isCorrectPassword) {
-          throw new Error("Invalid credentials");
+        if (!isPasswordValid) {
+          throw new Error("Invalid password");
         }
 
-        return user;
+        return {
+          id: user._id.toString(),
+          email: user.email,
+          role: user.role
+        };
       },
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        ///@ts-expect-error unknown
-        token.role = user.role;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (token) {
-        ///@ts-expect-error unknown
-        session.user.id = token.id;
-        ///@ts-expect-error unknown
-        session.user.role = token.role;
-      }
-      return session;
-    },
+  session: {
+    strategy: "jwt" as SessionStrategy,
   },
   pages: {
     signIn: "/login",
   },
-  session: {
-    strategy: "jwt",
+  callbacks: {
+    async jwt({ token, user }: { token: Token; user: User | null }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }: { session: Session; token: Token }) {
+      if (session.user && token) {
+        (session.user as any).id = token.id;
+        (session.user as any).role = token.role;
+      }
+      return session;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

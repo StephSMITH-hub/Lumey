@@ -1,120 +1,95 @@
-import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import Blog from '@/model/blog';
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+function getIdFromUrl(url: string) {
+  const segments = url.split('/');
+  return segments[segments.length - 1];
+}
+
+export async function GET(request: NextRequest) {
   try {
+    const id = getIdFromUrl(request.url);
     await connectToDatabase();
-    const blog = await Blog.findById(params.id);
+    const blog = await Blog.findById(id);
 
     if (!blog) {
-      return NextResponse.json(
-        { success: false, message: 'Blog not found' },
+      return Response.json(
+        { error: 'Blog not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      blog: {
-        _id: blog._id,
-        title: blog.title,
-        excerpt: blog.excerpt,
-        author: blog.author,
-        createdAt: blog.createdAt,
-        readTime: blog.readTime,
-        image: blog.image,
-        category: blog.category,
-        content: blog.content
-      }
-    });
+    return Response.json(blog);
   } catch (error) {
-    console.error('Error fetching blog:', error);
-    return NextResponse.json(
-      { success: false, message: 'Failed to fetch blog' },
+    console.error('Error:', error);
+    return Response.json(
+      { error: 'Internal Server Error' },
       { status: 500 }
     );
   }
 }
 
-export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(request: NextRequest) {
   try {
+    const id = getIdFromUrl(request.url);
     const body = await request.json();
     await connectToDatabase();
 
     const blog = await Blog.findByIdAndUpdate(
-      params.id,
+      id,
       {
-        title: body.title,
-        excerpt: body.excerpt,
-        author: body.author,
-        readTime: body.readTime,
-        image: body.image,
-        category: body.category,
-        content: body.content
+        $set: {
+          title: body.title,
+          excerpt: body.excerpt,
+          author: body.author,
+          readTime: body.readTime || 5,
+          image: body.image,
+          category: body.category,
+          content: body.content
+        }
       },
       { new: true }
     );
 
     if (!blog) {
-      return NextResponse.json(
-        { success: false, message: 'Blog not found' },
+      return Response.json(
+        { error: 'Blog not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      blog: {
-        _id: blog._id,
-        title: blog.title,
-        excerpt: blog.excerpt,
-        author: blog.author,
-        createdAt: blog.createdAt,
-        readTime: blog.readTime,
-        image: blog.image,
-        category: blog.category,
-        content: blog.content
-      }
-    });
+    return Response.json(blog);
   } catch (error) {
-    console.error('Error updating blog:', error);
-    return NextResponse.json(
-      { success: false, message: 'Failed to update blog' },
+    console.error('Error:', error);
+    return Response.json(
+      { error: 'Internal Server Error' },
       { status: 500 }
     );
   }
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest) {
   try {
+    const id = getIdFromUrl(request.url);
     await connectToDatabase();
-    const blog = await Blog.findByIdAndDelete(params.id);
+    const blog = await Blog.findByIdAndDelete(id);
 
     if (!blog) {
-      return NextResponse.json(
-        { success: false, message: 'Blog not found' },
+      return Response.json(
+        { error: 'Blog not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      message: 'Blog deleted successfully'
-    });
+    return Response.json(
+      { message: 'Blog deleted successfully' },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error('Error deleting blog:', error);
-    return NextResponse.json(
-      { success: false, message: 'Failed to delete blog' },
+    console.error('Error:', error);
+    return Response.json(
+      { error: 'Internal Server Error' },
       { status: 500 }
     );
   }

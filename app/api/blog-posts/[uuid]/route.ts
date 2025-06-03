@@ -49,26 +49,20 @@ import { connectToDatabase } from "@/lib/mongodb";
  *         description: Internal server error
  */
 
-interface BlogPostParams {
-  params: {
-    uuid: string;
-  };
+function getUuidFromUrl(url: string) {
+  const segments = url.split('/');
+  return segments[segments.length - 1];
 }
 
 // GET /api/blog-posts/[uuid]
-export async function GET(req: Request, { params }: BlogPostParams) {
+export async function GET(request: Request) {
   try {
+    const uuid = getUuidFromUrl(request.url);
     await connectToDatabase();
-    const post = await BlogPost.findOne({
-      where: {
-        uuid: params.uuid,
-      },
-      include: {
-        author: true,
-        category: true,
-        tags: true,
-      },
-    });
+    const post = await BlogPost.findOne({ uuid })
+      .populate("author_id")
+      .populate("category_id")
+      .populate("tags");
 
     if (!post) {
       return NextResponse.json(
@@ -146,15 +140,16 @@ export async function GET(req: Request, { params }: BlogPostParams) {
  */
 
 // PUT /api/blog-posts/[uuid]
-export async function PUT(req: Request, { params }: BlogPostParams) {
+export async function PUT(request: Request) {
   try {
+    const uuid = getUuidFromUrl(request.url);
     await connectToDatabase();
     const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const body = await req.json();
+    const body = await request.json();
     const {
       title,
       slug,
@@ -179,11 +174,9 @@ export async function PUT(req: Request, { params }: BlogPostParams) {
     }
 
     // Update the blog post
-    const post = await BlogPost.updateOne({
-      where: {
-        uuid: params.uuid,
-      },
-      data: {
+    const post = await BlogPost.updateOne(
+      { uuid },
+      {
         title,
         slug,
         excerpt,
@@ -195,19 +188,9 @@ export async function PUT(req: Request, { params }: BlogPostParams) {
         read_time,
         published_at,
         image,
-        tags: tags
-          ? {
-              set: [], // Clear existing tags
-              connect: tags.map((tagId: string) => ({ uuid: tagId })),
-            }
-          : undefined,
-      },
-      include: {
-        author: true,
-        category: true,
-        tags: true,
-      },
-    });
+        tags,
+      }
+    );
 
     return NextResponse.json(post);
   } catch (error) {
@@ -242,19 +225,16 @@ export async function PUT(req: Request, { params }: BlogPostParams) {
  */
 
 // DELETE /api/blog-posts/[uuid]
-export async function DELETE(req: Request, { params }: BlogPostParams) {
+export async function DELETE(request: Request) {
   try {
+    const uuid = getUuidFromUrl(request.url);
     await connectToDatabase();
     const session = await auth();
     if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    await BlogPost.deleteOne({
-      where: {
-        uuid: params.uuid,
-      },
-    });
+    await BlogPost.deleteOne({ uuid });
 
     return NextResponse.json({ success: true });
   } catch (error) {

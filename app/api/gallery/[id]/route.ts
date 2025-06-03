@@ -1,100 +1,92 @@
 import { NextResponse } from 'next/server';
 import { connectToDatabase } from '@/lib/mongodb';
 import Gallery from '@/model/gallery';
+import { auth } from '@/lib/auth';
 
-export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+function getIdFromUrl(url: string) {
+  const segments = url.split('/');
+  return segments[segments.length - 1];
+}
+
+export async function GET(request: Request) {
   try {
+    const id = getIdFromUrl(request.url);
     await connectToDatabase();
-    const galleryItem = await Gallery.findById(params.id);
+    const gallery = await Gallery.findById(id);
 
-    if (!galleryItem) {
+    if (!gallery) {
       return NextResponse.json(
-        { success: false, message: 'Gallery item not found' },
+        { error: "Gallery not found" },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      galleryItem
-    });
+    return NextResponse.json(gallery);
   } catch (error) {
-    console.error('Error fetching gallery item:', error);
+    console.error("Error fetching gallery:", error);
     return NextResponse.json(
-      { success: false, message: 'Failed to fetch gallery item' },
+      { error: "Failed to fetch gallery" },
       { status: 500 }
     );
   }
 }
 
-export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(request: Request) {
   try {
-    const body = await request.json();
+    const id = getIdFromUrl(request.url);
     await connectToDatabase();
+    const session = await auth();
+    if (!session?.user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-    const galleryItem = await Gallery.findByIdAndUpdate(
-      params.id,
-      {
-        title: body.title,
-        description: body.description,
-        image: body.image,
-        category: body.category,
-        tags: body.tags,
-        featured: body.featured,
-        order: body.order
-      },
+    const body = await request.json();
+    const gallery = await Gallery.findByIdAndUpdate(
+      id,
+      { $set: body },
       { new: true }
     );
 
-    if (!galleryItem) {
+    if (!gallery) {
       return NextResponse.json(
-        { success: false, message: 'Gallery item not found' },
+        { error: "Gallery not found" },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      galleryItem
-    });
+    return NextResponse.json(gallery);
   } catch (error) {
-    console.error('Error updating gallery item:', error);
+    console.error("Error updating gallery:", error);
     return NextResponse.json(
-      { success: false, message: 'Failed to update gallery item' },
+      { error: "Failed to update gallery" },
       { status: 500 }
     );
   }
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: Request) {
   try {
+    const id = getIdFromUrl(request.url);
     await connectToDatabase();
-    const galleryItem = await Gallery.findByIdAndDelete(params.id);
+    const session = await auth();
+    if (!session?.user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-    if (!galleryItem) {
+    const gallery = await Gallery.findByIdAndDelete(id);
+
+    if (!gallery) {
       return NextResponse.json(
-        { success: false, message: 'Gallery item not found' },
+        { error: "Gallery not found" },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      message: 'Gallery item deleted successfully'
-    });
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error deleting gallery item:', error);
+    console.error("Error deleting gallery:", error);
     return NextResponse.json(
-      { success: false, message: 'Failed to delete gallery item' },
+      { error: "Failed to delete gallery" },
       { status: 500 }
     );
   }
