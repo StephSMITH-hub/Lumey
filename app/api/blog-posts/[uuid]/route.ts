@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
-import mongoose from "mongoose";
-import BlogPost from "@/model/blog_post";
-import BlogAuthor from "@/model/blog_author";
-import BlogCategory from "@/model/blog_category";
-import dbConnect from "@/lib/dbConnect";
+import { db } from "@/lib/db";
+import { auth } from "@/lib/auth";
 
 /**
  * @swagger
@@ -50,48 +47,38 @@ import dbConnect from "@/lib/dbConnect";
  *         description: Internal server error
  */
 
-async function connectDB() {
-  if (mongoose.connection.readyState === 1) return;
-  await dbConnect();
+interface BlogPostParams {
+  params: {
+    uuid: string;
+  };
 }
 
-export async function GET(req: Request) {
-  await connectDB();
-
+// GET /api/blog-posts/[uuid]
+export async function GET(req: Request, { params }: BlogPostParams) {
   try {
-    const uuid = req.url.split("api/blog-posts")[1];
-
-    const blogPost = await BlogPost.findOne({ uuid });
-
-    if (!blogPost) {
-      return NextResponse.json(
-        { message: "Blog post not found" },
-        { status: 404 }
-      );
-    }
-
-    const author = await BlogAuthor.findOne({ uuid: blogPost.author_id });
-    const category = await BlogCategory.findOne({ uuid: blogPost.category_id });
-
-    if (!author || !category) {
-      return NextResponse.json(
-        { message: "Author or category not found" },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json(
-      {
-        ...blogPost.toObject(),
-        author,
-        category,
+    const post = await db.blogPost.findUnique({
+      where: {
+        uuid: params.uuid,
       },
-      { status: 200 }
-    );
-  } catch (err) {
-    console.error("Error fetching blog post by UUID:", err);
+      include: {
+        author: true,
+        category: true,
+        tags: true,
+      },
+    });
+
+    if (!post) {
+      return NextResponse.json(
+        { error: "Blog post not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(post);
+  } catch (error) {
+    console.error("Error fetching blog post:", error);
     return NextResponse.json(
-      { message: "Failed to fetch blog post" },
+      { error: "Failed to fetch blog post" },
       { status: 500 }
     );
   }
@@ -155,50 +142,75 @@ export async function GET(req: Request) {
  *         description: Internal server error
  */
 
-export async function PUT(req: Request) {
-  await connectDB();
-
-  const {
-    slug,
-    title,
-    excerpt,
-    content,
-    category_id,
-    status,
-    is_featured,
-    read_time,
-    published_at,
-  } = await req.json();
-
+// PUT /api/blog-posts/[uuid]
+export async function PUT(req: Request, { params }: BlogPostParams) {
   try {
-    const blogPost = await BlogPost.findOne({
-      uuid: req.url.split("api/blog-posts")[1],
-    });
-    if (!blogPost) {
+    const session = await auth();
+    if (!session?.user) {
       return NextResponse.json(
-        { message: "Blog post not found" },
-        { status: 404 }
+        { error: "Unauthorized" },
+        { status: 401 }
       );
     }
 
-    // Update fields
-    blogPost.slug = slug || blogPost.slug;
-    blogPost.title = title || blogPost.title;
-    blogPost.excerpt = excerpt || blogPost.excerpt;
-    blogPost.content = content || blogPost.content;
-    blogPost.category_id = category_id || blogPost.category_id;
-    blogPost.status = status || blogPost.status;
-    blogPost.is_featured = is_featured || blogPost.is_featured;
-    blogPost.read_time = read_time || blogPost.read_time;
-    blogPost.published_at = published_at || blogPost.published_at;
+    const body = await req.json();
+    const {
+      title,
+      slug,
+      excerpt,
+      content,
+      author_id,
+      category_id,
+      status,
+      is_featured,
+      read_time,
+      published_at,
+      image,
+      tags,
+    } = body;
 
-    await blogPost.save();
+    // Validate required fields
+    if (!title || !slug || !content || !author_id || !category_id) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
 
-    return NextResponse.json(blogPost, { status: 200 });
-  } catch (err) {
-    console.error("Error updating blog post:", err);
+    // Update the blog post
+    const post = await db.blogPost.update({
+      where: {
+        uuid: params.uuid,
+      },
+      data: {
+        title,
+        slug,
+        excerpt,
+        content,
+        author_id,
+        category_id,
+        status,
+        is_featured,
+        read_time,
+        published_at,
+        image,
+        tags: tags ? {
+          set: [], // Clear existing tags
+          connect: tags.map((tagId: string) => ({ uuid: tagId })),
+        } : undefined,
+      },
+      include: {
+        author: true,
+        category: true,
+        tags: true,
+      },
+    });
+
+    return NextResponse.json(post);
+  } catch (error) {
+    console.error("Error updating blog post:", error);
     return NextResponse.json(
-      { message: "Failed to update blog post" },
+      { error: "Failed to update blog post" },
       { status: 500 }
     );
   }
@@ -226,28 +238,28 @@ export async function PUT(req: Request) {
  *         description: Internal server error
  */
 
-export async function DELETE(req: Request) {
-  await connectDB();
-
+// DELETE /api/blog-posts/[uuid]
+export async function DELETE(req: Request, { params }: BlogPostParams) {
   try {
-    const blogPost = await BlogPost.findOneAndDelete({
-      uuid: req.url.split("api/blog-posts")[1],
-    });
-    if (!blogPost) {
+    const session = await auth();
+    if (!session?.user) {
       return NextResponse.json(
-        { message: "Blog post not found" },
-        { status: 404 }
+        { error: "Unauthorized" },
+        { status: 401 }
       );
     }
 
+    await db.blogPost.delete({
+      where: {
+        uuid: params.uuid,
+      },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error deleting blog post:", error);
     return NextResponse.json(
-      { message: "Blog post deleted successfully" },
-      { status: 200 }
-    );
-  } catch (err) {
-    console.error("Error deleting blog post:", err);
-    return NextResponse.json(
-      { message: "Failed to delete blog post" },
+      { error: "Failed to delete blog post" },
       { status: 500 }
     );
   }

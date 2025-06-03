@@ -228,7 +228,7 @@ export const TabProducts = () => {
               {products.map((product, index) => renderProduct(product, index))}
             </div>
 
-            <div className="mt-6 text-center">
+            <div className="mt-6 text-center font-poppins">
               <Link href="/products" className="button-primary mt-3">
                 View All Products
                 <ChevronRight size={18} />
@@ -239,7 +239,7 @@ export const TabProducts = () => {
                   className="text-lumey-orange mx-auto mb-3"
                   size={24}
                 />
-                <p className="text-gray-700 mb-3 font-medium">
+                <p className="text-gray-700 mb-3 font-medium font-poppins">
                   Need guidance choosing the right power solution?
                 </p>
                 <a

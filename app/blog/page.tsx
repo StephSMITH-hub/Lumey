@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+// import { Metadata } from "next";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
@@ -16,8 +17,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { FloatingCTA, Footer, Header } from "@/components";
-import useBlogData from "@/hooks/useBlogs";
-import { blogdata } from "@/data/blogData";
+import { useBlogs } from "@/hooks/useBlogs";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import BlogCard from "@/components/BlogCard";
 
 const categories = [
   "All Categories",
@@ -31,19 +34,25 @@ const categories = [
   "Technology",
 ];
 
+// export const metadata: Metadata = {
+//   title: "Blog | Lumey Energy",
+//   description: "Stay updated with the latest news and insights from Lumey Energy",
+// };
+
 const Blog = () => {
+  const { blogs, isLoading, error } = useBlogs();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const isMobile = useIsMobile();
 
   // Filter blog posts based on search and category
-  const filteredPosts = blogdata.filter((post) => {
+  const filteredPosts = blogs.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategory === "All Categories" ||
-      post.category === selectedCategory;
+      post.category?.name === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
@@ -55,7 +64,17 @@ const Blog = () => {
   }, []);
 
   // Get featured posts
-  const featuredPosts = blogdata.slice(0, 4);
+  const featuredPosts = blogs.filter((post) => post.is_featured).slice(0, 4);
+
+  // Format date helper
+  const formatDate = (date: string | Date) => {
+    if (!date) return "";
+    return new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   // Define the container component based on mobile status
   const ContainerComponent = isMobile ? "div" : motion.div;
@@ -67,6 +86,29 @@ const Blog = () => {
         exit: { opacity: 0 },
         transition: { duration: 0.5 },
       };
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="animate-pulse space-y-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-48 bg-gray-200 rounded-lg"></div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-red-600">Error</h2>
+          <p className="text-gray-600">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full overflow-x-hidden">
@@ -86,17 +128,19 @@ const Blog = () => {
                     solutions, and sustainable living in Nigeria.
                   </p>
                   <div className="relative max-w-2xl mx-auto">
-                    <input
-                      type="text"
-                      placeholder="Search for articles..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full px-5 py-3 pr-12 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lumey-yellow"
-                    />
-                    <Search
-                      className="absolute right-4 top-3.5 text-gray-400"
-                      size={20}
-                    />
+                    <div className="flex gap-4">
+                      <div className="relative flex-1">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        <Input
+                          type="text"
+                          placeholder="Search articles..."
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className="pl-10"
+                        />
+                      </div>
+                      <Button variant="outline">Filter</Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -114,7 +158,7 @@ const Blog = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {featuredPosts.slice(0, 2).map((post) => (
                         <motion.div
-                          key={post.id}
+                          key={post._id}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5 }}
@@ -127,7 +171,7 @@ const Blog = () => {
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                             <div className="absolute top-0 right-0 bg-lumey-yellow px-3 py-1 m-4 rounded-full text-xs font-medium">
-                              {post.category}
+                              {post.category?.name}
                             </div>
                             {!post.content && (
                               <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -156,15 +200,17 @@ const Blog = () => {
                             <p className="text-gray-600 mb-4">{post.excerpt}</p>
                             <div className="flex items-center text-sm text-gray-500 mb-4">
                               <User size={16} className="mr-1" />
-                              <span className="mr-4">{post.author}</span>
+                              <span className="mr-4">{post.author?.name}</span>
                               <Calendar size={16} className="mr-1" />
-                              <span className="mr-4">{post.date}</span>
+                              <span className="mr-4">
+                                {formatDate(post.published_at)}
+                              </span>
                               <Clock size={16} className="mr-1" />
-                              <span>{post.readTime}</span>
+                              <span>{post.read_time} min read</span>
                             </div>
                             {post.content ? (
                               <Link
-                                href={`/blog/${post.id}`}
+                                href={`/blog/${post.slug}`}
                                 className="text-lumey-orange hover:text-lumey-yellow inline-flex items-center text-sm font-medium"
                               >
                                 Read More{" "}
@@ -208,23 +254,6 @@ const Blog = () => {
                         ))}
                       </ul>
                     </div>
-                    {/* <div className="bg-gradient-to-br from-lumey-blue/20 to-lumey-lightblue/20 p-6 rounded-lg shadow-md">
-                      <h3 className="text-lg font-bold mb-3">
-                        Subscribe to Our Newsletter
-                      </h3>
-                      <p className="text-sm text-gray-600 mb-4">
-                        Get the latest articles, news, and updates delivered to
-                        your inbox.
-                      </p>
-                      <input
-                        type="email"
-                        placeholder="Your email address"
-                        className="w-full px-4 py-2 rounded mb-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lumey-yellow"
-                      />
-                      <button className="button-primary w-full">
-                        Subscribe
-                      </button>
-                    </div> */}
                   </div>
 
                   {/* Articles */}
@@ -245,74 +274,17 @@ const Blog = () => {
                     {filteredPosts.length > 0 ? (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {filteredPosts.map((post) => (
-                          <motion.div
-                            key={post.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="bg-white rounded-lg overflow-hidden shadow-md group h-full border border-gray-100 hover:border-lumey-yellow"
-                          >
-                            <div className="h-48 overflow-hidden relative">
-                              <img
-                                src={post.image}
-                                alt={post.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                              />
-                              {!post.content && (
-                                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                  <div className="bg-white/90 px-3 py-2 rounded-md flex items-center gap-2">
-                                    <AlertCircle
-                                      size={16}
-                                      className="text-lumey-orange"
-                                    />
-                                    <span className="text-sm font-medium">
-                                      Coming Soon
-                                    </span>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                            <div className="p-5">
-                              <div className="flex items-center text-xs text-gray-500 mb-2">
-                                <span className="bg-lumey-yellow/20 text-lumey-dark px-2 py-1 rounded-full mr-2">
-                                  {post.category}
-                                </span>
-                                <Clock size={14} className="mr-1" />
-                                <span>{post.readTime}</span>
-                              </div>
-                              <h3
-                                className={`text-lg font-bold mb-2 line-clamp-2 ${
-                                  post.content
-                                    ? "group-hover:text-lumey-orange transition-colors"
-                                    : ""
-                                }`}
-                              >
-                                {post.title}
-                              </h3>
-                              <p className="text-gray-600 text-sm mb-3 line-clamp-2">
-                                {post.excerpt}
-                              </p>
-                              <div className="flex justify-between items-center">
-                                <div className="flex items-center text-xs text-gray-500">
-                                  <User size={14} className="mr-1" />
-                                  <span>{post.author}</span>
-                                </div>
-                                {post.content ? (
-                                  <Link
-                                    href={`/blog/${post.id}`}
-                                    className="text-lumey-orange hover:text-lumey-yellow inline-flex items-center text-sm font-medium"
-                                  >
-                                    Read More{" "}
-                                    <ArrowRight size={14} className="ml-1" />
-                                  </Link>
-                                ) : (
-                                  <span className="text-gray-400 inline-flex items-center text-sm font-medium cursor-not-allowed">
-                                    Coming Soon
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                          </motion.div>
+                          <BlogCard
+                            key={post._id}
+                            title={post.title}
+                            excerpt={post.excerpt}
+                            author={post.author?.name || "Unknown Author"}
+                            date={formatDate(post.published_at)}
+                            readTime={`${post.read_time} min read`}
+                            image={post.image}
+                            category={post.category?.name || "Uncategorized"}
+                            slug={post.slug}
+                          />
                         ))}
                       </div>
                     ) : (

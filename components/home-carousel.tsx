@@ -62,7 +62,7 @@ const HomeCarousel = () => {
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   className="w-full"
                 >
-                  <div className="w-full h-64 md:h-96 lg:h-[500px] overflow-hidden">
+                  <div className="w-full h-64 md:h-[500px] lg:h-[620px] overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.alt}
