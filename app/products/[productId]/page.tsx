@@ -11,6 +11,7 @@ import {
   Wrench,
   Zap,
   Shield,
+  Video,
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { formatPrice } from "@/lib/utils";
@@ -70,26 +71,29 @@ const page = () => {
 
   const isProductDetail = productId && products.find((p) => p.id === productId);
 
+  // Create combined media array with type indicators
+  const mediaItems = [
+    { src: currentProduct.mainImage, type: 'image', index: 0 },
+    ...currentProduct.images.map((src, idx) => ({ 
+      src, 
+      type: src.includes('.mp4') || src.includes('.webm') || src.includes('.mov') ? 'video' : 'image', 
+      index: idx + 1 
+    }))
+  ];
+
   const nextImage = () => {
-    if (currentProduct.images.length > 0) {
-      setImageIndex((prev) => (prev + 1) % (currentProduct.images.length + 1));
+    if (mediaItems.length > 0) {
+      setImageIndex((prev) => (prev + 1) % mediaItems.length);
     }
   };
 
   const prevImage = () => {
-    if (currentProduct.images.length > 0) {
-      setImageIndex(
-        (prev) =>
-          (prev - 1 + (currentProduct.images.length + 1)) %
-          (currentProduct.images.length + 1)
-      );
+    if (mediaItems.length > 0) {
+      setImageIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
     }
   };
 
-  const currentImage =
-    imageIndex === 0
-      ? currentProduct.mainImage
-      : currentProduct.images[imageIndex - 1];
+  const currentMedia = mediaItems[imageIndex];
 
   const MotionDiv = isMobile ? "div" : motion.div;
 
@@ -159,13 +163,25 @@ const page = () => {
                 })}
                 className="aspect-square bg-white rounded-lg overflow-hidden border border-gray-200"
               >
-                <img
-                  src={currentImage}
-                  alt={currentProduct.name}
-                  className="w-full h-full object-contain p-4"
-                />
+                {currentMedia?.type === 'video' ? (
+                  <video
+                    src={currentMedia.src}
+                    controls
+                    className="w-full h-full object-contain p-4"
+                    poster={currentProduct.mainImage}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <img
+                    src={currentMedia?.src || currentProduct.mainImage}
+                    alt={currentProduct.name}
+                    className="w-full h-full object-contain p-4"
+                  />
+                )}
               </MotionDiv>
 
+              {/* Image Navigation */}
               <div className="flex justify-center mt-4 space-x-2">
                 <button
                   className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full"
@@ -175,18 +191,12 @@ const page = () => {
                 </button>
 
                 <div className="flex space-x-2 items-center">
-                  <button
-                    onClick={() => setImageIndex(0)}
-                    className={`h-3 w-3 rounded-full ${
-                      imageIndex === 0 ? "bg-lumey-orange" : "bg-gray-300"
-                    }`}
-                  />
-                  {currentProduct.images.map((_, idx) => (
+                  {mediaItems.map((_, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setImageIndex(idx + 1)}
+                      onClick={() => setImageIndex(idx)}
                       className={`h-3 w-3 rounded-full ${
-                        imageIndex === idx + 1 ? "bg-lumey-orange" : "bg-gray-300"
+                        imageIndex === idx ? "bg-lumey-orange" : "bg-gray-300"
                       }`}
                     />
                   ))}
@@ -200,34 +210,34 @@ const page = () => {
                 </button>
               </div>
 
-              <div className="flex mt-4 gap-2">
-                <div
-                  className={`h-20 w-20 border rounded-md cursor-pointer ${
-                    imageIndex === 0 ? "border-lumey-orange" : "border-gray-200"
-                  }`}
-                  onClick={() => setImageIndex(0)}
-                >
-                  <img
-                    src={currentProduct.mainImage}
-                    alt={currentProduct.name}
-                    className="w-full h-full object-contain p-1"
-                  />
-                </div>
-                {currentProduct.images.map((image, idx) => (
+              {/* Thumbnail Gallery */}
+              <div className="flex mt-4 gap-2 overflow-x-auto">
+                {mediaItems.map((media, idx) => (
                   <div
                     key={idx}
-                    className={`h-20 w-20 border rounded-md cursor-pointer ${
-                      imageIndex === idx + 1
-                        ? "border-lumey-orange"
-                        : "border-gray-200"
+                    className={`relative h-20 w-20 flex-shrink-0 border rounded-md cursor-pointer ${
+                      imageIndex === idx ? "border-lumey-orange" : "border-gray-200"
                     }`}
-                    onClick={() => setImageIndex(idx + 1)}
+                    onClick={() => setImageIndex(idx)}
                   >
-                    <img
-                      src={image}
-                      alt={`${currentProduct.name} view ${idx + 1}`}
-                      className="w-full h-full object-contain p-1"
-                    />
+                    {media.type === 'video' ? (
+                      <>
+                        <video
+                          src={media.src}
+                          className="w-full h-full object-cover rounded-md"
+                          muted
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-md">
+                          <Video className="h-6 w-6 text-white" />
+                        </div>
+                      </>
+                    ) : (
+                      <img
+                        src={media.src}
+                        alt={`${currentProduct.name} view ${idx + 1}`}
+                        className="w-full h-full object-contain p-1 rounded-md"
+                      />
+                    )}
                   </div>
                 ))}
               </div>
