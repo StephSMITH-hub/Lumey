@@ -46,3 +46,16 @@ CLOUDINARY_API_SECRET=your_api_secret
 ```
 
 Replace `your_cloud_name`, `your_api_key`, and `your_api_secret` with your actual Cloudinary credentials.
+
+---
+
+## Lumey Projects & Marketing Deliverables
+
+In addition to the Next.js web application, this repository includes the complete suite of sales funnels, direct-response copy bibles, affiliate/distributor onboarding systems, and promotional assets located in the [`projects/`](./projects) directory:
+
+- **Interactive Web Pages & Funnels**: Flagship direct-response sales page (`index.html`), affiliate portal (`affiliate.html`), and partner onboarding hub (`partner_onboarding.html`).
+- **Copy Bibles & Strategic Playbooks**: Unabridged long-form sales letters for all 8 August 2026 PowerBox models, objection rebuttals, and content playbooks.
+- **Affiliate & Distributor Growth Engine**: Commission structures, developer database schemas, done-for-you promo copy, and partner training guides.
+- **Promotional Creatives & Catalogs**: High-converting flyers and the official August 2026 product pricing guide.
+
+See [`projects/README.md`](./projects/README.md) for full documentation and local preview instructions.

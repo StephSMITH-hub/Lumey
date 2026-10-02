@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lumey Energy — Affiliate Program Master Deliverables, Onboarding Flow & Recruitment Copy Deck</title>
+  
+  <!-- Google Fonts: Poppins & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    @page {
+      size: A4;
+      margin: 8mm 10mm 8mm 10mm;
+      @bottom-right {
+        content: counter(page);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 8pt;
+        font-weight: 700;
+        color: #64748b;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      font-size: 8.5pt;
+      line-height: 1.42;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #0b0f19;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    p {
+      margin-bottom: 5px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .avoid-break {
+      page-break-inside: avoid;
+    }
+
+    /* COVER PAGE */
+    .cover-page {
+      height: 272mm;
+      max-height: 275mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20mm 16mm;
+      background: radial-gradient(circle at 85% 15%, #064e3b 0%, #0b0f19 75%) !important;
+      color: #ffffff;
+      border-radius: 12px;
+      margin-bottom: 0;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(254, 220, 34, 0.18) !important;
+      border: 1px solid rgba(254, 220, 34, 0.5);
+      color: #fedc22 !important;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8.5pt;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .cover-title {
+      font-size: 27pt;
+      font-weight: 900;
+      line-height: 1.12;
+      margin-bottom: 12px;
+      color: #ffffff !important;
+      letter-spacing: -0.5px;
+    }
+
+    .cover-title span.gold { color: #fedc22 !important; }
+    .cover-title span.green { color: #10b981 !important; }
+
+    .cover-subtitle {
+      font-size: 11pt;
+      color: #94a3b8 !important;
+      line-height: 1.5;
+      max-width: 650px;
+      margin-bottom: 20px;
+    }
+
+    .cover-steps-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+
+    .cover-step-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 8.5pt;
+      color: #f1f5f9 !important;
+    }
+
+    .cover-step-pill {
+      background: #fedc22 !important;
+      color: #000000 !important;
+      font-weight: 900;
+      font-size: 7.2pt;
+      padding: 2px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .cover-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 8pt;
+      color: #94a3b8 !important;
+    }
+
+    /* SECTION HEADERS */
+    .section-header {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-header h2 {
+      font-size: 13.5pt;
+      font-weight: 800;
+      color: #0b0f19;
+      letter-spacing: -0.3px;
+    }
+
+    .section-tag {
+      font-size: 7.2pt;
+      font-weight: 800;
+      background: #0f172a !important;
+      color: #ffffff !important;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* STEP CARDS */
+    .step-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 9px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 5px;
+    }
+
+    .step-badge {
+      background: #0f172a !important;
+      color: #fedc22 !important;
+      font-weight: 900;
+      font-size: 8pt;
+      padding: 2px 8px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .step-title {
+      font-size: 10pt;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0;
+    }
+
+    .step-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 5px;
+    }
+
+    .step-subbox {
+      background: #f8fafc !important;
+      border: 1px solid #edf2f7;
+      border-radius: 6px;
+      padding: 7px 9px;
+    }
+
+    .step-subbox-title {
+      font-size: 7.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .step-subbox-title span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fedc22 !important;
+    }
+
+    .step-subbox-title span.dot.green {
+      background: #10b981 !important;
+    }
+
+    .step-subbox p {
+      font-size: 7.8pt;
+      color: #475569;
+      margin-bottom: 0;
+      line-height: 1.35;
+    }
+
+    /* CALLOUT BOXES */
+    .callout {
+      background: #f8fafc !important;
+      border-left: 4px solid #fedc22;
+      padding: 7px 11px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 8px;
+      font-size: 8pt;
+    }
+
+    .callout.green {
+      border-left-color: #10b981;
+      background: #f0fdf4 !important;
+    }
+
+    .callout.dark {
+      background: #0b0f19 !important;
+      color: #ffffff !important;
+      border-left-color: #fedc22;
+      padding: 9px 12px;
+    }
+
+    .callout.dark p {
+      color: #cbd5e1 !important;
+    }
+
+    /* UI MOCKUP BOX */
+    .ui-mockup-box {
+      background: #0b0f19 !important;
+      color: #ffffff !important;
+      border: 1px solid #1e293b;
+      border-radius: 7px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+
+    .ui-mockup-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      font-size: 7.2pt;
+      color: #94a3b8 !important;
+    }
+
+    .ui-code-preview {
+      font-family: monospace;
+      background: #131b2e !important;
+      color: #fedc22 !important;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-size: 10.5pt;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 1px;
+      margin: 5px 0;
+      border: 1px dashed rgba(254, 220, 34, 0.4);
+    }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.5pt;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #0f172a !important;
+      color: #ffffff !important;
+      font-weight: 800;
+      text-align: left;
+      padding: 5px 6px;
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 4px 6px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc !important;
+    }
+
+    /* SCRIPT BLOCKS */
+    .script-card {
+      background: #f8fafc !important;
+      border: 1px solid #cbd5e1;
+      border-left: 3px solid #10b981;
+      border-radius: 6px;
+      padding: 7px 10px;
+      margin-bottom: 7px;
+      font-size: 7.8pt;
+    }
+
+    .script-header {
+      font-weight: 800;
+      color: #0f172a;
+      font-size: 8pt;
+      margin-bottom: 3px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .script-box-dark {
+      background: #0b0f19 !important;
+      color: #f8fafc !important;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: 'Poppins', monospace;
+      font-size: 7.5pt;
+      line-height: 1.38;
+      margin-bottom: 7px;
+      border-left: 3px solid #fedc22;
+    }
+
+    .script-title-dark {
+      color: #fedc22 !important;
+      font-weight: 800;
+      font-size: 7.8pt;
+      margin-bottom: 3px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 9999px;
+      font-size: 6.8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .badge-green { background: #dcfce7 !important; color: #166534 !important; }
+    .badge-gold { background: #fef9c3 !important; color: #854d0e !important; }
+    .badge-blue { background: #dbeafe !important; color: #1e40af !important; }
+  </style>
+</head>
+<body>
+
+  <!-- COVER PAGE (Page 1) -->
+  <div class="cover-page">
+    <div>
+      <div class="cover-badge">⚡ OFFICIAL AUGUST 2026 EXECUTION BLUEPRINT</div>
+      <h1 class="cover-title">
+        LUMEY ENERGY<br />
+        <span class="gold">AFFILIATE PROGRAM</span><br />
+        <span class="green">STEP-BY-STEP PLAYBOOK</span>
+      </h1>
+      <p class="cover-subtitle">
+        The complete deliverables asset inventory, step-by-step onboarding flow, high-converting recruitment page copy deck, automated WhatsApp bot sequences, and cash settlement engine.
+      </p>
+
+      <div class="cover-steps-summary">
+        <div style="font-size:8.2pt; font-weight:900; color:#fedc22 !important; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">
+          The 6-Step Affiliate Journey at a Glance:
+        </div>
+        <div class="cover-step-row">
+          <span class="cover-step-pill">STEP 1</span>
+          <span><strong>Discovery & Calculator:</strong> Affiliate tests live earnings on <code>affiliate.html</code> and clicks "Join".</span>
+        </div>
+        <div class="cover-step-row">
+          <span class="cover-step-pill">STEP 2</span>
+          <span><strong>60-Second Signup:</strong> Enters Name, WhatsApp, City, and desired code prefix. ₦0 registration fee.</span>
+        </div>
+        <div class="cover-step-row">
+          <span class="cover-step-pill">STEP 3</span>
+          <span><strong>Instant Code & Link:</strong> Gets <code>LUMEY-[HANDLE]</code>. Code gives buyers an instant ₦5,000 discount!</span>
+        </div>
+        <div class="cover-step-row">
+          <span class="cover-step-pill">STEP 4</span>
+          <span><strong>Automated Bot Welcome:</strong> Receives text in 15 seconds with referral credentials and VIP group link.</span>
+        </div>
+        <div class="cover-step-row">
+          <span class="cover-step-pill">STEP 5</span>
+          <span><strong>Sales Vault Unlocked:</strong> Copies ready-made 7-Day WhatsApp status posts and uncut video clips.</span>
+        </div>
+        <div class="cover-step-row">
+          <span class="cover-step-pill">STEP 6</span>
+          <span><strong>Tuesday Cash Payouts:</strong> Enters 10-digit NUBAN. Cash lands in their bank account every Tuesday.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div>
+        <strong>Lumey Energy Nigeria</strong><br />
+        Manufacturing HQ: Akure, Ondo State | Depots: LOS, ABJ, PHC, KAN, IBADAN
+      </div>
+      <div style="text-align: right;">
+        Harmonized with August 2026 Product Catalogue<br />
+        Partner Support WhatsApp: +234 813 974 3177
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- CHAPTER 1: THE STEP-BY-STEP ONBOARDING JOURNEY (Page 2) -->
+  <div class="section-header">
+    <h2>Chapter 1: The Step-by-Step Onboarding Journey</h2>
+    <span class="section-tag">How It Works</span>
+  </div>
+
+  <p style="margin-bottom:6px;">
+    Here is the exact step-by-step experience from when an affiliate lands on the website to when cash hits their bank account:
+  </p>
+
+  <!-- STEP 1 -->
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">STEP 1</span>
+      <h3 class="step-title">Discovery & Interactive Earnings Calculation</h3>
+    </div>
+    <div class="step-grid">
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot"></span> What Happens</div>
+        <p>The prospect visits <code>affiliate.html</code> after seeing a post about earning ₦150k–₦600k/month helping Nigerians beat fuel prices.</p>
+      </div>
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot green"></span> What They Do</div>
+        <p>They slide the counters on the <strong>Live Income Calculator</strong> (e.g. 2x PowerBox 1500 + 1x PowerBox 2600 = ₦200,000 payout) and click <strong>Activate Account (₦0)</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">STEP 2</span>
+      <h3 class="step-title">60-Second Mobile Signup (Zero Red Tape)</h3>
+    </div>
+    <div class="step-grid">
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot"></span> Form Fields Collected</div>
+        <p>
+          1. <strong>Full Name:</strong> (Must match bank account name).<br />
+          2. <strong>Active WhatsApp Number:</strong> (For bot alerts).<br />
+          3. <strong>City & State:</strong> (e.g. Ikeja, Lagos).<br />
+          4. <strong>Promotion Channel:</strong> (WhatsApp Status, TikTok, Office).<br />
+          5. <strong>Code Handle:</strong> (e.g. <code>KEMI</code> creates <code>LUMEY-KEMI</code>).
+        </p>
+      </div>
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot green"></span> Zero Friction Policy</div>
+        <p>No registration fees. No interviews. No buying sample products. The system instantly provisions the account in 1.5 seconds.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">STEP 3</span>
+      <h3 class="step-title">Instant Code, Link & The ₦5,000 Buyer Hook</h3>
+    </div>
+    <div class="ui-mockup-box">
+      <div class="ui-mockup-header">
+        <span>INSTANT PORTAL ACTIVATION SCREEN</span>
+        <span>STATUS: LIVE</span>
+      </div>
+      <div style="font-size:7.5pt; color:#94a3b8; text-align:center;">Your Personal Partner Coupon Code:</div>
+      <div class="ui-code-preview">LUMEY-KEMI</div>
+      <div style="font-size:7.5pt; text-align:center; color:#10b981; font-weight:700;">
+        ✓ Gives your buyers ₦5,000 OFF at checkout • Permanently binds sale to your account!
+      </div>
+      <div style="font-size:7.2pt; color:#cbd5e1; text-align:center; margin-top:3px;">
+        Tracking Link: <code>https://lumeyenergy.com/?ref=LUMEY-KEMI</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">STEP 4</span>
+      <h3 class="step-title">Automated WhatsApp Bot Welcome (T+15 Seconds)</h3>
+    </div>
+    <div class="script-box-dark">
+      <div class="script-title-dark">
+        <span>AUTOMATED BOT MESSAGE (Sent to Affiliate's Phone)</span>
+        <span>T+15s</span>
+      </div>
+      "Hello {Name}! Your Lumey Affiliate Account is ACTIVE ⚡<br />
+      • Your Code: <strong>{Partner_Code}</strong> (Gives buyers ₦5,000 OFF!)<br />
+      • Your Link: https://lumeyenergy.com/?ref={Partner_Code}<br />
+      • Payout Day: Every Tuesday before 2:00 PM directly to your bank.<br /><br />
+      👉 Step 1: Join our VIP WhatsApp Group: [Link]<br />
+      👉 Step 2: Open your 72-Hour Sales Vault and post Day 1 status: [Link]"
+    </div>
+  </div>
+
+  <!-- STEP 5 & 6 -->
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">STEP 5 & 6</span>
+      <h3 class="step-title">Sales Vault Unlocked & Weekly Tuesday Bank Payouts</h3>
+    </div>
+    <div class="step-grid">
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot"></span> Step 5: Sales Vault</div>
+        <p>Affiliate downloads the 7-day status swipe file, 5 uncut video proof demos, and the 60-second load matcher cheat sheet.</p>
+      </div>
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot green"></span> Step 6: Tuesday Payouts</div>
+        <p>Affiliate enters their 10-digit NUBAN. Cleared cash commissions are wired straight to their bank every Tuesday before 2:00 PM.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- CHAPTER 2: MASTER DELIVERABLES INVENTORY (Page 3) -->
+  <div class="section-header">
+    <h2>Chapter 2: Master Deliverables Asset Inventory</h2>
+    <span class="section-tag">Pillar 1: Enablement</span>
+  </div>
+
+  <p style="margin-bottom:6px;">
+    Affiliates are equipped with 5 tangible sales tools so they never struggle with marketing or technical details:
+  </p>
+
+  <!-- Deliverable 1: Load Matcher Matrix -->
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">TOOL 1</span>
+      <h3 class="step-title">The 60-Second Pocket Load Matcher Matrix</h3>
+    </div>
+    <p style="font-size:7.5pt; color:#475569; margin-bottom:5px;">
+      Non-technical affiliates use this cheat sheet to match customer appliances in 10 seconds flat:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Customer Needs To Power</th>
+          <th>Recommended Model</th>
+          <th>Retail Combo Price</th>
+          <th>Affiliate Take-Home (₦)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Laptops, Starlink, WiFi router, 32" TV, fans</td>
+          <td><strong>PowerBox 600</strong></td>
+          <td>₦320,000</td>
+          <td><strong>₦16,000 – ₦38,400</strong></td>
+        </tr>
+        <tr>
+          <td>Tabletop fridge (120L), 10kg washer, blender, TV</td>
+          <td><strong>PowerBox 1500</strong> <span class="badge badge-gold">#1 Bestseller</span></td>
+          <td>₦500,000</td>
+          <td><strong>₦25,000 – ₦60,000</strong></td>
+        </tr>
+        <tr>
+          <td>Tabletop fridge (22h+), TV, busy barbershop</td>
+          <td><strong>PowerBox 1900</strong></td>
+          <td>₦590,000</td>
+          <td><strong>₦29,500 – ₦70,800</strong></td>
+        </tr>
+        <tr>
+          <td>Haier Deep Freezer, microwave, washing machine</td>
+          <td><strong>PowerBox 2600</strong></td>
+          <td>₦1,000,000</td>
+          <td><strong>₦50,000 – ₦120,000</strong></td>
+        </tr>
+        <tr>
+          <td>48-hr deep freeze lockdown during blackouts</td>
+          <td><strong>PowerBox 3100</strong></td>
+          <td>₦1,100,000</td>
+          <td><strong>₦55,000 – ₦132,000</strong></td>
+        </tr>
+        <tr>
+          <td>1HP Inverter AC (midday sun) + water pumping machine</td>
+          <td><strong>PowerBox 4000</strong></td>
+          <td>₦2,150,000</td>
+          <td><strong>₦107,500 – ₦258,000</strong></td>
+        </tr>
+        <tr>
+          <td>1HP Inverter AC (day & night) + borehole + duplex</td>
+          <td><strong>PowerBox 8000</strong></td>
+          <td>₦2,600,000</td>
+          <td><strong>₦130,000 – ₦312,000</strong></td>
+        </tr>
+        <tr>
+          <td>2x Inverter ACs, borehole pump, clinics, estates</td>
+          <td><strong>PowerBox 8000 Plus</strong></td>
+          <td>₦3,200,000</td>
+          <td><strong>₦160,000 – ₦384,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Deliverable 2: 5x Video Demos -->
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">TOOL 2</span>
+      <h3 class="step-title">5x Uncut Live Proof Video Clips</h3>
+    </div>
+    <div class="step-grid">
+      <div class="step-subbox">
+        <p><strong>Clip 1 (PowerBox 600):</strong> Running laptop + Starlink router in total silence (120W draw).</p>
+      </div>
+      <div class="step-subbox">
+        <p><strong>Clip 2 (PowerBox 1500):</strong> Running 600W blender & tabletop fridge simultaneously.</p>
+      </div>
+      <div class="step-subbox">
+        <p><strong>Clip 3 (PowerBox 1900):</strong> Running 3 barbershop clippers, TV, sterilizer, and fans.</p>
+      </div>
+      <div class="step-subbox">
+        <p><strong>Clip 4 (PowerBox 2600):</strong> Cold-starting Haier deep freezer with 2.5kVA surge muscle.</p>
+      </div>
+    </div>
+    <div class="step-subbox" style="margin-top:6px;">
+      <p><strong>Clip 5 (PowerBox 4000):</strong> Running 1HP Inverter AC in midday sun with digital wattage meter showing clean power.</p>
+    </div>
+  </div>
+
+  <!-- Deliverable 3: ₦5k Incentive Engine -->
+  <div class="callout green avoid-break">
+    <strong>TOOL 3: The ₦5,000 Exclusive Buyer Incentive Engine</strong><br />
+    Every affiliate receives a code (e.g. <code>LUMEY-KEMI</code>). When buyers enter it at checkout, they save <strong>₦5,000 instantly</strong>, guaranteeing buyers use the affiliate's link rather than attempting to bypass them.
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- CHAPTER 3: THE FULL 7-DAY WHATSAPP STATUS SWIPE PACK (Page 4) -->
+  <div class="section-header">
+    <h2>Chapter 3: Done-For-You 7-Day WhatsApp Status Pack</h2>
+    <span class="section-tag">Ready-To-Post Copy</span>
+  </div>
+
+  <p style="margin-bottom:6px;">
+    Affiliates simply copy and paste these exact text captions and images to their WhatsApp status each day:
+  </p>
+
+  <div class="script-card avoid-break">
+    <div class="script-header">
+      <span>DAY 1: THE PETROL SHOCK (Post at 7:30 AM or 7:00 PM)</span>
+      <span class="badge badge-gold">Agitation</span>
+    </div>
+    <p><strong>Attach:</strong> Photo of petrol pump price (₦1,150/L) next to the Lumey PowerBox 1500.<br />
+    <strong>Caption:</strong> "How much did you burn on fuel this past week alone? 😭 At ₦1,150/litre, running a small generator for 6 hours daily burns over ₦180,000 every single month in pure smoke. What if you could run your TV, fans, and tabletop fridge in 100% silence with zero petrol and zero NEPA bills? DM me to see how this works. (PS: I have a special partner code for ₦5,000 OFF this week!)"</p>
+  </div>
+
+  <div class="script-card avoid-break">
+    <div class="script-header">
+      <span>DAY 2: THE SOLUTION REVEAL (PowerBox 1500)</span>
+      <span class="badge badge-green">Reveal</span>
+    </div>
+    <p><strong>Attach:</strong> Image of PowerBox 1500 powering TV and tabletop fridge.<br />
+    <strong>Caption:</strong> "Meet Nigeria's #1 Generator-Killer: The Lumey PowerBox 1500 ⚡ Zero noise. Zero petrol fumes. Charges in 2 hours with NEPA or under the sun with solar panels. Powered by Grade-A LiFePO4 batteries lasting 10+ years. Send me a DM with 'SOLAR' to see the full specs!"</p>
+  </div>
+
+  <div class="script-card avoid-break">
+    <div class="script-header">
+      <span>DAY 3: THE LIVE VIDEO PROOF</span>
+      <span class="badge badge-blue">Proof</span>
+    </div>
+    <p><strong>Attach:</strong> 25-second uncut video of PowerBox running blender and tabletop fridge simultaneously.<br />
+    <strong>Caption:</strong> "They said solar can't run heavy home loads without exploding. Watch this live test running a blender and tabletop fridge in total silence! 🔥 Digital wattage meter showing 100% clean power. Recharges for free with the sun. Reply with 'PRICE' to get the catalogue before this batch sells out."</p>
+  </div>
+
+  <div class="script-card avoid-break">
+    <div class="script-header">
+      <span>DAY 4: THE FUEL MATH BREAKDOWN</span>
+      <span class="badge badge-gold">Logic</span>
+    </div>
+    <p><strong>Attach:</strong> Side-by-side infographic comparing Generator vs Lumey PowerBox.<br />
+    <strong>Caption:</strong> "Quick Maths 🧮: Generator fuel + engine oil + mechanic repairs for 90 days = ₦250,000+ burned in smoke. Lumey PowerBox 1500 = One-time investment, zero fuel forever, backed by official warranty. In less than 90 days, it pays for itself completely! Why keep burning cash?"</p>
+  </div>
+
+  <div class="script-card avoid-break">
+    <div class="script-header">
+      <span>DAY 5: CUSTOMER TESTIMONIAL</span>
+      <span class="badge badge-green">Social Proof</span>
+    </div>
+    <p><strong>Attach:</strong> Customer review screenshot sleeping peacefully during general blackout.<br />
+    <strong>Caption:</strong> "NEPA took light at 11:00 PM last night in the entire estate. 😴 While neighbors were waking up to pull generator ropes and smell petrol fumes, my client slept peacefully in total silence with their fan blowing cold and fridge humming. That peace of mind is priceless. Send a DM to join the quiet life."</p>
+  </div>
+
+  <div class="script-card avoid-break">
+    <div class="script-header">
+      <span>DAY 6 & 7: URGENCY & ₦5,000 DISCOUNT CLOSING</span>
+      <span class="badge badge-gold">Urgency Close</span>
+    </div>
+    <p><strong>Attach:</strong> Photo of shockproof shipping crates ready for dispatch.<br />
+    <strong>Caption:</strong> "Final Call ⏰: Orders for this week's dispatch are closing! Free nationwide shipping to all 36 states. Use my partner coupon code LUMEY-VIP at checkout to get an INSTANT ₦5,000 DISCOUNT. Send a DM now to lock in your unit before the price review!"</p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- CHAPTER 4: RECRUITMENT PAGE COPY DECK (Page 5) -->
+  <div class="section-header">
+    <h2>Chapter 4: Recruitment Page Copy Deck ("Call for Affiliates")</h2>
+    <span class="section-tag">Website Copy</span>
+  </div>
+
+  <p style="margin-bottom:6px;">
+    The exact sales copy hosted on <code>affiliate.html</code> to convert visitors into active affiliates:
+  </p>
+
+  <div class="callout dark avoid-break">
+    <div style="font-size:7.5pt; color:#fedc22 !important; font-weight:900; text-transform:uppercase;">⚡ HERO HEADLINE & VALUE PROPOSITION</div>
+    <h3 style="color:#ffffff !important; font-size:13pt; margin:4px 0;">
+      Stop Watching Nigerians Burn Billions on Petrol.<br />
+      Make <span style="color:#fedc22 !important;">₦150,000 to ₦600,000+ Monthly</span> Helping Homes & Offices <span style="color:#10b981 !important;">Go 100% Solar</span>.
+    </h3>
+    <p style="font-size:8pt; color:#94a3b8 !important;">
+      With petrol at ₦1,200/litre and Band A electricity bills crushing households, millions of Nigerians are desperately looking for a quiet, reliable way out. Partner with Lumey Energy: <strong>Zero inventory. We handle crating & nationwide delivery. You get paid cash directly into your bank account every single Tuesday.</strong>
+    </p>
+    <div style="font-size:7.8pt; color:#fedc22 !important; font-weight:800;">
+      [ BUTTON: Claim Your Affiliate Code & ₦5k Buyer Perk ➔ ]
+    </div>
+  </div>
+
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">SECTION 1</span>
+      <h3 class="step-title">The Commercial Reality ("Why It's Easy to Sell")</h3>
+    </div>
+    <p style="font-size:7.8pt; color:#334155;">
+      Every day in Nigeria, an average family burns 10 to 20 litres of petrol just to run a noisy generator for a few hours. At ₦1,150/litre, that is <strong>₦345,000 to ₦690,000 burned in smoke every month</strong>. Meanwhile, Band A tariffs were hiked to <strong>₦209+/kWh</strong>, and national grid collapses leave entire cities in darkness.
+    </p>
+    <p style="font-size:7.8pt; color:#334155; margin-bottom:0;">
+      <strong>Nigerians want a way out. But they don't trust cheap Alaba inverters that spoil after 4 months.</strong> They want Lumey PowerBox because it is 100% silent, charges in 2 hours with NEPA or under the sun, and uses Grade-A LiFePO4 batteries with a 5-Year Warranty. When a product pays for itself in 90 days of saved fuel, <strong>it doesn't need to be hard-sold—it just needs to be introduced.</strong>
+    </p>
+  </div>
+
+  <div class="step-card avoid-break">
+    <div class="step-header">
+      <span class="step-badge">SECTION 2</span>
+      <h3 class="step-title">The 4 Unfair Advantages to the Affiliate</h3>
+    </div>
+    <div class="step-grid">
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot"></span> 1. ₦0 Capital & Zero Risk</div>
+        <p>You never spend ₦1 on inventory. You don't store boxes in your room or buy demo units.</p>
+      </div>
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot"></span> 2. Nationwide Dropshipping</div>
+        <p>Lumey handles crating and waybill delivery to all 36 states and Abuja with tracked haulage.</p>
+      </div>
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot green"></span> 3. The ₦5k Buyer Incentive</div>
+        <p>Your custom code gives buyers an instant ₦5,000 discount, making them eager to buy through you.</p>
+      </div>
+      <div class="step-subbox">
+        <div class="step-subbox-title"><span class="dot green"></span> 4. Tuesday Direct Bank Transfer</div>
+        <p>No waiting for month-end. Cleared cash is wired straight to your Nigerian bank every Tuesday.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="avoid-break" style="margin-top:6px;">
+    <h3 style="font-size:9.5pt; margin-bottom:4px;">Official August 2026 Commission Tiers:</h3>
+    <p style="font-size:7.5pt; color:#475569;">
+      • <strong>Starter Tier (5.0%):</strong> ₦250k–₦749k sales (~1 unit PB 600 or PB 1500)<br />
+      • <strong>Active Tier (7.5%):</strong> ₦750k–₦1.99M sales (~2 units PB 1500 or 1 unit PB 2600)<br />
+      • <strong>Pro Tier (10.0%):</strong> ₦2.0M–₦4.99M sales (~2x PB 2600 + 2x PB 1500)<br />
+      • <strong>Ambassador Tier (12.0%):</strong> ₦5.0M+ sales (Earn up to <strong>₦384,000 per unit</strong>)
+    </p>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- CHAPTER 5: WHATSAPP BOT SCRIPTS & 8 BATTLECARDS (Page 6) -->
+  <div class="section-header">
+    <h2>Chapter 5: WhatsApp Bot Scripts & 8 Objection Battlecards</h2>
+    <span class="section-tag">Automation & Closing</span>
+  </div>
+
+  <!-- Bot Messages -->
+  <div class="script-box-dark avoid-break">
+    <div class="script-title-dark">
+      <span>BOT SEQUENCE: T+24 HOURS & T+72 HOURS</span>
+      <span>AUTOMATED FOLLOW-UPS</span>
+    </div>
+    <strong>Day 1 Follow-Up (T+24h):</strong> "Good morning {Name}! Petrol is still ₦1,150+/L today. Post your Day 1 status right now: [Day 1 Text]. When someone asks 'How much?', reply with your 60-Second Matcher or tag our team with your code {Partner_Code}!"<br /><br />
+    <strong>Day 3 Cash Bonus Reminder (T+72h):</strong> "Hey {Name}! Reminder: Lumey pays you an extra <strong>₦5,000 CASH BONUS</strong> on your very first sale! Have you locked in your bank details yet? Update your NUBAN here: [Payout Link]"
+  </div>
+
+  <!-- 8 Objection Battlecards -->
+  <h3 style="font-size:10pt; margin:8px 0 5px;">Word-for-Word Objection Battlecards (Click & Send):</h3>
+
+  <div class="step-card avoid-break">
+    <div class="step-header" style="margin-bottom:3px;">
+      <span class="step-badge" style="background:#10b981 !important; color:#000 !important;">OBJECTION 1</span>
+      <h4 style="font-size:8.5pt; margin:0;">"Will it charge when the weather is rainy or cloudy?"</h4>
+    </div>
+    <p style="font-size:7.5pt; color:#334155; margin-bottom:0;">
+      <strong>Send:</strong> "Yes! Lumey has Triple-Charging technology. Even on cloudy days, our high-yield monocrystalline panels draw ambient daylight. Plus, whenever NEPA gives light, you can fast-charge 100% full in just 2 hours from your wall socket. You are never stranded!"
+    </p>
+  </div>
+
+  <div class="step-card avoid-break">
+    <div class="step-header" style="margin-bottom:3px;">
+      <span class="step-badge" style="background:#10b981 !important; color:#000 !important;">OBJECTION 2</span>
+      <h4 style="font-size:8.5pt; margin:0;">"Is it not like cheap Alaba market inverters that spoil in 6 months?"</h4>
+    </div>
+    <p style="font-size:7.5pt; color:#334155; margin-bottom:0;">
+      <strong>Send:</strong> "Not at all. Alaba inverters use heavy, toxic lead-acid or recycled car batteries that die quickly. Lumey uses brand new Grade-A Lithium Iron Phosphate (LiFePO4) chemistry rated for 3,500+ charge cycles (10+ years), backed by up to a 5-Year Official Manufacturer Warranty."
+    </p>
+  </div>
+
+  <div class="step-card avoid-break">
+    <div class="step-header" style="margin-bottom:3px;">
+      <span class="step-badge" style="background:#10b981 !important; color:#000 !important;">OBJECTION 3</span>
+      <h4 style="font-size:8.5pt; margin:0;">"Can the PowerBox 1500 power my deep freezer?"</h4>
+    </div>
+    <p style="font-size:7.5pt; color:#334155; margin-bottom:0;">
+      <strong>Send:</strong> "The PowerBox 1500 is engineered for tabletop fridges (up to 120L), 10kg washing machines, TVs, and blenders. For deep freezers, the PowerBox 2600 (₦1.0M combo) has a 2.5kVA surge capacity designed to start and run deep freezers smoothly."
+    </p>
+  </div>
+
+  <div class="step-card avoid-break">
+    <div class="step-header" style="margin-bottom:3px;">
+      <span class="step-badge" style="background:#10b981 !important; color:#000 !important;">OBJECTION 4</span>
+      <h4 style="font-size:8.5pt; margin:0;">"How do I know I will get it safely if I am outside Lagos?"</h4>
+    </div>
+    <p style="font-size:7.5pt; color:#334155; margin-bottom:0;">
+      <strong>Send:</strong> "Lumey delivers nationwide to all 36 states and Abuja in shockproof shipping crates via tracked logistics (Peace Mass Transit Logistics, GIG Logistics) within 24 to 48 hours with waybill tracking."
+    </p>
+  </div>
+
+  <div class="step-card avoid-break">
+    <div class="step-header" style="margin-bottom:3px;">
+      <span class="step-badge" style="background:#10b981 !important; color:#000 !important;">OBJECTION 5</span>
+      <h4 style="font-size:8.5pt; margin:0;">"What if I have an issue during the warranty period?"</h4>
+    </div>
+    <p style="font-size:7.5pt; color:#334155; margin-bottom:0;">
+      <strong>Send:</strong> "Lumey is a registered Nigerian manufacturer with corporate factory HQ in Akure and regional service hubs in Lagos, Abuja, Port Harcourt, Ibadan, and Kano. All inverters have a 12-month warranty, and Heavy Duty LiFePO4 batteries have a 5-year warranty."
+    </p>
+  </div>
+
+  <div class="callout green avoid-break" style="margin-top:8px;">
+    <strong>Verification & Compliance:</strong> All data, pricing, commission percentages, and warranty terms are 100% synchronized with the official August 2026 Lumey Energy Product Catalogue. Payout settlements execute automatically every Tuesday before 2:00 PM.
+  </div>
+
+</body>
+</html>

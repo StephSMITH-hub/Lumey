@@ -1,0 +1,935 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lumey PowerBox â€” Master Sales Page Copy & Visual Design Blueprint</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+    @page {
+      size: A4;
+      margin: 14mm 12mm 14mm 12mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      font-size: 10pt;
+      line-height: 1.55;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #0b0f19;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .avoid-break {
+      page-break-inside: avoid;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      height: 250mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20mm 15mm;
+      background: radial-gradient(circle at 80% 20%, #1e293b 0%, #0b0f19 80%);
+      color: #ffffff;
+      border-radius: 12px;
+      margin-bottom: 15mm;
+    }
+
+    .brand-pill {
+      display: inline-block;
+      background: #fedc22;
+      color: #000000;
+      font-size: 10pt;
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cover-title {
+      font-size: 30pt;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+
+    .cover-title span {
+      color: #fedc22;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #94a3b8;
+      line-height: 1.6;
+      max-width: 580px;
+      margin-bottom: 25px;
+    }
+
+    .cover-meta {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 15px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      font-size: 9pt;
+      color: #cbd5e1;
+    }
+
+    .cover-meta strong {
+      color: #fedc22;
+    }
+
+    /* Section Styling */
+    .doc-section {
+      margin-bottom: 22px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: #fef08a;
+      color: #854d0e;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 16pt;
+      font-weight: 900;
+      color: #0f172a;
+      border-bottom: 2px solid #fedc22;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
+    }
+
+    /* Visual Directive / Wireframe Box */
+    .wireframe-box {
+      background: #f8fafc;
+      border: 1px dashed #94a3b8;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      font-size: 9pt;
+      color: #475569;
+    }
+
+    .wireframe-box strong {
+      color: #0f172a;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    /* Copy Block */
+    .copy-block {
+      background: #ffffff;
+      border-left: 4px solid #fedc22;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid #f1f5f9;
+      border-right: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .copy-label {
+      font-size: 8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .headline-copy {
+      font-size: 14pt;
+      font-weight: 900;
+      color: #0b0f19;
+      margin-bottom: 6px;
+    }
+
+    .subhead-copy {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .body-copy {
+      font-size: 9.5pt;
+      color: #334155;
+      line-height: 1.55;
+    }
+
+    .cta-button-mock {
+      display: inline-block;
+      background: #25d366;
+      color: #ffffff;
+      font-size: 9.5pt;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 6px;
+      margin-top: 8px;
+      text-decoration: none;
+    }
+
+    .cta-button-mock.yellow {
+      background: #fedc22;
+      color: #000000;
+    }
+
+    /* Tables */
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 8.5pt;
+    }
+
+    table.data-table th, table.data-table td {
+      border: 1px solid #cbd5e1;
+      padding: 7px 9px;
+      text-align: left;
+    }
+
+    table.data-table th {
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    table.data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    table.data-table tr.highlight-row {
+      background: #fef9c3;
+      font-weight: 700;
+    }
+
+    /* Cards Grid */
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .model-card-pdf {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .model-card-pdf.featured {
+      border: 2px solid #fedc22;
+      background: #fffbeb;
+    }
+
+    .model-card-title {
+      font-size: 12pt;
+      font-weight: 900;
+      color: #0f172a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .model-price-tag {
+      color: #0f172a;
+      font-size: 11pt;
+      font-weight: 900;
+    }
+
+    .model-price-tag span {
+      color: #059669;
+    }
+
+    .badge-mini {
+      background: #fedc22;
+      color: #000;
+      font-size: 7.5pt;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Objection Box */
+    .objection-card {
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #0284c7;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      background: #ffffff;
+    }
+
+    .objection-q {
+      font-size: 10pt;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .objection-a {
+      font-size: 9pt;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .badge-pill {
+      font-size: 7.5pt;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      color: #475569;
+      margin-right: 4px;
+    }
+
+    ul.check-list {
+      list-style: none;
+      margin: 6px 0;
+    }
+
+    ul.check-list li {
+      font-size: 8.5pt;
+      padding: 2px 0;
+      color: #334155;
+    }
+
+    ul.check-list li::before {
+      content: "âœ” ";
+      color: #10b981;
+      font-weight: 900;
+    }
+
+    ul.check-list li.cross::before {
+      content: "âœ– ";
+      color: #ef4444;
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= COVER PAGE ================= -->
+  <div class="cover-page">
+    <div>
+      <span class="brand-pill">LUMEY ENERGY NIGERIA</span>
+      <h1 class="cover-title">
+        MASTER SALES PAGE<br>
+        <span>COPY & DESIGN</span><br>
+        BLUEPRINT
+      </h1>
+      <p class="cover-subtitle">
+        High-Converting Direct-Response Sales Copy, Visual Layout Specifications, and Ironclad Objection-Handling Architecture for the August 2026 Lumey PowerBox Series.
+      </p>
+    </div>
+
+    <div>
+      <div class="cover-meta">
+        <div>
+          <p><strong>DOCUMENT PURPOSE:</strong> Master Sales Page Blueprint & Copy</p>
+          <p><strong>TARGET AUDIENCE:</strong> Nigerian Households, SMEs & Remote Workers</p>
+          <p><strong>CORE SALES ANGLE:</strong> "The Zero-Fuel Freedom System â€” Stop Paying The Fuel Tax"</p>
+        </div>
+        <div>
+          <p><strong>PRODUCT LINEUP:</strong> August 2026 Guide (PowerBox 600 to 8000+)</p>
+          <p><strong>PRICE RANGE:</strong> â‚¦260,000 to â‚¦3,200,000</p>
+          <p><strong>OFFICIAL HOTLINE:</strong> 07062878273 | +234 813 974 3177</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SECTION 1: STRATEGIC RATIONALE & SALES ANGLE ================= -->
+  <div class="doc-section avoid-break">
+    <span class="section-tag">Strategic Architecture</span>
+    <h2 class="section-title">1. Executive Sales Strategy & Market Positioning</h2>
+    
+    <div class="wireframe-box">
+      <strong>Core Audience Psychology (August 2026 Nigerian Context):</strong><br>
+      â€¢ <strong>The Pain:</strong> Petrol has crossed â‚¦1,050â€“â‚¦1,200/litre. Running even a small generator costs between â‚¦150,000 to â‚¦300,000+ every month. Band A electricity tariffs have surged past â‚¦209/kWh, making grid power both expensive and erratic.<br>
+      â€¢ <strong>The Skepticism:</strong> Nigerian buyers are weary of empty solar claims. They worry that "solar cannot carry deep freezers or washing machines", that "batteries die after 8 months", and that "technicians will charge ridiculous rewiring fees".<br>
+      â€¢ <strong>The Previous Landing Page Bottleneck:</strong> The old Kimi page sold only the 400W Powerbox 550. When visitors asked: <em>"Can it carry my fridge? Can it carry my blender or iron?"</em>, the page hit a brick wall and bounced.<br>
+      â€¢ <strong>The Winning Sales Angle:</strong> <em>"Stop Paying The Fuel Tax. One Box. Zero Fuel. Zero Noise. Guaranteed 24/7 Power Matched Exactly To Your Load."</em> By tiering the August 2026 models into clear lifestyle and load brackets, every buyer finds their exact match with zero hesitation.
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tier Level</th>
+          <th>Model</th>
+          <th>Inverter & Battery</th>
+          <th>Target Audience & Load</th>
+          <th>Box Only</th>
+          <th>Complete Solar Package</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tier 1: Personal Hero</strong></td>
+          <td><strong>PowerBox 600</strong></td>
+          <td>400W (12V) / 600Wh</td>
+          <td>Students, remote tech workers, single rooms, POS shops. Laptops, fans, 32" TV.</td>
+          <td>â‚¦260,000</td>
+          <td><strong>â‚¦320,000</strong> (+200W Panel)</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>Tier 2: #1 Bestseller</strong></td>
+          <td><strong>PowerBox 1500</strong></td>
+          <td>1kW (1.25kVA) / 1500Wh</td>
+          <td>1â€“2 Bedroom homes, barbers, salons. Table-top fridge (120L), washing machine, blender, 300W iron.</td>
+          <td>â‚¦380,000</td>
+          <td><strong>â‚¦500,000</strong> (+400W Panel)</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>Tier 2: Extra Runtime</strong></td>
+          <td><strong>PowerBox 1900</strong></td>
+          <td>1kW (1.25kVA) / 1900Wh</td>
+          <td>Same as 1500 + 27% more battery. Table-top fridge runs 22h+. Rapid 600W solar recharge.</td>
+          <td>â‚¦440,000</td>
+          <td><strong>â‚¦590,000</strong> (+600W Panel)</td>
+        </tr>
+        <tr>
+          <td><strong>Tier 3: Kitchen Workhorse</strong></td>
+          <td><strong>PowerBox 2600</strong></td>
+          <td>2kW (2.5kVA) / 2600Wh</td>
+          <td>Full homes, frozen food sellers. Deep freezers, microwaves, induction cookers (1500W).</td>
+          <td>â‚¦700,000</td>
+          <td><strong>â‚¦1,000,000</strong> (+2x 600W Panels)</td>
+        </tr>
+        <tr>
+          <td><strong>Tier 3: Extended Kitchen</strong></td>
+          <td><strong>PowerBox 3100</strong></td>
+          <td>2kW (2.5kVA) / 3100Wh</td>
+          <td>Same as 2600 with 3.1kWh storage. Deep freezers stay frozen through 48h blackouts.</td>
+          <td>â‚¦800,000</td>
+          <td><strong>â‚¦1,100,000</strong> (+2x 600W Panels)</td>
+        </tr>
+        <tr>
+          <td><strong>Tier 4: Heavy Duty AC</strong></td>
+          <td><strong>PowerBox 4000</strong></td>
+          <td>4kW (5kVA) / 4kWh LiFePO4</td>
+          <td>Water pump, 1 Inverter AC (day use with panels), full house. 5-Yr battery warranty.</td>
+          <td>â‚¦1,550,000</td>
+          <td><strong>â‚¦2,150,000</strong> (+4x 600W Panels)</td>
+        </tr>
+        <tr>
+          <td><strong>Tier 4: Extended AC</strong></td>
+          <td><strong>PowerBox 8000</strong></td>
+          <td>4kW (5kVA) / 8kWh LiFePO4</td>
+          <td>1 Inverter AC (extended day/mild night), borehole pump, duplexes. 5-Yr battery warranty.</td>
+          <td>â‚¦2,000,000</td>
+          <td><strong>â‚¦2,600,000</strong> (+4x 600W Panels)</td>
+        </tr>
+        <tr>
+          <td><strong>Tier 4: Flagship Titan</strong></td>
+          <td><strong>PowerBox 8000+</strong></td>
+          <td>8kW (10kVA) / 8kWh LiFePO4</td>
+          <td>1 or 2 Inverter ACs, borehole pump, commercial suites, clinics. 5-Yr battery warranty.</td>
+          <td>â‚¦2,300,000</td>
+          <td><strong>â‚¦3,200,000</strong> (+6x 600W Panels)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ================= SECTION 2: TOP BANNER & HERO SECTION ================= -->
+  <div class="page-break"></div>
+  <div class="doc-section">
+    <span class="section-tag">Page Section 01</span>
+    <h2 class="section-title">2. Urgency Announcement Bar & Hero Section</h2>
+
+    <div class="wireframe-box">
+      <strong>Visual Layout Directives:</strong><br>
+      â€¢ <strong>Background:</strong> Midnight Blue to Slate Dark Gradient (`radial-gradient(#1A2642, #0B0F19)`).<br>
+      â€¢ <strong>Header Top:</strong> Black strip with yellow pill tag and countdown urgency timer.<br>
+      â€¢ <strong>Typography:</strong> Ultra-bold high-impact typography with yellow underline emphasis on the core promise.<br>
+      â€¢ <strong>Badges:</strong> Trust badges for "Pure Sine Wave", "12-Month Inverter Warranty", and "Up to 5-Year Battery Warranty".
+    </div>
+
+    <!-- Top Urgency Bar -->
+    <div class="copy-block">
+      <div class="copy-label">ELEMENT: TOP STICKY URGENCY BAR</div>
+      <p class="body-copy">
+        âš¡ <strong>AUGUST 2026 PRICE LOCK:</strong> Free Nationwide Delivery on all Solar Generator Turnkey Combos today! Limited batch allocation remaining.
+      </p>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="copy-block">
+      <div class="copy-label">ELEMENT: HERO BADGES & EYEBROW</div>
+      <p class="body-copy">
+        <span class="badge-pill">âš¡ STOP PAYING THE FUEL TAX</span>
+        <span class="badge-pill">â˜… 750+ NIGERIAN HOMES & BUSINESSES POWERED</span>
+      </p>
+
+      <div class="copy-label" style="margin-top: 10px;">ELEMENT: PRIMARY HEADLINE</div>
+      <h3 class="headline-copy">
+        Stop Spending â‚¦150,000+ On Fuel Every Single Month.<br>
+        <span style="color: #ca8a04; text-decoration: underline;">One Box. Zero Fuel. 24/7 Power.</span>
+      </h3>
+
+      <div class="copy-label" style="margin-top: 10px;">ELEMENT: SUPPORTING SUBHEADLINE</div>
+      <p class="subhead-copy">
+        Meet the updated <strong>Lumey PowerBox Series (August 2026 Edition)</strong>: Plug-and-Play Solar Generators with Grade-A Lithium/LiFePO4 battery technology and Hybrid Pure Sine Wave Inverters. Unbox it, plug in your appliances, and banish generator noise forever.
+      </p>
+
+      <div class="copy-label" style="margin-top: 10px;">ELEMENT: CALL TO ACTION BUTTONS</div>
+      <div style="margin-top: 8px;">
+        <a href="#" class="cta-button-mock yellow" style="margin-right: 10px;">Choose Your PowerBox (From â‚¦260k)</a>
+        <a href="#" class="cta-button-mock">Chat With A Solar Engineer on WhatsApp</a>
+      </div>
+
+      <div class="copy-label" style="margin-top: 12px;">ELEMENT: TRUST STRIP</div>
+      <p class="body-copy" style="font-size: 8.5pt; color: #64748b;">
+        âœ” 100% Pure Sine Wave &nbsp;|&nbsp; âœ” 12-Month Inverter Warranty &nbsp;|&nbsp; âœ” Up to 5-Year Battery Warranty &nbsp;|&nbsp; âœ” Fast Nationwide Delivery
+      </p>
+    </div>
+  </div>
+
+  <!-- ================= SECTION 3: THE BRUTAL REALITY & FUEL CALCULATOR ================= -->
+  <div class="doc-section avoid-break">
+    <span class="section-tag">Page Section 02</span>
+    <h2 class="section-title">3. The Brutal Financial Truth & Interactive ROI Calculator</h2>
+
+    <div class="wireframe-box">
+      <strong>Visual Layout Directives:</strong><br>
+      â€¢ <strong>Structure:</strong> 2-Column Desktop Grid. Left: The Fuel Generator Trap vs. Lumey Freedom contrast card. Right: Interactive Fuel vs Solar Savings Calculator with range slider and dynamic payback period display.<br>
+      â€¢ <strong>Color Psychology:</strong> Red callouts for fuel waste (`#EF4444`) vs. Emerald Green for solar savings (`#10B981`).
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">ELEMENT: SECTION HEADLINE & AGITATION</div>
+      <h3 class="headline-copy">You Are Not Buying Electricity. You Are Renting It Litre By Litre.</h3>
+      <p class="body-copy">
+        Here is the number nobody says out loud: with petrol above â‚¦1,050â€“â‚¦1,200 per litre, running a small generator for just 5 hours an evening drains over â‚¦5,500 daily. That is â‚¦165,000 every 30 days! In 6 months, you have burned â‚¦990,000 into toxic smokeâ€”and you still have no asset to show for it.
+      </p>
+    </div>
+
+    <div class="card-grid-2">
+      <div class="model-card-pdf" style="border-left: 4px solid #ef4444; background: #fff5f5;">
+        <h4 style="color: #991b1b; margin-bottom: 6px;">The Fuel Generator Trap âŒ</h4>
+        <ul class="check-list">
+          <li class="cross">â‚¦165,000+ monthly fuel waste into thin air</li>
+          <li class="cross">Carburetor cleaning, snapped cords & mechanic bills</li>
+          <li class="cross">Toxic carbon monoxide fumes endangering your family</li>
+          <li class="cross">Ear-splitting noise robbing you of peaceful sleep</li>
+          <li class="cross">Zero asset value left after 2 years</li>
+        </ul>
+      </div>
+
+      <div class="model-card-pdf" style="border-left: 4px solid #10b981; background: #f0fdf4;">
+        <h4 style="color: #065f46; margin-bottom: 6px;">The Lumey PowerBox Freedom âœ”</h4>
+        <ul class="check-list">
+          <li>â‚¦0.00 Monthly fuel expense for the next 5 to 10 years</li>
+          <li>100% Silent operation (0 dB) right in your room</li>
+          <li>Zero fumes, zero heat, zero mechanical parts to repair</li>
+          <li>Rapid 2-hour NEPA recharge + free daytime solar harvesting</li>
+          <li>System completely pays for itself within 2.5 to 4 months</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">ELEMENT: INTERACTIVE CALCULATOR WIREFRAME & FORMULAS</div>
+      <p class="body-copy">
+        <strong>Slider Input:</strong> "What is your daily fuel spend?" (Range: â‚¦2,000 to â‚¦25,000/day, default â‚¦5,000).<br>
+        <strong>Dynamic Calculations Output:</strong><br>
+        â€¢ <strong>1-Month Fuel Waste:</strong> â‚¦150,000 &nbsp;|&nbsp; <strong>6-Month Fuel Waste:</strong> â‚¦900,000 &nbsp;|&nbsp; <strong>1-Year Fuel Waste:</strong> â‚¦1,800,000<br>
+        â€¢ <strong>Payback Verdict:</strong> <em>"In just 2.5 months, your petrol savings completely pay for a Lumey PowerBox 1500! Every month after that is pure profit in your pocket."</em>
+      </p>
+    </div>
+  </div>
+
+  <!-- ================= SECTION 4 & 5: VIDEO & TRANSFORMATION STORY ================= -->
+  <div class="page-break"></div>
+  <div class="doc-section avoid-break">
+    <span class="section-tag">Page Section 03 & 04</span>
+    <h2 class="section-title">4. Real Video Proof & The Neighbour Transformation Story</h2>
+
+    <div class="wireframe-box">
+      <strong>Visual Layout Directives:</strong><br>
+      â€¢ <strong>Video Container:</strong> 16:9 responsive JumpShare video embed (`https://jumpshare.com/embed/TPSrysclLPIFucFJzD1Q`) framed in a sleek dark card with yellow border accents.<br>
+      â€¢ <strong>Story Card:</strong> Deep matte dark background (`#0B0F19`) with oversized quotation marks, presenting the high-converting "Neighbour Story".
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">ELEMENT: VIDEO SECTION COPY</div>
+      <h3 class="headline-copy">Watch The Lumey PowerBox In Real-World Action</h3>
+      <p class="body-copy">
+        See how real Nigerians unbox, plug, and run their appliances with zero fumes and zero noise. No complicated installationâ€”just plug in and power on.
+      </p>
+      <p style="font-size: 8.5pt; color: #64748b;">
+        [Embedded Video: JumpShare Verified Load Test & Unboxing Demo]
+      </p>
+    </div>
+
+    <div class="copy-block" style="background: #0f172a; color: #ffffff; border-left-color: #fedc22;">
+      <div class="copy-label" style="color: #fedc22;">ELEMENT: CUSTOMER STORY â€” THE NEIGHBOUR TRANSFORMATION</div>
+      <p style="font-style: italic; font-size: 10.5pt; line-height: 1.7; color: #e2e8f0; margin-bottom: 12px;">
+        "When I got my Lumey PowerBox, my next-door neighbour bought a brand new petrol generator. Within one month, my neighbour was completely exhaustedâ€”waking up at 1:00 AM to pour fuel, spending â‚¦45,000 weekly, and enduring constant vibration. After 5 weeks of seeing my parlour brightly lit and my fans spinning in utter silence through every blackout, my neighbour gave up, abandoned his generator, and bought a Lumey PowerBox too. That is the moment I knew this was the smartest investment I made all year."
+      </p>
+      <p style="font-size: 9pt; font-weight: 700; color: #fedc22;">
+        â€” Engr. Emeka O., Verified Lumey Customer (Lekki, Lagos)
+      </p>
+    </div>
+  </div>
+
+  <!-- ================= SECTION 6: THE MASTER 4-TIER MODEL SHOWCASE ================= -->
+  <div class="doc-section">
+    <span class="section-tag">Page Section 05</span>
+    <h2 class="section-title">5. Master Model Showcase Copy (August 2026 Catalog)</h2>
+
+    <div class="wireframe-box">
+      <strong>Visual Layout Directives:</strong><br>
+      â€¢ Interactive 4-tab filter bar: <em>All Models | Portable Series | Household Sweet Spot | Heavy Duty AC</em>.<br>
+      â€¢ Clear distinction between "Box Only" price and "Full Solar Package" (with Tier-1 Mono Solar Panels).<br>
+      â€¢ Exact appliance compatibility list + explicit exclusions for complete trust.
+    </div>
+
+    <!-- TIER 1: POWERBOX 600 -->
+    <div class="model-card-pdf avoid-break" style="margin-bottom: 12px;">
+      <div class="model-card-title">
+        <span>PowerBox 600 <span class="badge-mini">Personal Hero</span></span>
+        <span class="model-price-tag">Box: â‚¦260,000 | <span>Combo: â‚¦320,000</span></span>
+      </div>
+      <p style="font-size: 8.5pt; color: #64748b; font-weight: 700;">400W (12V) Pure Sine Wave Inverter &nbsp;|&nbsp; 600Wh Lithium Core &nbsp;|&nbsp; 1x 200W Solar Panel</p>
+      <div style="font-size: 9pt; margin: 6px 0;">
+        <strong>Target Audience:</strong> Remote Freelancers, Tech Hustlers, Students, POS Operators, Single-Room Dwellers.<br>
+        <strong>Headline:</strong> <em>"Stop Letting NEPA Kill Your Hustle. 600Wh of Silent Personal Power."</em>
+      </div>
+      <ul class="check-list">
+        <li>Laptop (60W): 10â€“12 Hours continuous work (10 full recharges)</li>
+        <li>Standing / Table Fan (45W): 12â€“14 Hours cool night breeze</li>
+        <li>32" LED TV + Decoder (70W): 7â€“8 Hours non-stop entertainment</li>
+        <li>WiFi Router & Smartphone: 50+ Hours & 35+ full recharges</li>
+        <li>POS Machine & LED Light Bulbs: 80+ transactions & 120h lighting</li>
+        <li class="cross">Excludes: Fridges, Freezers, Pressing Irons, Microwaves, AC</li>
+      </ul>
+      <a href="#" class="cta-button-mock" style="padding: 5px 12px; font-size: 8.5pt;">Order PowerBox 600 (WhatsApp: 07062878273)</a>
+    </div>
+
+    <!-- TIER 2: POWERBOX 1500 & 1900 -->
+    <div class="model-card-pdf featured avoid-break" style="margin-bottom: 12px;">
+      <div class="model-card-title">
+        <span>PowerBox 1500 <span class="badge-mini" style="background:#ca8a04; color:#fff;">ðŸ”¥ #1 BESTSELLER</span></span>
+        <span class="model-price-tag">Box: â‚¦380,000 | <span>Combo: â‚¦500,000</span></span>
+      </div>
+      <p style="font-size: 8.5pt; color: #64748b; font-weight: 700;">1kW (1.25kVA) Pure Sine Wave &nbsp;|&nbsp; 1500Wh Lithium Core &nbsp;|&nbsp; 1x 400W Solar Panel</p>
+      <div style="font-size: 9pt; margin: 6px 0;">
+        <strong>Target Audience:</strong> 1â€“2 Bedroom Homes, Small Families, Barbershops, Hair Salons, Fashion Designers, Chemists.<br>
+        <strong>Headline:</strong> <em>"Your Table-Top Fridge Stays Cold. Your Fans Blow All Night. The True Fuel Gen Replacement."</em>
+      </div>
+      <ul class="check-list">
+        <li><strong>Table-Top / 120L Energy-Saving Fridge:</strong> 14 to 18 Hours continuous cooling</li>
+        <li>Home Washing Machine (Up to 10kg laundry cycles)</li>
+        <li>Kitchen Blender (Up to 600Wâ€“700W)</li>
+        <li><strong>Lumey 300W Inverter Pressing Iron</strong> Supported!</li>
+        <li>43" Smart TV + Decoder + 2 Standing Fans: 16â€“20 Hours</li>
+        <li>Full Barbershop Suite (Clippers, Ring Light, TV, Fans, POS)</li>
+        <li class="cross">Excludes: Big Deep Freezers (>120L), Microwaves, Air Conditioners</li>
+      </ul>
+      <p style="font-size: 8.5pt; background: #fef08a; padding: 4px 8px; border-radius: 4px; margin: 6px 0;">
+        ðŸ’¡ <strong>Need More Runtime? PowerBox 1900</strong> (1kW / 1900Wh Lithium Core + 600W Panel) available for <strong>â‚¦440,000 Box / â‚¦590,000 Combo</strong>! Gives 27% extra battery cushion for long blackouts.
+      </p>
+      <a href="#" class="cta-button-mock" style="padding: 5px 12px; font-size: 8.5pt;">Order PowerBox 1500 / 1900 (WhatsApp: 07062878273)</a>
+    </div>
+
+    <!-- TIER 3: POWERBOX 2600 & 3100 -->
+    <div class="page-break"></div>
+    <div class="model-card-pdf avoid-break" style="margin-bottom: 12px;">
+      <div class="model-card-title">
+        <span>PowerBox 2600 & 3100 <span class="badge-mini">Kitchen Workhorse</span></span>
+        <span class="model-price-tag">PB 2600: â‚¦700k / â‚¦1.0M &nbsp;|&nbsp; PB 3100: â‚¦800k / â‚¦1.1M</span>
+      </div>
+      <p style="font-size: 8.5pt; color: #64748b; font-weight: 700;">2kW (2.5kVA) Pure Sine Wave Inverter &nbsp;|&nbsp; 2600Whâ€“3100Wh Battery &nbsp;|&nbsp; 2x 600W Solar Panels (1200W Array)</p>
+      <div style="font-size: 9pt; margin: 6px 0;">
+        <strong>Target Audience:</strong> Modern 2â€“4 Bedroom Homes, Busy Families, Frozen Food Retailers, Restaurants, Tailoring Hubs.<br>
+        <strong>Headline:</strong> <em>"Deep Freezers, Microwaves & Induction Cookers on Solar. 100% Kitchen Food Sovereignty."</em>
+      </div>
+      <ul class="check-list">
+        <li><strong>Standard Household Deep Freezer / Double-Door Fridge:</strong> 18 to 24 Hours ice-cold preservation</li>
+        <li><strong>Kitchen Microwave Oven (Up to 1200W):</strong> Heat meals without waiting for NEPA</li>
+        <li><strong>Lumey Smart Induction Cooker (Up to 1500W):</strong> Flameless cooking on solar</li>
+        <li>Automatic Washing Machine + Heavy Commercial Blenders (1000W)</li>
+        <li>Full Home Entertainment: 55" TV, Home Theatre, 3 Fans, Laptops & Lights for 12+ Hours</li>
+        <li class="cross">Excludes: Air Conditioners & Borehole Water Pumping Machines</li>
+      </ul>
+      <a href="#" class="cta-button-mock" style="padding: 5px 12px; font-size: 8.5pt;">Order PowerBox 2600 / 3100 (WhatsApp: 07062878273)</a>
+    </div>
+
+    <!-- TIER 4: HEAVY DUTY SERIES -->
+    <div class="model-card-pdf avoid-break" style="margin-bottom: 12px; border-left: 4px solid #0f172a;">
+      <div class="model-card-title">
+        <span>PowerBox 4000, 8000 & 8000+ <span class="badge-mini" style="background:#0f172a; color:#fedc22;">5-YR BATTERY WARRANTY</span></span>
+        <span class="model-price-tag">From â‚¦1,550,000 to â‚¦3,200,000</span>
+      </div>
+      <p style="font-size: 8.5pt; color: #64748b; font-weight: 700;">4kW to 8kW Pure Sine Wave &nbsp;|&nbsp; 4kWh to 8kWh LiFePO4 Battery &nbsp;|&nbsp; 4x to 6x 600W Solar Panels</p>
+      <div style="font-size: 9pt; margin: 6px 0;">
+        <strong>Target Audience:</strong> Duplexes, Mansions, Private Clinics, Diagnostic Centers, Corporate Offices, Farm Estates.<br>
+        <strong>Headline:</strong> <em>"Yes, Solar Can Power Your Air Conditioners & Pumping Machines. Zero Fuel Forever."</em>
+      </div>
+      <table class="data-table" style="margin: 6px 0;">
+        <tr>
+          <th>Model</th>
+          <th>Capacity</th>
+          <th>Loads Powered</th>
+          <th>Box Only</th>
+          <th>Turnkey Solar Combo</th>
+        </tr>
+        <tr>
+          <td><strong>PowerBox 4000</strong></td>
+          <td>4kW / 4kWh LiFePO4</td>
+          <td>Water pump, 1 Inverter AC (day use with panels), full house</td>
+          <td>â‚¦1,550,000</td>
+          <td><strong>â‚¦2,150,000</strong> (+4x 600W)</td>
+        </tr>
+        <tr>
+          <td><strong>PowerBox 8000</strong></td>
+          <td>4kW / 8kWh LiFePO4</td>
+          <td>1 Inverter AC (day & mild night use), water pump, duplex</td>
+          <td>â‚¦2,000,000</td>
+          <td><strong>â‚¦2,600,000</strong> (+4x 600W)</td>
+        </tr>
+        <tr>
+          <td><strong>PowerBox 8000+</strong></td>
+          <td>8kW / 8kWh LiFePO4</td>
+          <td>1 or 2 Inverter ACs, borehole pump, clinics, estates</td>
+          <td>â‚¦2,300,000</td>
+          <td><strong>â‚¦3,200,000</strong> (+6x 600W)</td>
+        </tr>
+      </table>
+      <a href="#" class="cta-button-mock" style="padding: 5px 12px; font-size: 8.5pt;">Book Heavy Duty Engineering Audit (07062878273)</a>
+    </div>
+
+  </div>
+
+  <!-- ================= SECTION 7 & 8: MATCHER & COMPLIMENTARY ================= -->
+  <div class="doc-section avoid-break">
+    <span class="section-tag">Page Section 06 & 07</span>
+    <h2 class="section-title">6. Smart Load Matcher & Complimentary Solar Boosters</h2>
+
+    <div class="wireframe-box">
+      <strong>Smart Load Matcher Specification:</strong><br>
+      Checkboxes: [ ] Laptop (65W) | [ ] Fan (50W) | [ ] 43" TV (90W) | [ ] Table-top Fridge (120L) | [ ] Washing Machine | [ ] Blender | [ ] Inverter Iron | [ ] Deep Freezer | [ ] Microwave | [ ] Inverter AC | [ ] Water Pump.<br>
+      â€¢ <strong>Dynamic Logic:</strong> If user selects Table-top fridge â†’ Recommends PowerBox 1500. If Deep Freezer or Microwave â†’ Recommends PowerBox 2600. If AC or Pump â†’ Recommends Heavy Duty Series.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">ELEMENT: COMPLIMENTARY PRODUCTS WIREFRAME & COPY</div>
+      <div class="card-grid-2">
+        <div class="model-card-pdf">
+          <strong>1. Lumey 300W Inverter Pressing Iron (â‚¦20,000)</strong>
+          <p class="body-copy" style="font-size: 8.5pt; margin-top: 4px;">
+            Standard dry irons draw 1,500W and drain solar batteries fast. This custom inverter iron presses clothes razor-sharp while drawing only 300W! Compatible with PowerBox 1500 and above.
+          </p>
+        </div>
+        <div class="model-card-pdf">
+          <strong>2. Lumey Smart Induction Cooker (â‚¦50,000)</strong>
+          <p class="body-copy" style="font-size: 8.5pt; margin-top: 4px;">
+            Flameless, fast, and 100% solar compatible (200Wâ€“1800W smart variable power). Cook food cleanly without spending on gas or kerosene. Compatible with PowerBox 2600 and above.
+          </p>
+        </div>
+      </div>
+      <div class="model-card-pdf" style="margin-top: 8px;">
+        <strong>3. Lumey High-Efficiency Solar Fans (â‚¦60,000)</strong>
+        <p class="body-copy" style="font-size: 8.5pt; margin-top: 4px;">
+          Ultra-low wattage (18Wâ€“25W) brushless DC/AC hybrid standing fans. Delivers refreshing breeze for 20+ hours of continuous sleep without draining power.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SECTION 9: THE 12 MASTER OBJECTION CRUSHERS ================= -->
+  <div class="page-break"></div>
+  <div class="doc-section">
+    <span class="section-tag">Page Section 08</span>
+    <h2 class="section-title">7. The 12 Master Objection-Crushing Battlecards (Word-For-Word)</h2>
+
+    <div class="wireframe-box">
+      <strong>Deployment Directives:</strong> Embedded on the landing page as an expandable interactive accordion, and provided as word-for-word battlecards for WhatsApp and phone sales representatives.
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">1. "Will it power my Fridge or Deep Freezer?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Yes! But because we value honesty, we don't give you a one-size-fits-all answer. If you have a <strong>table-top or energy-saving fridge (up to 120L)</strong>, our <strong>PowerBox 1500 or 1900</strong> will carry it comfortably for 14â€“18 hours. If you have a <strong>standard household deep freezer or double-door refrigerator</strong>, you need the <strong>PowerBox 2600 or 3100</strong>, which features a 2kW pure sine wave inverter to handle compressor surges smoothly. Tell us your exact fridge model, and we will tell you the exact PowerBox that fits."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">2. "Can it carry an Air Conditioner or Water Pumping Machine?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Air conditioners and water pumps require high surge currents. Our portable series (600 to 3100) is designed for essentials, fridges, and kitchen loads. For <strong>1HP to 1.5HP Inverter ACs and borehole pumping machines</strong>, we engineered the <strong>Lumey Heavy Duty Series (PowerBox 4000, 8000 & 8000 Plus)</strong>. They feature 4kW to 8kW pure sine wave inverters and massive 4kWhâ€“8kWh LiFePO4 batteries with an official 5-year warranty."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">3. "Can I press my clothes or cook with it?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Standard dry irons pull 1,500W and old hotplates pull 2,000Wâ€”which drains any solar battery unnecessarily fast. That is why Lumey designed <strong>Complimentary Solar-Optimized Products</strong>: (1) Our <strong>Lumey 300W Inverter Pressing Iron (â‚¦20,000)</strong> presses clothes just as sharply as a regular iron while using only 300W! (Works on PowerBox 1500 and above). (2) Our <strong>Lumey Smart Induction Cooker (â‚¦50,000)</strong> allows you to cook fast and cleanly on PowerBox 2600 and above."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">4. "Will it damage my expensive laptop, smart TV, or medical equipment?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Never. Cheap generators produce modified square waves that hum and fry sensitive microchips. Every Lumey PowerBox uses a <strong>100% Pure Sine Wave Hybrid Inverter</strong>. The electricity it produces is cleaner and more stable than NEPA grid power. It runs MacBooks, OLED 4K TVs, ultrasound machines, and sound equipment with zero distortion."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">5. "What happens during rainy days or Harmattan when there is no sun?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "You are protected by our <strong>Triple Charging System</strong>: (1) <strong>Solar:</strong> Our tier-1 monocrystalline panels absorb UV daylight radiationâ€”they charge even in cloudy weather. (2) <strong>Rapid Grid/NEPA Charging:</strong> Whenever NEPA brings light, even for just 2 hours, the internal fast-charger recharges your battery up to 80%! (3) <strong>Generator Top-Up:</strong> If you ever need emergency charging, plug it into any generator for 1â€“2 hours to store full power, then shut the generator off and sleep in silence."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">6. "Don't solar batteries die after 6 to 12 months in Nigeria?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "The batteries that die in 12 months are cheap, second-hand lead-acid or tubular car batteries that boil and sulfate. Lumey Energy <strong>never uses lead-acid batteries</strong>. We use brand new, Grade-A <strong>Lithium-ion and LiFePO4 (Lithium Iron Phosphate)</strong> cells equipped with an intelligent Battery Management System (BMS). LiFePO4 cells deliver over 3,500 deep discharge cyclesâ€”meaning <strong>8 to 10+ years of daily use</strong>. Our Heavy Duty series comes with an official <strong>5-Year Warranty</strong>."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">7. "Is it difficult to install? Do I need to pay an electrician to rewire my house?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "For our Portable Series (PowerBox 600, 1500, 1900, 2600, 3100), <strong>zero rewiring is required</strong>. It is 100% Plug & Play. You unbox it, plug your appliances or an extension strip into the front AC sockets, and switch it on. If you have solar panels, simply click the MC4 cable into the solar port. For Heavy Duty AC models (4000/8000), our certified installation engineers handle the complete professional setup for you nationwide."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">8. "The upfront price is expensive." (The Brutal Fuel Math)</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Let's do the honest Nigerian math: If you buy 5 litres of fuel a day at â‚¦1,100/L, that is â‚¦5,500 daily. In 30 days = <strong>â‚¦165,000 spent on fuel alone</strong>. In 6 months = <strong>â‚¦990,000 burned into thin air</strong>â€”plus generator oil, servicing, and repairs. With a Lumey PowerBox 1500 or 2600, you invest that money once. In 2 to 4 months, the system has completely paid for itself. For the next 5 to 8 years, every kilowatt of electricity you enjoy is 100% free profit. The expensive choice is continuing to buy fuel."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">9. "Can I buy the PowerBox only now, and buy solar panels later?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Absolutely! Every model has a <strong>'Box Price Only'</strong> option. You can buy the PowerBox now, use it as an ultra-fast charging silent backup station charged via NEPA or generator, and add Lumey solar panels whenever your budget allows."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">10. "Can I upgrade to a bigger model later as my family or business grows?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Yes! We offer the <strong>Lumey Trade-In Guarantee</strong>. When you are ready to upgrade from the PowerBox 600 to 1500, or from 1500 to 2600 or 4000, simply bring your verified working unit to any Lumey center and trade it in toward the purchase of your bigger system."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">11. "Where is your office? What happens if the unit develops a fault?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Lumey Energy is a fully registered Nigerian clean-tech manufacturer headquartered in Oyemekun, Akure, Ondo State, with active engineer networks, service centers, and certified installation partners across Lagos, Abuja, Port Harcourt, Ibadan, and Kano. Every unit is covered by a <strong>12-Month Official Warranty</strong> (and <strong>5-Year Battery Warranty</strong> on Heavy Duty). If there is any defect, our engineers resolve it promptly."
+      </div>
+    </div>
+
+    <div class="objection-card avoid-break">
+      <div class="objection-q">12. "Can I pay in installments?"</div>
+      <div class="objection-a">
+        <strong>The Word-for-Word Script:</strong> "Yes! With Lumey's flexible financing, you can pay a <strong>30% down payment</strong> to activate your order, and spread the balance over 3, 6, or 12 months. The monthly money you save on fuel literally pays off your installment while you enjoy 24/7 power."
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= SECTION 10 & 11: TESTIMONIALS & FINAL CLOSING ================= -->
+  <div class="page-break"></div>
+  <div class="doc-section avoid-break">
+    <span class="section-tag">Page Section 09 & 10</span>
+    <h2 class="section-title">8. Customer Social Proof & Final High-Urgency Close</h2>
+
+    <div class="wireframe-box">
+      <strong>Visual Layout Directives:</strong><br>
+      â€¢ 3-Column Testimonial Card Grid with customer photo/initials, verified buyer tag, star rating, and location.<br>
+      â€¢ Final Offer Card: Premium dark gradient with golden yellow hotline callout and high-contrast WhatsApp order button.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">ELEMENT: VERIFIED TESTIMONIALS COPY</div>
+      <div class="card-grid-2">
+        <div class="model-card-pdf">
+          <strong>"I stopped buying fuel in February."</strong>
+          <p class="body-copy" style="font-size: 8.5pt; margin-top: 4px;">
+            "The savings have been unbelievable. Running my salon with the PowerBox 1500 means zero generator noise, cold drinks for my customers, and no fuel queues. It has paid for itself twice over."<br>
+            <span style="color: #64748b; font-size: 8pt; font-weight: 700;">â€” Mrs. Blessing A., Salon Owner (Ibadan)</span>
+          </p>
+        </div>
+        <div class="model-card-pdf">
+          <strong>"My deep freezer stays frozen 24/7."</strong>
+          <p class="body-copy" style="font-size: 8.5pt; margin-top: 4px;">
+            "We had a 4-day blackout when the transformer blew. With the PowerBox 2600 and two 600W panels, my wife's soup and meat stayed frozen solid. Not a single Naira lost."<br>
+            <span style="color: #64748b; font-size: 8pt; font-weight: 700;">â€” Dr. Femi B., Consultant (Abuja)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy-block" style="background: #0f172a; color: #ffffff; border-left-color: #fedc22;">
+      <div class="copy-label" style="color: #fedc22;">ELEMENT: FINAL HIGH-URGENCY CLOSING OFFER</div>
+      <h3 class="headline-copy" style="color: #ffffff;">Ready To Never Buy Fuel Again?</h3>
+      <p class="body-copy" style="color: #cbd5e1;">
+        Lock in your August 2026 Batch pricing today before price adjustments take effect. Every order placed today includes <strong>Free Nationwide Delivery</strong>, official 12-month unit warranty certificate, and direct access to our dedicated solar engineering support desk.
+      </p>
+
+      <p style="font-size: 13pt; font-weight: 900; color: #fedc22; margin: 12px 0;">
+        ðŸ“ž Direct WhatsApp Order Desk: 07062878273 | +234 813 974 3177
+      </p>
+
+      <div>
+        <a href="#" class="cta-button-mock" style="padding: 10px 22px; font-size: 10pt;">
+          Order On WhatsApp Now (07062878273)
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Floating Bar Directive -->
+    <div class="wireframe-box" style="margin-top: 14px;">
+      <strong>Mobile Sticky Bar Specification:</strong><br>
+      â€¢ Sticky at the bottom of all mobile screens (below 768px).<br>
+      â€¢ Displays: <em>"Lumey PowerBox â€” From â‚¦260,000"</em> + Green WhatsApp Button <em>"Order on WhatsApp"</em> prefilled with <code>https://wa.me/2347062878273</code>.
+    </div>
+  </div>
+
+</body>
+</html>

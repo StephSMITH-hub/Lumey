@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lumey Energy — Affiliate & Distributor Deliverables Master Blueprint</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+    @page {
+      size: A4;
+      margin: 12mm 12mm 12mm 12mm;
+      @bottom-right {
+        content: counter(page);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #0b0f19;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin-bottom: 8px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .avoid-break {
+      page-break-inside: avoid;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      min-height: 255mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22mm 18mm;
+      background: radial-gradient(circle at 85% 15%, #064e3b 0%, #0b0f19 75%);
+      color: #ffffff;
+      border-radius: 12px;
+      margin-bottom: 12mm;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 12px;
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid #10b981;
+      color: #6ee7b7;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-radius: 9999px;
+      margin-bottom: 15px;
+    }
+
+    .cover-title {
+      font-size: 26pt;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .cover-title span {
+      color: #10b981;
+    }
+
+    .cover-subtitle {
+      font-size: 11.5pt;
+      color: #94a3b8;
+      max-width: 520px;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    .cover-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 8.5pt;
+    }
+
+    .cover-meta div strong {
+      color: #f1f5f9;
+      display: block;
+      font-size: 9pt;
+    }
+
+    .cover-meta div span {
+      color: #64748b;
+      font-size: 8pt;
+    }
+
+    .cover-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 14px;
+      font-size: 8pt;
+      color: #64748b;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Styling */
+    .section-header {
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-top: 18px;
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      font-size: 14pt;
+      font-weight: 800;
+      color: #0b0f19;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-tag {
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 3px 8px;
+      background: #064e3b;
+      color: #a7f3d0;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Grid & Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-dark {
+      background: #0b0f19;
+      color: #e2e8f0;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .card-dark h3, .card-dark h4 {
+      color: #ffffff;
+    }
+
+    .card h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .card-highlight {
+      border-left: 4px solid #10b981;
+      background: #f0fdf4;
+    }
+
+    .card-gold {
+      border-left: 4px solid #f59e0b;
+      background: #fffbeb;
+    }
+
+    .card-blue {
+      border-left: 4px solid #2563eb;
+      background: #eff6ff;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8pt;
+      margin-bottom: 14px;
+      background: #ffffff;
+    }
+
+    th, td {
+      padding: 6px 8px;
+      border: 1px solid #cbd5e1;
+      text-align: left;
+    }
+
+    th {
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 7.8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .num {
+      font-family: 'Plus Jakarta Sans', monospace;
+      font-weight: 600;
+    }
+
+    .green-text {
+      color: #059669;
+      font-weight: 700;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .pill-green { background: #dcfce7; color: #15803d; }
+    .pill-blue { background: #dbeafe; color: #1d4ed8; }
+    .pill-amber { background: #fef3c7; color: #b45309; }
+    .pill-purple { background: #f3e8ff; color: #7e22ce; }
+
+    /* Deliverable Item Box */
+    .deliverable-box {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .deliverable-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 6px;
+      margin-bottom: 8px;
+    }
+
+    .deliverable-title {
+      font-size: 10pt;
+      font-weight: 800;
+      color: #0b0f19;
+    }
+
+    .deliverable-meta {
+      font-size: 7.5pt;
+      color: #64748b;
+      display: flex;
+      gap: 8px;
+    }
+
+    ul.check-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul.check-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 5px;
+      font-size: 8.5pt;
+    }
+
+    ul.check-list li::before {
+      content: "■";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      color: #10b981;
+      font-size: 8pt;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER PAGE -->
+  <div class="cover-page">
+    <div>
+      <div class="badge">Official Commercial Execution Blueprint</div>
+      <div class="cover-title">
+        LUMEY ENERGY<br>
+        <span>AFFILIATE &amp; DISTRIBUTOR</span><br>
+        DELIVERABLES ROADMAP
+      </div>
+      <div class="cover-subtitle">
+        The Complete Master Inventory, Technical Specifications, Marketing Asset Requirements, and Phased Implementation Plan to Operationalize Lumey’s Nationwide Decentralized Power Network.
+      </div>
+
+      <div class="cover-meta">
+        <div>
+          <span>Target Market:</span>
+          <strong>Nigeria (36 States + FCT)</strong>
+        </div>
+        <div>
+          <span>Catalogue Edition:</span>
+          <strong>August 2026 Official Pricing Guide</strong>
+        </div>
+        <div>
+          <span>Operating Headquarters:</span>
+          <strong>Oyemekun, Akure, Ondo State</strong>
+        </div>
+        <div>
+          <span>Regional Hubs:</span>
+          <strong>Lagos, Abuja, PHC, Kano, Ibadan</strong>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); padding: 12px; border-radius: 8px; margin-bottom: 14px;">
+        <p style="font-size: 8pt; color: #a7f3d0; margin-bottom: 0;">
+          <strong>Strategic Intent:</strong> Transition Lumey Energy from high-level strategic frameworks into tangible commercial tools, legally protected contracts, plug-and-play sales assets, and automated tracking infrastructure to capture the decentralized power market.
+        </p>
+      </div>
+
+      <div class="cover-footer">
+        <span>Confidential — Lumey Energy Nigeria Commercial Operations</span>
+        <span>Version 2.0 • September 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: EXECUTIVE COMMERCIAL ARCHITECTURE -->
+  <div class="section-header">
+    <h2><span class="section-tag">Overview</span> 1. The Two-Path Commercial Architecture</h2>
+  </div>
+
+  <p>
+    Nigeria's energy crisis has intensified: PMS (petrol) floats between <strong>₦1,000 and ₦1,250+ per litre</strong>, and Band A electricity tariffs exceed <strong>₦209–₦225/kWh</strong>. Nigerian households, professionals, and shop owners are demanding immediate, quiet, zero-fuel alternatives.
+  </p>
+
+  <div class="grid-2">
+    <div class="card card-highlight">
+      <h3>The Affiliate Track ("Zero Capital, 100% Hustle")</h3>
+      <p style="font-size: 8.5pt; color: #475569;">
+        Designed for university students, NYSC corpers, remote tech professionals, digital creators, and social media influencers.
+      </p>
+      <ul class="check-list">
+        <li><strong>Capital Requirement:</strong> ₦0 (Zero Capital, no registration fee).</li>
+        <li><strong>Inventory Risk:</strong> Zero. Lumey warehouses, insures, and ships all products.</li>
+        <li><strong>Earnings:</strong> 5% to 12% cash commission paid weekly every Tuesday.</li>
+        <li><strong>First-Sale Incentive:</strong> Instant ₦5,000 cash bonus on first closed order.</li>
+      </ul>
+    </div>
+
+    <div class="card card-gold">
+      <h3>The Distributor Track ("Capital, Inventory, Retail")</h3>
+      <p style="font-size: 8.5pt; color: #475569;">
+        Designed for electrical shops, solar installers, estate facility managers, and electronics retailers with physical storefronts.
+      </p>
+      <ul class="check-list">
+        <li><strong>Capital Requirement:</strong> Minimum ₦500,000 opening inventory order.</li>
+        <li><strong>Gross Margins:</strong> 15% to 22% upfront wholesale discount.</li>
+        <li><strong>Territorial Protection:</strong> Exclusive LGA or Statewide distribution rights.</li>
+        <li><strong>Quarterly Rebates:</strong> Additional 2% to 7% credit notes for volume targets.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AUGUST 2026 CATALOGUE MATRICES -->
+  <div class="section-header">
+    <h2><span class="section-tag">Economics</span> 2. August 2026 Model Pricing &amp; Commission Reference</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>August 2026 Model</th>
+        <th>Inverter &amp; Battery</th>
+        <th>Retail (Box Only)</th>
+        <th>Retail (with Solar Panel)</th>
+        <th>Starter (5.0%)</th>
+        <th>Active (7.5%)</th>
+        <th>Pro (10.0%)</th>
+        <th>Ambassador (12.0%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>PowerBox 600</strong></td>
+        <td>400W / 600Wh</td>
+        <td class="num">₦260,000</td>
+        <td class="num">₦320,000 (200W)</td>
+        <td class="num green-text">₦16,000</td>
+        <td class="num green-text">₦24,000</td>
+        <td class="num green-text">₦32,000</td>
+        <td class="num green-text">₦38,400</td>
+      </tr>
+      <tr>
+        <td><strong>PowerBox 1500</strong></td>
+        <td>1kW / 1,500Wh</td>
+        <td class="num">₦380,000</td>
+        <td class="num">₦500,000 (400W)</td>
+        <td class="num green-text">₦25,000</td>
+        <td class="num green-text">₦37,500</td>
+        <td class="num green-text">₦50,000</td>
+        <td class="num green-text">₦60,000</td>
+      </tr>
+      <tr>
+        <td><strong>PowerBox 1900</strong></td>
+        <td>1kW / 1,900Wh</td>
+        <td class="num">₦440,000</td>
+        <td class="num">₦590,000 (600W)</td>
+        <td class="num green-text">₦29,500</td>
+        <td class="num green-text">₦44,250</td>
+        <td class="num green-text">₦59,000</td>
+        <td class="num green-text">₦70,800</td>
+      </tr>
+      <tr>
+        <td><strong>PowerBox 2600</strong></td>
+        <td>2kW / 2,600Wh</td>
+        <td class="num">₦700,000</td>
+        <td class="num">₦1,000,000 (1.2kW)</td>
+        <td class="num green-text">₦50,000</td>
+        <td class="num green-text">₦75,000</td>
+        <td class="num green-text">₦100,000</td>
+        <td class="num green-text">₦120,000</td>
+      </tr>
+      <tr>
+        <td><strong>PowerBox 3100</strong></td>
+        <td>2kW / 3,100Wh</td>
+        <td class="num">₦800,000</td>
+        <td class="num">₦1,100,000 (1.2kW)</td>
+        <td class="num green-text">₦55,000</td>
+        <td class="num green-text">₦82,500</td>
+        <td class="num green-text">₦110,000</td>
+        <td class="num green-text">₦132,000</td>
+      </tr>
+      <tr>
+        <td><strong>PowerBox 4000</strong></td>
+        <td>4kW / 4kWh LiFePO4</td>
+        <td class="num">₦1,550,000</td>
+        <td class="num">₦2,150,000 (2.4kW)</td>
+        <td class="num green-text">₦107,500</td>
+        <td class="num green-text">₦161,250</td>
+        <td class="num green-text">₦215,000</td>
+        <td class="num green-text">₦258,000</td>
+      </tr>
+      <tr>
+        <td><strong>PowerBox 8000</strong></td>
+        <td>4kW / 8kWh LiFePO4</td>
+        <td class="num">₦2,000,000</td>
+        <td class="num">₦2,600,000 (2.4kW)</td>
+        <td class="num green-text">₦130,000</td>
+        <td class="num green-text">₦195,000</td>
+        <td class="num green-text">₦260,000</td>
+        <td class="num green-text">₦312,000</td>
+      </tr>
+      <tr>
+        <td><strong>PowerBox 8000+</strong></td>
+        <td>8kW / 8kWh LiFePO4</td>
+        <td class="num">₦2,300,000</td>
+        <td class="num">₦3,200,000 (3.6kW)</td>
+        <td class="num green-text">₦160,000</td>
+        <td class="num green-text">₦240,000</td>
+        <td class="num green-text">₦320,000</td>
+        <td class="num green-text">₦384,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <!-- SECTION 3: MASTER DELIVERABLES BLUEPRINT BY PILLAR -->
+  <div class="section-header">
+    <h2><span class="section-tag">Pillar 1</span> Partner Recruitment &amp; Acquisition Funnels</h2>
+  </div>
+
+  <div class="deliverable-box">
+    <div class="deliverable-header">
+      <div class="deliverable-title">Deliverable 1.1: Dedicated Partner Recruitment Landing Page</div>
+      <div class="deliverable-meta">
+        <span class="pill pill-green">Code / Web App</span>
+        <span>Priority: P0 (Sprint 1)</span>
+      </div>
+    </div>
+    <p>A standalone, responsive recruitment portal enabling prospects to evaluate opportunities and register instantly.</p>
+    <ul class="check-list">
+      <li><strong>Dual-Track Mode Switcher:</strong> Instant toggle between "Earn as an Affiliate (₦0 Capital)" and "Stock as a Distributor (Wholesale Margins)".</li>
+      <li><strong>Interactive Affiliate Earnings Simulator:</strong> Sliders calculating dynamic monthly income based on model quantity selections.</li>
+      <li><strong>Distributor Wholesale Profit Calculator:</strong> Real-time display of cash margins (15%–22%) and quarterly volume rebate estimates based on capital.</li>
+      <li><strong>Frictionless Ingestion Form:</strong> Dynamic intake capturing name, city/state, CAC status, audience size, and instant WhatsApp handoff.</li>
+    </ul>
+  </div>
+
+  <div class="deliverable-box">
+    <div class="deliverable-header">
+      <div class="deliverable-title">Deliverable 1.2: Partner Recruitment Ad Creative Suite</div>
+      <div class="deliverable-meta">
+        <span class="pill pill-blue">Media &amp; Copy</span>
+        <span>Priority: P1 (Sprint 3)</span>
+      </div>
+    </div>
+    <p>High-converting paid advertising assets for Meta (FB/IG), TikTok, and LinkedIn targeting two specific buyer personas.</p>
+    <ul class="check-list">
+      <li><strong>Affiliate Campaign ("The Zero-Capital Side Hustle"):</strong> Targeted at youth corpers, tech freelancers, and digital marketers seeking ₦150k–₦400k/mo.</li>
+      <li><strong>Distributor Campaign ("Stop Losing Generator Customers"):</strong> Targeted at electrical shop owners, solar installers, and hardware dealers.</li>
+      <li><strong>Deliverable Package:</strong> 6x static high-contrast creatives (1:1 and 9:16), 3x video scripts with uncut b-roll direction, and 2x carousel swipe decks.</li>
+    </ul>
+  </div>
+
+  <div class="deliverable-box">
+    <div class="deliverable-header">
+      <div class="deliverable-title">Deliverable 1.3: Executive Distributor Pitch Deck</div>
+      <div class="deliverable-meta">
+        <span class="pill pill-purple">Executive PDF / Slides</span>
+        <span>Priority: P0 (Sprint 2)</span>
+      </div>
+    </div>
+    <p>A 10-slide consulting-grade pitch presentation for onboarding high-net-worth commercial electronics and solar dealers.</p>
+    <ul class="check-list">
+      <li><strong>Market Window &amp; Fuel Economics:</strong> Explaining the structural transition from fuel generators to lithium power stations.</li>
+      <li><strong>Wholesale Margin &amp; Cash Flow Proof:</strong> Showing exact returns on ₦500k, ₦2M, and ₦5M initial inventory orders.</li>
+      <li><strong>Exclusive Territory Protection:</strong> Codifying the LGA and state monopoly terms and the 60-day reorder policy.</li>
+      <li><strong>Technical &amp; Warranty Backing:</strong> Highlighting Akure HQ engineering, Grade-A LiFePO4 cells, and 5-year warranty terms.</li>
+    </ul>
+  </div>
+
+  <div class="deliverable-box">
+    <div class="deliverable-header">
+      <div class="deliverable-title">Deliverable 1.4: Commercial Distributor Application &amp; KYC Dossier</div>
+      <div class="deliverable-meta">
+        <span class="pill pill-amber">Legal &amp; KYC</span>
+        <span>Priority: P1 (Sprint 2)</span>
+      </div>
+    </div>
+    <p>Formal onboarding and vetting instrument to evaluate distributor creditworthiness and showroom viability.</p>
+    <ul class="check-list">
+      <li>Corporate legal details (CAC certificate, tax ID, directors' identification, physical GPS coordinates).</li>
+      <li>Showroom audit: Storefront square footage, foot traffic metrics, exterior facade photos, secure inventory lockup.</li>
+      <li>Financial history: 6 months corporate bank statement upload and personal guarantor indemnification.</li>
+    </ul>
+  </div>
+
+  <!-- PILLAR 2: LEGAL & COMPLIANCE -->
+  <div class="section-header">
+    <h2><span class="section-tag">Pillar 2</span> Legal, Compliance &amp; Commercial Protection</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 2.1: Affiliate Agreement &amp; Code of Conduct</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-green">Legal PDF</span>
+          <span>Sprint 1</span>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li><strong>Minimum Advertised Price (MAP):</strong> Prohibition of unauthorized public price discounting.</li>
+        <li><strong>Representation Standards:</strong> Strict rules against misleading load claims or competitor disparagement.</li>
+        <li><strong>Attribution Window:</strong> 30-day cookie life, last-click coupon priority, refund clawback terms.</li>
+        <li><strong>Payout Terms:</strong> Weekly Tuesday disbursements; ₦10,000 threshold.</li>
+      </ul>
+    </div>
+
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 2.2: Master Distributor Agreement</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-purple">Legal Contract</span>
+          <span>Sprint 2</span>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li><strong>Territorial Exclusivity:</strong> Clearly defined geographic boundaries (LGA or State).</li>
+        <li><strong>60-Day Reorder Covenant:</strong> Automated loss of exclusivity upon 60 days of inactivity.</li>
+        <li><strong>Wholesale Discount Schedule:</strong> Formal lock-in of 15%, 18%, or 22% margins.</li>
+        <li><strong>Warranty &amp; RMA Protocol:</strong> Standard procedures for replacement units and depot waybills.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- PILLAR 3: AFFILIATE EMPOWERMENT VAULT -->
+  <div class="section-header">
+    <h2><span class="section-tag">Pillar 3</span> The Affiliate Sales Empowerment Vault</h2>
+  </div>
+
+  <div class="deliverable-box">
+    <div class="deliverable-header">
+      <div class="deliverable-title">Deliverable 3.1: The "Done-For-You" 7-Day WhatsApp Status Launch Pack</div>
+      <div class="deliverable-meta">
+        <span class="pill pill-green">Copy &amp; Assets</span>
+        <span>Priority: P0 (Sprint 1)</span>
+      </div>
+    </div>
+    <p>A ready-to-post, day-by-day sequence of high-converting WhatsApp stories designed to produce an affiliate's first sale within 72 hours.</p>
+    <ul class="check-list">
+      <li><strong>Day 1 (The Fuel Agitation):</strong> Current fuel receipts &amp; Band A tariffs vs. zero-fuel freedom.</li>
+      <li><strong>Day 2 (The Solution Unveil):</strong> PowerBox 1500 running TV and tabletop fridge in silent comfort.</li>
+      <li><strong>Day 3 (The Uncut Proof):</strong> 30-second live load test video of blender + TV with digital wattage proof.</li>
+      <li><strong>Day 4 (The Fuel Math Breakdown):</strong> Infographic demonstrating how a PowerBox pays for itself in 90 days.</li>
+      <li><strong>Day 5 (Social Proof):</strong> Testimonial screenshot of a Nigerian family sleeping cool during a blackout.</li>
+      <li><strong>Day 6 (Urgency / Scarcity):</strong> Limited local inventory announcement with free depot waybill delivery.</li>
+      <li><strong>Day 7 (Direct Call to Action):</strong> "Closing batches today — reply SOLAR to lock in your coupon."</li>
+    </ul>
+  </div>
+
+  <div class="grid-2">
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 3.2: Social Media Content Vault</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-blue">Canva / Media</span>
+          <span>Sprint 3</span>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li>15x Instagram/Facebook feed templates (1080x1080) highlighting appliance runtimes.</li>
+        <li>10x Story/Reel templates (1080x1920) with blank stickers for partner contact codes.</li>
+        <li>5x Uncut proof video clips (PB 600, 1500, 2600, 4000).</li>
+        <li>Library of 20 pre-written caption hooks for WhatsApp, X, and LinkedIn.</li>
+      </ul>
+    </div>
+
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 3.3: Pocket Load Matcher Guide</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-green">2-Page PDF</span>
+          <span>Sprint 1</span>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li>60-second diagnostic cheat sheet: What to recommend when a buyer lists their appliances.</li>
+        <li>Clear distinction between tabletop fridges (PB 1500) and deep freezers (PB 2600/3100).</li>
+        <li>Accurate sizing for Inverter ACs and borehole pumping machines (PB 4000/8000+).</li>
+        <li>Pocket pricing and installment payment breakdown table.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="deliverable-box">
+    <div class="deliverable-header">
+      <div class="deliverable-title">Deliverable 3.4: WhatsApp Quick-Reply Objection Battlecards</div>
+      <div class="deliverable-meta">
+        <span class="pill pill-amber">Text Swipe File</span>
+        <span>Priority: P1 (Sprint 3)</span>
+      </div>
+    </div>
+    <p>Word-for-word copy-paste responses to eliminate buyer hesitations instantly in direct messages:</p>
+    <ul class="check-list">
+      <li><strong>Objection: "It is too expensive."</strong> ➔ Word-for-word ROI math showing ₦90,000 monthly fuel savings paying back the unit in 90 days.</li>
+      <li><strong>Objection: "What about rainy or cloudy days?"</strong> ➔ Triple-charging script explaining 2-hour NEPA fast charging and generator top-up.</li>
+      <li><strong>Objection: "Will the battery die in one year?"</strong> ➔ Grade-A LiFePO4 explanation (3,500+ cycles, 10-year lifespan, 5-year official warranty).</li>
+      <li><strong>Objection: "Why not Alaba Market assembled inverters?"</strong> ➔ Breakdown of fire risks, refurbished cells, lack of warranty, and pure sine wave protection.</li>
+    </ul>
+  </div>
+
+  <!-- PILLAR 4: PHYSICAL RETAIL MERCHANDISING -->
+  <div class="section-header">
+    <h2><span class="section-tag">Pillar 4</span> Physical Merchandising &amp; Retail Store Assets</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 4.1: Luxury Showroom Roll-Up Banner</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-purple">200cm x 85cm CMYK</span>
+          <span>Sprint 2</span>
+        </div>
+      </div>
+      <p>Point-of-sale display banner for retail store corners and electronics showrooms.</p>
+      <ul class="check-list">
+        <li>Bold headline: "Nigeria's #1 Pure Sine Wave Solar Generator."</li>
+        <li>Visual showcase of PowerBox 1500 and PowerBox 2600 units.</li>
+        <li>Core badges: Grade-A LiFePO4, 2-Hr Fast Charge, 5-Year Battery Warranty.</li>
+        <li>Distributor stamp box: "Authorized Regional Sales &amp; Warranty Center."</li>
+      </ul>
+    </div>
+
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 4.2: Full-Colour A4 Tri-Fold Brochure</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-purple">Print-Ready PDF</span>
+          <span>Sprint 2</span>
+        </div>
+      </div>
+      <p>6-panel physical handout for walk-in retail shoppers and corporate clients.</p>
+      <ul class="check-list">
+        <li>Complete August 2026 appliance runtime chart across all 8 models.</li>
+        <li>Fuel vs. solar payback comparison table.</li>
+        <li>Pure sine wave electronic safety explanation.</li>
+        <li>Dealer contact stamp area for local walk-in follow-up.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 4.3: In-Store Sales Rep Floor Card</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-amber">Laminated A5</span>
+          <span>Sprint 2</span>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li>Floor protocol for steering generator shoppers toward solar power stations.</li>
+        <li>Step-by-step instructions for conducting a 2-minute zero-noise live load demonstration.</li>
+        <li>Over-the-counter closing questions and instant digital warranty activation SOP.</li>
+      </ul>
+    </div>
+
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 4.4: Storefront Partner Plaque</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-blue">Acrylic / Vector</span>
+          <span>Sprint 2</span>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li>40cm x 30cm branded acrylic wall plaque establishing official corporate accreditation.</li>
+        <li>Weatherproof outdoor window vinyl stickers verifying Grade-A Lithium warranty service.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- PILLAR 5: OPERATIONS & BACKEND SYSTEMS -->
+  <div class="section-header">
+    <h2><span class="section-tag">Pillar 5</span> Operations, Systems &amp; Technical Infrastructure</h2>
+  </div>
+
+  <div class="deliverable-box">
+    <div class="deliverable-header">
+      <div class="deliverable-title">Deliverable 5.1: Referral Code &amp; Attribution Tracking Architecture</div>
+      <div class="deliverable-meta">
+        <span class="pill pill-green">SOP &amp; Tracking Tech</span>
+        <span>Priority: P0 (Sprint 1)</span>
+      </div>
+    </div>
+    <p>Infrastructure to reliably attribute customer purchases to the originating partner across all channels.</p>
+    <ul class="check-list">
+      <li><strong>Partner Coupon Codes:</strong> Unique codes (e.g., <code>LUMEY-KEMI</code>) providing the buyer a ₦5,000 discount while tagging the partner account.</li>
+      <li><strong>Digital Referral Links:</strong> Parameter-based tracking synced with the online sales page and savings calculator.</li>
+      <li><strong>Manual Hotline Attribution Protocol:</strong> Mandatory script for phone sales reps to verify partner referral codes prior to issuing invoices.</li>
+    </ul>
+  </div>
+
+  <div class="grid-2">
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 5.2: WhatsApp Ingestion Flow</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-amber">Chat Automation</span>
+          <span>Sprint 3</span>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li>Keyword routing (e.g., "AFFILIATE" triggers instant intake; "DISTRIBUTOR" routes to regional rep).</li>
+        <li>Automated qualification of applicants within 60 seconds of inbound contact.</li>
+        <li>Auto-distribution of the Digital Starter Pack and group broadcast link.</li>
+      </ul>
+    </div>
+
+    <div class="deliverable-box">
+      <div class="deliverable-header">
+        <div class="deliverable-title">Deliverable 5.3: Commission Payout Ledger</div>
+        <div class="deliverable-meta">
+          <span class="pill pill-green">Financial SOP &amp; Sheet</span>
+          <span>Sprint 3</span>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li>Automated weekly settlement cycle: audits Monday, payouts Tuesday by 2:00 PM.</li>
+        <li>Automatic addition of the ₦5,000 First-Sale Cash Bonus.</li>
+        <li>Digital WhatsApp settlement receipts delivered automatically to partners.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="deliverable-box">
+    <div class="deliverable-header">
+      <div class="deliverable-title">Deliverable 5.4: Regional Depot Fulfillment &amp; Warranty (RMA) SOP</div>
+      <div class="deliverable-meta">
+        <span class="pill pill-purple">Operations Manual</span>
+        <span>Priority: P1 (Sprint 3)</span>
+      </div>
+    </div>
+    <p>Logistics architecture connecting Akure headquarters with the 5 regional hubs (Lagos, Abuja, PHC, Kano, Ibadan).</p>
+    <ul class="check-list">
+      <li><strong>24-Hour Dispatch SLA:</strong> Waybill generation and dispatch within 24 hours of cleared wholesale order.</li>
+      <li><strong>Shockproof Logistics Partners:</strong> Standardized crating protocols for interstate transit via GIG Logistics and dedicated trucks.</li>
+      <li><strong>7-Day Defect Exchange Policy:</strong> Fast-track technical diagnostic and direct replacement workflow for verified factory issues.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 4: PHASED ROADMAP -->
+  <div class="section-header">
+    <h2><span class="section-tag">Execution</span> 4. Three-Sprint Implementation Roadmap</h2>
+  </div>
+
+  <div class="grid-3">
+    <div class="card card-highlight">
+      <h3>SPRINT 1: FAST LAUNCH (Days 1–3)</h3>
+      <p style="font-size: 7.5pt; color: #64748b; font-weight: 700; text-transform: uppercase;">Affiliate Engine Activation</p>
+      <ul class="check-list">
+        <li><strong>[1.1]</strong> Partner Recruitment Web Page</li>
+        <li><strong>[2.1]</strong> Affiliate Agreement &amp; Code of Conduct</li>
+        <li><strong>[3.1]</strong> 7-Day WhatsApp Status Launch Pack</li>
+        <li><strong>[3.3]</strong> Pocket Load Matcher &amp; Price Card</li>
+        <li><strong>[5.1]</strong> Referral Code Attribution SOP</li>
+      </ul>
+    </div>
+
+    <div class="card card-gold">
+      <h3>SPRINT 2: RETAIL ASSETS (Days 4–7)</h3>
+      <p style="font-size: 7.5pt; color: #64748b; font-weight: 700; text-transform: uppercase;">Distributor &amp; Showroom Scale</p>
+      <ul class="check-list">
+        <li><strong>[1.3]</strong> Distributor Executive Pitch Deck</li>
+        <li><strong>[1.4]</strong> Commercial KYC Intake Dossier</li>
+        <li><strong>[2.2]</strong> Master Distributor Agreement</li>
+        <li><strong>[4.1]</strong> Showroom Luxury Roll-Up Banner</li>
+        <li><strong>[4.2]</strong> Tri-Fold Print-Ready Product Brochure</li>
+        <li><strong>[4.3]</strong> In-Store Sales Rep Floor Card</li>
+      </ul>
+    </div>
+
+    <div class="card card-blue">
+      <h3>SPRINT 3: SCALING (Days 8–10)</h3>
+      <p style="font-size: 7.5pt; color: #64748b; font-weight: 700; text-transform: uppercase;">Automation &amp; Nationwide Growth</p>
+      <ul class="check-list">
+        <li><strong>[1.2]</strong> Recruitment Paid Ad Creative Pack</li>
+        <li><strong>[3.2]</strong> Social Media Content &amp; Video Bank</li>
+        <li><strong>[3.4]</strong> WhatsApp Quick-Reply Battlecards</li>
+        <li><strong>[5.2]</strong> WhatsApp Ingestion &amp; Chatbot Flow</li>
+        <li><strong>[5.3]</strong> Commission Automated Payout Ledger</li>
+        <li><strong>[5.4]</strong> Depot Logistics &amp; RMA Standard SOP</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUMMARY CALLOUT -->
+  <div class="card-dark" style="margin-top: 14px;">
+    <h3 style="color: #10b981; margin-bottom: 6px;">Commercial Readiness Status</h3>
+    <p style="font-size: 8.5pt; color: #cbd5e1; margin-bottom: 0;">
+      All pricing structures, commission formulas, and operational models are permanently synchronized with the official August 2026 Lumey Energy Product Catalogue. Implementation proceeds sequentially across Sprints 1, 2, and 3 to establish Lumey’s dominant distribution network across Nigeria.
+    </p>
+  </div>
+
+</body>
+</html>

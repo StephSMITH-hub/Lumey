@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumey Energy — Affiliate Promotional Flyers & Complete Copy Vault (August 2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #071510;
+      --card-dark: #0d241c;
+      --card-border: #1d4336;
+      --gold-primary: #e5a93c;
+      --gold-light: #f7d58b;
+      --gold-dark: #b87c1e;
+      --emerald-accent: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.15);
+      --text-main: #f0fdf4;
+      --text-muted: #94a3b8;
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      line-height: 1.5;
+      padding: 0;
+      margin: 0;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 14mm 16mm;
+      margin: 0 auto;
+      background-color: var(--bg-dark);
+      position: relative;
+      page-break-after: always;
+      break-after: page;
+      overflow: hidden;
+      border-bottom: 1px solid #14352b;
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--gold-primary);
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 26px;
+      height: 26px;
+      background: linear-gradient(135deg, var(--gold-primary), var(--emerald-accent));
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      color: #000;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+
+    .logo-tag {
+      font-size: 9.5px;
+      color: var(--gold-primary);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: 9.5px;
+      color: var(--text-muted);
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(229, 169, 60, 0.15);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 8.5px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .title-banner {
+      background: linear-gradient(135deg, #0d2a20, #081711);
+      border: 1px solid var(--gold-primary);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .title-banner h1 {
+      font-size: 20px;
+      color: var(--gold-light);
+      margin-bottom: 2px;
+      letter-spacing: -0.5px;
+    }
+
+    .title-banner p {
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .card {
+      background: var(--card-dark);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      position: relative;
+    }
+
+    .card.highlight {
+      border-color: var(--gold-primary);
+      background: linear-gradient(145deg, #102d23, #0b1f18);
+    }
+
+    .card h3 {
+      font-size: 12.5px;
+      color: var(--gold-light);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card p, .card li {
+      font-size: 10.5px;
+      color: #cbd5e1;
+      margin-bottom: 4px;
+    }
+
+    .flyer-preview-box {
+      background: #040d0a;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .flyer-preview-box img {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid rgba(229, 169, 60, 0.4);
+      display: block;
+    }
+
+    .flyer-meta-tag {
+      font-size: 10px;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .copy-block {
+      background: #040c09;
+      border: 1px dashed #245846;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 10px;
+      line-height: 1.45;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    .copy-block strong {
+      color: var(--gold-light);
+    }
+
+    .copy-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .badge-pill {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--emerald-accent);
+      color: #6ee7b7;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-size: 8.5px;
+      font-weight: 600;
+    }
+
+    .badge-gold {
+      background: rgba(229, 169, 60, 0.2);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-size: 8.5px;
+      font-weight: 600;
+    }
+
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    .table-custom th {
+      background: #14352b;
+      color: var(--gold-light);
+      font-weight: 700;
+      text-align: left;
+      padding: 5px 8px;
+      border: 1px solid var(--card-border);
+    }
+
+    .table-custom td {
+      padding: 4px 8px;
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+    }
+
+    .table-custom tr:nth-child(even) td {
+      background: #091a13;
+    }
+
+    .footer-bar {
+      position: absolute;
+      bottom: 10mm;
+      left: 16mm;
+      right: 16mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #14352b;
+      padding-top: 6px;
+      font-size: 8.5px;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body {
+        background: transparent;
+      }
+      .page {
+        margin: 0;
+        border: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= PAGE 1: COVER & THE NON-PLAIN COPY ENGINE ================= -->
+  <div class="page">
+    <div class="header-bar">
+      <div class="logo-area">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <div class="logo-text">LUMEY ENERGY</div>
+          <div class="logo-tag">Official Partner Enablement & Viral Copy Vault</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-badge">August 2026 Master Series</div>
+        <div>Doc ID: LUM-AF-VIRAL-2026</div>
+      </div>
+    </div>
+
+    <div class="title-banner">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div>
+          <h1>Affiliate Promotional Flyers & High-Conversion Copy Vault</h1>
+          <p>Visceral, Scroll-Stopping, Story-Driven Copy That Converts in Today's Nigeria (Petrol ₦1,200/L & Grid Crisis)</p>
+        </div>
+        <span class="badge-gold" style="font-size: 10px; padding: 4px 8px;">Confidential Swipe File</span>
+      </div>
+    </div>
+
+    <div class="card highlight" style="margin-bottom: 12px;">
+      <h3>⚡ WHY MOST NIGERIAN PROMO COPY FAILS (AND WHY THIS VAULT PRINTS CASH)</h3>
+      <p style="font-size: 10.5px; color: #e2e8f0; margin-bottom: 6px;">
+        Most promo copy fails because it is dry, polite, and <strong>plain</strong>. Saying <em>"Buy solar today, it is reliable"</em> converts nobody. In 2026 Nigeria, people are <strong>angry, stressed, and exhausted</strong> by:
+      </p>
+      <div class="grid-2" style="margin-bottom: 0;">
+        <div style="background: #061510; padding: 8px; border-radius: 6px; border-left: 3px solid #ef4444;">
+          <strong style="color: #fca5a5; font-size: 10px;">THE RAW NIGERIAN PAIN POINTS WE AGITATE:</strong>
+          <ul style="padding-left: 14px; font-size: 9.5px; color: #94a3b8; margin-top: 4px;">
+            <li>Burning ₦180k/month on ₦1,200/L petrol & mechanic rips.</li>
+            <li>Waking up at 2 AM sweating because gen rope cut in your hand.</li>
+            <li>₦150k worth of meat/soup spoiling inside warm freezers.</li>
+            <li>Remote tech worker dropped from Zoom client interview.</li>
+          </ul>
+        </div>
+        <div style="background: #061510; padding: 8px; border-radius: 6px; border-left: 3px solid var(--gold-primary);">
+          <strong style="color: var(--gold-light); font-size: 10px;">THE IRRESISTIBLE HOOKS WE DEPLOY:</strong>
+          <ul style="padding-left: 14px; font-size: 9.5px; color: #94a3b8; margin-top: 4px;">
+            <li><strong>Affiliates:</strong> Stop entertaining 500 status viewers for free; earn up to ₦384k/sale with ₦0 capital.</li>
+            <li><strong>Customers:</strong> The Official Burial of the Generator (0 dB Silence, 5-Yr Warranty, ₦5,000 Voucher).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color: var(--gold-light); font-size: 12.5px; margin-bottom: 6px;">📊 OFFICIAL AUGUST 2026 COMMISSION STRUCTURE (WHAT MAKES RECRUITMENT EXPLOSIVE)</h3>
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th>PowerBox Model</th>
+          <th>Combo Retail Price</th>
+          <th>Starter (5.0%)</th>
+          <th>Active (7.5%)</th>
+          <th>Pro Partner (10.0%)</th>
+          <th>Ambassador (12.0%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>PB 600</strong> (Tech Freelancer)</td>
+          <td>₦320,000</td>
+          <td>₦16,000</td>
+          <td>₦24,000</td>
+          <td>₦32,000</td>
+          <td><strong>₦38,400</strong></td>
+        </tr>
+        <tr>
+          <td><strong>PB 1500</strong> (Generator Killer)</td>
+          <td>₦730,000</td>
+          <td>₦36,500</td>
+          <td>₦54,750</td>
+          <td>₦73,000</td>
+          <td><strong>₦87,600</strong></td>
+        </tr>
+        <tr>
+          <td><strong>PB 2600</strong> (Deep Freezer)</td>
+          <td>₦1,150,000</td>
+          <td>₦57,500</td>
+          <td>₦86,250</td>
+          <td>₦115,000</td>
+          <td><strong>₦138,000</strong></td>
+        </tr>
+        <tr>
+          <td><strong>PB 4000</strong> (1.5HP Inverter AC)</td>
+          <td>₦1,850,000</td>
+          <td>₦92,500</td>
+          <td>₦138,750</td>
+          <td>₦185,000</td>
+          <td><strong>₦222,000</strong></td>
+        </tr>
+        <tr>
+          <td><strong>PB 8000 Plus</strong> (Duplex Off-Grid)</td>
+          <td>₦3,200,000</td>
+          <td>₦160,000</td>
+          <td>₦240,000</td>
+          <td>₦320,000</td>
+          <td><strong>₦384,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card" style="margin-top: 6px;">
+      <h3 style="color: #6ee7b7; font-size: 11.5px;">⭐ THE "FAST FIRST SALE" ACCELERATOR</h3>
+      <p style="font-size: 10px;">
+        To guarantee newly recruited affiliates stay hungry, Lumey awards an additional <strong>₦5,000 Cash Accelerator Bonus</strong> on top of standard commission for their first confirmed order within 14 days of onboarding.
+      </p>
+    </div>
+
+    <div class="footer-bar">
+      <div>Lumey Energy Partner Operations • August 2026 Catalogue</div>
+      <div>Page 1 of 5 — The Non-Plain Copy Engine & Commercial Blueprint</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 2: CALL FOR AFFILIATES RECRUITMENT CAMPAIGN ================= -->
+  <div class="page">
+    <div class="header-bar">
+      <div class="logo-area">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <div class="logo-text">LUMEY ENERGY</div>
+          <div class="logo-tag">Recruitment Campaign Suite</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-badge">Campaign Track 1</div>
+        <div>Call for Affiliates</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="align-items: start;">
+      <div>
+        <div class="flyer-preview-box">
+          <img src="lumey_affiliate_recruitment_flyer.jpg" alt="Lumey Affiliate Recruitment Flyer">
+          <div class="flyer-meta-tag">FLYER 1: RECRUITMENT HERO (1:1 Square)</div>
+          <span style="font-size: 8.5px; color: #94a3b8;">Format: 1080x1080px • Dark Emerald / Gold</span>
+        </div>
+        <div class="card" style="padding: 6px 8px;">
+          <h4 style="color: var(--gold-light); font-size: 10.5px; margin-bottom: 2px;">Flyer On-Image Copy:</h4>
+          <ul style="padding-left: 12px; font-size: 9px; color: #cbd5e1;">
+            <li><strong>Headline:</strong> STOP ENTERTAINING 500 STATUS VIEWERS FOR FREE.</li>
+            <li><strong>Subhead:</strong> Turn Your Phone Into A ₦150k–₦600k/Month Clean Energy Cash Flow With ₦0 Capital.</li>
+            <li><strong>Badges:</strong> ₦0 Capital • Up to ₦384k/Sale • 100% Dropshipped • Tuesday Direct Bank Alerts • ₦5k Discount Code for Buyers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="copy-title">
+            <span>A. The "Wake Up, Stop Playing" WhatsApp Sequence</span>
+            <span class="badge-gold">4-Slide WhatsApp</span>
+          </div>
+          <div class="copy-block"><strong>[Slide 1]</strong>
+Your WhatsApp status gets 400 to 1,000 views every 24 hours.
+Your reward? 2 laughing emojis 😂, 1 "boss mi" reply, and exactly ₦0.00 in your bank account.
+Meanwhile, Nigerians around you are burning ₦1,200/L on petrol and crying every night. You are entertaining people for free while suffering in the same economy. 🤦‍♂️
+
+<strong>[Slide 2]</strong>
+Lumey Energy pays between ₦16,000 and ₦384,000 CASH COMMISSION for every silent solar generator sold through your referral link.
+You don't buy stock. You don't deliver cartons. You don't repair inverters.
+Lumey handles crating and delivers nationwide to all 36 states. You just connect the buyer.
+
+<strong>[Slide 3]</strong>
+Quick math for the month:
+• Recommend the bestselling PB 1500 to 2 people = ₦146,000
+• Recommend the PB 2600 to 1 deep freezer owner = ₦115,000
+👉 Total in your bank before month ends: ₦261,000 PURE PROFIT with ₦0 capital.
+
+<strong>[Slide 4]</strong>
+August 2026 intake is 100% FREE (₦0 registration).
+P.S. They pay every Tuesday before 2:00 PM directly to your bank.
+Reply 'PARTNER' right now to get your link before registration closes! 🚀⚡</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 4px;">
+      <div class="card">
+        <div class="copy-title">
+          <span>B. The "Anti-Ponzi / Real Business" Post</span>
+          <span class="badge-pill">Meta / Instagram</span>
+        </div>
+        <div class="copy-block" style="margin-bottom: 0;">Let's have an honest conversation about making money in Nigeria in 2026. 🛑
+
+Over the last 3 years, you saw people lose money to:
+❌ "Bring 2 people to bring 2 people" Ponzi schemes
+❌ Crypto Telegram signals that dumped to zero
+❌ "Mini-importation" courses where goods got stuck at the port
+❌ Buying hair or clothes that sat in their room for 6 months unsold
+
+The reason? You were chasing hype instead of solving a NATIONAL EMERGENCY.
+What is Nigeria's biggest emergency today? ENERGY.
+With petrol at ₦1,200/L and Band A bills crushing salaries, everyone wants solar.
+
+Through Lumey Energy:
+1️⃣ Sign up in 60s for FREE (₦0 capital).
+2️⃣ Get an official partner code giving buyers ₦5,000 OFF.
+3️⃣ Lumey crates and delivers nationwide to all 36 states.
+4️⃣ Every Tuesday, 5% to 12% cash hits your bank account.
+
+Stop watching Nigerians burn billions on petrol. Position yourself between the fuel pump and clean energy.
+
+👉 Tap link in bio or comment 'AFFILIATE' below!</div>
+      </div>
+
+      <div class="card">
+        <div class="copy-title">
+          <span>C. The "Corporate Salary Trap" Post</span>
+          <span class="badge-gold">LinkedIn / Corporate</span>
+        </div>
+        <div class="copy-block" style="margin-bottom: 0;">In an economy where petrol is ₦1,200/litre and electricity tariffs surged by 200%, relying on a single corporate salary is a major vulnerability.
+
+Most professionals know they need a second income, but corporate realities make it impossible:
+- You cannot open a physical store (you have a 9-to-5).
+- You cannot buy inventory (working capital is tied up).
+- You cannot manage logistics and dispatch riders.
+
+This is why high-earning corporate employees across banking, FMCG, and tech are joining the Lumey Partner Ecosystem.
+
+Key Terms:
+• Zero Working Capital: ₦0 signup fee, no inventory.
+• High-Yield Economics: 5% to 12% commission (₦16k to ₦384k per unit).
+• Strict Settlement Discipline: Automated NUBAN bank transfers every Tuesday before 2:00 PM.
+• Lumey manages nationwide logistics and 5-yr warranty depot service.
+
+Review the framework: https://lumeyenergy.com/affiliate</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <div>Lumey Energy Partner Operations • Recruitment Suite</div>
+      <div>Page 2 of 5 — Track 1: Non-Plain Recruitment Copy</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 3: PRODUCT SALES FLYER & STORY-DRIVEN RETAIL COPY ================= -->
+  <div class="page">
+    <div class="header-bar">
+      <div class="logo-area">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <div class="logo-text">LUMEY ENERGY</div>
+          <div class="logo-tag">Product Retail Flywheel</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-badge">Campaign Track 2</div>
+        <div>Customer Sales Suite</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="align-items: start;">
+      <div>
+        <div class="flyer-preview-box">
+          <img src="lumey_product_promo_flyer.jpg" alt="Lumey Product Promo Flyer">
+          <div class="flyer-meta-tag">FLYER 2: THE GENERATOR KILLER (PB 1500)</div>
+          <span style="font-size: 8.5px; color: #94a3b8;">Format: 1080x1080px • #1 Bestseller Retail Visual</span>
+        </div>
+        <div class="card" style="padding: 6px 8px;">
+          <h4 style="color: var(--gold-light); font-size: 10.5px; margin-bottom: 2px;">Flyer Visual Messaging:</h4>
+          <ul style="padding-left: 12px; font-size: 9px; color: #cbd5e1;">
+            <li><strong>Headline:</strong> REST IN PEACE, PETROL GENERATOR.</li>
+            <li><strong>Subhead:</strong> Zero Fuel. Zero Smoke. Zero Noise. Zero Mechanic Bills.</li>
+            <li><strong>Powers:</strong> Tabletop Fridge, 32"-55" TV, Washing Machine, Blenders, Fans.</li>
+            <li><strong>Proof:</strong> 2-Hr Fast Wall Charge • Grade-A LiFePO4 • 5-Yr Warranty.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="copy-title">
+            <span>The "2:00 AM Generator Nightmare" Story Caption</span>
+            <span class="badge-gold">#1 Bestselling Swipe</span>
+          </div>
+          <div class="copy-block">Picture this familiar Nigerian nightmare: 🌧️🦟
+
+It is 2:15 AM. You are fast asleep.
+Suddenly, NEPA strikes. The ceiling fan stops spinning.
+Within 10 minutes, your room feels like a hot oven. Sweat starts pouring down your chest. Mosquitoes begin their symphony in your ear.
+
+You reluctantly drag yourself out of bed.
+You stumble in the dark into the backyard to start the generator.
+You pull the rope once: *Kpo-kpo-kpa.* It coughs.
+You pull the rope twice: The rope cuts in your hand and scrapes your knuckle. 😭
+Fuel splashes on your nightwear. 
+Your neighbor leans out of the window and shouts: *"Oga, turn that noisy machine off, we want to sleep!"*
+
+Now compare that with the Lumey PowerBox 1500 Life: ⚡🌿
+
+When NEPA takes light at 2:00 AM, the PowerBox switches on automatically in 0.01 seconds.
+Zero noise. Zero fuel. Zero rope pulling. Zero smoke.
+Your fan keeps blowing cold. Your tabletop fridge keeps humming. Your TV stays on.
+You sleep like a newborn baby until morning.
+
+• Recharges in 2 hours with NEPA or 100% free under the sun.
+• Grade-A LiFePO4 battery lasts 10+ years (up to 5-Year Warranty).
+• Eliminates ₦180,000 monthly fuel spend in 90 days flat.
+
+🎁 SPECIAL OFFER THIS WEEK:
+Use my VIP Partner Code [PARTNER_CODE] at checkout for an INSTANT ₦5,000 DISCOUNT + Free shockproof crate delivery nationwide!
+
+Reply 'SOLAR' to see the uncut live demo video and claim your voucher! 🚚📦</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 4px;">
+      <div class="copy-title">
+        <span>The "₦150,000 Spoiled Meat Heartbreak" (Selling PowerBox 2600 — Deep Freezer Saver)</span>
+        <span class="badge-pill">Freezer Food Protection</span>
+      </div>
+      <div class="copy-block" style="margin-bottom: 0;">The most painful sound in Nigeria is not generator noise. 
+
+It is the sound of opening your deep freezer on Monday morning after a 3-day blackout... and smelling ₦150,000 worth of chicken, turkey, fish, and soup floating inside warm, smelly brown water. 😭💔
+
+With inflation over 30%, throwing away food is pure financial heartbreak.
+
+Stop gambling with NEPA and temperamental fuel generators.
+
+Meet the Heavyweight: The Lumey PowerBox 2600 ⚡🧊
+Built with a massive 2.5kVA pure sine wave surge inverter specifically engineered for:
+✅ Standard & Large Haier Thermocool / Hisense Deep Freezers
+✅ Microwaves, blenders, and 10kg washing machines
+✅ Full apartment lighting, 65" TV, soundbar, and fans
+
+Why it is different:
+• Huge 2.6kWh Lithium Core keeps your freezer rock-solid frozen for 48+ hours off-grid.
+• 2x 600W Monocrystalline solar panels charge it rapidly in daytime even without NEPA.
+• 0 dB Zero Noise: Keeps food frozen without waking up your entire street.
+
+Don't wait for your next ₦150,000 food loss. Use code [PARTNER_CODE] to get ₦5,000 OFF this week.
+DM me right now with 'FREEZER' to lock in free nationwide crate delivery! 🚚</div>
+    </div>
+
+    <div class="footer-bar">
+      <div>Lumey Energy Partner Operations • Retail Sales Suite</div>
+      <div>Page 3 of 5 — Track 2: Visceral Customer Sales Swipes</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 4: REMOTE WORKER FLYER & TECH AUDIENCE COPY ================= -->
+  <div class="page">
+    <div class="header-bar">
+      <div class="logo-area">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <div class="logo-text">LUMEY ENERGY</div>
+          <div class="logo-tag">Tech Freelancer & Remote Niche</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-badge">Remote Work Angle</div>
+        <div>PowerBox 600 Campaign</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="align-items: start;">
+      <div>
+        <div class="flyer-preview-box">
+          <img src="lumey_remote_worker_flyer.jpg" alt="Lumey Remote Worker Promo Flyer">
+          <div class="flyer-meta-tag">FLYER 3: REMOTE WORKER'S LIFELINE (PB 600)</div>
+          <span style="font-size: 8.5px; color: #94a3b8;">Format: 1080x1080px • Targeted Tech Creative</span>
+        </div>
+        <div class="card" style="padding: 6px 8px;">
+          <h4 style="color: var(--gold-light); font-size: 10.5px; margin-bottom: 2px;">Flyer Visual Messaging:</h4>
+          <ul style="padding-left: 12px; font-size: 9px; color: #cbd5e1;">
+            <li><strong>Headline:</strong> YOUR CLIENT IN SAN FRANCISCO DOESN'T KNOW WHAT "GRID COLLAPSE" MEANS.</li>
+            <li><strong>Subhead:</strong> Protect Your Remote Tech Career & Dollar Income 24/7.</li>
+            <li><strong>Key Specs:</strong> Powers Laptops 14+ Hrs • Starlink & WiFi 24/7 • 0ms UPS Transfer • 0dB Noise.</li>
+            <li><strong>Offer:</strong> ₦320,000 Combo • Code [PARTNER_CODE] gives ₦5,000 OFF.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="copy-title">
+            <span>The "Senior Dev Zoom Call of Shame" Story Swipe</span>
+            <span class="badge-gold">Tech Community & X</span>
+          </div>
+          <div class="copy-block">For every remote worker, software engineer & freelancer in Nigeria:
+
+Your engineering manager in New York or client in London does not know what "national grid collapse" means.
+To them, if your camera goes black and you drop off a client demo, you are simply "unreliable."
+
+The Lumey PowerBox 600 is your personal career insurance policy: 💻⚡
+
+🔋 Keeps your MacBook / Dell XPS running for 14+ hours.
+🌐 Keeps Starlink and WiFi routers running 24/7 with 0ms UPS transfer (your internet NEVER restarts or drops connection).
+📺 Runs external 27" monitor, desk fan, ring light, and smartphones.
+☀️ Includes 200W rapid solar panel for non-stop daytime power.
+🔇 100% Silent (0 dB): Sits directly on your work desk without humming or vibration.
+
+You worked too hard to land a remote job in dollars to let NEPA blackouts ruin your reputation.
+
+Complete solar combo: ₦320,000.
+Use my code [PARTNER_CODE] to get an instant ₦5,000 DISCOUNT today!
+
+Order link: https://lumeyenergy.com/order?code=[PARTNER_CODE]
+Or send me a DM to get yours dispatched today! 🚀</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top: 4px;">
+      <h3 style="color: var(--gold-light); font-size: 11.5px; margin-bottom: 4px;">🎁 THE "5 SECRET VOUCHERS" HIGH-SCARCITY CLOSING SWIPE</h3>
+      <div class="grid-2" style="margin-bottom: 0;">
+        <div style="background: #061510; padding: 8px; border-radius: 6px; border: 1px dashed var(--gold-primary);">
+          <div style="font-size: 11.5px; font-weight: 800; color: var(--gold-light);">VIP VOUCHER: [PARTNER_CODE]</div>
+          <div style="font-size: 9.5px; color: #a7f3d0; margin-top: 3px;">
+            • Instant ₦5,000 deduction off any August 2026 PowerBox<br>
+            • Free shockproof wooden crate shipping to all 36 states<br>
+            • Backed by official up to 5-Year Battery Warranty
+          </div>
+        </div>
+        <div class="copy-block" style="margin: 0; font-size: 9.5px;">URGENT NOTICE ⏰: I just received 5 exclusive ₦5,000 discount voucher codes from Lumey Energy for this week's dispatch.
+
+If you are planning to buy a Lumey PowerBox before Sunday midnight: Reply with 'VOUCHER' right now to claim one of my 5 VIP codes for an instant ₦5,000 discount + free crate shipping! Once the 5 codes are used, they are gone. Send a DM now! 🎁⚡</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <div>Lumey Energy Partner Operations • Tech Niche Suite</div>
+      <div>Page 4 of 5 — Track 2B: Remote Tech Career Protection</div>
+    </div>
+  </div>
+
+  <!-- ================= PAGE 5: "EVERYTHING BETWEEN" OPERATIONAL GLUE ================= -->
+  <div class="page">
+    <div class="header-bar">
+      <div class="logo-area">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <div class="logo-text">LUMEY ENERGY</div>
+          <div class="logo-tag">Partner Activation & Ops Glue</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-badge">The Operational Glue</div>
+        <div>Activation & Proofs</div>
+      </div>
+    </div>
+
+    <div class="title-banner" style="padding: 10px 14px; margin-bottom: 10px;">
+      <h2 style="font-size: 14px; color: var(--gold-light); margin-bottom: 2px;">THE "EVERYTHING BETWEEN" SUITE</h2>
+      <p style="font-size: 10px;">The critical operational bridge between signing up an affiliate and seeing them generate consistent weekly sales.</p>
+    </div>
+
+    <div class="grid-2">
+      <!-- 1. Day 0 Welcome Message -->
+      <div class="card">
+        <div class="copy-title">
+          <span>1. Day-0 Automated WhatsApp Welcome Broadcast</span>
+          <span class="badge-gold">Day 0 Welcome</span>
+        </div>
+        <div class="copy-block">Welcome to the Lumey Energy Partner Family, [Partner_Name]! ⚡🌿
+
+Your affiliate application has been verified and activated. 
+🔑 Partner ID: LUM-[ID]
+🏷️ Your ₦5,000 Voucher Code: [CODE]
+🔗 Your Personalized Tracking Link: lumeyenergy.com/ref/[CODE]
+🏦 Settlement Day: Every Tuesday before 2:00 PM directly to your bank.
+
+Here is your 3-Minute Quickstart Challenge:
+1️⃣ Save this official dispatch number to your WhatsApp contacts so you never miss commission alerts.
+2️⃣ Open your Launch Vault and download the 3 official flyers (Recruitment, PB 1500, PB 600).
+3️⃣ Post Swipe #1 ("The 2:00 AM Generator Nightmare") on your WhatsApp status right now with your code [CODE].
+
+Make your first sale within 14 days and earn an extra ₦5,000 Cash Accelerator Bonus! Let's get to work! 🚀</div>
+      </div>
+
+      <!-- 2. Tuesday Payout Proof Broadcast -->
+      <div class="card">
+        <div class="copy-title">
+          <span>2. Tuesday Commission Proof Swipe (Affiliates Post)</span>
+          <span class="badge-pill">Tuesday Proof</span>
+        </div>
+        <div class="copy-block">Tuesday Alert! 🚨💰
+
+Another weekly commission alert landed in my Nigerian bank account from Lumey Energy before 2:00 PM! 
+
+Zero inventory bought.
+Zero cartons packed in my room.
+Zero arguments with dispatch riders.
+
+Just helping smart Nigerians eliminate ₦1,200/L fuel expenses with silent solar generators.
+
+If you are tired of watching your friends make money while you scroll social media for free, send me a DM with 'INFO'.
+The August 2026 affiliate intake is still open (₦0 capital needed). Let me show you how it works! ⚡✨</div>
+      </div>
+
+      <!-- 3. Objection Buster: Pricing -->
+      <div class="card">
+        <div class="copy-title">
+          <span>3. Objection Closer: "Is Price Negotiable?"</span>
+          <span class="badge-gold">Sales Closer</span>
+        </div>
+        <div class="copy-block">"I completely understand! 🤝 Here is the honest truth: Lumey's prices are fixed nationwide because every combo includes genuine Grade-A LiFePO4 cells, 100% copper pure sine wave inverters, and up to a 5-Year Manufacturer Warranty. 
+
+However, because I am an authorized partner, I have access to an exclusive VIP voucher. If you place your order today, enter my code [PARTNER_CODE] at checkout to get an INSTANT ₦5,000 DISCOUNT deducted on the spot! 
+
+Shall I send you the direct order link with the discount already applied?"</div>
+      </div>
+
+      <!-- 4. Weekend Flash Surge -->
+      <div class="card">
+        <div class="copy-title">
+          <span>4. 48-Hour Weekend Flash Surge Promo</span>
+          <span class="badge-pill">Flash Surge</span>
+        </div>
+        <div class="copy-block">⚡ 48-HOUR FLASH SURGE: FREE NATIONWIDE CRATE SHIPPING ENDS SUNDAY! 🚚📦
+
+Due to high demand, Lumey Energy is offering 100% FREE SHOCKPROOF WOODEN CRATE DELIVERY to all 36 states on all PowerBox combos ordered between now and Sunday midnight.
+
+Plus: Use my VIP code [PARTNER_CODE] for an instant ₦5,000 DISCOUNT deducted from your order!
+Stock is strictly capped at 15 combos for this weekend's dispatch.
+
+Don't wait for Monday's price review. Send me a DM with 'WEEKEND' right now to secure yours and save over ₦25,000 in shipping and discounts! ⏳</div>
+      </div>
+    </div>
+
+    <!-- 5. Objection Buster: Alaba Market & Uncut Video -->
+    <div class="grid-2" style="margin-top: 4px;">
+      <div class="card">
+        <div class="copy-title">
+          <span>5. Objection Closer: "Alaba Market Inverter Comparison"</span>
+          <span class="badge-gold">Tech Objection</span>
+        </div>
+        <div class="copy-block" style="margin-bottom: 0;">"The cheap inverters in Alaba use heavy lead-acid or recycled second-hand car batteries that die after 6 to 9 months and hum loudly. Lumey PowerBox uses brand-new Grade-A LiFePO4 battery chemistry (the exact tech in modern electric cars). It lasts 10+ years (3,500+ cycles) with an official 5-Year Battery Warranty backed by Lumey's physical service depots. You buy once and forget power issues for the next decade!"</div>
+      </div>
+
+      <div class="card">
+        <div class="copy-title">
+          <span>6. Uncut Video Proof Demonstration Drop</span>
+          <span class="badge-pill">Video Status</span>
+        </div>
+        <div class="copy-block" style="margin-bottom: 0;">Uncut proof! 📹⚡ No filters, no studio lighting. Watch this raw video of a technician unboxing the Lumey PowerBox 1500 and plugging in a tabletop fridge, blender, and 43" TV at the same time. The room is 100% silent (0 dB), pure sine wave meter is rock solid, zero smoke or danger. That is what Grade-A LiFePO4 engineering looks like. Use code [PARTNER_CODE] for ₦5,000 OFF this week. Reply 'SEND VIDEO' to get the full clip! 🔥</div>
+      </div>
+    </div>
+
+    <div class="footer-bar">
+      <div>Lumey Energy Partner Operations • All-in-One Affiliate Vault</div>
+      <div>Page 5 of 5 — Everything Between & Operational Engine</div>
+    </div>
+  </div>
+
+</body>
+</html>
