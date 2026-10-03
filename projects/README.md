@@ -13,6 +13,20 @@ projects/
 ├── partner_onboarding.html                                          # Partner Onboarding & Recruitment Hub
 ├── kimi_bundle.js                                                   # Interactive sales page scripts
 ├── server.ps1                                                       # Local test server (port 8080)
+├── reconcile_payouts.ps1                                            # Automated Tuesday Payout Reconciliation Script
+├── tuesday_batch_payout.csv                                         # Moniepoint/Bank Batch Payment Output
+│
+├── Commercial Distributor & Retail Assets
+│   ├── Lumey_Executive_Distributor_Pitch_Deck.html (.md)            # 10-slide interactive distributor presentation deck
+│   ├── LUMEY_MASTER_DISTRIBUTOR_AGREEMENT_AND_EXCLUSIVITY.md        # Binding contract with 60-day exclusivity covenant
+│   ├── Lumey_Showroom_Rollup_Banner.html                            # Print-ready 200cm x 85cm luxury showroom standee
+│   ├── Lumey_Consumer_Product_Brochure.html                         # Full-colour A4 tri-fold product brochure (6 panels)
+│   └── LUMEY_IN_STORE_SALES_REPRESENTATIVE_FLOOR_CARD.md           # 4-step walk-in conversion & closing battlecard
+│
+├── Marketing Automation & Scaling
+│   ├── LUMEY_PARTNER_RECRUITMENT_AD_CREATIVE_SUITE.md               # Meta, TikTok, LinkedIn, & carousel ad scripts
+│   ├── LUMEY_WHATSAPP_BUSINESS_AUTOMATION_SCRIPTS.md                # Automated greeting, product matcher & partner intake
+│   └── LUMEY_COMMISSION_SETTLEMENT_AND_RECONCILIATION_SOP.md        # Weekly payout audit SOP & NUBAN processing
 │
 ├── Copy Bibles & Sales Strategy
 │   ├── LUMEY_EXHAUSTIVE_LONGFORM_SALES_COPY_BIBLE.md (.pdf, .html)  # Unabridged sales letters for all 8 models

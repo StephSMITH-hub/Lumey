@@ -2717,8 +2717,18 @@ Reply with 'SEND VIDEO' if you want the full uncut clip sent to your DM! 🔥</d
       showToast('CSV export downloaded successfully!');
     }
 
-    // Async Webhook Dispatcher (Supabase / Google Sheets)
+    // Async Webhook Dispatcher (Supabase / Google Sheets / Lumey Next.js API)
     async function dispatchToWebhook(payload) {
+      // 1. Dispatch to Next.js API route if accessible
+      try {
+        fetch('/api/affiliates', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(() => {});
+      } catch (e) {}
+
+      // 2. Dispatch to custom configured Webhook / Supabase endpoint
       if (!LUMEY_CONFIG.API_ENDPOINT) return;
       try {
         await fetch(LUMEY_CONFIG.API_ENDPOINT, {
