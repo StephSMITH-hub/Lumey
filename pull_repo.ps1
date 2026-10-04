@@ -74,7 +74,7 @@ $remoteRef = "$remoteName/$currentBranch"
 $behindCount = (git rev-list --count "HEAD..$remoteRef" 2>$null)
 $aheadCount = (git rev-list --count "$remoteRef..HEAD" 2>$null)
 
-Write-Host "Local branch status vs $remoteRef:" -ForegroundColor Gray
+Write-Host "Local branch status vs ${remoteRef}:" -ForegroundColor Gray
 Write-Host "  Commits Behind: $behindCount" -ForegroundColor $(if ([int]$behindCount -gt 0) { "Yellow" } else { "Green" })
 Write-Host "  Commits Ahead:  $aheadCount" -ForegroundColor $(if ([int]$aheadCount -gt 0) { "Cyan" } else { "Green" })
 Write-Host ""
@@ -88,7 +88,7 @@ if ([int]$behindCount -gt 0) {
 }
 
 # Execute Pull
-Write-Host "Applying updates from $remoteRef..." -ForegroundColor Cyan
+Write-Host "Applying updates from ${remoteRef}..." -ForegroundColor Cyan
 git pull --rebase $remoteName $currentBranch
 
 if ($LASTEXITCODE -ne 0) {
@@ -102,7 +102,7 @@ if ($LASTEXITCODE -eq 0) {
     Write-Host "=================================================================" -ForegroundColor Green
     Write-Host " [SUCCESS] Successfully pulled all updates from GitHub!" -ForegroundColor Green
     $latestCommit = (git log -1 --pretty=format:"%h - %s (%cr)" 2>$null)
-    Write-Host " Latest Commit on $currentBranch: $latestCommit" -ForegroundColor Green
+    Write-Host " Latest Commit on ${currentBranch}: $latestCommit" -ForegroundColor Green
     Write-Host "=================================================================" -ForegroundColor Green
 } else {
     Write-Host "[ERROR] Failed to pull updates cleanly. Check for conflicts." -ForegroundColor Red
