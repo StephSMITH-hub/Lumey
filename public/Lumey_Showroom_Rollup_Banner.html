@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumey Energy — Showroom Roll-Up Banner (200cm x 85cm Print Spec)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #FEDC22;
+      --primary-dark: #D4B200;
+      --dark-bg: #070A11;
+      --dark-card: #0F172A;
+      --dark-border: #1E293B;
+      --text-light: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent-green: #10B981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #020408;
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .print-controls {
+      margin-bottom: 25px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .btn-print {
+      background: var(--primary);
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-print:hover {
+      background: #fee664;
+    }
+
+    /* Standard Roll-Up Aspect Ratio (850mm wide x 2000mm high = 1 : 2.35) */
+    .banner-canvas {
+      width: 480px;
+      height: 1128px;
+      background: radial-gradient(circle at 50% 20%, #151D33 0%, var(--dark-bg) 70%);
+      border: 3px solid var(--primary);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 40px rgba(254, 220, 34, 0.2);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 25px;
+    }
+
+    /* Header */
+    .banner-top {
+      text-align: center;
+    }
+
+    .logo-badge {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .sub-brand {
+      font-size: 0.75rem;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .banner-headline {
+      margin-top: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 900;
+      line-height: 1.15;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .banner-headline span {
+      color: var(--primary);
+    }
+
+    .pill-hero {
+      display: inline-block;
+      background: rgba(254, 220, 34, 0.15);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    /* Proof Badges Grid */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .proof-item {
+      background: rgba(19, 27, 46, 0.85);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .proof-item i {
+      color: var(--primary);
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .proof-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .proof-desc {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    /* Product Showcase Block */
+    .product-showcase {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      position: relative;
+    }
+
+    .showcase-tag {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #000;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+
+    .model-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      margin-top: 6px;
+    }
+
+    .model-powers {
+      font-size: 0.72rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .appliance-icons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 8px;
+    }
+
+    /* Fuel Math Banner */
+    .fuel-banner {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      margin: 12px 0;
+    }
+
+    .fuel-banner-title {
+      font-size: 0.72rem;
+      color: #fff;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .fuel-banner-roi {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--accent-green);
+    }
+
+    /* Distributor Stamp Box */
+    .distributor-stamp {
+      background: #000;
+      border: 2px dashed var(--primary);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .stamp-label {
+      font-size: 0.65rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .distributor-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 3px 0;
+    }
+
+    .distributor-meta {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    /* Footer / Hotlines */
+    .banner-footer {
+      text-align: center;
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 8px;
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .print-controls {
+        display: none;
+      }
+      .banner-canvas {
+        box-shadow: none;
+        border: 2px solid #000;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-controls">
+    <button class="btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Print / Save as PDF</button>
+    <span style="font-size: 0.85rem; color: #94A3B8;">Roll-Up Dimensions: 850mm × 2000mm standard standee</span>
+  </div>
+
+  <div class="banner-canvas">
+
+    <!-- TOP SECTION -->
+    <div class="banner-top">
+      <div class="logo-badge">LUMEY</div>
+      <div class="sub-brand">Power Easy • Live Smart</div>
+      <div class="pill-hero"><i class="fa-solid fa-solar-panel"></i> Nigeria's #1 Solar Generator</div>
+
+      <h1 class="banner-headline">
+        Stop Paying<br><span>The Fuel Tax</span>
+      </h1>
+      <p style="font-size: 0.72rem; color: #cbd5e1; margin-top: 6px;">
+        Zero Petrol • Zero Noise • Charges in 2 Hours
+      </p>
+    </div>
+
+    <!-- PROOF BADGES (4 BADGES) -->
+    <div class="proof-grid">
+      <div class="proof-item">
+        <i class="fa-solid fa-battery-bolt"></i>
+        <div class="proof-title">Grade-A LiFePO4</div>
+        <div class="proof-desc">3,500+ Deep Cycles</div>
+      </div>
+      <div class="proof-item">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div class="proof-title">5-Year Warranty</div>
+        <div class="proof-desc">Factory Backed Core</div>
+      </div>
+      <div class="proof-item">
+        <i class="fa-solid fa-wave-square"></i>
+        <div class="proof-title">Pure Sine Wave</div>
+        <div class="proof-desc">100% Appliance Safe</div>
+      </div>
+      <div class="proof-item">
+        <i class="fa-solid fa-bolt-lightning"></i>
+        <div class="proof-title">Triple Charging</div>
+        <div class="proof-desc">Solar • NEPA • Gen</div>
+      </div>
+    </div>
+
+    <!-- SHOWCASE 1: BESTSELLER PB 1500 -->
+    <div class="product-showcase">
+      <div class="showcase-tag">#1 National Bestseller</div>
+      <div class="model-name">PowerBox 1500</div>
+      <div class="model-powers">1kW Inverter • 1,500Wh Lithium Core</div>
+      <div class="appliance-icons">
+        <span><i class="fa-solid fa-snowflake"></i> Tabletop Fridge</span>
+        <span><i class="fa-solid fa-tv"></i> Smart TV</span>
+        <span><i class="fa-solid fa-fan"></i> 3 Fans</span>
+        <span><i class="fa-solid fa-blender"></i> Blender</span>
+      </div>
+    </div>
+
+    <!-- SHOWCASE 2: HEAVY DUTY PB 2600 -->
+    <div class="product-showcase" style="margin-top: 8px; border-color: rgba(255,255,255,0.15);">
+      <div class="showcase-tag" style="background: #10B981; color: #fff;">Deep Freezer Specialist</div>
+      <div class="model-name">PowerBox 2600</div>
+      <div class="model-powers">2kW Inverter • 2,600Wh Lithium Core</div>
+      <div class="appliance-icons">
+        <span><i class="fa-solid fa-cube"></i> Deep Freezers</span>
+        <span><i class="fa-solid fa-kitchen-set"></i> Microwave</span>
+        <span><i class="fa-solid fa-shirt"></i> Washing Machine</span>
+      </div>
+    </div>
+
+    <!-- FUEL PAYBACK MATH -->
+    <div class="fuel-banner">
+      <div class="fuel-banner-title">Guaranteed Investment Payback</div>
+      <div class="fuel-banner-roi">Pays For Itself in 75–100 Days</div>
+      <div style="font-size: 0.65rem; color: #cbd5e1; margin-top: 2px;">
+        Saves ₦1,200,000+ in petrol costs in year one alone
+      </div>
+    </div>
+
+    <!-- DISTRIBUTOR STAMP PANEL -->
+    <div class="distributor-stamp">
+      <div class="stamp-label"><i class="fa-solid fa-certificate"></i> Authorized Sales & Service Center</div>
+      <div class="distributor-name">[YOUR STORE / DISTRIBUTOR NAME]</div>
+      <div class="distributor-meta">
+        [Physical Store Address, Street, LGA, State]<br>
+        <strong>Tel / WhatsApp:</strong> [080X-XXX-XXXX | 081X-XXX-XXXX]<br>
+        <strong>Nationwide Delivery Available</strong>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="banner-footer">
+      Factory HQ: Oyemekun Road, Akure, Ondo State | Regional Hubs: Lagos • Abuja • PHC • Kano • Ibadan<br>
+      Official Support: 07062878273 • www.lumeyenergy.com
+    </div>
+
+  </div>
+
+</body>
+</html>

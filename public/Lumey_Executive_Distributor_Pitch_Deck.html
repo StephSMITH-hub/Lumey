@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumey Energy — Executive Distributor Pitch Deck (August 2026)</title>
+  <link rel="icon" href="https://www.lumeyenergy.com/Lumey_Favicon/4x/Lumey_Favicon_32x32@4x.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #FEDC22;
+      --primary-dark: #D4B200;
+      --dark-bg: #0B0F19;
+      --dark-card: #131B2E;
+      --dark-surface: #192238;
+      --dark-border: #1E293B;
+      --text-light: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent-green: #10B981;
+      --accent-red: #EF4444;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-light);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      user-select: none;
+    }
+
+    /* Deck Layout */
+    .deck-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      position: absolute;
+      width: 90vw;
+      max-width: 1300px;
+      height: 85vh;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-lg);
+      padding: 3rem 4rem;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      transform: scale(0.96);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Header */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 1.25rem;
+    }
+
+    .slide-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-tag {
+      background: rgba(254, 220, 34, 0.12);
+      border: 1px solid rgba(254, 220, 34, 0.3);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .slide-num {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    /* Content Body */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.5rem 0;
+    }
+
+    .slide-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+
+    .slide-title span {
+      color: var(--primary);
+    }
+
+    .slide-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 1.8rem;
+      max-width: 850px;
+    }
+
+    /* Grids & Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(254, 220, 34, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title i {
+      color: var(--primary);
+    }
+
+    .card-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .stat-badge {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    th, td {
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    th {
+      background: rgba(255,255,255,0.03);
+      color: var(--primary);
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    tr:hover td {
+      background: rgba(254, 220, 34, 0.03);
+    }
+
+    .highlight-cell {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .pill-gold {
+      background: rgba(254, 220, 34, 0.15);
+      color: var(--primary);
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    /* Footer & Controls */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.25rem;
+    }
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+    }
+
+    .btn-cta {
+      background: var(--primary);
+      color: #000;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-cta:hover {
+      background: var(--primary-hover);
+    }
+
+    .key-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Cover Slide Styling */
+    .cover-slide {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cover-title {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .cover-badges {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="deck-container">
+
+    <!-- SLIDE 1: COVER -->
+    <div class="slide cover-slide active" id="slide-1">
+      <div class="slide-header" style="width: 100%;">
+        <div class="slide-brand">
+          <span class="brand-logo">LUMEY</span>
+          <span class="brand-tag">Executive Distributor Dossier</span>
+        </div>
+        <div class="slide-num">Slide 1 / 10</div>
+      </div>
+
+      <div class="slide-body" style="align-items: center;">
+        <div class="cover-badges">
+          <span class="pill-gold"><i class="fa-solid fa-bolt"></i> Official August 2026 Architecture</span>
+          <span class="pill-gold"><i class="fa-solid fa-shield-halved"></i> 5-Year LiFePO4 Warranty</span>
+          <span class="pill-gold"><i class="fa-solid fa-chart-line"></i> Up to 22% Wholesale Margin</span>
+        </div>
+        <h1 class="cover-title">Powering Nigeria's<br><span>Clean Energy Transition</span></h1>
+        <p class="slide-subtitle" style="text-align: center;">
+          The Master Commercial Blueprint for Regional Wholesalers, Solar Installers, and Electronics Retailers. Capture High-Margin Clean Energy Sales With Guaranteed Territorial Protection.
+        </p>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <button class="btn-cta" onclick="nextSlide()"><i class="fa-solid fa-play"></i> Start Presentation</button>
+          <span class="key-hint">Press [Space] or [Arrow Right] to navigate</span>
+        </div>
+      </div>
+
+      <div class="slide-footer" style="width: 100%;">
+        <span style="font-size: 0.8rem; color: var(--text-muted);">Confidential & Proprietary — Lumey Energy Nigeria Limited</span>
+        <span style="font-size: 0.8rem; color: var(--text-muted);">Hotline: 07062878273 | +234 813 974 3177</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: THE MARKET WINDOW -->
+    <div class="slide" id="slide-2">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">Macro Market Window</span></div>
+        <div class="slide-num">Slide 2 / 10</div>
+      </div>
+      <div class="slide-body">
+        <h2 class="slide-title">The Perfect Storm: Why Nigerian Consumers Are <span>Abandoning Generators</span></h2>
+        <p class="slide-subtitle">Three macroeconomic tailwinds have created an unprecedented surge in demand for silent, plug-and-play solar power stations across all 36 states.</p>
+        <div class="grid-3">
+          <div class="card">
+            <div class="stat-badge" style="color: var(--accent-red);">₦1,250/L</div>
+            <div class="card-title"><i class="fa-solid fa-gas-pump"></i> The Fuel Tax Agony</div>
+            <div class="card-text">Petrol prices have soared from ₦185 to ₦1,050–₦1,250/L. Running a small 0.9kVA generator for 6 hours daily now costs over ₦80,000 to ₦115,000 every single month in fuel alone.</div>
+          </div>
+          <div class="card">
+            <div class="stat-badge" style="color: var(--primary);">₦225/kWh</div>
+            <div class="card-title"><i class="fa-solid fa-bolt-lightning"></i> Band A Tariff Shock</div>
+            <div class="card-text">DisCos have increased Band A residential & commercial power tariffs to over ₦209–₦225/kWh, while grid collapses persist. Middle-class households and businesses demand sovereign self-generation.</div>
+          </div>
+          <div class="card">
+            <div class="stat-badge" style="color: var(--accent-green);">75 Days</div>
+            <div class="card-title"><i class="fa-solid fa-calculator"></i> Irresistible Payback ROI</div>
+            <div class="card-text">A PowerBox 1500 system pays for itself in just 75 to 100 days of avoided petrol purchases. After that, energy is 100% free for the next 10 years with zero oil changes or spark plugs.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Market Demand Insight</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="nextSlide()">Next <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: THE LUMEY PRODUCT ADVANTAGE -->
+    <div class="slide" id="slide-3">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">Engineering Supremacy</span></div>
+        <div class="slide-num">Slide 3 / 10</div>
+      </div>
+      <div class="slide-body">
+        <h2 class="slide-title">Engineered to Outperform <span>Generic Market Solar</span></h2>
+        <p class="slide-subtitle">Distributors struggle with unbranded Alaba Market systems that fail after 3 months. Lumey solves customer trust with industrial-grade engineering.</p>
+        <div class="grid-4">
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-battery-full"></i> Grade-A LiFePO4</div>
+            <div class="card-text">Brand new prismatic Lithium Iron Phosphate cells rated for 3,500+ deep discharge cycles. Lasts 10+ years compared to cheap 6-month lead-acid batteries.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-wave-square"></i> Pure Sine Wave</div>
+            <div class="card-text">Zero humming, zero flickering. Pure 230V AC output safer for sensitive laptops, smart TVs, medical diagnostic tools, and inverter refrigerators than the national grid.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-gauge-high"></i> 2-Hour Fast Charge</div>
+            <div class="card-text">Triple charging architecture: charges from solar panels under the sun, superfast 2-hour recharge whenever NEPA flashes, or emergency generator top-up.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-award"></i> 5-Year Warranty</div>
+            <div class="card-text">Full 12-month replacement on inverters and 5-year official warranty on Heavy Duty battery cores. Backed by central factory in Akure and regional service depots.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Quality Guarantee</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="nextSlide()">Next <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: AUGUST 2026 PRODUCT RANGE -->
+    <div class="slide" id="slide-4">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">August 2026 Catalog</span></div>
+        <div class="slide-num">Slide 4 / 10</div>
+      </div>
+      <div class="slide-body">
+        <h2 class="slide-title">The Complete 8-Model <span>Product Hierarchy</span></h2>
+        <p class="slide-subtitle">A calibrated portfolio covering every customer segment from remote tech workers to luxury duplexes and commercial clinics.</p>
+        <div style="overflow-x: auto; background: var(--dark-surface); border-radius: var(--radius-md); border: 1px solid var(--dark-border);">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Inverter Rating</th>
+                <th>Battery Chemistry</th>
+                <th>Primary Appliance Load</th>
+                <th>Retail Box Only</th>
+                <th>Retail Solar Combo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="highlight-cell">PowerBox 600</td>
+                <td>400W 12V</td>
+                <td>600Wh Lithium</td>
+                <td>Laptops, WiFi routers, 32" LED TV, fan, POS, phones</td>
+                <td>₦260,000</td>
+                <td class="highlight-cell" style="color: var(--primary);">₦320,000</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">PowerBox 1500 (Bestseller)</td>
+                <td>1kW (1.25kVA)</td>
+                <td>1,500Wh Lithium</td>
+                <td>Tabletop fridge, 10kg washer, 600W blender, fans, TV</td>
+                <td>₦380,000</td>
+                <td class="highlight-cell" style="color: var(--primary);">₦500,000</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">PowerBox 1900</td>
+                <td>1kW (1.25kVA)</td>
+                <td>1,900Wh Lithium</td>
+                <td>Tabletop fridge (22h+), fast 600W solar recharge cushion</td>
+                <td>₦440,000</td>
+                <td class="highlight-cell" style="color: var(--primary);">₦590,000</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">PowerBox 2600</td>
+                <td>2kW (2.5kVA)</td>
+                <td>2,600Wh Lithium</td>
+                <td>Deep freezers/fridges, microwave, washing machine</td>
+                <td>₦700,000</td>
+                <td class="highlight-cell" style="color: var(--primary);">₦1,000,000</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">PowerBox 3100</td>
+                <td>2kW (2.5kVA)</td>
+                <td>3,100Wh Lithium</td>
+                <td>48h commercial deep freeze security, catering centers</td>
+                <td>₦800,000</td>
+                <td class="highlight-cell" style="color: var(--primary);">₦1,100,000</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">PowerBox 4000</td>
+                <td>4kW (5kVA)</td>
+                <td>4kWh LiFePO4</td>
+                <td>1 Inverter AC (day), water pump, full 3-bedroom house</td>
+                <td>₦1,550,000</td>
+                <td class="highlight-cell" style="color: var(--primary);">₦2,150,000</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">PowerBox 8000</td>
+                <td>4kW (5kVA)</td>
+                <td>8kWh LiFePO4</td>
+                <td>1 Inverter AC (day & night), borehole pump, luxury flats</td>
+                <td>₦2,000,000</td>
+                <td class="highlight-cell" style="color: var(--primary);">₦2,600,000</td>
+              </tr>
+              <tr>
+                <td class="highlight-cell">PowerBox 8000 Plus</td>
+                <td>8kW (10kVA)</td>
+                <td>8kWh LiFePO4</td>
+                <td>1–2 Inverter ACs, borehole pump, clinics, estates</td>
+                <td>₦2,300,000</td>
+                <td class="highlight-cell" style="color: var(--primary);">₦3,200,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Catalog Specifications</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="nextSlide()">Next <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: WHOLESALE FINANCIAL ECONOMICS -->
+    <div class="slide" id="slide-5">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">Wholesale Margins</span></div>
+        <div class="slide-num">Slide 5 / 10</div>
+      </div>
+      <div class="slide-body">
+        <h2 class="slide-title">Distributor Wholesale Tiers & <span>Profit Margins</span></h2>
+        <p class="slide-subtitle">Capturing immediate cash margins on upfront purchases, plus performance rebates for volume consistency.</p>
+        <div class="grid-3">
+          <div class="card" style="border-top: 4px solid var(--text-muted);">
+            <div class="pill-gold" style="display: inline-block; margin-bottom: 0.5rem;">Entry Level</div>
+            <div class="card-title">Authorized Reseller</div>
+            <div class="stat-badge">15% Margin</div>
+            <div class="card-text" style="margin-top: 0.8rem;">
+              • <strong>Initial Stock Order:</strong> ₦500,000<br>
+              • <strong>Active Stock Required:</strong> ₦750,000<br>
+              • <strong>Quarterly Target:</strong> ₦2,000,000<br>
+              • <strong>Benefits:</strong> Store locator listing, marketing collateral kit, standard dealer WhatsApp support.
+            </div>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--primary); background: #1a233a;">
+            <div class="pill-gold" style="display: inline-block; margin-bottom: 0.5rem; background: var(--primary); color: #000;">Most Popular</div>
+            <div class="card-title">Regional Distributor</div>
+            <div class="stat-badge">18% Margin</div>
+            <div class="card-text" style="margin-top: 0.8rem;">
+              • <strong>Initial Stock Order:</strong> ₦2,000,000<br>
+              • <strong>Active Stock Required:</strong> ₦3,000,000<br>
+              • <strong>Quarterly Target:</strong> ₦10,000,000<br>
+              • <strong>Benefits:</strong> Exclusive LGA territory rights, luxury showroom roll-up banner, 500 brochures, dedicated sales manager.
+            </div>
+          </div>
+          <div class="card" style="border-top: 4px solid var(--accent-green);">
+            <div class="pill-gold" style="display: inline-block; margin-bottom: 0.5rem;">State Franchise</div>
+            <div class="card-title">Master Distributor</div>
+            <div class="stat-badge" style="color: var(--accent-green);">22% Margin</div>
+            <div class="card-text" style="margin-top: 0.8rem;">
+              • <strong>Initial Stock Order:</strong> ₦5,000,000<br>
+              • <strong>Active Stock Required:</strong> ₦8,000,000<br>
+              • <strong>Quarterly Target:</strong> ₦30,000,000<br>
+              • <strong>Benefits:</strong> State-level exclusivity, showroom branding subsidy, direct depot priority allocation, executive board access.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Financial Terms</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="nextSlide()">Next <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: SAMPLE DISTRIBUTOR BATCH ROI -->
+    <div class="slide" id="slide-6">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">Earnings Case Study</span></div>
+        <div class="slide-num">Slide 6 / 10</div>
+      </div>
+      <div class="slide-body">
+        <h2 class="slide-title">Financial Simulation: <span>₦2.0M Regional Starter Batch</span></h2>
+        <p class="slide-subtitle">See how a fast-moving stock package turns over in 30 days to deliver over ₦439,000 in clean net profit.</p>
+        <div class="grid-2">
+          <div style="background: var(--dark-surface); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid var(--dark-border);">
+            <h4 style="color: var(--primary); margin-bottom: 0.8rem; font-family: 'Plus Jakarta Sans', sans-serif;">Curated ₦2,000,000 Stock Package</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Model Combo</th>
+                  <th>Units</th>
+                  <th>Wholesale (18% Off)</th>
+                  <th>Retail Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>PowerBox 600 (Combo)</td>
+                  <td>2</td>
+                  <td>₦524,800</td>
+                  <td>₦640,000</td>
+                </tr>
+                <tr>
+                  <td>PowerBox 1500 (Combo)</td>
+                  <td>2</td>
+                  <td>₦820,000</td>
+                  <td>₦1,000,000</td>
+                </tr>
+                <tr>
+                  <td>PowerBox 2600 (Combo)</td>
+                  <td>1</td>
+                  <td>₦656,000</td>
+                  <td>₦800,000</td>
+                </tr>
+                <tr style="background: rgba(254, 220, 34, 0.08);">
+                  <td class="highlight-cell">TOTAL INVESTMENT</td>
+                  <td class="highlight-cell">5 Units</td>
+                  <td class="highlight-cell" style="color: var(--primary);">₦2,000,800</td>
+                  <td class="highlight-cell" style="color: var(--accent-green);">₦2,440,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="stat-badge" style="color: var(--accent-green);">+₦439,200</div>
+            <div class="card-title">Net Gross Profit in 30 Days</div>
+            <p class="card-text" style="margin: 0.8rem 0;">
+              Selling just <strong>5 units in your territory</strong> generates an immediate ₦439,200 gross return on ₦2.0M invested capital (<strong>21.9% ROI per inventory cycle</strong>).
+            </p>
+            <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 8px; font-size: 0.82rem; color: var(--text-muted);">
+              <i class="fa-solid fa-repeat" style="color: var(--primary);"></i> <strong>Turnover Velocity:</strong> At 4 turns per year = ₦1,756,800 net return annually on a single ₦2.0M revolving fund.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Demonstrated Profitability</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="nextSlide()">Next <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: TERRITORIAL EXCLUSIVITY & PROTECTION -->
+    <div class="slide" id="slide-7">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">Territorial Rights</span></div>
+        <div class="slide-num">Slide 7 / 10</div>
+      </div>
+      <div class="slide-body">
+        <h2 class="slide-title">How Lumey Protects Your <span>Territory & Pricing</span></h2>
+        <p class="slide-subtitle">We protect our distributors from retail price wars, undercutters, and predatory competition.</p>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-map-location-dot"></i> LGA & State Monopolies</div>
+            <div class="card-text">Regional Distributors hold exclusive territory rights in designated LGAs/districts. Master Distributors receive exclusive state-level representation. No competitor can be onboarded within your zone.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-handshake-simple"></i> Strict MAP Price Enforcement</div>
+            <div class="card-text">Every partner signs a Minimum Advertised Price (MAP) covenant. Any reseller caught undercutting official catalogue prices faces immediate stock cut-off and termination.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-clock-rotate-left"></i> 60-Day Reorder Covenant</div>
+            <div class="card-text">Your exclusivity is maintained automatically as long as you restock once every 60 calendar days. Your territorial moat is legally protected and commercialized.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Legal Protection</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="nextSlide()">Next <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: LOGISTICS, REGIONAL DEPOTS & RMA -->
+    <div class="slide" id="slide-8">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">Nationwide Fulfillment</span></div>
+        <div class="slide-num">Slide 8 / 10</div>
+      </div>
+      <div class="slide-body">
+        <h2 class="slide-title">Regional Depot Network & <span>Hassle-Free Warranty</span></h2>
+        <p class="slide-subtitle">You are backed by a robust supply chain network ensuring fast restocking and rapid warranty turnaround.</p>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-warehouse"></i> 6 Regional Hubs & Factory HQ</div>
+            <div class="card-text">
+              • <strong>Factory & HQ:</strong> Oyemekun, Akure, Ondo State.<br>
+              • <strong>Regional Depot Nodes:</strong> Lagos (Ikeja/Alaba hub), Abuja (FCT central), Port Harcourt (South-South), Kano (Northern hub), and Ibadan (South-West).<br>
+              • <strong>Transit SLA:</strong> 24 to 48 hours shockproof crate delivery via vetted interstate logistics partners.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-screwdriver-wrench"></i> 48-Hour RMA Swap Protocol</div>
+            <div class="card-text">
+              • <strong>No Customer Disputes:</strong> If a customer unit exhibits a verified factory fault within warranty, bring it to the depot for prompt technical triage.<br>
+              • <strong>Diagnostic SLA:</strong> 48 hours diagnostic turnaround.<br>
+              • <strong>7-Day Replacement:</strong> Immediate unit swap or spare board replacement within 7 business days.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Supply Chain Backbone</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="nextSlide()">Next <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: TURNKEY MERCHANDISING SUPPORT -->
+    <div class="slide" id="slide-9">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">Marketing Support</span></div>
+        <div class="slide-num">Slide 9 / 10</div>
+      </div>
+      <div class="slide-body">
+        <h2 class="slide-title">Turnkey Marketing Collateral <span>Provided at Zero Cost</span></h2>
+        <p class="slide-subtitle">We equip your retail store with high-converting visual branding that immediately captures walk-in buyers.</p>
+        <div class="grid-4">
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-image"></i> Roll-Up Banner</div>
+            <div class="card-text">Luxury 200cm x 85cm floor banner showing key models, proof badges, and your showroom as an Authorized Center.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-book-open"></i> 500 Brochures</div>
+            <div class="card-text">Full-colour A4 tri-fold product guides with runtime charts, fuel math breakdown, and custom dealer stamp panel.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-user-tie"></i> Staff Floor Cards</div>
+            <div class="card-text">Pocket sales battlecards with a 30-second customer greeting and 4-step closing script for your showroom reps.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fa-solid fa-bullhorn"></i> Lead Pass-Through</div>
+            <div class="card-text">All online retail inquiries originating from your LGA are automatically routed to your store for immediate fulfillment.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Store Branding Assets</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="nextSlide()">Next <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: ONBOARDING & NEXT STEPS -->
+    <div class="slide" id="slide-10">
+      <div class="slide-header">
+        <div class="slide-brand"><span class="brand-logo">LUMEY</span><span class="brand-tag">Onboarding Protocol</span></div>
+        <div class="slide-num">Slide 10 / 10</div>
+      </div>
+      <div class="slide-body" style="text-align: center; align-items: center;">
+        <h2 class="slide-title">Ready to Lock In <span>Your Exclusive Territory?</span></h2>
+        <p class="slide-subtitle" style="text-align: center; max-width: 750px;">
+          Distributor territories are awarded on a strict first-come, first-verified basis. Once an LGA or State is allocated, all other applications for that perimeter are waitlisted.
+        </p>
+        <div class="grid-3" style="width: 100%; text-align: left; margin-bottom: 2rem;">
+          <div class="card">
+            <div class="card-title"><span class="pill-gold">Step 1</span> KYC & Territory Request</div>
+            <div class="card-text">Submit your store address, CAC registration, and target LGA/state perimeter for exclusivity verification.</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="pill-gold">Step 2</span> Contract & Stock Order</div>
+            <div class="card-text">Execute the Master Distributor Covenant and select your tailored initial stock batch (15% to 22% wholesale discount).</div>
+          </div>
+          <div class="card">
+            <div class="card-title"><span class="pill-gold">Step 3</span> 7-Day Showroom Launch</div>
+            <div class="card-text">Receive shockproof inventory crates, roll-up banner, brochures, and launch local promotional campaigns.</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <a href="https://wa.me/2348139743177?text=Hello%20Lumey%20Executive%20Team%2C%20I%20have%20reviewed%20the%20Distributor%20Pitch%20Deck%20and%20want%20to%20apply%20for%20an%20exclusive%20territory." target="_blank" class="btn-cta">
+            <i class="fa-brands fa-whatsapp"></i> Apply via Executive Desk
+          </a>
+          <a href="partner_onboarding.html" class="btn-nav">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Onboarding Portal
+          </a>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span class="key-hint">Action Checkpoint</span>
+        <div class="deck-controls">
+          <button class="btn-nav" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+          <button class="btn-nav" onclick="goToSlide(1)"><i class="fa-solid fa-rotate-left"></i> First Slide</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function showSlide(num) {
+      if (num < 1) num = 1;
+      if (num > totalSlides) num = totalSlides;
+      currentSlide = num;
+
+      document.querySelectorAll('.slide').forEach((slide, idx) => {
+        slide.classList.remove('active');
+        if (idx + 1 === currentSlide) {
+          slide.classList.add('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function goToSlide(n) {
+      showSlide(n);
+    }
+
+    // Keyboard Navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSlide(1);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSlide(totalSlides);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumey Energy — Consumer Product Brochure (A4 Tri-Fold Print Layout)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #FEDC22;
+      --primary-dark: #D4B200;
+      --dark-bg: #0B0F19;
+      --dark-card: #131B2E;
+      --dark-surface: #192238;
+      --dark-border: #1E293B;
+      --text-light: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent-green: #10B981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #020408;
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 10px;
+    }
+
+    .print-controls {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .btn-print {
+      background: var(--primary);
+      color: #000;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-title {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* A4 Landscape Sheet (297mm x 210mm) */
+    .brochure-sheet {
+      width: 1120px;
+      height: 792px;
+      background: var(--dark-bg);
+      border: 2px solid var(--dark-border);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+      margin-bottom: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Fold Lines */
+    .brochure-panel {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      border-right: 1px dashed rgba(254, 220, 34, 0.25);
+    }
+
+    .brochure-panel:last-child {
+      border-right: none;
+    }
+
+    .panel-header {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .panel-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .panel-title span {
+      color: var(--primary);
+    }
+
+    .panel-subtitle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .panel-body {
+      flex: 1;
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+
+    /* Cards inside panel */
+    .mini-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .mini-card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price-pill {
+      font-size: 0.75rem;
+      color: #fff;
+      font-weight: 700;
+      background: rgba(254, 220, 34, 0.15);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .panel-footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 8px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+    }
+
+    /* Cover Styling */
+    .panel-cover {
+      background: radial-gradient(circle at 50% 30%, #151D33 0%, #070A11 100%);
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cover-brand {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .cover-tagline {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+
+    .cover-main-hook {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 15px;
+    }
+
+    .distributor-stamp-box {
+      border: 2px dashed var(--primary);
+      background: rgba(0,0,0,0.6);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .print-controls {
+        display: none;
+      }
+      .brochure-sheet {
+        box-shadow: none;
+        page-break-after: always;
+        border: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-controls">
+    <button class="btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Full Tri-Fold Brochure</button>
+    <span class="page-title">Format: A4 Landscape (297 × 210 mm) • 2 Double-Sided Sheets (Inside & Outside)</span>
+  </div>
+
+  <!-- OUTSIDE SHEET (Panel 5, Panel 6 [Back], Panel 1 [Front Cover]) -->
+  <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 6px;">SIDE A: OUTSIDE OF BROCHURE (Folded View)</div>
+  <div class="brochure-sheet">
+
+    <!-- PANEL 5: QUALITY & WARRANTY PROOF -->
+    <div class="brochure-panel">
+      <div class="panel-header">
+        <div class="panel-title">Why <span>Lumey Outperforms</span></div>
+        <div class="panel-subtitle">Zero Alaba Market Guesswork</div>
+      </div>
+      <div class="panel-body">
+        <div class="mini-card">
+          <div class="mini-card-title"><i class="fa-solid fa-battery-bolt"></i> Grade-A LiFePO4</div>
+          Brand new prismatic Lithium Iron Phosphate cells rated for 3,500+ cycles. Built to last 10+ years without acid maintenance.
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title"><i class="fa-solid fa-wave-square"></i> Pure Sine Wave</div>
+          100% clean 230V AC waveform. Protects sensitive electronics, laptops, inverter fridges, and medical diagnostic gear safely.
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title"><i class="fa-solid fa-bolt"></i> 2-Hour Fast Charge</div>
+          Triple charging: charges from solar under the sun, fast 2-hour recharge with NEPA, or top-up with a small generator.
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title"><i class="fa-solid fa-shield-halved"></i> 5-Year Warranty</div>
+          12-month inverter swap guarantee + 5-year official factory warranty on LiFePO4 battery banks.
+        </div>
+      </div>
+      <div class="panel-footer">Factory: Oyemekun, Akure, Ondo State | Depots Nationwide</div>
+    </div>
+
+    <!-- PANEL 6: BACK COVER / DISTRIBUTOR STAMP -->
+    <div class="brochure-panel">
+      <div class="panel-header">
+        <div class="panel-title">Nationwide <span>Service Hubs</span></div>
+        <div class="panel-subtitle">Factory Direct Warranty Centers</div>
+      </div>
+      <div class="panel-body">
+        <p style="font-size: 0.72rem; margin-bottom: 10px;">
+          Lumey Energy operates certified regional service depots for fast waybills, technician support, and hassle-free warranty fulfillment:
+        </p>
+        <div style="font-size: 0.72rem; line-height: 1.5; margin-bottom: 12px;">
+          • <strong>Akure HQ:</strong> Oyemekun Road, Akure, Ondo State<br>
+          • <strong>Lagos:</strong> Ikeja & Alaba Commercial Hubs<br>
+          • <strong>Abuja:</strong> Central FCT Logistics Hub<br>
+          • <strong>Port Harcourt:</strong> South-South Regional Terminal<br>
+          • <strong>Kano & Ibadan:</strong> Northern & South-West Depots
+        </div>
+
+        <div class="distributor-stamp-box">
+          <div style="font-size: 0.65rem; color: var(--primary); font-weight: 800; text-transform: uppercase;">
+            <i class="fa-solid fa-certificate"></i> Authorized Sales & Service Hub
+          </div>
+          <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.92rem; font-weight: 800; color: #fff; margin: 4px 0;">
+            [YOUR STORE NAME HERE]
+          </div>
+          <div style="font-size: 0.68rem; color: var(--text-muted); line-height: 1.3;">
+            [Store Address, Street, LGA, State]<br>
+            <strong>Phone / WhatsApp:</strong> [080X-XXX-XXXX]<br>
+            <em>Instant Pick-up & Waybill Available</em>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">Official Hotline: 07062878273 | www.lumeyenergy.com</div>
+    </div>
+
+    <!-- PANEL 1: FRONT COVER -->
+    <div class="brochure-panel panel-cover">
+      <div>
+        <div class="cover-brand">LUMEY</div>
+        <div class="cover-tagline">Power Easy • Live Smart</div>
+        <div style="background: rgba(254, 220, 34, 0.15); border: 1px solid var(--primary); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; display: inline-block; margin-bottom: 15px;">
+          Official August 2026 Product Catalogue
+        </div>
+        <div class="cover-main-hook">
+          The Zero-Fuel<br><span>Freedom System</span>
+        </div>
+        <p style="font-size: 0.78rem; color: #cbd5e1; max-width: 280px; margin: 0 auto 20px;">
+          Quiet, portable solar power stations that eliminate fuel costs for homes, businesses, and clinics.
+        </p>
+        <div style="display: flex; gap: 8px; justify-content: center; font-size: 0.7rem; color: var(--primary); font-weight: 600;">
+          <span>Zero Petrol</span> • <span>Zero Noise</span> • <span>10-Year Life</span>
+        </div>
+      </div>
+      <div class="panel-footer" style="width: 100%; text-align: center; border-top: 1px solid rgba(255,255,255,0.08);">
+        Nigeria's Premier Pure Sine Wave Solar Generators
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INSIDE SHEET (Panel 2 [Problem], Panel 3 [Portable], Panel 4 [Heavy Duty]) -->
+  <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 6px;">SIDE B: INSIDE OF BROCHURE (Opened Spread)</div>
+  <div class="brochure-sheet">
+
+    <!-- PANEL 2: THE FUEL TAX REALITY & ROI -->
+    <div class="brochure-panel">
+      <div class="panel-header">
+        <div class="panel-title">Stop Paying <span>The Fuel Tax</span></div>
+        <div class="panel-subtitle">Petrol at ₦1,250/L is Financial Bleeding</div>
+      </div>
+      <div class="panel-body">
+        <p style="margin-bottom: 10px;">
+          Running a small generator for just 6 hours a day consumes over ₦90,000 every month in fuel alone — over <strong>₦1,080,000 every single year</strong> poured into smoke and noise.
+        </p>
+        <div class="mini-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.08);">
+          <div class="mini-card-title" style="color: #EF4444;"><i class="fa-solid fa-triangle-exclamation"></i> The Generator Trap</div>
+          • ₦90,000 to ₦115,000/month fuel spend<br>
+          • Spark plug, oil & carburetor repairs<br>
+          • Toxic fumes and deafening noise
+        </div>
+        <div class="mini-card" style="border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.08);">
+          <div class="mini-card-title" style="color: #10B981;"><i class="fa-solid fa-solar-panel"></i> The Lumey Solution</div>
+          • ₦0 fuel expense forever<br>
+          • Pays for itself in 75–100 days<br>
+          • Completely silent (0 dB) inside bedroom
+        </div>
+      </div>
+      <div class="panel-footer">Over ₦1,200,000 saved in Year 1 alone</div>
+    </div>
+
+    <!-- PANEL 3: PORTABLE SERIES (PB 600, 1500, 1900) -->
+    <div class="brochure-panel">
+      <div class="panel-header">
+        <div class="panel-title">Portable Series <span>(Homes & Tech)</span></div>
+        <div class="panel-subtitle">Plug & Play • Zero Installation Needed</div>
+      </div>
+      <div class="panel-body">
+        <div class="mini-card">
+          <div class="mini-card-title">PowerBox 600 <span class="price-pill">₦320,000 Combo</span></div>
+          400W Inverter | 600Wh Lithium Core<br>
+          <strong>Powers:</strong> Laptops, WiFi routers, 32" TV, fans, POS, phones. Perfect for remote tech workers & students.
+        </div>
+        <div class="mini-card" style="border-color: var(--primary);">
+          <div class="mini-card-title">PowerBox 1500 (#1 Bestseller) <span class="price-pill" style="background: var(--primary); color: #000;">₦500,000 Combo</span></div>
+          1kW Inverter (1.25kVA) | 1,500Wh Lithium Core<br>
+          <strong>Powers:</strong> Tabletop fridge (120L), 10kg washer, 600W blender, fans, TV. The ultimate generator killer.
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">PowerBox 1900 <span class="price-pill">₦590,000 Combo</span></div>
+          1kW Inverter | 1,900Wh Core + 600W Solar Panel<br>
+          <strong>Powers:</strong> Same as 1500 with 27% runtime cushion (runs tabletop fridge for 22h+ through long blackouts).
+        </div>
+      </div>
+      <div class="panel-footer">Solar Package includes high-yield mono panels</div>
+    </div>
+
+    <!-- PANEL 4: DEEP FREEZERS & HEAVY DUTY (PB 2600 to 8000 Plus) -->
+    <div class="brochure-panel">
+      <div class="panel-header">
+        <div class="panel-title">Commercial & <span>Heavy Duty</span></div>
+        <div class="panel-subtitle">Deep Freezers, Inverter ACs & Pumps</div>
+      </div>
+      <div class="panel-body">
+        <div class="mini-card">
+          <div class="mini-card-title">PowerBox 2600 / 3100 <span class="price-pill">₦1.0M / ₦1.1M Combo</span></div>
+          2kW Inverter (2.5kVA) | 2.6kWh–3.1kWh Core<br>
+          <strong>Powers:</strong> Deep freezers, microwave, induction cooker, washing machine. 48-hour food security.
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">PowerBox 4000 <span class="price-pill">₦2,150,000 Combo</span></div>
+          4kW Inverter (5kVA) | 4kWh LiFePO4 Bank<br>
+          <strong>Powers:</strong> 1 Inverter AC (day), water pumping machine, full 3-bedroom house lighting & entertainment.
+        </div>
+        <div class="mini-card">
+          <div class="mini-card-title">PowerBox 8000 / Plus <span class="price-pill">₦2.6M / ₦3.2M Combo</span></div>
+          4kW–8kW Inverter (10kVA) | 8kWh LiFePO4 Bank<br>
+          <strong>Powers:</strong> 1–2 Inverter ACs (extended night), borehole pump, duplexes, commercial clinics, estates.
+        </div>
+      </div>
+      <div class="panel-footer">LiFePO4 battery cores include 5-year official warranty</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

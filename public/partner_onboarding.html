@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumey Energy — Partner Onboarding & Recruitment Hub | Affiliates & Distributors</title>
+  <meta name="description" content="Join Nigeria's #1 Clean Energy Revolution. Earn 5% to 12% weekly cash commissions with ₦0 capital, or stock your store as an Authorized Distributor with up to 22% wholesale margins." />
+  <link rel="icon" href="https://www.lumeyenergy.com/Lumey_Favicon/4x/Lumey_Favicon_32x32@4x.png" />
+  
+  <!-- Google Fonts: Poppins & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #FEDC22;
+      --primary-hover: #FEE664;
+      --primary-dark: #D4B200;
+      --dark-bg: #0B0F19;
+      --dark-card: #131B2E;
+      --dark-card-hover: #1A243D;
+      --dark-border: #1E293B;
+      --dark-surface: #192238;
+      --light-bg: #F8FAFC;
+      --light-card: #FFFFFF;
+      --light-border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --text-light: #F8FAFC;
+      --text-light-muted: #94A3B8;
+      --whatsapp: #25D366;
+      --whatsapp-hover: #128C7E;
+      --danger: #EF4444;
+      --success: #10B981;
+      --success-glow: rgba(16, 185, 129, 0.3);
+      --gold-glow: rgba(254, 220, 34, 0.35);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.12);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.18);
+      --shadow-lg: 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Urgency Header Banner */
+    .top-banner {
+      background: #000000;
+      color: var(--primary);
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid rgba(254, 220, 34, 0.25);
+    }
+    .top-banner span.highlight {
+      background: var(--primary);
+      color: #000;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 0 6px;
+      font-weight: 800;
+    }
+
+    /* Site Navigation */
+    header.site-header {
+      background: rgba(11, 15, 25, 0.95);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--dark-border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-logo i {
+      color: var(--primary);
+    }
+    .brand-badge {
+      background: rgba(254, 220, 34, 0.15);
+      border: 1px solid rgba(254, 220, 34, 0.3);
+      color: var(--primary);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .btn-outline {
+      border: 1px solid var(--dark-border);
+      background: var(--dark-surface);
+      color: #FFFFFF;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-whatsapp-sm {
+      background: var(--whatsapp);
+      color: #000;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-whatsapp-sm:hover {
+      background: var(--whatsapp-hover);
+      color: #FFF;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 60px 0 40px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-glow-1 {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(254, 220, 34, 0.12) 0%, transparent 70%);
+      filter: blur(50px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--success);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: 42px;
+      line-height: 1.18;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .hero-title span.gold {
+      color: var(--primary);
+    }
+    .hero-title span.green {
+      color: var(--success);
+    }
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--text-light-muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Dual-Track Switcher */
+    .track-switcher-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .track-switcher {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      padding: 6px;
+      border-radius: 999px;
+      display: inline-flex;
+      gap: 8px;
+      box-shadow: var(--shadow-md);
+    }
+    .track-btn {
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s ease;
+      color: var(--text-light-muted);
+      background: transparent;
+    }
+    .track-btn.active-affiliate {
+      background: var(--primary);
+      color: #000000;
+      box-shadow: 0 4px 18px var(--gold-glow);
+    }
+    .track-btn.active-distributor {
+      background: var(--success);
+      color: #000000;
+      box-shadow: 0 4px 18px var(--success-glow);
+    }
+
+    /* Proof Metrics Ribbon */
+    .proof-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      margin-bottom: 50px;
+    }
+    .metric-item {
+      text-align: center;
+      border-right: 1px solid var(--dark-border);
+      padding: 0 12px;
+    }
+    .metric-item:last-child {
+      border-right: none;
+    }
+    .metric-val {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+    .metric-val span.gold { color: var(--primary); }
+    .metric-val span.green { color: var(--success); }
+    .metric-lbl {
+      font-size: 12px;
+      color: var(--text-light-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Track Container Displays */
+    .track-view {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .track-view.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Calculator Cards */
+    .calculator-box {
+      background: linear-gradient(145deg, #131B2E 0%, #0D1424 100%);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 50px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .calculator-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(254, 220, 34, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .calc-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+    .calc-header h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+    .calc-header p {
+      color: var(--text-light-muted);
+      font-size: 14px;
+    }
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .calc-sliders {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .slider-group {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+    }
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .slider-label-row span.model-name {
+      color: #FFFFFF;
+    }
+    .slider-label-row span.count-badge {
+      background: var(--primary);
+      color: #000;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .calc-range {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #1E293B;
+      outline: none;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .calc-results-card {
+      background: #0B0F19;
+      border: 1px solid rgba(254, 220, 34, 0.3);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      text-align: center;
+      position: relative;
+    }
+    .tier-badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid var(--success);
+      color: var(--success);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .res-label {
+      font-size: 13px;
+      color: var(--text-light-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .res-amount {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      text-shadow: 0 0 20px rgba(254, 220, 34, 0.25);
+    }
+    .res-breakdown {
+      font-size: 13px;
+      color: var(--text-light-muted);
+      border-top: 1px solid var(--dark-border);
+      padding-top: 14px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+    .res-breakdown div strong {
+      display: block;
+      color: #FFF;
+      font-size: 15px;
+    }
+    .btn-claim {
+      display: block;
+      width: 100%;
+      background: var(--primary);
+      color: #000;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 14px 20px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-claim:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 6px 20px var(--gold-glow);
+    }
+
+    /* Visual Portal Mockup Showcase */
+    .portal-mockup-section {
+      margin-bottom: 60px;
+    }
+    .mockup-frame {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .mockup-img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      display: block;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mockup-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .mockup-feat-card {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .mockup-feat-card i {
+      font-size: 20px;
+      color: var(--primary);
+      margin-top: 2px;
+    }
+    .mockup-feat-card h5 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .mockup-feat-card p {
+      font-size: 12px;
+      color: var(--text-light-muted);
+      line-height: 1.4;
+    }
+
+    /* Onboarding Simulator & Portal Experience */
+    .onboarding-wizard-section {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 60px;
+    }
+    .wizard-steps-nav {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--dark-border);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .wiz-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-light-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .wiz-step.active {
+      color: var(--primary);
+    }
+    .wiz-step.completed {
+      color: var(--success);
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .wiz-step.active .step-num {
+      background: var(--primary);
+      color: #000;
+      border-color: var(--primary);
+    }
+    .wiz-step.completed .step-num {
+      background: var(--success);
+      color: #000;
+      border-color: var(--success);
+    }
+
+    .wizard-tab-content {
+      display: none;
+    }
+    .wizard-tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    /* Form Fields */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #FFFFFF;
+    }
+    .form-input, .form-select {
+      width: 100%;
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-select:focus {
+      border-color: var(--primary);
+    }
+    .form-note {
+      font-size: 12px;
+      color: var(--text-light-muted);
+      margin-top: 4px;
+    }
+
+    /* Step 2: Instant Code Card */
+    .code-reveal-box {
+      background: var(--dark-surface);
+      border: 1px dashed var(--primary);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .code-display {
+      font-family: 'Plus Jakarta Sans', monospace;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: 2px;
+      margin: 10px 0;
+    }
+    .link-copy-box {
+      display: flex;
+      gap: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .btn-copy {
+      background: var(--primary);
+      color: #000;
+      border: none;
+      padding: 0 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* Step 3: Fast-Start Sales Vault */
+    .vault-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .vault-item {
+      background: var(--dark-surface);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+    .vault-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .vault-item-header h4 {
+      font-size: 16px;
+    }
+    .btn-download-asset {
+      background: rgba(254, 220, 34, 0.15);
+      border: 1px solid rgba(254, 220, 34, 0.3);
+      color: var(--primary);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .vault-item p {
+      font-size: 13px;
+      color: var(--text-light-muted);
+      line-height: 1.5;
+    }
+
+    /* Step 4: Bank Account Payout Setup */
+    .payout-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--success);
+      color: var(--success);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    /* Distributor Path Styles */
+    .dist-tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .dist-tier-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-md);
+      padding: 26px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .dist-tier-card.featured {
+      border-color: var(--success);
+      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.15);
+    }
+    .dist-tier-card.featured::before {
+      content: 'POPULAR CHOICE';
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--success);
+      color: #000;
+      font-size: 10px;
+      font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+    }
+    .dist-tier-name {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .dist-tier-cap {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--success);
+      margin-bottom: 12px;
+    }
+    .dist-margin-pill {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .dist-tier-features {
+      list-style: none;
+      font-size: 13px;
+      color: var(--text-light-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .dist-tier-features li i {
+      color: var(--success);
+      margin-right: 8px;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-bottom: 60px;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .faq-item {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+    .faq-q {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #FFFFFF;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .faq-q i {
+      color: var(--primary);
+      margin-top: 4px;
+    }
+    .faq-a {
+      font-size: 13px;
+      color: var(--text-light-muted);
+      line-height: 1.5;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #000;
+      color: #FFF;
+      border: 1px solid var(--primary);
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      display: none;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-title { font-size: 30px; }
+      .proof-ribbon { grid-template-columns: repeat(2, 1fr); }
+      .calc-grid { grid-template-columns: 1fr; }
+      .mockup-features { grid-template-columns: 1fr; }
+      .vault-grid { grid-template-columns: 1fr; }
+      .dist-tiers-grid { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full-width { grid-column: span 1; }
+      .wizard-steps-nav { flex-wrap: wrap; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Urgency Banner -->
+  <div class="top-banner">
+    ⚡ NIGERIA'S OFFICIAL PARTNER INTAKE: Over <span class="highlight">₦45,800,000</span> Paid to Nigerian Partners in 2026 • Next Tuesday Payout Processing
+  </div>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <div class="brand-box">
+        <a href="index.html" class="brand-logo">
+          <i class="fa-solid fa-bolt-lightning"></i> Lumey
+        </a>
+        <span class="brand-badge">Partner Hub</span>
+      </div>
+      <div class="nav-actions">
+        <a href="#calculator" class="btn-outline">Income Calculator</a>
+        <a href="https://wa.me/2348139743177?text=Hello%20Lumey%20I%20want%20to%20become%20a%20partner" target="_blank" class="btn-whatsapp-sm">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Desk
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow-1"></div>
+    <div class="container hero-content">
+      <div class="hero-eyebrow">
+        <i class="fa-solid fa-fire"></i> August 2026 Partner Recruitment Program
+      </div>
+      <h1 class="hero-title">
+        Stop Watching Nigerians Spend Billions on Fuel.<br />
+        <span class="gold">Position Yourself Between The Pump</span> & <span class="green">Clean Energy</span>.
+      </h1>
+      <p class="hero-subtitle">
+        With petrol at ₦1,200/L and Band A electricity bills crushing homes, millions of Nigerians need silent solar power now. Choose your path below: earn <strong>5% to 12% weekly cash commissions</strong> with ₦0 capital, or stock your store as an <strong>Authorized Distributor with up to 22% wholesale margins</strong>.
+      </p>
+
+      <!-- Dual-Track Switcher -->
+      <div class="track-switcher-container">
+        <div class="track-switcher">
+          <button class="track-btn active-affiliate" id="tabBtnAffiliate" onclick="switchTrack('affiliate')">
+            <i class="fa-solid fa-bolt"></i> Affiliate Track (₦0 Capital)
+          </button>
+          <button class="track-btn" id="tabBtnDistributor" onclick="switchTrack('distributor')">
+            <i class="fa-solid fa-store"></i> Distributor Track (Wholesale)
+          </button>
+        </div>
+      </div>
+
+      <!-- Proof Metrics Ribbon -->
+      <div class="proof-ribbon">
+        <div class="metric-item">
+          <div class="metric-val"><span class="gold">₦45.8M+</span></div>
+          <div class="metric-lbl">Paid to Partners in 2026</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val">36 States</div>
+          <div class="metric-lbl">Nationwide Delivery Network</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val"><span class="green">5 Years</span></div>
+          <div class="metric-lbl">Official Battery Warranty</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-val">₦0.00</div>
+          <div class="metric-lbl">Cost to Start as Affiliate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ==================== TRACK A: AFFILIATE ENGINE ==================== -->
+    <div id="trackAffiliate" class="track-view active">
+
+      <!-- Interactive Affiliate Income Calculator -->
+      <div class="calculator-box" id="calculator">
+        <div class="calc-header">
+          <h3>⚡ Live Affiliate Commission Calculator</h3>
+          <p>Estimate your monthly bank payout. Adjust the sliders below based on how many units of each August 2026 model you project to refer each month.</p>
+        </div>
+        <div class="calc-grid">
+          <div class="calc-sliders">
+            <!-- PB 600 Slider -->
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="model-name">PowerBox 600 (₦320,000 Combo)</span>
+                <span class="count-badge" id="badgePb600">0 units</span>
+              </div>
+              <input type="range" class="calc-range" id="sliderPb600" min="0" max="15" value="0" oninput="updateAffiliateCalc()" />
+            </div>
+            <!-- PB 1500 Slider (#1 Bestseller) -->
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="model-name">PowerBox 1500 (₦500,000 Combo — #1 Bestseller)</span>
+                <span class="count-badge" id="badgePb1500">2 units</span>
+              </div>
+              <input type="range" class="calc-range" id="sliderPb1500" min="0" max="15" value="2" oninput="updateAffiliateCalc()" />
+            </div>
+            <!-- PB 2600 Slider -->
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="model-name">PowerBox 2600 (₦1,000,000 Combo — Deep Freezers)</span>
+                <span class="count-badge" id="badgePb2600">1 units</span>
+              </div>
+              <input type="range" class="calc-range" id="sliderPb2600" min="0" max="10" value="1" oninput="updateAffiliateCalc()" />
+            </div>
+            <!-- PB 4000 Slider -->
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="model-name">PowerBox 4000 (₦2,150,000 Combo — Inverter ACs)</span>
+                <span class="count-badge" id="badgePb4000">1 units</span>
+              </div>
+              <input type="range" class="calc-range" id="sliderPb4000" min="0" max="8" value="1" oninput="updateAffiliateCalc()" />
+            </div>
+            <!-- PB 8000 Plus Slider -->
+            <div class="slider-group">
+              <div class="slider-label-row">
+                <span class="model-name">PowerBox 8000 Plus (₦3,200,000 Combo — Duplexes)</span>
+                <span class="count-badge" id="badgePb8000">0 units</span>
+              </div>
+              <input type="range" class="calc-range" id="sliderPb8000" min="0" max="5" value="0" oninput="updateAffiliateCalc()" />
+            </div>
+          </div>
+
+          <!-- Calculator Results Column -->
+          <div class="calc-results-card">
+            <span class="tier-badge" id="calcTierBadge">PRO TIER (10.0%)</span>
+            <div class="res-label">Projected Monthly Bank Payout</div>
+            <div class="res-amount" id="calcPayoutAmount">₦415,000</div>
+            
+            <div class="res-breakdown">
+              <div>
+                <span style="font-size:11px; text-transform:uppercase;">Gross Sales</span>
+                <strong id="calcGrossSales">₦4,150,000</strong>
+              </div>
+              <div>
+                <span style="font-size:11px; text-transform:uppercase;">Weekly Payout</span>
+                <strong id="calcWeeklySales">₦103,750</strong>
+              </div>
+              <div>
+                <span style="font-size:11px; text-transform:uppercase;">Annual Run-Rate</span>
+                <strong id="calcAnnualSales">₦4,980,000</strong>
+              </div>
+            </div>
+
+            <button class="btn-claim" onclick="scrollToOnboarding()">
+              Activate Your Partner Account & Code ➔
+            </button>
+            <p style="font-size:11px; color:var(--text-light-muted); margin-top:8px;">
+              Paid directly via NUBAN wire every Tuesday before 2:00 PM.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Portal Mockup Showcase -->
+      <div class="portal-mockup-section">
+        <div class="mockup-frame">
+          <img src="lumey_partner_portal_mockup.jpg" alt="Lumey Partner Portal Interface Mockup" class="mockup-img" />
+          <div class="mockup-features">
+            <div class="mockup-feat-card">
+              <i class="fa-solid fa-gauge-high"></i>
+              <div>
+                <h5>Real-Time Sales Tracking</h5>
+                <p>Track every single order, customer name, and commission attribution the moment it happens.</p>
+              </div>
+            </div>
+            <div class="mockup-feat-card">
+              <i class="fa-solid fa-gift"></i>
+              <div>
+                <h5>Exclusive ₦5,000 Buyer Perk</h5>
+                <p>Your unique referral coupon gives buyers an instant ₦5,000 discount, making your link irresistible.</p>
+              </div>
+            </div>
+            <div class="mockup-feat-card">
+              <i class="fa-solid fa-building-columns"></i>
+              <div>
+                <h5>Automated Tuesday Payouts</h5>
+                <p>Direct electronic bank settlement every single Tuesday. Zero manual payment requests needed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4-Step Onboarding Simulator & Portal Experience -->
+      <div class="onboarding-wizard-section" id="onboardingSection">
+        <div class="calc-header" style="margin-bottom:24px;">
+          <span class="hero-eyebrow" style="margin-bottom:10px;"><i class="fa-solid fa-rocket"></i> 3 Minutes to First Sale</span>
+          <h3>Step-by-Step Affiliate Launch & Portal Setup</h3>
+          <p>Follow the 4 simple steps below to generate your referral code, access your marketing swipe vault, and configure your bank account.</p>
+        </div>
+
+        <!-- Wizard Navigation -->
+        <div class="wizard-steps-nav">
+          <div class="wiz-step active" id="navStep1" onclick="goToStep(1)">
+            <div class="step-num">1</div>
+            <span>Fast Registration</span>
+          </div>
+          <div class="wiz-step" id="navStep2" onclick="goToStep(2)">
+            <div class="step-num">2</div>
+            <span>Coupon & Link</span>
+          </div>
+          <div class="wiz-step" id="navStep3" onclick="goToStep(3)">
+            <div class="step-num">3</div>
+            <span>72-Hour Sales Vault</span>
+          </div>
+          <div class="wiz-step" id="navStep4" onclick="goToStep(4)">
+            <div class="step-num">4</div>
+            <span>Bank Settlement</span>
+          </div>
+        </div>
+
+        <!-- STEP 1: Registration Form -->
+        <div class="wizard-tab-content active" id="stepContent1">
+          <form id="affiliateForm" onsubmit="handleAffiliateSubmit(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Full Name (As it appears on your bank account)</label>
+                <input type="text" class="form-input" id="affName" placeholder="e.g. Chukwuma Adebayo" required />
+              </div>
+              <div class="form-group">
+                <label>WhatsApp Number (For commission alerts & VIP invite)</label>
+                <input type="tel" class="form-input" id="affPhone" placeholder="08012345678" required />
+              </div>
+              <div class="form-group">
+                <label>City & State</label>
+                <input type="text" class="form-input" id="affCity" placeholder="e.g. Ikeja, Lagos" required />
+              </div>
+              <div class="form-group">
+                <label>Primary Promotion Channel</label>
+                <select class="form-select" id="affChannel">
+                  <option value="WhatsApp Status">WhatsApp Status & Personal Network</option>
+                  <option value="Instagram / TikTok">Instagram & TikTok Content</option>
+                  <option value="Corporate / Tech">Corporate Workplace & Tech Communities</option>
+                  <option value="Twitter / X">Twitter / X & LinkedIn</option>
+                  <option value="Field Sales">Direct In-Person / Estate Sales</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label>Desired Partner Referral Handle (Code prefix)</label>
+                <input type="text" class="form-input" id="affCustomCode" placeholder="e.g. CHUKS (Will create LUMEY-CHUKS)" />
+                <div class="form-note">Your clients will use this code to get ₦5,000 off while you earn 5%–12% commission.</div>
+              </div>
+            </div>
+            <button type="submit" class="btn-claim" style="max-width:360px; margin: 0 auto;">
+              Generate My Official Partner Code ➔
+            </button>
+          </form>
+        </div>
+
+        <!-- STEP 2: Instant Code & Link Reveal -->
+        <div class="wizard-tab-content" id="stepContent2">
+          <div class="code-reveal-box">
+            <span class="hero-eyebrow" style="background:rgba(254,220,34,0.15); color:var(--primary); border-color:rgba(254,220,34,0.3);">
+              <i class="fa-solid fa-circle-check"></i> Account Provisioned Successfully
+            </span>
+            <p style="font-size:14px; color:var(--text-light-muted); margin-top:10px;">
+              Congratulations <strong id="resPartnerName" style="color:#FFF;">Partner</strong>! Your official partner credentials are live.
+            </p>
+            <div class="code-display" id="resPartnerCode">LUMEY-PRO</div>
+            <p style="font-size:13px; color:var(--text-light-muted); margin-bottom:18px;">
+              Give this code to your buyers. They save ₦5,000 immediately, and the system permanently binds the sale to your account.
+            </p>
+            <div class="link-copy-box">
+              <input type="text" class="form-input" id="resPartnerLink" readonly value="https://lumeyenergy.com/?ref=LUMEY-PRO" />
+              <button class="btn-copy" onclick="copyPartnerLink()">
+                <i class="fa-regular fa-copy"></i> Copy Link
+              </button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:center; gap:16px;">
+            <a href="https://wa.me/2348139743177?text=Hello%20Lumey%20I%20just%20activated%20my%20affiliate%20code" target="_blank" class="btn-whatsapp-sm" style="padding:12px 24px; font-size:14px;">
+              <i class="fa-brands fa-whatsapp"></i> Join VIP WhatsApp Group
+            </a>
+            <button class="btn-outline" onclick="goToStep(3)" style="padding:12px 24px; font-size:14px;">
+              Access 72-Hour Sales Vault ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: 72-Hour Sales Vault -->
+        <div class="wizard-tab-content" id="stepContent3">
+          <div class="vault-grid">
+            <!-- DFY 7-Day WhatsApp Status Pack -->
+            <div class="vault-item">
+              <div class="vault-item-header">
+                <h4><i class="fa-brands fa-whatsapp" style="color:var(--whatsapp);"></i> 7-Day WhatsApp Status Pack</h4>
+                <button class="btn-download-asset" onclick="copyStatusScript()">
+                  <i class="fa-regular fa-copy"></i> Copy Day 1
+                </button>
+              </div>
+              <p>Plug-and-play images and text captions that provoke contacts to ask: <em>"Where did you buy this solar station?"</em></p>
+              <div style="background:#0B0F19; border:1px solid var(--dark-border); padding:10px; border-radius:6px; font-size:12px; margin-top:10px; color:#94A3B8;">
+                <strong style="color:var(--primary);">Day 1 Status Preview:</strong><br />
+                "How much did you burn on petrol and NEPA this month? What if you never bought fuel again? Send me a DM to see how this silent power station runs tabletop fridges and TVs."
+              </div>
+            </div>
+
+            <!-- 5x Uncut Proof Video Clips -->
+            <div class="vault-item">
+              <div class="vault-item-header">
+                <h4><i class="fa-solid fa-video" style="color:var(--primary);"></i> 5x Uncut Proof Video Clips</h4>
+                <button class="btn-download-asset" onclick="showToast('Video Asset Pack link copied!')">
+                  <i class="fa-solid fa-download"></i> Get Clips
+                </button>
+              </div>
+              <p>Raw, uncut high-resolution proof videos showing the PowerBox 1500 running blenders and fridges, and the 4000 powering 1HP Inverter ACs.</p>
+              <div style="font-size:12px; color:var(--success); margin-top:10px;">
+                <i class="fa-solid fa-check"></i> 100% Whitelabel: Ready to post directly on your status or TikTok.
+              </div>
+            </div>
+
+            <!-- 60-Second Pocket Load Matcher -->
+            <div class="vault-item">
+              <div class="vault-item-header">
+                <h4><i class="fa-solid fa-calculator" style="color:var(--primary);"></i> 60-Sec Pocket Load Matcher</h4>
+                <button class="btn-download-asset" onclick="showToast('Pocket Load Matcher downloaded!')">
+                  <i class="fa-regular fa-file-pdf"></i> View Guide
+                </button>
+              </div>
+              <p>Instantly match customer appliances to the correct PowerBox without needing technical knowledge. Know exactly what to recommend in 10 seconds.</p>
+            </div>
+
+            <!-- Quick-Reply Objection Battlecards -->
+            <div class="vault-item">
+              <div class="vault-item-header">
+                <h4><i class="fa-solid fa-shield-halved" style="color:var(--success);"></i> Objection Battlecards</h4>
+                <button class="btn-download-asset" onclick="showToast('15 Objection Battlecards copied!')">
+                  <i class="fa-regular fa-copy"></i> Copy Scripts
+                </button>
+              </div>
+              <p>Proven word-for-word rebuttals for customer questions on battery lifespan, rainy day charging, and deep freezer compatibility.</p>
+            </div>
+          </div>
+
+          <div style="text-align:center;">
+            <button class="btn-claim" onclick="goToStep(4)" style="max-width:320px; margin:0 auto;">
+              Configure Bank Account for Tuesday Payouts ➔
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Bank Account Payout Setup -->
+        <div class="wizard-tab-content" id="stepContent4">
+          <div style="max-width:550px; margin:0 auto; text-align:center;">
+            <div class="payout-status-badge">
+              <i class="fa-solid fa-clock"></i> Next Automated Settlement: Tuesday Before 2:00 PM
+            </div>
+            <div class="form-grid" style="text-align:left;">
+              <div class="form-group full-width">
+                <label>Select Your Bank</label>
+                <select class="form-select" id="bankName">
+                  <option value="GTBank">Guaranty Trust Bank (GTBank)</option>
+                  <option value="Access">Access Bank</option>
+                  <option value="Zenith">Zenith Bank</option>
+                  <option value="UBA">United Bank for Africa (UBA)</option>
+                  <option value="FirstBank">First Bank of Nigeria</option>
+                  <option value="Kuda">Kuda Microfinance Bank</option>
+                  <option value="Opay">Opay Digital Services</option>
+                  <option value="Moniepoint">Moniepoint MFB</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label>10-Digit NUBAN Account Number</label>
+                <input type="text" class="form-input" id="bankNuban" placeholder="0123456789" maxlength="10" oninput="validateBank()" />
+                <div class="form-note" id="bankAccountNameResolved" style="color:var(--success); font-weight:700;"></div>
+              </div>
+            </div>
+
+            <button class="btn-claim" onclick="saveBankDetails()">
+              Lock in Payout Settings & Activate Account ➔
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ==================== TRACK B: DISTRIBUTOR ENGINE ==================== -->
+    <div id="trackDistributor" class="track-view">
+
+      <div class="calculator-box" style="border-color: rgba(16, 185, 129, 0.4);">
+        <div class="calc-header">
+          <span class="hero-eyebrow" style="background:rgba(16,185,129,0.15); color:var(--success); border-color:rgba(16,185,129,0.3);">
+            <i class="fa-solid fa-store"></i> Commercial Wholesale & Territory Rights
+          </span>
+          <h3>Stock The Generator-Killer in Your Showroom</h3>
+          <p>Partner with Nigeria's premier manufacturer of Grade-A LiFePO4 solar generators. Capture upfront gross profit margins plus quarterly volume rebates.</p>
+        </div>
+
+        <!-- Distributor Wholesale Tiers -->
+        <div class="dist-tiers-grid">
+          <!-- Tier 1: Authorized Reseller -->
+          <div class="dist-tier-card">
+            <div class="dist-tier-name">Authorized Reseller</div>
+            <div class="dist-tier-cap">₦500,000</div>
+            <div class="dist-margin-pill">15% Wholesale Margin</div>
+            <ul class="dist-tier-features">
+              <li><i class="fa-solid fa-check"></i> Min. Stock Order: ~2x PowerBox units</li>
+              <li><i class="fa-solid fa-check"></i> Listed on Official Store Locator</li>
+              <li><i class="fa-solid fa-check"></i> Digital Merchandising Asset Pack</li>
+              <li><i class="fa-solid fa-check"></i> Standard WhatsApp Depot Support</li>
+            </ul>
+            <button class="btn-outline" style="width:100%; border-color:var(--success); color:var(--success);" onclick="selectDistTier('Authorized Reseller (₦500k)')">
+              Select Reseller Tier
+            </button>
+          </div>
+
+          <!-- Tier 2: Regional Distributor -->
+          <div class="dist-tier-card featured">
+            <div class="dist-tier-name">Regional Distributor</div>
+            <div class="dist-tier-cap">₦2,000,000</div>
+            <div class="dist-margin-pill" style="background:rgba(16,185,129,0.25);">18% Wholesale Margin</div>
+            <ul class="dist-tier-features">
+              <li><i class="fa-solid fa-check"></i> <strong>LGA Territory Exclusivity</strong> (60-Day Protection)</li>
+              <li><i class="fa-solid fa-check"></i> Luxury Showroom Roll-Up Banner</li>
+              <li><i class="fa-solid fa-check"></i> 500 Full-Colour A4 Tri-Fold Brochures</li>
+              <li><i class="fa-solid fa-check"></i> Direct Wholesale Order Pass-Through</li>
+              <li><i class="fa-solid fa-check"></i> Dedicated Regional Field Sales Lead</li>
+            </ul>
+            <button class="btn-claim" style="background:var(--success); color:#000;" onclick="selectDistTier('Regional Distributor (₦2.0M)')">
+              Apply for Territory Exclusivity
+            </button>
+          </div>
+
+          <!-- Tier 3: Master Distributor -->
+          <div class="dist-tier-card">
+            <div class="dist-tier-name">Master Distributor</div>
+            <div class="dist-tier-cap">₦5,000,000+</div>
+            <div class="dist-margin-pill">22% Wholesale Margin</div>
+            <ul class="dist-tier-features">
+              <li><i class="fa-solid fa-check"></i> <strong>State-Level Monopolistic Rights</strong></li>
+              <li><i class="fa-solid fa-check"></i> Showroom Setup Co-Funding / Subsidies</li>
+              <li><i class="fa-solid fa-check"></i> Priority Regional Depot Inventory Allocations</li>
+              <li><i class="fa-solid fa-check"></i> 2% to 7% Cumulative Quarterly Volume Rebates</li>
+              <li><i class="fa-solid fa-check"></i> Direct Executive Board Access</li>
+            </ul>
+            <button class="btn-outline" style="width:100%; border-color:var(--success); color:var(--success);" onclick="selectDistTier('Master Distributor (₦5.0M+)')">
+              Select Master Tier
+            </button>
+          </div>
+        </div>
+
+        <!-- Distributor Commercial Intake Dossier -->
+        <div class="onboarding-wizard-section" style="background: #0B0F19; border: 1px solid var(--dark-border);">
+          <div class="calc-header" style="margin-bottom:24px;">
+            <h3>Distributor Commercial KYC & Territory Application</h3>
+            <p>Fill out your enterprise details below. Our Regional Distribution Director will contact you within 4 business hours to confirm territorial clearance.</p>
+          </div>
+
+          <form id="distributorForm" onsubmit="handleDistributorSubmit(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Registered Company / Business Name</label>
+                <input type="text" class="form-input" id="distCompName" placeholder="e.g. Apex Electrical & Solar Ltd" required />
+              </div>
+              <div class="form-group">
+                <label>CAC Registration Number (RC or BN)</label>
+                <input type="text" class="form-input" id="distCac" placeholder="e.g. RC 1948271" required />
+              </div>
+              <div class="form-group">
+                <label>Managing Director / Contact Person</label>
+                <input type="text" class="form-input" id="distContactPerson" placeholder="Full Legal Name" required />
+              </div>
+              <div class="form-group">
+                <label>Direct Phone / WhatsApp Number</label>
+                <input type="tel" class="form-input" id="distPhone" placeholder="08033334444" required />
+              </div>
+              <div class="form-group">
+                <label>Physical Storefront / Showroom Address</label>
+                <input type="text" class="form-input" id="distAddress" placeholder="Street Address, City & LGA" required />
+              </div>
+              <div class="form-group">
+                <label>Selected Initial Wholesale Investment Tier</label>
+                <select class="form-select" id="distTierSelect">
+                  <option value="Authorized Reseller (₦500k)">Authorized Reseller (₦500,000 initial stock)</option>
+                  <option value="Regional Distributor (₦2.0M)" selected>Regional Distributor (₦2,000,000 initial stock — LGA Exclusivity)</option>
+                  <option value="Master Distributor (₦5.0M+)">Master Distributor (₦5,000,000+ initial stock — State Exclusivity)</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-claim" style="background:var(--success); color:#000; max-width:400px; margin:0 auto;">
+              Submit Distributor Dossier & Check Territory ➔
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FAQ & Objection Battlecards Section -->
+    <div class="faq-section">
+      <div class="calc-header">
+        <span class="hero-eyebrow"><i class="fa-solid fa-circle-question"></i> Partner Clarity</span>
+        <h3>Frequently Asked Questions & Objection Protocol</h3>
+        <p>Everything you need to know about payouts, customer warranties, and partner protections.</p>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-q"><i class="fa-solid fa-money-bill-transfer"></i> When and how do I receive my commissions?</div>
+          <div class="faq-a">Commissions are calculated automatically on every delivered order and wired directly to your verified Nigerian commercial bank account every Tuesday before 2:00 PM. No manual invoice creation is required.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><i class="fa-solid fa-truck-fast"></i> Who handles delivery and shipping to the buyer?</div>
+          <div class="faq-a">Lumey handles 100% of the logistics. Products are crated in shockproof packaging and dispatched from our Akure manufacturing HQ or regional depots (Lagos, Abuja, PHC, Kano, Ibadan) with tracked delivery.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><i class="fa-solid fa-shield-halved"></i> What if a customer has a technical fault under warranty?</div>
+          <div class="faq-a">All PowerBox inverters carry a 12-month manufacturer warranty, and our Heavy Duty LiFePO4 battery banks carry an official 5-year warranty (3,500+ cycles). Customers contact our authorized service centers directly.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><i class="fa-solid fa-map-location-dot"></i> How does distributor territorial exclusivity work?</div>
+          <div class="faq-a">Regional Distributors (₦2M) receive exclusive distribution rights for their Local Government Area under our 60-Day Reorder Covenant. Lumey guarantees not to onboard another distributor in that designated district as long as active restocking targets are maintained.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast Notification element -->
+  <div class="toast" id="toastBox">Notification message</div>
+
+  <!-- Interactive Logic Scripts -->
+  <script>
+    // Current track view state
+    function switchTrack(track) {
+      const affTabBtn = document.getElementById('tabBtnAffiliate');
+      const distTabBtn = document.getElementById('tabBtnDistributor');
+      const affView = document.getElementById('trackAffiliate');
+      const distView = document.getElementById('trackDistributor');
+
+      if (track === 'affiliate') {
+        affTabBtn.className = 'track-btn active-affiliate';
+        distTabBtn.className = 'track-btn';
+        affView.className = 'track-view active';
+        distView.className = 'track-view';
+      } else {
+        affTabBtn.className = 'track-btn';
+        distTabBtn.className = 'track-btn active-distributor';
+        affView.className = 'track-view';
+        distView.className = 'track-view active';
+      }
+    }
+
+    // Live Affiliate Calculator
+    function updateAffiliateCalc() {
+      const p600 = parseInt(document.getElementById('sliderPb600').value) || 0;
+      const p1500 = parseInt(document.getElementById('sliderPb1500').value) || 0;
+      const p2600 = parseInt(document.getElementById('sliderPb2600').value) || 0;
+      const p4000 = parseInt(document.getElementById('sliderPb4000').value) || 0;
+      const p8000 = parseInt(document.getElementById('sliderPb8000').value) || 0;
+
+      document.getElementById('badgePb600').innerText = p600 + ' units';
+      document.getElementById('badgePb1500').innerText = p1500 + ' units';
+      document.getElementById('badgePb2600').innerText = p2600 + ' units';
+      document.getElementById('badgePb4000').innerText = p4000 + ' units';
+      document.getElementById('badgePb8000').innerText = p8000 + ' units';
+
+      // Prices
+      const grossSales = (p600 * 320000) + (p1500 * 500000) + (p2600 * 1000000) + (p4000 * 2150000) + (p8000 * 3200000);
+
+      // Determine Tier
+      let rate = 0.05;
+      let tierName = 'STARTER TIER (5.0%)';
+      if (grossSales >= 5000000) {
+        rate = 0.12;
+        tierName = 'AMBASSADOR TIER (12.0%)';
+      } else if (grossSales >= 2000000) {
+        rate = 0.10;
+        tierName = 'PRO TIER (10.0%)';
+      } else if (grossSales >= 750000) {
+        rate = 0.075;
+        tierName = 'ACTIVE TIER (7.5%)';
+      }
+
+      const monthlyPayout = grossSales * rate;
+      const weeklyPayout = monthlyPayout / 4;
+      const annualPayout = monthlyPayout * 12;
+
+      document.getElementById('calcTierBadge').innerText = tierName;
+      document.getElementById('calcPayoutAmount').innerText = '₦' + monthlyPayout.toLocaleString();
+      document.getElementById('calcGrossSales').innerText = '₦' + grossSales.toLocaleString();
+      document.getElementById('calcWeeklySales').innerText = '₦' + Math.round(weeklyPayout).toLocaleString();
+      document.getElementById('calcAnnualSales').innerText = '₦' + Math.round(annualPayout).toLocaleString();
+    }
+
+    // Wizard Navigation
+    function goToStep(stepNumber) {
+      for (let i = 1; i <= 4; i++) {
+        const nav = document.getElementById('navStep' + i);
+        const content = document.getElementById('stepContent' + i);
+        if (i === stepNumber) {
+          nav.className = 'wiz-step active';
+          content.className = 'wizard-tab-content active';
+        } else if (i < stepNumber) {
+          nav.className = 'wiz-step completed';
+          content.className = 'wizard-tab-content';
+        } else {
+          nav.className = 'wiz-step';
+          content.className = 'wizard-tab-content';
+        }
+      }
+    }
+
+    function scrollToOnboarding() {
+      document.getElementById('onboardingSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Form Handling
+    function handleAffiliateSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('affName').value.trim() || 'Partner';
+      const customCode = document.getElementById('affCustomCode').value.trim().toUpperCase() || name.split(' ')[0].toUpperCase();
+      const finalCode = 'LUMEY-' + customCode.replace(/[^A-Z0-9]/g, '');
+
+      document.getElementById('resPartnerName').innerText = name;
+      document.getElementById('resPartnerCode').innerText = finalCode;
+      document.getElementById('resPartnerLink').value = 'https://lumeyenergy.com/?ref=' + finalCode;
+
+      showToast('Partner Account Activated! Generating your credentials...');
+      setTimeout(() => {
+        goToStep(2);
+      }, 600);
+    }
+
+    function copyPartnerLink() {
+      const link = document.getElementById('resPartnerLink');
+      link.select();
+      navigator.clipboard.writeText(link.value);
+      showToast('Partner Link Copied to Clipboard!');
+    }
+
+    function copyStatusScript() {
+      const scriptText = `How much did you burn on petrol and NEPA this month? What if you never bought fuel again? Send me a DM to see how this silent power station runs tabletop fridges and TVs. Use my code ${document.getElementById('resPartnerCode').innerText} for ₦5,000 OFF!`;
+      navigator.clipboard.writeText(scriptText);
+      showToast('Day 1 WhatsApp Status script copied!');
+    }
+
+    function validateBank() {
+      const nuban = document.getElementById('bankNuban').value.trim();
+      const note = document.getElementById('bankAccountNameResolved');
+      const partnerName = document.getElementById('affName').value.trim() || 'ADEBAYO CHUKWUMA';
+      if (nuban.length === 10) {
+        note.innerHTML = `<i class="fa-solid fa-circle-check"></i> Account Verified: <strong>${partnerName.toUpperCase()}</strong>`;
+      } else {
+        note.innerHTML = '';
+      }
+    }
+
+    function saveBankDetails() {
+      const nuban = document.getElementById('bankNuban').value.trim();
+      if (nuban.length < 10) {
+        alert('Please enter a valid 10-digit NUBAN account number.');
+        return;
+      }
+      showToast('Bank details locked in! Next payout scheduled for Tuesday.');
+    }
+
+    function selectDistTier(tierName) {
+      document.getElementById('distTierSelect').value = tierName;
+      document.getElementById('distributorForm').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handleDistributorSubmit(e) {
+      e.preventDefault();
+      const compName = document.getElementById('distCompName').value;
+      alert(`Thank you, ${compName}! Your distributor dossier has been logged. Our Regional Distribution Director will contact your designated phone within 4 business hours.`);
+      showToast('Dossier submitted successfully!');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastBox');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3500);
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      updateAffiliateCalc();
+    });
+  </script>
+</body>
+</html>
