@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local workspace shortcuts
+_Marketing_And_Strategy_Docs/
+
